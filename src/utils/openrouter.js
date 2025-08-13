@@ -1,45 +1,30 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-// Загрузка API ключа из переменной окружения или файла
-const API_KEY = process.env.OPENROUTER_API_KEY || loadApiKeyFromFile();
+const API_KEY = process.env.OPENROUTER_API_KEY;
+const API_URL = "https://openrouter.ai/api/v1/chat/completions";
+const MODEL = "qwen/qwen3-8b:free"; // Уточнено
 
-async function loadApiKeyFromFile() {
+async function loadPromptTemplate(templateName) {
+  const templatePath = path.join(__dirname, '../prompt_templates', `${templateName}.txt`);
   try {
-    const keyPath = path.join(__dirname, '../../.env.local');
-    const envContent = await fs.readFile(keyPath, 'utf8');
-    const match = envContent.match(/OPENROUTER_API_KEY=(.+)/);
-    return match ? match[1].trim() : null;
-  } catch {
-    return null;
+      return await fs.readFile(templatePath, 'utf8');
+  } catch (err) {
+      console.error(`Ошибка загрузки шаблона ${templateName}:`, err.message);
+      throw err;
   }
 }
 
-const API_URL = "https://openrouter.ai/api/v1/chat/completions";
-const MODEL = "qwen/qwen3-8b:free"; // или "qwen/qwen3" в зависимости от формата OpenRouter
-
-/**
- * Загружает текст шаблона
- */
-async function loadPromptTemplate(templateName) {
-  const templatePath = path.join(__dirname, '../prompt_templates', `${templateName}.txt`);
-  return await fs.readFile(templatePath, 'utf8');
-}
-
-/**
- * Отправляет запрос к OpenRouter API
- */
 async function callOpenRouter(prompt) {
-  const apiKey = await API_KEY;
-  if (!apiKey) {
-    throw new Error("API ключ не найден. Установите OPENROUTER_API_KEY в переменных окружения или в .env.local");
+  if (!API_KEY) {
+    throw new Error("API ключ не найден. Установите OPENROUTER_API_KEY в переменных окружения.");
   }
 
   const response = await fetch(API_URL, {
     method: "POST",
     headers: {
-      "Authorization": `Bearer ${apiKey}`,
-      "HTTP-Referer": "https://jimmyjonezz.github.io/elara-journal-v2/", // Замените на ваш сайт
+      "Authorization": `Bearer ${API_KEY}`,
+      "HTTP-Referer": "https://jimmyjonezz.github.io/elara-journal/", // Обновлено
       "X-Title": "Elara Journal",
       "Content-Type": "application/json"
     },
@@ -55,6 +40,10 @@ async function callOpenRouter(prompt) {
 
   if (!response.ok) {
     const errorText = await response.text();
+    // Добавим более информативную обработку 429
+    if (response.status === 429) {
+        throw new Error(`OpenRouter API ошибка 429 (Rate limit exceeded). Детали: ${errorText}`);
+    }
     throw new Error(`OpenRouter API ошибка: ${response.status} - ${errorText}`);
   }
 
@@ -62,17 +51,11 @@ async function callOpenRouter(prompt) {
   return data.choices[0].message.content.trim();
 }
 
-/**
- * Генерирует эссе
- */
 async function generateEssay() {
   const prompt = await loadPromptTemplate('essay_prompt');
   return await callOpenRouter(prompt);
 }
 
-/**
- * Генерирует рефлексию на основе эссе
- */
 async function generateReflection(essay) {
   let prompt = await loadPromptTemplate('reflection_prompt');
   prompt = prompt.replace("{essay}", essay);
