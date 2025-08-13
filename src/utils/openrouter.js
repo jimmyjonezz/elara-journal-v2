@@ -16,7 +16,7 @@ async function loadApiKeyFromFile() {
 }
 
 const API_URL = "https://openrouter.ai/api/v1/chat/completions";
-const MODEL = "qwen/qwen3-4b:free"; // или "qwen/qwen3" в зависимости от формата OpenRouter
+const MODEL = "qwen/qwen3-30b-a3b:free"; // или "qwen/qwen3" в зависимости от формата OpenRouter
 
 /**
  * Загружает текст шаблона
