@@ -2,8 +2,6 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [ main ] # Убедитесь, что это ваша основная ветка
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * *' # Каждый день в 00:00 UTC
