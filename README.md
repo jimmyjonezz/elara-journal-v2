@@ -46,7 +46,7 @@
 
 #### 🌐 Публикация
 
-Журнал автоматически публикуется на GitHub Pages: [https://jimmyjonezz.github.io/elara-journal/](https://jimmyjonezz.github.io/elara-journal/)
+Журнал автоматически публикуется на GitHub Pages: [https://jimmyjonezz.github.io/elara-journal/](https://jimmyjonezz.github.io/elara-journal-v2/)
 
 #### 🧪 Исследовательский аспект
 
