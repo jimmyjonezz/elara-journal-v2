@@ -39,7 +39,7 @@ async function callOpenRouter(prompt) {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${apiKey}`,
-      "HTTP-Referer": "https://elara-journal.pages.dev", // Замените на ваш сайт
+      "HTTP-Referer": "https://jimmyjonezz.github.io/elara-journal-v2/", // Замените на ваш сайт
       "X-Title": "Elara Journal",
       "Content-Type": "application/json"
     },
