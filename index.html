@@ -19,14 +19,17 @@
       <button class="tab-btn" onclick="showTab('archive')">Архив</button>
     </nav>
 
+    <!-- Главная: последняя запись -->
     <div id="home" class="tab">
+      <h2 class="tab-title">Последняя запись</h2>
       <div id="latest-entry">
         <p class="loading">Загрузка последней записи Элары...</p>
       </div>
     </div>
 
+    <!-- Архив: все записи -->
     <div id="archive" class="tab" style="display: none;">
-      <h2>📚 Архив записей</h2>
+      <h2 class="tab-title">Архив записей</h2>
       <div id="archiveList">
         <p class="loading">Загрузка архива...</p>
       </div>
@@ -91,6 +94,7 @@
           return;
         }
 
+        // Отображаем в обратном порядке (новые сверху)
         entries.slice().reverse().forEach(entry => {
           const card = document.createElement("div");
           card.className = "essay-card";
@@ -110,18 +114,32 @@
       // Формируем HTML для тегов
       let tagsHtml = '';
       if (entry.tags && Array.isArray(entry.tags) && entry.tags.length > 0) {
+        // Сортируем теги для консистентности
+        const sortedTags = [...entry.tags].sort();
         tagsHtml = `
-          <div class="tags">
-            ${entry.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+          <div class="tags-container">
+            <span class="tags-label">Теги:</span>
+            <div class="tags">
+              ${sortedTags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
           </div>
         `;
       }
 
+      // Формируем HTML для уровня рефлексии
+      const levelText = {
+        "высокий": "Глубокая",
+        "средний": "Средняя",
+        "низкий": "Поверхностная"
+      }[entry.reflection_level] || entry.reflection_level;
+
       container.innerHTML = `
-        <p class="essay-date">📅 ${entry.date}</p>
+        <div class="essay-header">
+          <p class="essay-date">📅 ${entry.date}</p>
+          <p class="reflection-level">Уровень рефлексии: <strong>${levelText}</strong></p>
+        </div>
         <div class="essay-text">${formattedText.replace(/\n/g, "<br>")}</div>
         ${tagsHtml}
-        <div class="reflection-level">Уровень рефлексии: <strong>${entry.reflection_level}</strong></div>
       `;
     }
 
