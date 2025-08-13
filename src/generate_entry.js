@@ -1,10 +1,23 @@
 // src/generate_entry.js
 const fs = require('fs').promises;
+const fss = require('fs'); // Для синхронных операций existsSync, mkdirSync
 const path = require('path');
 const { generateEssay, generateReflection } = require('./utils/openrouter');
 
-// Путь к журналу
-const JOURNAL_PATH = path.join(__dirname, '../public/data/journal.json');
+// Путь к журналу (теперь в корне проекта)
+const JOURNAL_PATH = path.join(__dirname, '../data/journal.json');
+
+/**
+ * Гарантирует существование директории для файла.
+ * @param {string} filePath - Путь к файлу.
+ */
+async function ensureDirectoryExistence(filePath) {
+    const dirname = path.dirname(filePath);
+    if (fss.existsSync(dirname)) {
+      return true;
+    }
+    fss.mkdirSync(dirname, { recursive: true });
+}
 
 /**
  * Извлекает теги из текста (простая реализация)
@@ -73,7 +86,11 @@ async function createNewEntry() {
       reflection_level: level
     };
 
-    // 4. Загружаем существующий журнал с проверкой типа
+    // 4. Убедиться, что директория существует
+    await ensureDirectoryExistence(JOURNAL_PATH);
+    console.log(`📁 Гарантируем существование директории для ${JOURNAL_PATH}`);
+
+    // 5. Загружаем существующий журнал с проверкой типа
     let journal = [];
     try {
       const data = await fs.readFile(JOURNAL_PATH, 'utf8');
@@ -92,15 +109,16 @@ async function createNewEntry() {
       journal = [];
     }
 
-    // 5. Добавляем новую запись
+    // 6. Добавляем новую запись
     journal.push(entry);
 
-    // 6. Сохраняем журнал
+    // 7. Сохраняем журнал
     await fs.writeFile(JOURNAL_PATH, JSON.stringify(journal, null, 2));
     console.log("✅ Запись успешно добавлена в журнал.");
 
   } catch (error) {
     console.error("❌ Ошибка при создании записи:", error.message);
+    console.error(error); // Для отладки
     process.exit(1);
   }
 }
