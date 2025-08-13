@@ -1,4 +1,4 @@
-/* public/style.css */
+/* style.css */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,10 +7,8 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  /* Обновленный градиент, более нейтральный и спокойный */
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  /* Основной цвет текста, как на learnprompting.org */
-  color: #212529; 
+  color: #212529;
   line-height: 1.7;
   min-height: 100vh;
 }
@@ -29,14 +27,12 @@ header {
 h1 {
   font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
-  /* Цвет заголовка как у них */
   color: #212529;
   margin-bottom: 8px;
 }
 
 .subtitle {
   font-size: 1.1rem;
-  /* Цвет подзаголовка, более светлый серый */
   color: #6c757d;
   font-weight: 400;
 }
@@ -53,10 +49,8 @@ nav {
   padding: 10px 20px;
   font-size: 16px;
   border: none;
-  /* Фон кнопки, как у карточек */
-  background: #e9ecef; 
-  /* Цвет текста кнопки */
-  color: #495057; 
+  background: #e9ecef;
+  color: #495057;
   cursor: pointer;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -64,140 +58,55 @@ nav {
 }
 
 .tab-btn:hover {
-  /* Цвет фона при наведении, чуть темнее */
-  background: #dee2e6; 
+  background: #dee2e6;
   color: #212529;
 }
 
 .tab-btn.active {
-  /* Акцентный цвет, как на learnprompting.org */
-  background: #3498db; 
+  background: #3498db;
   color: white;
   font-weight: 500;
+}
+
+/* Заголовки вкладок */
+.tab-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #212529;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
 }
 
 /* Загрузка и ошибки */
 .loading, .empty, .error {
   text-align: center;
-  /* Цвет текста статусов */
-  color: #6c757d; 
+  color: #6c757d;
   font-style: italic;
   padding: 20px;
 }
 
 .error {
-  /* Цвет ошибки, оставим стандартный красный, но чуть мягче */
-  color: #dc3545; 
+  color: #dc3545;
 }
 
 .empty {
-  /* Цвет для пустого состояния */
-  color: #adb5bd; 
+  color: #adb5bd;
 }
 
 /* Карточка записи (единый стиль для Главной и Архива) */
 .essay-card {
   background: #fff;
-  border: 1px solid #e9ecef; /* Более светлая граница */
+  border: 1px solid #e9ecef;
   border-radius: 16px;
   padding: 20px;
   margin-bottom: 20px;
-  /* Более мягкая тень */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .essay-card:hover {
   transform: translateY(-2px);
-  /* Тень при наведении, как у них */
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.essay-title {
-  margin: 0 0 8px 0;
-  /* Цвет заголовка записи */
-  color: #212529; 
-  font-size: 1.3rem;
-  font-family: 'Playfair Display', serif;
-}
-
-.essay-date {
-  /* Цвет даты, акцентный синий */
-  color: #3498db; 
-  font-size: 0.95rem;
-  margin-bottom: 10px;
-  font-weight: 500;
-}
-
-/* .essay-summary {
-  /* Убираем, так как в новой структуре entry включает и эссе, и рефлексию *
-  /* color: #34495e; *
-  /* margin-bottom: 16px; *
-  /* line-height: 1.7; *
-/* } */
-
-.reflection h4 {
-  margin: 16px 0 8px 0;
-  /* Цвет заголовка рефлексии, чуть темнее основного акцента */
-  color: #2980b9; 
-  font-size: 1.1rem;
-}
-
-.reflection p {
-  /* Фон для текста рефлексии */
-  background: #f8f9fa; 
-  padding: 14px;
-  border-radius: 10px;
-  font-style: italic;
-  /* Цвет текста рефлексии */
-  color: #495057; 
-  line-height: 1.6;
-  /* Левая граница, как на learnprompting.org */
-  border-left: 4px solid #3498db; 
-}
-
-/* Архив */
-#archive h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  /* Цвет заголовка архива */
-  color: #212529; 
-}
-
-/* Подвал */
-footer {
-  text-align: center;
-  margin-top: 40px;
-  /* Цвет текста подвала */
-  color: #6c757d; 
-  font-size: 0.9rem;
-}
-
-footer a {
-  /* Цвет ссылок в подвале, акцентный */
-  color: #3498db; 
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-/* Адаптивность */
-@media (max-width: 600px) {
-  .container {
-    padding: 15px;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  .essay-title {
-    font-size: 1.1rem;
-  }
-
-  .essay-card {
-    padding: 16px;
-  }
-}
+/* Заголовок записи (дата и уровень рефлексии
