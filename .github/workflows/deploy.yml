@@ -1,3 +1,4 @@
+# .github/workflows/deploy.yml
 name: Deploy to GitHub Pages
 
 on:
@@ -25,10 +26,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: 'npm'
+          # cache: 'npm' # Раскомментируйте, если будете использовать package-lock.json
 
-      - name: Install dependencies
-        run: npm install
+      # Если используете зависимости:
+      # - name: Install dependencies
+      #   run: npm install
 
       - name: Generate new journal entry
         env:
@@ -36,13 +38,25 @@ jobs:
         run: |
           node src/generate_entry.js
 
+      - name: Prepare files for deployment
+        run: |
+          # Создаем временную директорию для деплоя
+          mkdir -p /tmp/deploy_root
+          # Копируем index.html и style.css из public в корень временной директории
+          cp public/index.html /tmp/deploy_root/
+          cp public/style.css /tmp/deploy_root/
+          # Копируем всю папку data из public в корень временной директории
+          cp -r public/data /tmp/deploy_root/
+          # Делаем временную директорию текущей для следующего шага
+          echo "DEPLOY_DIR=/tmp/deploy_root" >> $GITHUB_ENV
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './public'
+          path: ${{ env.DEPLOY_DIR }} # Используем подготовленную директорию
 
   deploy:
     environment:
