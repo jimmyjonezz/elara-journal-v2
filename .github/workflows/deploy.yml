@@ -6,8 +6,9 @@ on:
   schedule:
     - cron: '0 0 * * *' # Каждый день в 00:00 UTC
 
+# Добавляем разрешение на запись в репозиторий
 permissions:
-  contents: read
+  contents: write # <-- Нам нужно это разрешение для git push
   pages: write
   id-token: write
 
@@ -21,6 +22,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        # Важно: разрешить токену делать push
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -37,6 +41,24 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
           node src/generate_entry.js
+
+      # ===== НОВЫЙ ШАГ: Сохранить изменения в репозитории =====
+      - name: Commit and push updated journal
+        run: |
+          # Проверить, были ли изменения в data/journal.json
+          git diff --quiet data/journal.json || JOURNAL_CHANGED=true
+          if [ "$JOURNAL_CHANGED" = true ]; then
+            echo "📁 Файл журнала изменен. Коммитим..."
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add data/journal.json
+            git commit -m "📝 Добавлена новая запись в журнал Элары"
+            git push
+            echo "✅ Запись журнала закоммичена и запушена."
+          else
+            echo "ℹ️  Файл журнала не изменился. Пропускаем коммит."
+          fi
+        # ===== КОНЕЦ НОВОГО ШАГА =====
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
