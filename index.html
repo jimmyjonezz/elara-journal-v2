@@ -42,7 +42,8 @@
 
   <script>
     // Путь к журналу теперь data/journal.json, относительно корня сайта
-    const JOURNAL_URL = "data/journal.json";
+    // Добавляем временную метку, чтобы обойти кэш браузера и CDN
+    const JOURNAL_URL = `data/journal.json?v=${Date.now()}`;
 
     function showTab(tabName) {
       document.querySelectorAll(".tab").forEach(t => t.style.display = "none");
@@ -118,7 +119,7 @@
         const sortedTags = [...entry.tags].sort();
         tagsHtml = `
           <div class="tags-container">
-            <span class="tags-label">Теги:</span>
+            <span class="tags-label"></span>
             <div class="tags">
               ${sortedTags.map(tag => `<span class="tag">${tag}</span>`).join('')}
             </div>
