@@ -65,16 +65,18 @@
 
 ```
 elara-journal/
-├── .github/workflows/deploy.yml  # CI/CD
+├── .github/workflows/deploy.yml # CI/CD
 ├── src/
-│   ├── generate_entry.js         # Генерация записей
-│   ├── prompt_templates/         # Промпты для Элары
-│   └── utils/openrouter.js       # API-клиент
-├── data/journal.json             # Журнал
-├── public/                       # Сайт
-│   ├── index.html
-│   └── style.css
-└── package.json                  # Манифест Node.js
+│ ├── generate_entry.js # Генерация записей
+│ ├── prompt_templates/ # Промпты для Элары
+│ │ ├── essay_prompt.txt
+│ │ └── reflection_prompt.txt
+│ └── utils/openrouter.js # API-клиент
+├── data/ # Папка для журнала (создается автоматически)
+│ └── journal.json # Журнал записей (создается/обновляется автоматически)
+├── index.html # Главная страница сайта
+├── style.css # Стили сайта
+└── package.json # Манифест Node.js
 ```
 
 ---
