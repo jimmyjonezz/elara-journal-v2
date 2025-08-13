@@ -1,0 +1,145 @@
+:root {
+  --bg: #fdf6f0;
+  --text: #333;
+  --accent: #6b4e71;
+  --light-accent: #cbaacb;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --font-main: 'Montserrat', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin: 0.5rem 0;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+nav {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: var(--text);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.tab {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.essay-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px var(--shadow);
+  transition: transform 0.2s ease;
+}
+
+.essay-card:hover {
+  transform: translateY(-3px);
+}
+
+.essay-date {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.essay-text {
+  margin: 1rem 0;
+  white-space: pre-wrap;
+  font-size: 1rem;
+}
+
+.tags {
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+}
+
+.tag {
+  background-color: var(--light-accent);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 15px;
+  margin-right: 0.4rem;
+  display: inline-block;
+  font-size: 0.8rem;
+}
+
+.reflection-level {
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 0.8rem;
+}
+
+.loading,
+.empty,
+.error {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+}
+
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
