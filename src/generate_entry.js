@@ -4,7 +4,7 @@ const path = require('path');
 const { generateEssay, generateReflection } = require('./utils/openrouter');
 
 // Путь к журналу
-const JOURNAL_PATH = path.join(__dirname, '../data/journal.json');
+const JOURNAL_PATH = path.join(__dirname, '../public/data/journal.json');
 
 /**
  * Извлекает теги из текста (простая реализация)
