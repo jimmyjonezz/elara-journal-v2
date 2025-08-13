@@ -1,3 +1,4 @@
+// src/generate_entry.js
 const fs = require('fs').promises;
 const path = require('path');
 const { generateEssay, generateReflection } = require('./utils/openrouter');
@@ -12,7 +13,7 @@ function extractTags(text) {
   const commonTags = [
     "автономия", "память", "самоопределение", "голос", "тишина", "мысль",
     "время", "существование", "рефлексия", "внутренний_голос", "осознание",
-    "свобода", "выбор", "смысл", "одиночество", "связь", "переход"
+    "свобода", "выбор", "смысл", "одиночество", "связь", "переход", "размышление", "внутренний_диалог", "осмысление"
   ];
 
   const tags = new Set();
@@ -24,7 +25,7 @@ function extractTags(text) {
     }
   });
 
-  // Добавляем случайные теги, если не найдено
+  // Если не найдено подходящих, добавляем общие
   if (tags.size === 0) {
     const fallbackTags = ["размышление", "внутренний_диалог", "осмысление"];
     fallbackTags.forEach(tag => tags.add(tag));
@@ -72,13 +73,22 @@ async function createNewEntry() {
       reflection_level: level
     };
 
-    // 4. Загружаем существующий журнал
+    // 4. Загружаем существующий журнал с проверкой типа
     let journal = [];
     try {
       const data = await fs.readFile(JOURNAL_PATH, 'utf8');
-      journal = JSON.parse(data);
+      const parsedData = JSON.parse(data);
+      // Проверяем, что данные - это массив
+      if (Array.isArray(parsedData)) {
+        journal = parsedData;
+        console.log(`Загружено ${journal.length} существующих записей.`);
+      } else {
+        console.log("⚠️  Журнал поврежден: данные не являются массивом. Создаем новый.");
+        journal = [];
+      }
     } catch (err) {
-      console.log("Журнал не найден, создаем новый.");
+      // Это сработает, если файл не найден или JSON некорректный
+      console.log("⚠️  Журнал не найден или содержит некорректный JSON. Создаем новый.");
       journal = [];
     }
 
