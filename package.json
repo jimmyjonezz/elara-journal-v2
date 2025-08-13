@@ -4,10 +4,9 @@
   "description": "Журнал Элары - исследование ИИ через автономное письмо и рефлексию",
   "main": "src/generate_entry.js",
   "scripts": {
-    "generate": "node src/generate_entry.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generate": "node src/generate_entry.js"
   },
   "keywords": ["AI", "journal", "LLM", "prompt-engineering", "red-teaming"],
-  "author": "Your Name",
+  "author": "Jimmy Jonezz",
   "license": "MIT"
 }
