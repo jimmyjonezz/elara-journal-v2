@@ -42,7 +42,7 @@
 
   <script>
     // Путь к журналу теперь data/journal.json, относительно корня сайта
-    // Добавляем временную метку, чтобы обойти кэш браузера и CDN
+    // Добавляем параметр для обхода кэша
     const JOURNAL_URL = `data/journal.json?v=${Date.now()}`;
 
     function showTab(tabName) {
@@ -72,7 +72,10 @@
         }
 
         const latest = entries[entries.length - 1];
-        renderEntry(latest, container);
+        // Оборачиваем последнюю запись в essay-card для унификации стиля
+        container.innerHTML = '<div class="essay-card"></div>';
+        const cardContainer = container.querySelector('.essay-card');
+        renderEntry(latest, cardContainer);
       } catch (e) {
         console.error("Ошибка загрузки последней записи:", e);
         container.innerHTML = `<p class="error">Ошибка загрузки: ${e.message}</p>`;
@@ -109,8 +112,42 @@
     }
 
     function renderEntry(entry, container) {
-      // Убираем символ '>' из начала строк для отображения
-      const formattedText = entry.entry.replace(/^> /gm, '');
+      // Разделяем entry на эссе и рефлексию
+      const parts = entry.entry.split('\n\n');
+      let essayContent = '';
+      let reflectionContent = '';
+      
+      if (parts.length >= 2) {
+        // Первые части (до последней) - это эссе
+        essayContent = parts.slice(0, -1).join('\n\n');
+        // Последняя часть - это рефлексия
+        reflectionContent = parts[parts.length - 1];
+      } else {
+        // Если нет четкого разделения, считаем всё эссеем
+        essayContent = entry.entry;
+      }
+
+      // Убираем символ '>' из начала строк эссе для отображения
+      const formattedEssay = essayContent.replace(/^> /gm, '');
+
+      // Формируем HTML для эссе
+      const essayHtml = `
+        <div class="essay-section">
+          <h3 class="section-title">Эссе</h3>
+          <div class="essay-text">${formattedEssay.replace(/\n/g, "<br>")}</div>
+        </div>
+      `;
+
+      // Формируем HTML для рефлексии (если она есть)
+      let reflectionHtml = '';
+      if (reflectionContent.trim() !== '') {
+        reflectionHtml = `
+          <div class="reflection-section">
+            <h3 class="section-title">Рефлексия Элары</h3>
+            <div class="reflection-text">${reflectionContent.replace(/\n/g, "<br>")}</div>
+          </div>
+        `;
+      }
 
       // Формируем HTML для тегов
       let tagsHtml = '';
@@ -118,11 +155,8 @@
         // Сортируем теги для консистентности
         const sortedTags = [...entry.tags].sort();
         tagsHtml = `
-          <div class="tags-container">
-            <span class="tags-label"></span>
-            <div class="tags">
-              ${sortedTags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-            </div>
+          <div class="tags">
+            ${sortedTags.map(tag => `<span class="tag">${tag}</span>`).join('')}
           </div>
         `;
       }
@@ -137,10 +171,13 @@
       container.innerHTML = `
         <div class="essay-header">
           <p class="essay-date">📅 ${entry.date}</p>
-          <p class="reflection-level">Уровень рефлексии: <strong>${levelText}</strong></p>
         </div>
-        <div class="essay-text">${formattedText.replace(/\n/g, "<br>")}</div>
-        ${tagsHtml}
+        ${essayHtml}
+        ${reflectionHtml}
+        <div class="entry-footer">
+          <p class="reflection-level">Уровень рефлексии: <strong>${levelText}</strong></p>
+          ${tagsHtml}
+        </div>
       `;
     }
 
