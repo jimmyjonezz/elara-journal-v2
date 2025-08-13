@@ -107,12 +107,20 @@
       // Убираем символ '>' из начала строк для отображения
       const formattedText = entry.entry.replace(/^> /gm, '');
 
+      // Формируем HTML для тегов
+      let tagsHtml = '';
+      if (entry.tags && Array.isArray(entry.tags) && entry.tags.length > 0) {
+        tagsHtml = `
+          <div class="tags">
+            ${entry.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+          </div>
+        `;
+      }
+
       container.innerHTML = `
         <p class="essay-date">📅 ${entry.date}</p>
         <div class="essay-text">${formattedText.replace(/\n/g, "<br>")}</div>
-        <div class="tags">
-          ${entry.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-        </div>
+        ${tagsHtml}
         <div class="reflection-level">Уровень рефлексии: <strong>${entry.reflection_level}</strong></div>
       `;
     }
