@@ -2,6 +2,8 @@
 name: Deploy to GitHub Pages
 
 on:
+  push:
+    branches: [ main ] # Убедитесь, что это ваша основная ветка
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * *' # Каждый день в 00:00 UTC
@@ -38,25 +40,14 @@ jobs:
         run: |
           node src/generate_entry.js
 
-      - name: Prepare files for deployment
-        run: |
-          # Создаем временную директорию для деплоя
-          mkdir -p /tmp/deploy_root
-          # Копируем index.html и style.css из public в корень временной директории
-          cp public/index.html /tmp/deploy_root/
-          cp public/style.css /tmp/deploy_root/
-          # Копируем всю папку data из public в корень временной директории
-          cp -r public/data /tmp/deploy_root/
-          # Делаем временную директорию текущей для следующего шага
-          echo "DEPLOY_DIR=/tmp/deploy_root" >> $GITHUB_ENV
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      # Теперь просто загружаем весь корень репозитория
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ env.DEPLOY_DIR }} # Используем подготовленную директорию
+          path: '.' # Загружаем всё из корня
 
   deploy:
     environment:
