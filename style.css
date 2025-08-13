@@ -109,4 +109,114 @@ nav {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* Заголовок записи (дата и уровень рефлексии
+/* Заголовок записи (дата) */
+.essay-header {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #e9ecef;
+}
+
+.essay-date {
+  color: #3498db;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Секции записи */
+.essay-section, .reflection-section {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: #212529;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.essay-text, .reflection-text {
+  line-height: 1.7;
+  color: #495057;
+}
+
+.reflection-text {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #3498db;
+  font-style: italic;
+}
+
+/* Подвал записи (уровень рефлексии и теги) */
+.entry-footer {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px dashed #e9ecef;
+}
+
+.reflection-level {
+  color: #2980b9;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+/* Теги */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background: #e3f2fd; /* Светло-голубой фон */
+  color: #0d47a1; /* Темно-синий текст */
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid #bbdefb; /* Граница чуть темнее фона */
+}
+
+/* Подвал */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .tab-title {
+    font-size: 1.5rem;
+  }
+
+  .essay-card {
+    padding: 16px;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+}
