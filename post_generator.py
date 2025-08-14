@@ -8,7 +8,7 @@ import os
 from datetime import datetime
 
 # Путь к памяти
-MEMORY_FILE = "memory/journal_entries.json"
+MEMORY_FILE = "data/journal.json"
 
 
 def load_latest_entry():
