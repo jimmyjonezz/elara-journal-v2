@@ -24,7 +24,7 @@ async function callOpenRouter(prompt) {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${API_KEY}`,
-      "HTTP-Referer": "https://jimmyjonezz.github.io/elara-journal/", // Обновлено
+      "HTTP-Referer": "https://jimmyjonezz.github.io/elara-journal-v2/", // Обновлено
       "X-Title": "Elara Journal",
       "Content-Type": "application/json"
     },
