@@ -77,11 +77,6 @@ body {
   min-height: 100vh;
 }
 
-.application-main-content {
-  flex: 1;
-  padding: var(--spacing-4) var(--spacing-3);
-}
-
 /* Header */
 .header {
   display: flex;
@@ -123,7 +118,7 @@ body {
   color: var(--color-fg-subtle);
 }
 
-/* Navigation Tabs */
+/* Стили для навигационных кнопок (табов) */
 .tabnav {
   padding: 0 var(--spacing-3);
   background-color: var(--color-canvas-default);
@@ -142,11 +137,13 @@ body {
   color: var(--color-fg-muted);
   background-color: transparent;
   border: 1px solid transparent;
-  border-bottom: 1px solid var(--color-border-default);
+  border-bottom: 2px solid transparent; /* Прозрачная граница снизу по умолчанию */
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
   cursor: pointer;
-  transition: color 0.2s;
+  transition: color 0.2s ease; /* Плавный переход для цвета текста */
+  position: relative;
+  bottom: -1px; /* Сlightly поднимаем, чтобы перекрыть нижнюю границу .tabnav */
 }
 
 .tabnav-tab:hover {
@@ -154,12 +151,24 @@ body {
   text-decoration: none;
 }
 
+/* --- НОВОЕ: Стиль для активного таба --- */
 .tabnav-tab.selected {
   color: var(--color-fg-default);
-  background-color: var(--color-canvas-default);
-  border-color: var(--color-border-default);
-  border-bottom-color: var(--color-canvas-default);
+  /* Убираем фон и боковые границы */
+  background-color: transparent;
+  border-color: transparent;
+  /* Добавляем нижнее подчеркивание */
+  border-bottom: 2px solid var(--color-accent-fg);
 }
+/* --- КОНЕЦ НОВОГО --- */
+
+/* Основной контент */
+.application-main-content {
+  flex: 1;
+  padding: var(--spacing-4) var(--spacing-3);
+}
+
+/* ... (остальной CSS остается без изменений) ... */
 
 /* Container */
 .container {
