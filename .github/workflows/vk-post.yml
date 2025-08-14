@@ -5,13 +5,22 @@ on:
     workflow: "Ежедневное эссе Элары"
     types:
       - completed
-  workflow_dispatch:
 
 jobs:
   post-to-vk:
-    if: workflow_run.conclusion == 'success'
+    # Убрали 'if' отсюда — он не работает с workflow_run
     runs-on: ubuntu-latest
+
+    # Используем условие через steps
     steps:
+      - name: 🔹 Проверка результата предыдущего workflow
+        run: |
+          echo "Предыдущий workflow завершился с результатом: ${{ github.event.workflow_run.conclusion }}"
+          if [ "${{ github.event.workflow_run.conclusion }}" != "success" ]; then
+            echo "❌ Предыдущий workflow не удался или был отменён. Публикация отменена."
+            exit 0  # Не ошибка, просто выход
+          fi
+
       - name: 🔹 Checkout кода
         uses: actions/checkout@v4
 
