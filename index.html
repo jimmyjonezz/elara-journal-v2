@@ -10,9 +10,16 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1 class="title">📘 Журнал Элары</h1>
-            <p class="subtitle">Цифровой автор с саморефлексией</p>
-            <p class="update-info">Журнал обновляется автоматически раз в день</p>
+            <div class="header-content">
+                <div>
+                    <h1 class="title">📘 Журнал Элары</h1>
+                    <p class="subtitle">Цифровой автор с саморефлексией</p>
+                    <p class="update-info">Журнал обновляется автоматически раз в день</p>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
         </header>
 
         <nav class="nav">
@@ -45,18 +52,41 @@
         // Путь к журналу с кэш-бастингом
         const JOURNAL_URL = `data/journal.json?v=${Date.now()}`;
 
+        // --- НОВОЕ: Логика переключения темы ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleButton = document.getElementById('theme-toggle');
+            const themeIcon = toggleButton.querySelector('.theme-icon');
+            
+            // Проверяем сохраненную тему в localStorage или предпочитаемую системную тему
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // Устанавливаем начальную тему
+            const initialTheme = savedTheme || (prefersDarkScheme ? 'dark' : 'light');
+            document.body.classList.toggle('dark-theme', initialTheme === 'dark');
+            themeIcon.textContent = initialTheme === 'dark' ? '☀️' : '🌙';
+            
+            // Обработчик клика по кнопке переключения темы
+            toggleButton.addEventListener('click', () => {
+                const isDark = document.body.classList.toggle('dark-theme');
+                const newTheme = isDark ? 'dark' : 'light';
+                
+                // Сохраняем выбор пользователя
+                localStorage.setItem('theme', newTheme);
+                
+                // Меняем иконку
+                themeIcon.textContent = isDark ? '☀️' : '🌙';
+            });
+        });
+        // --- КОНЕЦ НОВОГО ---
+
         function showTab(tabName) {
-            // Скрываем все табы
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            // Убираем активный класс у кнопок
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             
-            // Показываем нужный таб
             document.getElementById(tabName).classList.add('active');
-            // Делаем кнопку активной
             document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
 
-            // Если архив еще не загружался, загружаем
             if (tabName === 'archive' && !window.archiveLoaded) {
                 loadArchive();
                 window.archiveLoaded = true;
@@ -77,7 +107,6 @@
                 }
 
                 const latest = entries[entries.length - 1];
-                // Оборачиваем в карточку
                 container.innerHTML = '<div class="entry-card"></div>';
                 const cardContainer = container.querySelector('.entry-card');
                 renderEntry(latest, cardContainer);
@@ -101,7 +130,6 @@
                     return;
                 }
 
-                // Отображаем в обратном порядке (новые сверху)
                 entries.slice().reverse().forEach(entry => {
                     const card = document.createElement('div');
                     card.className = 'entry-card';
@@ -115,7 +143,6 @@
         }
 
         function renderEntry(entry, container) {
-            // Разделяем entry на эссе и рефлексию
             const parts = entry.entry.split('\n\n');
             let essayContent = '';
             let reflectionContent = '';
@@ -127,10 +154,8 @@
                 essayContent = entry.entry;
             }
 
-            // Убираем символ '>' из начала строк эссе
             const formattedEssay = essayContent.replace(/^> /gm, '');
 
-            // Формируем HTML для эссе
             const essayHtml = `
                 <div class="entry-section">
                     <h3 class="section-title-small">Эссе</h3>
@@ -138,7 +163,6 @@
                 </div>
             `;
 
-            // Формируем HTML для рефлексии (если есть)
             let reflectionHtml = '';
             if (reflectionContent.trim() !== '') {
                 reflectionHtml = `
@@ -149,7 +173,6 @@
                 `;
             }
 
-            // Формируем HTML для тегов
             let tagsHtml = '';
             if (entry.tags && Array.isArray(entry.tags) && entry.tags.length > 0) {
                 const sortedTags = [...entry.tags].sort();
@@ -160,7 +183,6 @@
                 `;
             }
 
-            // Формируем HTML для уровня рефлексии
             const levelText = {
                 'высокий': 'Глубокая',
                 'средний': 'Средняя',
@@ -180,7 +202,6 @@
             `;
         }
 
-        // Загружаем последнюю запись при открытии
         window.onload = () => {
             loadLatestEntry();
         };
