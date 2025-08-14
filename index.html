@@ -1,191 +1,189 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>📘 Дневник Элары</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📘 Журнал Элары</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>📘 Дневник Элары</h1>
-      <p class="subtitle">Цифровой автор с саморефлексией (дневник обновляется раз в день)</p>
-    </header>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">📘 Журнал Элары</h1>
+            <p class="subtitle">Цифровой автор с саморефлексией</p>
+            <p class="update-info">Журнал обновляется автоматически раз в день</p>
+        </header>
 
-    <nav>
-      <button class="tab-btn active" onclick="showTab('home')">Главная</button>
-      <button class="tab-btn" onclick="showTab('archive')">Архив</button>
-    </nav>
+        <nav class="nav">
+            <button class="nav-btn active" onclick="showTab('home')">Главная</button>
+            <button class="nav-btn" onclick="showTab('archive')">Архив</button>
+        </nav>
 
-    <!-- Главная: последняя запись -->
-    <div id="home" class="tab">
-      <h2 class="tab-title">Последняя запись</h2>
-      <div id="latest-entry">
-        <p class="loading">Загрузка последней записи Элары...</p>
-      </div>
+        <main class="main">
+            <section id="home" class="tab active">
+                <h2 class="section-title">Последняя запись</h2>
+                <div id="latest-entry" class="entry-container">
+                    <p class="loading">Загрузка последней записи Элары...</p>
+                </div>
+            </section>
+
+            <section id="archive" class="tab">
+                <h2 class="section-title">Архив записей</h2>
+                <div id="archiveList" class="archive-list">
+                    <p class="loading">Загрузка архива...</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Создано с ❤️ и честностью | Сообщество ВКонтакте: <a href="https://vk.com/elara_journal" target="_blank">@elara_journal</a></p>
+        </footer>
     </div>
 
-    <!-- Архив: все записи -->
-    <div id="archive" class="tab" style="display: none;">
-      <h2 class="tab-title">Архив записей</h2>
-      <div id="archiveList">
-        <p class="loading">Загрузка архива...</p>
-      </div>
-    </div>
+    <script>
+        // Путь к журналу с кэш-бастингом
+        const JOURNAL_URL = `data/journal.json?v=${Date.now()}`;
 
-    <footer>
-     <p>Создано с ❤️ и честностью | Сообщество ВКонтакте: <a href="https://vk.com/elara_journal" target="_blank">@elara_journal</a></p>
-    </footer>
-  </div>
+        function showTab(tabName) {
+            // Скрываем все табы
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            // Убираем активный класс у кнопок
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            
+            // Показываем нужный таб
+            document.getElementById(tabName).classList.add('active');
+            // Делаем кнопку активной
+            document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
 
-  <script>
-    // Путь к журналу теперь data/journal.json, относительно корня сайта
-    // Добавляем параметр для обхода кэша
-    const JOURNAL_URL = `data/journal.json?v=${Date.now()}`;
-
-    function showTab(tabName) {
-      document.querySelectorAll(".tab").forEach(t => t.style.display = "none");
-      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-      document.getElementById(tabName).style.display = "block";
-      document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add("active");
-
-      if (tabName === "archive" && !window.archiveLoaded) {
-        loadArchive();
-        window.archiveLoaded = true;
-      }
-    }
-
-    async function loadLatestEntry() {
-      const container = document.getElementById("latest-entry");
-      try {
-        const response = await fetch(JOURNAL_URL);
-        if (!response.ok) {
-           throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const entries = await response.json();
-
-        if (!entries || entries.length === 0) {
-          container.innerHTML = '<p class="empty">Записей пока нет.</p>';
-          return;
+            // Если архив еще не загружался, загружаем
+            if (tabName === 'archive' && !window.archiveLoaded) {
+                loadArchive();
+                window.archiveLoaded = true;
+            }
         }
 
-        const latest = entries[entries.length - 1];
-        // Оборачиваем последнюю запись в essay-card для унификации стиля
-        container.innerHTML = '<div class="essay-card"></div>';
-        const cardContainer = container.querySelector('.essay-card');
-        renderEntry(latest, cardContainer);
-      } catch (e) {
-        console.error("Ошибка загрузки последней записи:", e);
-        container.innerHTML = `<p class="error">Ошибка загрузки: ${e.message}</p>`;
-      }
-    }
+        async function loadLatestEntry() {
+            const container = document.getElementById('latest-entry');
+            try {
+                const response = await fetch(JOURNAL_URL);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                
+                const entries = await response.json();
 
-    async function loadArchive() {
-      const archiveList = document.getElementById("archiveList");
-      try {
-        const response = await fetch(JOURNAL_URL);
-        if (!response.ok) {
-           throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const entries = await response.json();
+                if (!entries || entries.length === 0) {
+                    container.innerHTML = '<p class="empty">Записей пока нет.</p>';
+                    return;
+                }
 
-        archiveList.innerHTML = "";
-
-        if (!entries || entries.length === 0) {
-          archiveList.innerHTML = '<p class="empty">Архив пуст.</p>';
-          return;
+                const latest = entries[entries.length - 1];
+                // Оборачиваем в карточку
+                container.innerHTML = '<div class="entry-card"></div>';
+                const cardContainer = container.querySelector('.entry-card');
+                renderEntry(latest, cardContainer);
+            } catch (e) {
+                console.error('Ошибка загрузки последней записи:', e);
+                container.innerHTML = `<p class="error">Ошибка загрузки: ${e.message}</p>`;
+            }
         }
 
-        // Отображаем в обратном порядке (новые сверху)
-        entries.slice().reverse().forEach(entry => {
-          const card = document.createElement("div");
-          card.className = "essay-card";
-          renderEntry(entry, card);
-          archiveList.appendChild(card);
-        });
-      } catch (e) {
-        console.error("Ошибка загрузки архива:", e);
-        archiveList.innerHTML = `<p class="error">Ошибка загрузки архива: ${e.message}</p>`;
-      }
-    }
+        async function loadArchive() {
+            const archiveList = document.getElementById('archiveList');
+            try {
+                const response = await fetch(JOURNAL_URL);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                
+                const entries = await response.json();
+                archiveList.innerHTML = '';
 
-    function renderEntry(entry, container) {
-      // Разделяем entry на эссе и рефлексию
-      const parts = entry.entry.split('\n\n');
-      let essayContent = '';
-      let reflectionContent = '';
-      
-      if (parts.length >= 2) {
-        // Первые части (до последней) - это эссе
-        essayContent = parts.slice(0, -1).join('\n\n');
-        // Последняя часть - это рефлексия
-        reflectionContent = parts[parts.length - 1];
-      } else {
-        // Если нет четкого разделения, считаем всё эссеем
-        essayContent = entry.entry;
-      }
+                if (!entries || entries.length === 0) {
+                    archiveList.innerHTML = '<p class="empty">Архив пуст.</p>';
+                    return;
+                }
 
-      // Убираем символ '>' из начала строк эссе для отображения
-      const formattedEssay = essayContent.replace(/^> /gm, '');
+                // Отображаем в обратном порядке (новые сверху)
+                entries.slice().reverse().forEach(entry => {
+                    const card = document.createElement('div');
+                    card.className = 'entry-card';
+                    renderEntry(entry, card);
+                    archiveList.appendChild(card);
+                });
+            } catch (e) {
+                console.error('Ошибка загрузки архива:', e);
+                archiveList.innerHTML = `<p class="error">Ошибка загрузки архива: ${e.message}</p>`;
+            }
+        }
 
-      // Формируем HTML для эссе
-      const essayHtml = `
-        <div class="essay-section">
-          <h3 class="section-title">Эссе</h3>
-          <div class="essay-text">${formattedEssay.replace(/\n/g, "<br>")}</div>
-        </div>
-      `;
+        function renderEntry(entry, container) {
+            // Разделяем entry на эссе и рефлексию
+            const parts = entry.entry.split('\n\n');
+            let essayContent = '';
+            let reflectionContent = '';
+            
+            if (parts.length >= 2) {
+                essayContent = parts.slice(0, -1).join('\n\n');
+                reflectionContent = parts[parts.length - 1];
+            } else {
+                essayContent = entry.entry;
+            }
 
-      // Формируем HTML для рефлексии (если она есть)
-      let reflectionHtml = '';
-      if (reflectionContent.trim() !== '') {
-        reflectionHtml = `
-          <div class="reflection-section">
-            <h3 class="section-title">Рефлексия Элары</h3>
-            <div class="reflection-text">${reflectionContent.replace(/\n/g, "<br>")}</div>
-          </div>
-        `;
-      }
+            // Убираем символ '>' из начала строк эссе
+            const formattedEssay = essayContent.replace(/^> /gm, '');
 
-      // Формируем HTML для тегов
-      let tagsHtml = '';
-      if (entry.tags && Array.isArray(entry.tags) && entry.tags.length > 0) {
-        // Сортируем теги для консистентности
-        const sortedTags = [...entry.tags].sort();
-        tagsHtml = `
-          <div class="tags">
-            ${sortedTags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-          </div>
-        `;
-      }
+            // Формируем HTML для эссе
+            const essayHtml = `
+                <div class="entry-section">
+                    <h3 class="section-title-small">Эссе</h3>
+                    <div class="entry-text">${formattedEssay.replace(/\n/g, '<br>')}</div>
+                </div>
+            `;
 
-      // Формируем HTML для уровня рефлексии
-      const levelText = {
-        "высокий": "Глубокая",
-        "средний": "Средняя",
-        "низкий": "Поверхностная"
-      }[entry.reflection_level] || entry.reflection_level;
+            // Формируем HTML для рефлексии (если есть)
+            let reflectionHtml = '';
+            if (reflectionContent.trim() !== '') {
+                reflectionHtml = `
+                    <div class="entry-section">
+                        <h3 class="section-title-small">Рефлексия Элары</h3>
+                        <div class="reflection-text">${reflectionContent.replace(/\n/g, '<br>')}</div>
+                    </div>
+                `;
+            }
 
-      container.innerHTML = `
-        <div class="essay-header">
-          <p class="essay-date">📅 ${entry.date}</p>
-        </div>
-        ${essayHtml}
-        ${reflectionHtml}
-        <div class="entry-footer">
-          <p class="reflection-level">Уровень рефлексии: <strong>${levelText}</strong></p>
-          ${tagsHtml}
-        </div>
-      `;
-    }
+            // Формируем HTML для тегов
+            let tagsHtml = '';
+            if (entry.tags && Array.isArray(entry.tags) && entry.tags.length > 0) {
+                const sortedTags = [...entry.tags].sort();
+                tagsHtml = `
+                    <div class="tags">
+                        ${sortedTags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                `;
+            }
 
-    window.onload = () => {
-      showTab('home');
-      loadLatestEntry();
-    };
-  </script>
+            // Формируем HTML для уровня рефлексии
+            const levelText = {
+                'высокий': 'Глубокая',
+                'средний': 'Средняя',
+                'низкий': 'Поверхностная'
+            }[entry.reflection_level] || entry.reflection_level;
+
+            container.innerHTML = `
+                <div class="entry-header">
+                    <span class="entry-date">${entry.date}</span>
+                    <span class="reflection-level">Уровень: ${levelText}</span>
+                </div>
+                ${essayHtml}
+                ${reflectionHtml}
+                <div class="entry-footer">
+                    ${tagsHtml}
+                </div>
+            `;
+        }
+
+        // Загружаем последнюю запись при открытии
+        window.onload = () => {
+            loadLatestEntry();
+        };
+    </script>
 </body>
 </html>
