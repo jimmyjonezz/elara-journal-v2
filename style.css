@@ -5,7 +5,7 @@
   /* Цвета фона */
   --color-canvas-default: #0d1117;
   --color-canvas-subtle: #161b22;
-  --color-canvas-inset: #ff6a00;
+  --color-canvas-inset: #010409;
 
   /* Цвета текста */
   --color-fg-default: #e6edf3;
@@ -232,8 +232,7 @@ body {
 
 .Label--outline {
   color: var(--color-accent-fg);
-  background-color: transparent;
-  border-color: var(--color-accent-fg);
+  background-color: #010409;
 }
 
 .Label--accent {
