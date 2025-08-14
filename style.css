@@ -78,7 +78,7 @@ body {
 .header-title {
   font-size: 20px;
   font-weight: var(--font-weight-semibold);
-  color: var(--color-accent-fg);
+  color: var(--color-fg-default);
   margin: 0 0 var(--spacing-1);
 }
 
