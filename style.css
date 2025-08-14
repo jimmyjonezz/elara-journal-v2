@@ -3,9 +3,9 @@
 /* Основные переменные темы */
 :root {
   /* Цвета фона */
-  --color-canvas-default: #0d1117;
+  --color-canvas-default: #ff6a00;
   --color-canvas-subtle: #161b22;
-  --color-canvas-inset: #010409;
+  --color-canvas-inset: #ff6a00;
 
   /* Цвета текста */
   --color-fg-default: #e6edf3;
@@ -13,7 +13,7 @@
   --color-fg-subtle: #6e7681;
 
   /* Цвета акцента */
-  --color-accent-fg: #2f81f7;
+  --color-accent-fg: #ff6a00;
   --color-accent-emphasis: #1f6feb;
   --color-accent-subtle: rgba(56, 139, 253, 0.1);
 
