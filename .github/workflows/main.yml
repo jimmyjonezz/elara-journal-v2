@@ -1,0 +1,32 @@
+name: Публикация в ВКонтакте
+
+on:
+  workflow_run:
+    workflow: "Ежедневное эссе Элары"
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  post-to-vk:
+    if: workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔹 Checkout кода
+        uses: actions/checkout@v4
+
+      - name: 🔹 Установка Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: 🔹 Установка зависимостей
+        run: |
+          pip install requests
+
+      - name: 🔹 Публикация в ВК
+        env:
+          VK_GROUP_ID: ${{ secrets.VK_GROUP_ID }}
+          VK_ACCESS_TOKEN: ${{ secrets.VK_ACCESS_TOKEN }}
+        run: |
+          python vk_poster.py
