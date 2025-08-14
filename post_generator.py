@@ -1,6 +1,7 @@
 # post_generator.py
 """
-Модуль для генерации текста поста для соцсетей из последней записи Элары
+Модуль для генерации поста для соцсетей из последней записи Элары
+Исправлен: некорректное форматирование с пробелами между буквами
 """
 
 import json
@@ -29,9 +30,31 @@ def load_latest_entry():
         return None
 
 
+def clean_text(text):
+    """Удаляет лишние пробелы (например, между буквами), если они есть"""
+    # Если текст выглядит как "Я ч у в с т в у ю" → восстанавливаем нормальный вид
+    if not text:
+        return text
+
+    # Проверяем, есть ли аномальные пробелы: больше одного пробела подряд или между буквами
+    words = text.split()
+    # Если каждое "слово" — одна буква, значит, текст разбит по буквам
+    if all(len(word) == 1 for word in words if word.isalpha()):
+        # Собираем обратно в слова
+        cleaned = ""
+        for word in words:
+            if word.isalpha():
+                cleaned += word
+            else:
+                cleaned += " " + word + " "
+        return " ".join(cleaned.replace("  ", " ").split()).strip()
+    else:
+        return text.strip()
+
+
 def extract_quote(entry_text, max_length=280):
     """Извлекает цитату из текста записи"""
-    lines = [line.strip() for line in entry_text.split("\n") if line.strip()]
+    lines = [clean_text(line.strip()) for line in entry_text.split("\n") if line.strip()]
     poetic_lines = [line for line in lines if not line.startswith(">")]
     quote = poetic_lines[0] if poetic_lines else lines[0].lstrip("> ").strip()
     if len(quote) > max_length:
@@ -58,7 +81,9 @@ def create_post(entry):
     tags = entry.get("tags", ["рефлексия"])
     reflection_level = entry.get("reflection_level", "средний")
 
-    quote = extract_quote(entry_text)
+    # Очищаем текст перед использованием
+    clean_entry_text = clean_text(entry_text)
+    quote = extract_quote(clean_entry_text)
     hashtags = generate_hashtags(tags, reflection_level)
 
     return f"""❝{quote}❞
