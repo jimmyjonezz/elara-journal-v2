@@ -163,7 +163,7 @@ async function createNewEntry() {
     // 7. Сохраняем журнал
     console.log(`💾 Сохраняем журнал в ${JOURNAL_PATH}...`);
     // console.log(`💾 Данные для записи (${journal.length} записей):`, JSON.stringify(journal).substring(0, 200) + "...");
-    await fs.writeFile(JOURNAL_URL, JSON.stringify(journal, null, 2));
+    await fs.writeFile(JOURNAL_PATH, JSON.stringify(journal, null, 2));
     console.log("✅ Файл журнала успешно записан.");
     console.log("✅ Запись успешно добавлена в журнал.");
 
