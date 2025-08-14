@@ -3,6 +3,8 @@ const fs = require('fs').promises;
 const fss = require('fs'); // Для синхронных операций existsSync, mkdirSync
 const path = require('path');
 const { generateEssay, generateReflection } = require('./utils/openrouter');
+const date = new Date();
+const formattedDate = `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}`;
 
 // Путь к журналу (теперь в корне проекта)
 const JOURNAL_PATH = path.join(__dirname, '../data/journal.json');
@@ -121,7 +123,7 @@ async function createNewEntry() {
     console.log(`📊 Уровень рефлексии: ${determinedLevel}`);
 
     const entry = {
-      date: new Date().toISOString().split('T')[0],
+      date: formattedDate,
       entry: fullEntryClean, // Используем очищенный текст
       tags: tags,
       reflection_level: determinedLevel // Используем определенный уровень
