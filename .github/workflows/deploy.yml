@@ -4,7 +4,7 @@ name: Deploy to GitHub Pages
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *' # Каждый день в 00:00 UTC
+    - cron: '0 6,18 * * *' # Каждый день в 00:00 UTC
 
 permissions:
   contents: write
