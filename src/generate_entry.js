@@ -3,8 +3,8 @@ const fs = require('fs').promises;
 const fss = require('fs'); // Для синхронных операций existsSync, mkdirSync
 const path = require('path');
 const { generateEssay, generateReflection } = require('./utils/openrouter');
-const date = new Date();
-const formattedDate = `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}`;
+const date_essey = new Date();
+const formattedDate = `${String(date_essey.getDate()).padStart(2, '0')}.${String(date_essey.getMonth() + 1).padStart(2, '0')}.${date_essey.getFullYear()}`;
 
 // Путь к журналу (теперь в корне проекта)
 const JOURNAL_PATH = path.join(__dirname, '../data/journal.json');
