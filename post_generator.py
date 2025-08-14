@@ -12,7 +12,7 @@ MEMORY_FILE = "data/journal.json"
 
 
 def load_latest_entry():
-    """Загружает последнюю запись из journal_entries.json"""
+    """Загружает последнюю запись из journal.json"""
     if not os.path.exists(MEMORY_FILE):
         print(f"❌ Файл {MEMORY_FILE} не найден")
         return None
@@ -54,7 +54,6 @@ def generate_hashtags(tags, reflection_level):
 def create_post(entry):
     """Создаёт текст поста"""
     topic = entry.get("topic", "о чём-то важном")
-    date = entry.get("date", datetime.now().strftime("%Y-%m-%d"))
     entry_text = entry.get("entry", "")
     tags = entry.get("tags", ["рефлексия"])
     reflection_level = entry.get("reflection_level", "средний")
