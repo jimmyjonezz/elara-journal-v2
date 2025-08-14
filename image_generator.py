@@ -15,7 +15,7 @@ IMAGE_DIR = "images"
 os.makedirs(IMAGE_DIR, exist_ok=True)
 
 # Модель для генерации изображений
-IMAGE_MODEL = "openrouter/qwen/qwen2.5-vl-72b-instruct:free"
+IMAGE_MODEL = "openrouter/moonshotai/kimi-vl-a3b-thinking:free"
 
 def generate_image_prompt(reflection_text):
     """Создаёт промпт для генерации изображения на основе рефлексии"""
@@ -39,7 +39,7 @@ def call_llm_for_image_prompt(prompt):
             "https://openrouter.ai/api/v1/chat/completions",
             headers={"Authorization": f"Bearer {OPENROUTER_API_KEY}"},
             json={
-                "model": "openrouter/qwen/qwen2.5-vl-72b-instruct:free",
+                "model": "openrouter/mistralai/mistral-small-3.2-24b-instruct:free",
                 "messages": [{"role": "user", "content": prompt}],
                 "max_tokens": 100
             }
