@@ -206,7 +206,7 @@ body {
   padding: var(--spacing-2);
   background-color: var(--color-canvas-inset);
   border-radius: var(--border-radius);
-  border-left: 3px solid var(--color-accent-emphasis);
+  border-left: 3px solid var(--color-accent-fg);
   font-style: italic;
 }
 
@@ -231,13 +231,13 @@ body {
 }
 
 .Label--outline {
-  color: var(--color-accent-fg);
+  color: var(--color-fg-default);
   background-color: #010409;
 }
 
 .Label--accent {
-  color: var(--color-canvas-default);
-  background-color: var(--color-accent-fg);
+  color: var(--color-fg-default);
+  background-color: #010409;
 }
 
 /* Status Messages */
