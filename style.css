@@ -1,4 +1,4 @@
-/* style.css - Стиль GitHub Mobile */
+/* style.css - Стиль GitHub Mobile с улучшенным оформлением записей */
 
 /* Основные переменные темы */
 :root {
@@ -77,57 +77,48 @@ body {
   min-height: 100vh;
 }
 
+.application-main-content {
+  flex: 1;
+  padding: var(--spacing-4) var(--spacing-3);
+}
+
 /* Header */
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: var(--spacing-3);
   background-color: var(--color-header-bg);
   border-bottom: 1px solid var(--color-header-border);
 }
 
-.Header--dark {
-  background-color: var(--color-header-bg);
-}
-
-.Header-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.Header-item--right {
-  align-items: flex-end;
-}
-
-.Header-title {
+.header-title {
   font-size: 20px;
   font-weight: var(--font-weight-semibold);
   color: var(--color-accent-fg);
   margin: 0 0 var(--spacing-1);
 }
 
-.Header-subtitle {
+.header-subtitle {
   font-size: var(--font-size-normal);
   color: var(--color-fg-muted);
+  margin: 0 0 var(--spacing-2);
+}
+
+.update-info {
+  font-size: var(--font-size-small);
+  color: var(--color-fg-subtle);
   margin: 0;
 }
 
-.Header-info {
-  font-size: var(--font-size-small);
-  color: var(--color-fg-subtle);
+/* Container */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-/* Стили для навигационных кнопок (табов) */
+/* Navigation Tabs */
 .tabnav {
   padding: 0 var(--spacing-3);
   background-color: var(--color-canvas-default);
   border-bottom: 1px solid var(--color-border-default);
-}
-
-.tabnav-tabs {
-  display: flex;
-  margin-bottom: -1px;
 }
 
 .tabnav-tab {
@@ -136,104 +127,96 @@ body {
   font-weight: var(--font-weight-normal);
   color: var(--color-fg-muted);
   background-color: transparent;
-  border: 1px solid transparent;
-  border-bottom: 2px solid transparent; /* Прозрачная граница снизу по умолчанию */
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
+  border: none;
+  border-bottom: 2px solid transparent;
   cursor: pointer;
-  transition: color 0.2s ease; /* Плавный переход для цвета текста */
+  transition: color 0.2s ease;
   position: relative;
-  bottom: -1px; /* Сlightly поднимаем, чтобы перекрыть нижнюю границу .tabnav */
+  bottom: -1px;
 }
 
 .tabnav-tab:hover {
   color: var(--color-fg-default);
-  text-decoration: none;
 }
 
-/* --- НОВОЕ: Стиль для активного таба --- */
 .tabnav-tab.selected {
   color: var(--color-fg-default);
-  /* Убираем фон и боковые границы */
-  background-color: transparent;
-  border-color: transparent;
-  /* Добавляем нижнее подчеркивание */
   border-bottom: 2px solid var(--color-accent-fg);
 }
-/* --- КОНЕЦ НОВОГО --- */
 
-/* Основной контент */
-.application-main-content {
-  flex: 1;
-  padding: var(--spacing-4) var(--spacing-3);
+/* Tab Content */
+.tab-content {
+  display: none;
 }
 
-/* ... (остальной CSS остается без изменений) ... */
-
-/* Container */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
+.tab-content.active {
+  display: block;
 }
 
-/* Subhead */
-.Subhead {
-  display: flex;
-  padding-bottom: var(--spacing-3);
-  margin-bottom: var(--spacing-3);
-  border-bottom: 1px solid var(--color-border-default);
-}
-
-.Subhead-heading {
-  font-size: 20px;
+.section-title {
+  font-size: 18px;
   font-weight: var(--font-weight-semibold);
-  flex: 1;
-  margin: 0;
+  margin: 0 0 var(--spacing-3);
+  color: var(--color-fg-default);
 }
 
-/* Box */
-.Box {
+/* Entries Container */
+.entries-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+/* Entry Card */
+.entry-card {
   background-color: var(--color-box-bg);
   border: 1px solid var(--color-box-border);
   border-radius: var(--border-radius);
-}
-
-.Box-body {
   padding: var(--spacing-3);
 }
 
-.Box-row {
-  padding: var(--spacing-3);
-  border-top: 1px solid var(--color-border-muted);
+/* Entry Header */
+.entry-header {
+  margin-bottom: var(--spacing-3);
+  padding-bottom: var(--spacing-2);
+  border-bottom: 1px solid var(--color-border-muted);
 }
 
-.Box-row:first-of-type {
-  border-top: 0;
+.entry-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
 }
 
-.Box-row:hover {
-  background-color: var(--color-box-row-hover);
+.entry-date {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: var(--font-size-small);
+  color: var(--color-fg-muted);
 }
 
-/* Entry Elements */
-.entry-section {
+/* Entry Content */
+.entry-content {
   margin-bottom: var(--spacing-3);
 }
 
-.entry-section:last-child {
-  margin-bottom: 0;
-}
-
-.f4 {
-  font-size: 16px;
-  font-weight: var(--font-weight-semibold);
-  margin-bottom: var(--spacing-2);
-}
-
-.entry-text, .reflection-text {
-  line-height: 1.5;
+.entry-text {
+  line-height: 1.6;
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+/* Reflection Section */
+.entry-reflection-section {
+  margin-bottom: var(--spacing-3);
+}
+
+.reflection-title {
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--spacing-2);
+  color: var(--color-fg-default);
 }
 
 .entry-reflection {
@@ -242,6 +225,16 @@ body {
   border-radius: var(--border-radius);
   border-left: 3px solid var(--color-accent-emphasis);
   font-style: italic;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Entry Tags */
+.entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-1);
 }
 
 /* Labels */
@@ -253,7 +246,6 @@ body {
   line-height: 18px;
   border: 1px solid transparent;
   border-radius: 2em;
-  box-shadow: none;
 }
 
 .Label--outline {
@@ -267,59 +259,16 @@ body {
   background-color: var(--color-accent-fg);
 }
 
-/* Utility Classes */
-.hidden {
-  display: none !important;
+/* Status Messages */
+.loading, .empty, .error {
+  text-align: center;
+  padding: var(--spacing-4);
+  color: var(--color-fg-muted);
+  font-style: italic;
 }
 
-.d-flex {
-  display: flex !important;
-}
-
-.flex-items-center {
-  align-items: center !important;
-}
-
-.flex-justify-between {
-  justify-content: space-between !important;
-}
-
-.mt-3 {
-  margin-top: var(--spacing-3) !important;
-}
-
-.mb-2 {
-  margin-bottom: var(--spacing-2) !important;
-}
-
-.text-center {
-  text-align: center !important;
-}
-
-.text-small {
-  font-size: var(--font-size-small) !important;
-}
-
-.text-mono {
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace !important;
-}
-
-.text-gray {
-  color: var(--color-fg-muted) !important;
-}
-
-.text-red {
-  color: var(--color-danger-fg) !important;
-}
-
-/* Links */
-.Link--primary {
-  color: var(--color-accent-fg);
-  text-decoration: none;
-}
-
-.Link--primary:hover {
-  text-decoration: underline;
+.error {
+  color: var(--color-danger-fg);
 }
 
 /* Footer */
@@ -328,39 +277,43 @@ body {
   margin-top: var(--spacing-5);
   border-top: 1px solid var(--color-border-default);
   background-color: var(--color-canvas-subtle);
+  text-align: center;
 }
 
-.footer-content {
-  text-align: center;
+.footer a {
+  color: var(--color-accent-fg);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .Header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-2);
+  .header {
+    padding: var(--spacing-2);
   }
   
-  .Header-item--right {
-    align-items: flex-start;
-  }
-  
-  .application-main-content {
-    padding: var(--spacing-3) var(--spacing-2);
+  .header-title {
+    font-size: 18px;
   }
   
   .tabnav {
     padding: 0 var(--spacing-2);
   }
   
-  .Box-body, .Box-row {
+  .application-main-content {
+    padding: var(--spacing-3) var(--spacing-2);
+  }
+  
+  .entry-card {
     padding: var(--spacing-2);
   }
   
-  .Subhead {
-    padding-bottom: var(--spacing-2);
-    margin-bottom: var(--spacing-2);
+  .entry-meta {
+    flex-direction: column;
+    align-items: flex-start;
   }
   
   .footer {
