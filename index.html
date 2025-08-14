@@ -136,6 +136,7 @@
             }
         }
 
+        // --- ОБНОВЛЕННАЯ ФУНКЦИЯ renderEntry ---
         function renderEntry(entry, container) {
             // Разделяем entry на эссе и рефлексию
             const parts = entry.entry.split('\n\n');
@@ -168,9 +169,11 @@
                 </div>
             `;
 
+            // --- ИЗМЕНЕНИЕ: Обернули содержимое в .entry-section ---
             // Формируем HTML для основного текста (эссе)
             const essayHtml = `
-                <div class="entry-content">
+                <div class="entry-section"> <!-- Обертка для отступов -->
+                    <h3 class="section-title-small">Эссе</h3>
                     <div class="entry-text">${formattedEssay.replace(/\n/g, '<br>')}</div>
                 </div>
             `;
@@ -179,19 +182,20 @@
             let reflectionHtml = '';
             if (reflectionContent.trim() !== '') {
                 reflectionHtml = `
-                    <div class="entry-reflection-section">
-                        <h3 class="reflection-title">Рефлексия Элары</h3>
+                    <div class="entry-section"> <!-- Обертка для отступов -->
+                        <h3 class="section-title-small">Рефлексия Элары</h3>
                         <div class="entry-reflection">${reflectionContent.replace(/\n/g, '<br>')}</div>
                     </div>
                 `;
             }
+            // --- КОНЕЦ ИЗМЕНЕНИЯ ---
 
             // Формируем HTML для тегов
             let tagsHtml = '';
             if (entry.tags && Array.isArray(entry.tags) && entry.tags.length > 0) {
                 const sortedTags = [...entry.tags].sort();
                 tagsHtml = `
-                    <div class="entry-tags">
+                    <div class="entry-tags"> <!-- Контейнер для тегов -->
                         ${sortedTags.map(tag => `<span class="Label Label--accent">${tag}</span>`).join(' ')}
                     </div>
                 `;
@@ -204,6 +208,7 @@
                 ${tagsHtml}
             `;
         }
+        // --- КОНЕЦ ОБНОВЛЕННОЙ ФУНКЦИИ ---
     </script>
 </body>
 </html>
