@@ -6,6 +6,8 @@ const { generateEssay, generateReflection } = require('./utils/openrouter');
 
 // Путь к журналу
 const JOURNAL_PATH = path.join(__dirname, '../data/journal.json');
+// НОВОЕ: Путь к файлу статистики тегов
+const TAG_STATS_PATH = path.join(__dirname, '../data/tag_statistics.json');
 // Максимальное количество попыток генерации при ошибках
 const MAX_RETRIES = 3;
 // Базовая задержка между попытками (мс)
@@ -188,7 +190,7 @@ async function withRetry(fn, maxRetries, baseDelay, actionName) {
 
 /**
  * Подготавливает данные для новой записи: генерирует эссе и рефлексию.
- * @returns {Promise<{rawEssay: string, rawReflection: string, cleanEntry: string, tags: string[], level: string}>}
+ * @returns {Promise<{rawEssay: string, rawReflection: string, cleanEntry: string, staticTags: string[], dynamicTags: string[], tags: string[], level: string}>}
  */
 async function prepareEntryData() {
   // 1. Генерируем эссе с повторными попытками
@@ -235,7 +237,7 @@ async function prepareEntryData() {
   const cleanReflection = cleanReflectionText(rawReflection);
   const fullEntryClean = `${rawEssay}\n\n${cleanReflection}`;
 
-  // --- НОВОЕ: Гибридное тегирование ---
+  // --- Гибридное тегирование ---
   const staticTags = extractTags(fullEntryClean); // <-- 1. Получаем статические теги
   console.log(`🏷️  Извлечено статических тегов: ${staticTags.length}`);
 
@@ -245,15 +247,18 @@ async function prepareEntryData() {
   // 3. Объединяем и убираем дубликаты
   const allUniqueTags = Array.from(new Set([...staticTags, ...dynamicTags]));
   console.log(`🏷️  Всего уникальных тегов: ${allUniqueTags.length}`);
-  // --- КОНЕЦ НОВОГО ---
+  // --- КОНЕЦ Гибридного тегирования ---
 
   console.log(`📊 Уровень рефлексии: ${determinedLevel}`);
 
+  // Возвращаем все необходимые данные, включая раздельные теги для статистики
   return {
     rawEssay,
     rawReflection,
     cleanEntry: fullEntryClean,
-    tags: allUniqueTags, // <-- Используем объединённый список тегов
+    staticTags, // <-- Возвращаем отдельно
+    dynamicTags, // <-- Возвращаем отдельно
+    tags: allUniqueTags, // <-- Итоговый массив тегов
     level: determinedLevel
   };
 }
@@ -303,6 +308,79 @@ async function saveJournal(journal) {
   console.log("✅ Файл журнала успешно записан.");
 }
 
+// --- НОВЫЕ ФУНКЦИИ ДЛЯ СТАТИСТИКИ ТЕГОВ ---
+
+/**
+ * Загружает текущую статистику тегов из файла.
+ * @returns {Promise<Object>} Объект, где ключи - теги, значения - { count: number, lastSeen: string(date) }.
+ */
+async function loadTagStatistics() {
+  try {
+    const data = await fs.readFile(TAG_STATS_PATH, 'utf8');
+    const stats = JSON.parse(data);
+    console.log("📈 Статистика тегов загружена.");
+    return stats;
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      console.log("📭 Файл статистики тегов не найден. Будет создан новый.");
+    } else {
+      console.warn("⚠️  Ошибка при чтении статистики тегов. Создаем новую.", err.message);
+    }
+    return {}; // Возвращаем пустой объект, если файла нет или он поврежден
+  }
+}
+
+/**
+ * Обновляет и сохраняет статистику тегов.
+ * @param {Object} currentStats - Текущая статистика (из loadTagStatistics).
+ * @param {string[]} staticTags - Статические теги новой записи.
+ * @param {string[]} dynamicTags - Динамические теги новой записи.
+ * @param {string} entryDate - Дата новой записи.
+ */
+async function updateAndSaveTagStatistics(currentStats, staticTags, dynamicTags, entryDate) {
+  const updatedStats = { ...currentStats }; // Копируем, чтобы не мутировать оригинал
+  const allTagsFromEntry = new Set([...staticTags, ...dynamicTags]); // Уникальные теги записи
+
+  console.log(`📊 Обновляем статистику для ${allTagsFromEntry.size} уникальных тегов записи от ${entryDate}...`);
+
+  for (const tag of allTagsFromEntry) {
+    if (updatedStats[tag]) {
+      updatedStats[tag].count += 1;
+      // Отслеживаем, в каких типах тегов он появился
+      if (staticTags.includes(tag) && !updatedStats[tag].types.includes('static')) {
+        updatedStats[tag].types.push('static');
+      }
+      if (dynamicTags.includes(tag) && !updatedStats[tag].types.includes('dynamic')) {
+        updatedStats[tag].types.push('dynamic');
+      }
+    } else {
+      // Новый тег
+      updatedStats[tag] = {
+        count: 1,
+        firstSeen: entryDate,
+        lastSeen: entryDate,
+        types: [] // Типы, из которых был получен тег
+      };
+      if (staticTags.includes(tag)) updatedStats[tag].types.push('static');
+      if (dynamicTags.includes(tag)) updatedStats[tag].types.push('dynamic');
+    }
+    // Всегда обновляем дату последнего появления
+    updatedStats[tag].lastSeen = entryDate;
+  }
+
+  try {
+    // Убеждаемся, что директория существует
+    await ensureDirectoryExistence(TAG_STATS_PATH);
+    await fs.writeFile(TAG_STATS_PATH, JSON.stringify(updatedStats, null, 2));
+    console.log("✅ Статистика тегов обновлена и сохранена.");
+  } catch (err) {
+    console.error("❌ Ошибка при сохранении статистики тегов:", err.message);
+    // Не выбрасываем ошибку, чтобы не останавливать весь процесс генерации записи
+  }
+}
+
+// --- КОНЕЦ НОВЫХ ФУНКЦИЙ ---
+
 /**
  * Создает новую запись в журнале.
  */
@@ -311,12 +389,12 @@ async function createNewEntry() {
 
   try {
     // Подготавливаем данные записи
-    const { rawEssay, rawReflection, cleanEntry, tags, level } = await prepareEntryData();
+    const { rawEssay, rawReflection, cleanEntry, staticTags, dynamicTags, tags, level } = await prepareEntryData();
 
     // Формируем объект записи
     const entry = {
       date: new Date().toISOString().split('T')[0],
-      entry: rawEssay,
+      entry: cleanEntry,
       tags: tags,
       reflection_level: level,
       raw_essay: rawEssay,
@@ -326,6 +404,10 @@ async function createNewEntry() {
     // Загружаем существующий журнал
     const journal = await loadJournal();
 
+    // --- НОВОЕ: Загружаем статистику тегов ---
+    const tagStats = await loadTagStatistics();
+    // --- КОНЕЦ НОВОГО ---
+
     // Добавляем новую запись
     console.log("➕ Добавляем новую запись в память...");
     journal.push(entry);
@@ -334,14 +416,15 @@ async function createNewEntry() {
     // Сохраняем журнал
     await saveJournal(journal);
 
+    // --- НОВОЕ: Обновляем и сохраняем статистику тегов ---
+    await updateAndSaveTagStatistics(tagStats, staticTags, dynamicTags, entry.date);
+    // --- КОНЕЦ НОВОГО ---
+
     console.log("✅ Запись успешно добавлена в журнал.");
 
   } catch (error) {
     console.error("❌ ❌ ❌ КРИТИЧЕСКАЯ ОШИБКА при создании записи:", error.message);
     console.error("Стек вызовов:", error.stack);
-    // Вместо process.exit(1), можно выбросить ошибку, чтобы её мог обработать вызывающий код
-    // Например, если это будет частью большего приложения.
-    // process.exit(1); 
     throw error; // Лучше пробросить ошибку
   } finally {
     console.log("🏁 Функция createNewEntry завершена.");
@@ -363,4 +446,3 @@ if (require.main === module) {
 }
 
 module.exports = { createNewEntry };
-    
