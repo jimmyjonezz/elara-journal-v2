@@ -12,7 +12,7 @@ const ANALYSIS_OUTPUT_PATH = path.join(__dirname, '../data/literary_analysis.jso
 // Предполагается, что OPENROUTER_API_KEY доступен как переменная окружения
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const API_URL = "https://openrouter.ai/api/v1/chat/completions";
-const MODEL = "qwen3"; // Или любая другая подходящая модель
+const MODEL = "qwen/qwen3-8b:free"; // Или любая другая подходящая модель
 
 /**
  * Отправляет промпт в OpenRouter API и возвращает ответ.
