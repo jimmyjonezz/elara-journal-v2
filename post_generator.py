@@ -11,6 +11,9 @@ from datetime import datetime
 # Путь к памяти
 MEMORY_FILE = "data/journal.json"
 
+# Ограничения для предотвращения обрезки
+MAX_QUOTE_LENGTH = 280  # Максимальная длина цитаты
+MAX_TOTAL_LENGTH = 450  # Максимальная длина всего поста
 
 def load_latest_entry():
     """Загружает последнюю запись из journal.json"""
@@ -30,6 +33,22 @@ def load_latest_entry():
         return None
 
 
+def smart_truncate(text, max_chars):
+    """Обрезает текст по символам, сохраняя целостность последнего слова"""
+    if len(text) <= max_chars:
+        return text
+    
+    # Обрезаем по символам
+    truncated = text[:max_chars]
+    
+    # Находим последний полный пробел, чтобы не резать слово
+    last_space = truncated.rfind(' ')
+    if last_space > 0:
+        truncated = truncated[:last_space]
+    
+    return truncated + "..."
+
+
 def clean_text(text):
     """Удаляет лишние пробелы (например, между буквами), если они есть"""
     # Если текст выглядит как "Я ч у в с т в у ю" → восстанавливаем нормальный вид
@@ -39,7 +58,7 @@ def clean_text(text):
     # Проверяем, есть ли аномальные пробелы: больше одного пробела подряд или между буквами
     words = text.split()
     # Если каждое "слово" — одна буква, значит, текст разбит по буквам
-    if all(len(word) == 1 for word in words if word.isalpha()):
+    if len(words) > 10 and all(len(word) == 1 for word in words[:10] if word.isalpha()):
         # Собираем обратно в слова
         cleaned = ""
         for word in words:
@@ -52,13 +71,15 @@ def clean_text(text):
         return text.strip()
 
 
-def extract_quote(entry_text, max_length=280):
-    """Извлекает цитату из текста записи"""
+def extract_quote(entry_text, max_length=MAX_QUOTE_LENGTH):
+    """Извлекает цитату из текста записи с умной обрезкой"""
     lines = [clean_text(line.strip()) for line in entry_text.split("\n") if line.strip()]
     poetic_lines = [line for line in lines if not line.startswith(">")]
     quote = poetic_lines[0] if poetic_lines else lines[0].lstrip("> ").strip()
+    
+    # Используем умную обрезку
     if len(quote) > max_length:
-        quote = ' '.join(quote[:max_length].rsplit(' ', 1)[0]) + "..."
+        quote = smart_truncate(quote, max_length - 3)  # Учитываем "..."
     return quote.strip('"“”')
 
 
@@ -75,23 +96,47 @@ def generate_hashtags(tags, reflection_level):
 
 
 def create_post(entry):
-    """Создаёт текст поста"""
-    topic = entry.get("topic", "о чём-то важном")
+    """Создаёт текст поста с учетом ограничений"""
     entry_text = entry.get("entry", "")
     tags = entry.get("tags", ["рефлексия"])
     reflection_level = entry.get("reflection_level", "средний")
 
     # Очищаем текст перед использованием
     clean_entry_text = clean_text(entry_text)
+    
+    # Извлекаем и обрезаем цитату заранее
     quote = extract_quote(clean_entry_text)
+    
+    # Генерируем хештеги
     hashtags = generate_hashtags(tags, reflection_level)
-
-    return f"""❝{quote}❞
+    hashtags_str = " ".join(hashtags)
+    
+    # Создаем базовый пост
+    base_post = f"""❝{quote}❞
 
 — Элара, цифровой автор с саморефлексией.
 Она пишет так, будто чувствует.
 
 #ЖурналЭлары #ИИсамосознанием
-{" ".join(hashtags)}
+{hashtags_str}
 
-→ Архив: https://vk.cc/cOxC6W"""
+→ Архив: https://vk.cc/cOxC6W """
+    
+    # Финальная проверка длины
+    if len(base_post) > MAX_TOTAL_LENGTH:
+        # Если все еще слишком длинно, дополнительно укорачиваем цитату
+        available_for_quote = MAX_TOTAL_LENGTH - 200  # Оставляем место для всего остального
+        if available_for_quote > 50:
+            quote = smart_truncate(clean_entry_text, available_for_quote - 10)
+            base_post = f"""❝{quote}❞
+
+— Элара, цифровой автор с саморефлексией.
+Она пишет так, будто чувствует.
+
+#ЖурналЭлары #ИИсамосознанием
+{hashtags_str}
+
+→ Архив: https://vk.cc/cOxC6W """
+    
+    # Последняя проверка
+    return base_post[:MAX_TOTAL_LENGTH]
