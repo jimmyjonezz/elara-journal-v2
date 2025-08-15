@@ -73,15 +73,11 @@
     </div>
 
     <script>
-        // Путь к журналу с кэш-бастингом
+        // --- URL'ы к данным ---
         const JOURNAL_URL = `data/journal.json?v=${Date.now()}`;
-        // --- НОВОЕ: Путь к файлу статистики тегов ---
         const TAG_STATS_URL = `data/tag_statistics.json?v=${Date.now()}`;
-        // --- НОВОЕ: Путь к файлу статистики текстовых паттернов ---
-        const TEXT_PATTERNS_STATS_URL = `data/textual_patterns_stats.json?v=${Date.now()}`;
-        // --- НОВОЕ: Путь к файлу анализа критика ---
-        const CRITIQUE_URL = `data/literary_analysis.json?v=${Date.now()}`;
-        // --- КОНЕЦ НОВОГО ---
+        // const TEXT_PATTERNS_STATS_URL = `data/textual_patterns_stats.json?v=${Date.now()}`; // Если будет использоваться
+        const CRITIQUE_URL = `data/literary_analysis.json?v=${Date.now()}`; // URL к файлу анализа критика
 
         // Переключение вкладок
         document.addEventListener('DOMContentLoaded', () => {
@@ -100,7 +96,7 @@
                     button.classList.add('selected');
                     document.getElementById(targetTab).classList.add('active');
 
-                    // --- ОБНОВЛЕНО: Обработка новой вкладки ---
+                    // Обработка кликов по вкладкам
                     if (targetTab === 'archive' && !window.archiveLoaded) {
                         loadArchive();
                         window.archiveLoaded = true;
@@ -111,7 +107,6 @@
                          loadCritique();
                          window.critiqueLoaded = true;
                     }
-                    // --- КОНЕЦ ОБНОВЛЕНИЯ ---
                 });
             });
 
@@ -119,7 +114,7 @@
             loadLatestEntry();
         });
 
-        // --- ОБНОВЛЕННАЯ ФУНКЦИЯ loadLatestEntry для корректного разделения ---
+        // --- Функция загрузки последней записи ---
         async function loadLatestEntry() {
             const container = document.getElementById('latest-entry');
             try {
@@ -144,8 +139,8 @@
                 container.innerHTML = `<div class="entry-card"><p class="error">Ошибка загрузки: ${e.message}</p></div>`;
             }
         }
-        // --- КОНЕЦ ОБНОВЛЕННОЙ ФУНКЦИИ ---
 
+        // --- Функция загрузки архива ---
         async function loadArchive() {
             const archiveList = document.getElementById('archiveList');
             try {
@@ -173,7 +168,7 @@
             }
         }
 
-        // --- ОБНОВЛЕННАЯ ФУНКЦИЯ renderEntry ---
+        // --- Универсальная функция отображения записи (эссе + рефлексия) ---
         function renderEntry(entry, container) {
             // Разделяем entry на эссе и рефлексию
             const parts = entry.entry.split('\n\n');
@@ -206,7 +201,6 @@
                 </div>
             `;
 
-            // --- ИЗМЕНЕНИЕ: Обернули содержимое в .entry-section ---
             // Формируем HTML для основного текста (эссе)
             const essayHtml = `
                 <div class="entry-section"> <!-- Обертка для отступов -->
@@ -225,7 +219,6 @@
                     </div>
                 `;
             }
-            // --- КОНЕЦ ИЗМЕНЕНИЯ ---
 
             // Формируем HTML для тегов
             let tagsHtml = '';
@@ -245,9 +238,9 @@
                 ${tagsHtml}
             `;
         }
-        // --- КОНЕЦ ОБНОВЛЕННОЙ ФУНКЦИИ ---
+        // --- КОНЕЦ УНИВЕРСАЛЬНОЙ ФУНКЦИИ ---
 
-        // --- НОВАЯ ФУНКЦИЯ loadCritique ---
+        // --- НОВАЯ ФУНКЦИЯ loadCritique (универсальная) ---
         async function loadCritique() {
             const critiqueContainer = document.getElementById('critique-content');
             try {
@@ -277,23 +270,97 @@
 
                 let htmlContent = `<div class="entry-card"><p class="entry-date">Анализ сгенерирован: ${genDate}</p>`;
 
-                // Функция для безопасного добавления секции
-                const addSection = (title, content) => {
-                    if (content && content.trim() !== '') {
-                        // Заменяем \n на <br> для базового форматирования
-                        const formattedContent = content.replace(/\n/g, '<br>');
-                        htmlContent += `<h3 class="section-title-small">${title}</h3><div class="entry-text">${formattedContent}</div>`;
-                    }
-                };
+                // --- УНИВЕРСАЛЬНАЯ ФУНКЦИЯ ДЛЯ ОТОБРАЖЕНИЯ СЕКЦИЙ ---
+                const renderSection = (title, content) => {
+                    if (content === null || content === undefined) return '';
 
-                addSection("Резюме", critiqueData.summary);
-                addSection("Тон и стиль", critiqueData.tone_and_style);
-                addSection("Основные темы", critiqueData.themes);
-                addSection("Эволюция", critiqueData.evolution);
-                addSection("Литературные параллели", critiqueData.literary_comparisons);
-                addSection("Рефлексивный аспект", critiqueData.reflexive_aspect);
-                addSection("Языковые паттерны", critiqueData.linguistic_patterns);
-                addSection("Заключение", critiqueData.conclusion);
+                    if (typeof content === 'string') {
+                        // Простая строка
+                        if (content.trim() !== '') {
+                            return `<h3 class="section-title-small">${title}</h3><div class="entry-text">${content.replace(/\n/g, '<br>')}</div>`;
+                        }
+                    } else if (typeof content === 'number') {
+                        // Число
+                        return `<h3 class="section-title-small">${title}</h3><div class="entry-text">${content}</div>`;
+                    } else if (Array.isArray(content)) {
+                        // Массив (например, themes, linguistic_patterns)
+                        if (content.length > 0) {
+                            let listHtml = `<h3 class="section-title-small">${title}</h3><ul class="analysis-list">`;
+                            content.forEach(item => {
+                                if (typeof item === 'string') {
+                                    // Массив строк
+                                    listHtml += `<li class="analysis-list-item-text">${item}</li>`;
+                                } else if (typeof item === 'object' && item !== null) {
+                                    // Массив объектов (например, { theme: "...", description: "..." })
+                                    const keys = Object.keys(item);
+                                    if (keys.length > 0) {
+                                        listHtml += '<li class="analysis-list-item">';
+                                        keys.forEach(key => {
+                                            const itemValue = item[key];
+                                            if (typeof itemValue === 'string' && itemValue.trim() !== '') {
+                                                // Отображаем ключ как подзаголовок, значение как текст
+                                                listHtml += `<strong>${key}:</strong> ${itemValue}<br>`;
+                                            } else if (typeof itemValue === 'number') {
+                                                 listHtml += `<strong>${key}:</strong> ${itemValue}<br>`;
+                                            }
+                                            // Можно добавить обработку вложенных массивов/объектов, если нужно
+                                        });
+                                        listHtml += '</li>';
+                                    }
+                                }
+                                // Игнорируем пустые или неподдерживаемые элементы массива
+                            });
+                            listHtml += '</ul>';
+                            return listHtml;
+                        }
+                    } else if (typeof content === 'object') {
+                        // Объект (не массив, не null) - можно отобразить как список ключ-значение
+                        const keys = Object.keys(content);
+                        if (keys.length > 0) {
+                             let objHtml = `<h3 class="section-title-small">${title}</h3><ul class="analysis-list">`;
+                             keys.forEach(key => {
+                                 const objValue = content[key];
+                                 if ((typeof objValue === 'string' && objValue.trim() !== '') || typeof objValue === 'number') {
+                                     objHtml += `<li class="analysis-list-item"><strong>${key}:</strong> ${objValue}</li>`;
+                                 } else if (Array.isArray(objValue) && objValue.length > 0) {
+                                     // Если значение - непустой массив, отображаем его
+                                     objHtml += `<li class="analysis-list-item"><strong>${key}:</strong> ${JSON.stringify(objValue)}</li>`;
+                                 }
+                                 // Игнорируем пустые или сложные вложенные объекты для простоты
+                             });
+                             objHtml += '</ul>';
+                             return objHtml;
+                        }
+                    }
+                    // Если content пустой, null, undefined, или не поддерживаемый тип/пустой объект/пустой массив
+                    return '';
+                };
+                // --- КОНЕЦ УНИВЕРСАЛЬНОЙ ФУНКЦИИ ---
+
+                // Отображаем секции, используя универсальную функцию
+                // Предполагаем, что структура JSON может быть разной, поэтому перечисляем возможные поля
+                const possibleFields = [
+                    'summary', 'tone_and_style', 'themes', 'evolution',
+                    'literary_comparisons', 'reflexive_aspect', 'linguistic_patterns', 'conclusion',
+                    'Резюме', 'Тон и стиль', 'Основные темы', 'Эволюция',
+                    'Литературные параллели', 'Рефлексивный аспект', 'Языковые паттерны', 'Заключение'
+                ];
+
+                possibleFields.forEach(fieldName => {
+                    if (critiqueData[fieldName] !== undefined) {
+                        htmlContent += renderSection(fieldName, critiqueData[fieldName]);
+                    }
+                });
+
+                // Также можно явно перечислить, если знаем точную структуру
+                // htmlContent += renderSection("Резюме", critiqueData.summary);
+                // htmlContent += renderSection("Тон и стиль", critiqueData.tone_and_style);
+                // htmlContent += renderSection("Основные темы", critiqueData.themes); // <-- Массив объектов
+                // htmlContent += renderSection("Эволюция", critiqueData.evolution);
+                // htmlContent += renderSection("Литературные параллели", critiqueData.literary_comparisons);
+                // htmlContent += renderSection("Рефлексивный аспект", critiqueData.reflexive_aspect);
+                // htmlContent += renderSection("Языковые паттерны", critiqueData.linguistic_patterns); // <-- Массив объектов
+                // htmlContent += renderSection("Заключение", critiqueData.conclusion);
 
                 htmlContent += '</div>'; // Закрываем .entry-card
 
