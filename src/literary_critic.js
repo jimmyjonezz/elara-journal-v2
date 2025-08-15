@@ -41,7 +41,7 @@ async function callOpenRouter(prompt) {
         { role: "user", content: prompt }
       ],
       temperature: 0.7, // Немного меньше креативности для анализа
-      max_tokens: 1500, // Даем побольше места для развернутого ответа
+      max_tokens: 3072, // Даем побольше места для развернутого ответа
     })
   });
 
