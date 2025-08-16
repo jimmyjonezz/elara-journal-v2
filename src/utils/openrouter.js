@@ -67,5 +67,6 @@ async function generateReflection(essay) {
 
 module.exports = {
   generateEssay,
-  generateReflection
+  generateReflection,
+  callOpenRouter
 };
