@@ -3,7 +3,8 @@ const path = require('path');
 
 const API_KEY = process.env.OPENROUTER_API_KEY;
 const API_URL = "https://openrouter.ai/api/v1/chat/completions";
-const MODEL = "qwen/qwen3-8b:free"; // Уточнено
+const MODEL = "cognitivecomputations/dolphin-mistral-24b-venice-edition:free"; // Уточнено
+//qwen/qwen3-8b:free
 
 async function loadPromptTemplate(templateName) {
   const templatePath = path.join(__dirname, '../prompt_templates', `${templateName}.txt`);
