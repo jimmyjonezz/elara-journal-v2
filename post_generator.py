@@ -12,7 +12,7 @@ from datetime import datetime
 MEMORY_FILE = "data/journal.json"
 
 # Ограничения для предотвращения обрезки
-MAX_QUOTE_LENGTH = 280  # Максимальная длина цитаты
+MAX_QUOTE_LENGTH = 300  # Максимальная длина цитаты
 MAX_TOTAL_LENGTH = 450  # Максимальная длина всего поста
 
 def load_latest_entry():
