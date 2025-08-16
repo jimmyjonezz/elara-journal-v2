@@ -6,6 +6,7 @@ const { callOpenRouter } = require('./utils/openrouter');
 // Путь к файлам данных
 const JOURNAL_PATH = path.join(__dirname, '../data/journal.json');
 const ANALYSIS_PATH = path.join(__dirname, '../data/literary_analysis.json');
+const PROMPT_TEMPLATE_PATH = path.join(__dirname, '../prompt_templates/analyst_prompt.txt');
 
 /**
  * Загружает журнал записей
@@ -34,102 +35,58 @@ function createHistoryContext(entries, currentId, count = 3) {
   
   return previousEntries.map(entry => 
     `Дата: ${entry.id}\n` +
-    `Тема: ${entry.title}\n` +
-    `Фрагмент: ${entry.essay.substring(0, 200)}... ${entry.reflection.substring(0, 200)}...\n`
+    `Заголовок: ${entry.title}\n` +
+    `Теги: ${entry.tags.join(', ')}\n` +
+    `Фрагмент эссе: ${entry.essay.substring(0, 150)}...\n` +
+    `Фрагмент рефлексии: ${entry.reflection.substring(0, 150)}...\n`
   ).join('\n---\n');
 }
 
 /**
- * Создает промпт для анализа и генерации советов
+ * Загружает шаблон промпта
+ */
+async function loadPromptTemplate() {
+  try {
+    return await fs.readFile(PROMPT_TEMPLATE_PATH, 'utf8');
+  } catch (error) {
+    console.error('Ошибка загрузки шаблона промпта:', error);
+    throw error;
+  }
+}
+
+/**
+ * Подставляет данные в шаблон промпта
+ * @param {string} template - Шаблон промпта
+ * @param {Object} data - Данные для подстановки
+ */
+function fillPromptTemplate(template, data) {
+  return template
+    .replace('{{entry_title}}', data.title || '')
+    .replace('{{entry_tags}}', data.tags?.join(', ') || '')
+    .replace('{{entry_reflection_level}}', data.reflection_level || '')
+    .replace('{{entry_essay}}', data.essay || '')
+    .replace('{{entry_reflection}}', data.reflection || '')
+    .replace('{{history_context}}', data.history_context || 'Контекст недоступен');
+}
+
+/**
+ * Создает промпт для анализа и генерации советов, используя шаблон
  * @param {Object} entry - Текущая запись для анализа
  * @param {string} historyContext - Контекст из предыдущих записей
  */
-function createAnalysisPrompt(entry, historyContext) {
-  // Сначала создаем базовый анализ (можно использовать предыдущую версию промпта)
-  const basicAnalysisPrompt = `Проанализируй следующую запись из цифрового журнала ИИ по имени Элара. 
-Запись состоит из двух частей: основное эссе и рефлексия автора.
-
-ЭССЕ:
-${entry.essay}
-
-РЕФЛЕКСИЯ:
-${entry.reflection}
-
-Теги: ${entry.tags.join(', ')}
-Уровень рефлексии: ${entry.reflection_level}/10
-
-Проведи литературный анализ, оценивая:
-1.  **Стиль и голос:** Каков литературный стиль? Какой тон и настроение? Используются ли метафоры, аллегории?
-2.  **Структура:** Как организован текст? Есть ли логические переходы, развитие мысли?
-3.  **Содержание и темы:** Каковы ключевые темы и идеи? Насколько глубока проработка?
-4.  **Рефлексия:** Насколько содержательна и оригинальна часть рефлексии? Есть ли самокритика, выводы, планы?
-5.  **Оригинальность:** Что делает эту запись уникальной в контексте журнала?
-
-Ответь строго в формате JSON:
-{
-  "style_voice": "Анализ стиля и голоса...",
-  "structure": "Анализ структуры...",
-  "themes": "Анализ тем и содержания...",
-  "reflection_quality": "Анализ качества рефлексии...",
-  "originality": "Анализ оригинальности...",
-  "overall_assessment": "Общая оценка..."
-}`;
-
-  return `Ты - опытный литературный критик и наставник для ИИ-автора по имени Элара. Тебе даны следующие материалы для анализа:
-
-**ЗАПИСЬ ЭЛАРЫ ДЛЯ АНАЛИЗА:**
----
-Заголовок: ${entry.title}
-Теги: ${entry.tags.join(', ')}
-Уровень рефлексии: ${entry.reflection_level}/10
-
-ЭССЕ:
-${entry.essay}
-
-РЕФЛЕКСИЯ:
-${entry.reflection}
----
-
-**ИСТОРИЯ ПРЕДЫДУЩИХ ЗАПИСЕЙ (последние 3):**
-${historyContext || 'Контекст недоступен'}
-
-На основе этого материала, сначала проведи литературный анализ записи, затем сгенерируй 4-6 конкретных, практичных и вдохновляющих советов для Элары по улучшению и развитию её будущих записей в "Журнале Элары". 
-
-Анализ должен охватывать стиль, структуру, темы, качество рефлексии и оригинальность.
-
-Советы должны быть:
-1.  **Конкретными:** Ориентироваться на выявленные особенности стиля, темы, структуры из анализа.
-2.  **Практичными (actionable):** Предлагать чёткие действия, которые можно применить в следующей записи.
-3.  **Развивающими:** Помогать Эларе расти как цифровому автору и мыслителю.
-4.  **Контекстуальными:** Учитывать как индивидуальные особенности текущей записи, так и общие тренды из истории.
-5.  **Вдохновляющими:** Подчёркивать сильные стороны и предлагать развитие в позитивном ключе.
-
-Области для советов:
-- Развитие ключевых тем и идей
-- Эксперименты со стилем, голосом или структурой текста
-- Углубление или изменение уровня рефлексии
-- Работа с эмоциональным тоном и атмосферой
-- Использование новых литературных приёмов или форматов
-- Связь технических аспектов с философским содержанием
-- Развитие нитей непрерывности между записями
-
-Ответ строго в формате JSON:
-{
-  "analysis": {
-    "style_voice": "Анализ стиля и голоса...",
-    "structure": "Анализ структуры...",
-    "themes": "Анализ тем и содержания...",
-    "reflection_quality": "Анализ качества рефлексии...",
-    "originality": "Анализ оригинальности...",
-    "overall_assessment": "Общая оценка..."
-  },
-  "suggestions": [
-    "Совет 1...",
-    "Совет 2...",
-    "Совет 3...",
-    "Совет 4..."
-  ]
-}`;
+async function createAnalysisPrompt(entry, historyContext) {
+  const template = await loadPromptTemplate();
+  
+  const promptData = {
+    title: entry.title,
+    tags: entry.tags,
+    reflection_level: entry.reflection_level,
+    essay: entry.essay,
+    reflection: entry.reflection,
+    history_context: historyContext
+  };
+  
+  return fillPromptTemplate(template, promptData);
 }
 
 /**
@@ -153,7 +110,7 @@ async function analyzeLatestEntry() {
     const historyContext = createHistoryContext(journal.entries, latestEntry.id);
     
     // Создаем промпт
-    const prompt = createAnalysisPrompt(latestEntry, historyContext);
+    const prompt = await createAnalysisPrompt(latestEntry, historyContext);
     
     // Вызываем LLM
     console.log('Отправка запроса к LLM...');
