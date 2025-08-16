@@ -176,20 +176,43 @@ async function analyzeLatestEntry() {
     // Парсим ответ
     let analysisResult;
     try {
+      // Сначала пытаемся распарсить как есть
       analysisResult = JSON.parse(response);
     } catch (parseError) {
       console.error('Ошибка парсинга JSON от LLM:', parseError);
-      console.log('Сырой ответ:', response);
-      // Попытка извлечь JSON из текста (если LLM добавила пояснения)
-      const jsonMatch = response.match(/\{.*\}/s);
-      if (jsonMatch) {
-        try {
-          analysisResult = JSON.parse(jsonMatch[0]);
-        } catch (secondParseError) {
-          throw new Error('Не удалось извлечь корректный JSON из ответа LLM');
+      console.log('Сырой ответ (первые 1000 символов):', response.substring(0, 1000) + (response.length > 1000 ? '...' : ''));
+      
+      // Попытка извлечь JSON, обернутый в Markdown-блоки кода
+      let jsonCandidate = response.trim();
+      
+      // Удаляем начальные и конечные маркеры кода Markdown, если они есть
+      if (jsonCandidate.startsWith("```json")) {
+        jsonCandidate = jsonCandidate.substring(7).trim(); // Убираем ```json
+      } else if (jsonCandidate.startsWith("```")) {
+        jsonCandidate = jsonCandidate.substring(3).trim(); // Убираем ```
+      }
+      
+      if (jsonCandidate.endsWith("```")) {
+        jsonCandidate = jsonCandidate.substring(0, jsonCandidate.length - 3).trim(); // Убираем ```
+      }
+      
+      // Теперь пытаемся распарсить очищенный JSON
+      try {
+        analysisResult = JSON.parse(jsonCandidate);
+        console.log("✅ JSON успешно извлечен из Markdown-блока.");
+      } catch (secondParseError) {
+        // Если не помогло, пробуем более грубый способ поиска объекта
+        const jsonMatch = jsonCandidate.match(/\{.*\}/s);
+        if (jsonMatch) {
+          try {
+            analysisResult = JSON.parse(jsonMatch[0]);
+            console.log("✅ JSON успешно извлечен регулярным выражением.");
+          } catch (thirdParseError) {
+            throw new Error(`Не удалось извлечь корректный JSON из ответа LLM. Ошибки: 1) ${parseError.message}, 2) ${secondParseError.message}, 3) ${thirdParseError.message}`);
+          }
+        } else {
+          throw new Error(`Не удалось извлечь JSON из ответа LLM. Ошибки: 1) ${parseError.message}, 2) ${secondParseError.message}. JSON-объект не найден.`);
         }
-      } else {
-        throw new Error('Не удалось извлечь JSON из ответа LLM');
       }
     }
     
