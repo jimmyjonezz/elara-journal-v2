@@ -60,7 +60,7 @@ async function generateEssay() {
     month: 'long',
     year: 'numeric'
   });
-  const prompt = await loadPromptTemplate('essay_prompt');
+  const template = await loadPromptTemplate('essay_prompt');
   const prompt = template.replace('{DATE}', today);
   return await callOpenRouter(prompt);
 }
