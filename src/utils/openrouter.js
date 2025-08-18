@@ -55,7 +55,13 @@ async function callOpenRouter(prompt) {
 }
 
 async function generateEssay() {
+  const today = new Date().toLocaleDateString('ru-RU', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
   const prompt = await loadPromptTemplate('essay_prompt');
+  const prompt = template.replace('{DATE}', today);
   return await callOpenRouter(prompt);
 }
 
