@@ -68,6 +68,10 @@ body {
   padding: var(--spacing-4) var(--spacing-3);
 }
 
+. suggestions-lidt {
+  margin-left: 20px;
+}
+
 /* Header */
 .header {
   padding: var(--spacing-3);
