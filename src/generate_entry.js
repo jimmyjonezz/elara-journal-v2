@@ -110,7 +110,7 @@ function extractSimpleDynamicTags(text) {
     .sort((a, b) => b[1] - a[1]); // b[1] и a[1] - это частоты
 
   // 4. Берем слова с частотой >= 2
-  const minFrequency = 2; // Минимальная частота для динамического тега
+  const minFrequency = 1; // Минимальная частота для динамического тега
   for (const [word, count] of sortedWords) {
     if (count >= minFrequency) {
         // Преобразуем слово в "snake_case" для согласованности с commonTags
