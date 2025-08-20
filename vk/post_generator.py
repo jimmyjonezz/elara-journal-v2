@@ -12,8 +12,8 @@ from datetime import datetime
 MEMORY_FILE = "data/journal.json"
 
 # Ограничения для предотвращения обрезки
-MAX_QUOTE_LENGTH = 350  # Максимальная длина цитаты
-MAX_TOTAL_LENGTH = 450  # Максимальная длина всего поста
+MAX_QUOTE_LENGTH = 400  # Максимальная длина цитаты
+MAX_TOTAL_LENGTH = 500  # Максимальная длина всего поста
 
 def load_latest_entry():
     """Загружает последнюю запись из journal.json"""
