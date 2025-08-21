@@ -6,9 +6,8 @@ const { callOpenRouter } = require('./utils/openrouter');
 // Путь к файлам данных
 const JOURNAL_PATH = path.join(__dirname, '../data/journal.json');
 const ANALYSIS_PATH = path.join(__dirname, '../data/literary_analysis.json');
-// Исправлен путь к шаблону (убран лишний /src/)
-const PROMPT_TEMPLATE_PATH = path.join(__dirname, '../prompt_templates/analyst_prompt.txt');
-
+// Исправленный путь к шаблону (предполагая, что prompt_templates внутри src)
+const PROMPT_TEMPLATE_PATH = path.join(__dirname, 'prompt_templates/analyst_prompt.txt');
 /**
  * Загружает журнал записей
  */
