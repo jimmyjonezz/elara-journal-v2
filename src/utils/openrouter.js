@@ -37,7 +37,7 @@ async function callOpenRouter(prompt) {
         { role: "user", content: prompt }
       ],
       temperature: 0.8,
-      max_tokens: 1000
+      max_tokens: 2048
     })
   });
 
