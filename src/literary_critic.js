@@ -79,7 +79,7 @@ function createHistoryContext(entries, currentId, count = 3) {
  * @param {Object} entry - Запись из журнала
  */
 function formatEntryForContext(entry) {
-  return `Дата: ${entry.id}\n` +
+  return `Дата: ${entry.date}\n` +
          `Заголовок: ${entry.title || entry.topic || 'Без заголовка'}\n` +
          `Теги: ${(entry.tags || []).join(', ')}\n` +
          `Фрагмент эссе: ${(entry.essay || entry.entry || '').substring(0, 150)}...\n` +
