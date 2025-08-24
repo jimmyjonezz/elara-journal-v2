@@ -1,0 +1,348 @@
+/* Основные переменные темы */
+:root {
+  /* Цвета фона */
+  --color-canvas-default: #0d1117;
+  --color-canvas-subtle: #161b22;
+  --color-canvas-inset: #010409;
+
+  /* Цвета текста */
+  --color-fg-default: #e6edf3;
+  --color-fg-muted: #848d97;
+  --color-fg-subtle: #6e7681;
+
+  /* Цвета акцента */
+  --color-accent-fg: #ff6a00; /* Оранжевый акцент */
+  --color-accent-emphasis: #1f6feb; /* Голубой для выделения */
+  --color-accent-subtle: rgba(56, 139, 253, 0.1); /* Светло-голубой фон */
+
+  /* Цвета состояний */
+  --color-danger-fg: #f85149; /* Красный для ошибок */
+
+  /* Цвета границ */
+  --color-border-default: #30363d;
+  --color-border-muted: #21262d;
+
+  /* Размеры и отступы */
+  --border-radius: 6px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 16px;
+  --spacing-4: 24px;
+  --spacing-5: 32px;
+
+  /* Шрифты */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --font-size-small: 12px;
+  --font-size-normal: 14px;
+  --font-size-large: 16px;
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+}
+
+/* Основные стили */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-normal);
+  line-height: 1.5;
+  color: var(--color-fg-default);
+  background-color: var(--color-canvas-default);
+}
+
+/* Application Layout */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.application-main-content {
+  flex: 1;
+  padding: var(--spacing-4) var(--spacing-3);
+}
+
+/* Header */
+.header {
+  padding: var(--spacing-3);
+  background-color: var(--color-canvas-default);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-fg-default);
+  margin: 0 0 var(--spacing-1);
+}
+
+.header-subtitle {
+  font-size: var(--font-size-normal);
+  color: var(--color-fg-muted);
+  margin: 0 0 var(--spacing-2);
+}
+
+.update-info {
+  font-size: var(--font-size-small);
+  color: var(--color-fg-subtle);
+  margin: 0;
+}
+
+/* Navigation Tabs */
+.tabnav {
+  padding: 0 var(--spacing-3);
+  background-color: var(--color-canvas-default);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.tabnav-tab {
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-fg-muted);
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  position: relative;
+  bottom: -1px; /* Для перекрытия границы .tabnav */
+}
+
+.tabnav-tab:hover {
+  color: var(--color-fg-default);
+}
+
+.tabnav-tab.selected {
+  color: var(--color-fg-default);
+  border-bottom: 2px solid var(--color-accent-fg);
+}
+
+/* Tab Content */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--spacing-3);
+  color: var(--color-fg-default);
+}
+
+/* Entries Container */
+.entries-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3); /* Отступ между карточками записей */
+}
+
+/* Entry Card */
+.entry-card {
+  background-color: var(--color-canvas-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-3);
+}
+
+/* Entry Header (Дата и уровень) */
+.entry-header {
+  margin-bottom: var(--spacing-3); /* Отступ снизу заголовка */
+  padding-bottom: var(--spacing-2);
+  border-bottom: 1px solid var(--color-border-muted);
+}
+
+.entry-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+
+.entry-date {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: var(--font-size-small);
+  color: var(--color-fg-muted);
+}
+
+/* Entry Sections (Эссе и Рефлексия) */
+/* Общий класс для разделов записи для создания отступов */
+.entry-section {
+  margin-bottom: var(--spacing-3); /* Отступ между разделами */
+}
+
+.entry-section:last-child {
+    margin-bottom: 0; /* Убираем отступ у последнего раздела */
+}
+
+/* Заголовки разделов */
+.section-title-small {
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--spacing-2); /* Отступ только снизу заголовка раздела */
+  color: var(--color-fg-default);
+}
+
+/* Текст записи */
+.entry-text, .entry-reflection {
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Специфичный стиль для блока рефлексии */
+.entry-reflection {
+  padding: var(--spacing-2);
+  background-color: var(--color-canvas-inset);
+  border-radius: var(--border-radius);
+  border-left: 3px solid var(--color-accent-fg);
+  font-style: italic;
+}
+
+/* Entry Tags */
+.entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-1);
+  /* Отступ сверху, если теги идут после других элементов */
+  margin-top: var(--spacing-2); /* Добавлен отступ сверху */
+}
+
+/* Labels (для уровня и тегов) */
+.Label {
+  display: inline-block;
+  padding: 2px 6px; /* Исправлен padding */
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  line-height: 18px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+
+.Label--outline {
+  color: var(--color-fg-default);
+  background-color: #010409; /* Темный фон */
+  border: 1px solid var(--color-border-default); /* Добавлена граница */
+}
+
+.Label--accent {
+  color: var(--color-fg-default);
+  background-color: var(--color-accent-subtle); /* Использована переменная для акцентного фона */
+  border: 1px solid var(--color-accent-fg); /* Добавлена акцентная граница */
+}
+
+/* Status Messages */
+.loading, .empty, .error {
+  text-align: center;
+  padding: var(--spacing-4);
+  color: var(--color-fg-muted);
+  font-style: italic;
+}
+
+.error {
+  color: var(--color-danger-fg);
+}
+
+/* Стили для списков в анализе критика */
+.analysis-list {
+    list-style-type: none; /* Убираем стандартные маркеры */
+    padding-left: 0;       /* Убираем отступ списка */
+    margin-top: var(--spacing-2); /* Отступ сверху */
+    margin-bottom: var(--spacing-3); /* Отступ снизу */
+}
+
+.analysis-list-item {
+    background-color: var(--color-canvas-inset);
+    border-left: 3px solid var(--color-accent-fg);
+    padding: var(--spacing-2);
+    margin-bottom: var(--spacing-2); /* Отступ между элементами списка */
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+.analysis-list-item-text {
+    /* Если элемент списка - просто текст */
+    /* line-height: 1.4; */
+}
+
+.analysis-list-item strong {
+    color: var(--color-accent-emphasis);
+}
+
+/* === Добавлено: Стили для списка советов === */
+.suggestions-list {
+    list-style-type: none; /* Убираем стандартные маркеры */
+    padding-left: 0;       /* Убираем отступ списка */
+    margin-top: var(--spacing-2); /* Отступ сверху от заголовка "Советы..." */
+    margin-bottom: var(--spacing-3); /* Отступ снизу */
+}
+
+.suggestion-item {
+    /* Стиль для каждого отдельного совета */
+    padding: var(--spacing-2); /* Внутренний отступ */
+    margin-bottom: var(--spacing-2); /* Отступ между советами */
+    background-color: var(--color-canvas-inset); /* Фон, как у других элементов анализа */
+    border-left: 3px solid var(--color-accent-fg); /* Левая акцентная граница */
+    border-radius: 0 var(--border-radius) var(--border-radius) 0; /* Скругление углов справа */
+    /* line-height: 1.5; /* Можно добавить, если нужно */
+}
+
+/* Footer */
+.footer {
+  padding: var(--spacing-4) var(--spacing-3);
+  margin-top: var(--spacing-5);
+  border-top: 1px solid var(--color-border-default);
+  background-color: var(--color-canvas-subtle);
+  text-align: center;
+}
+
+.footer a {
+  color: var(--color-accent-fg);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    padding: var(--spacing-2);
+  }
+
+  .header-title {
+    font-size: 18px;
+  }
+
+  .tabnav {
+    padding: 0 var(--spacing-2);
+  }
+
+  .application-main-content {
+    padding: var(--spacing-3) var(--spacing-2);
+  }
+
+  .entry-card {
+    padding: var(--spacing-2);
+  }
+
+  .entry-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer {
+    padding: var(--spacing-3) var(--spacing-2);
+    margin-top: var(--spacing-4);
+  }
+}
+/* Конец файла style.css */
