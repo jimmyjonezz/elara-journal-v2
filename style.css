@@ -237,7 +237,7 @@ body {
 .Label--accent {
   color: var(--color-fg-default);
   background-color: var(--color-accent-subtle); /* Использована переменная для акцентного фона */
-  border: 1px solid var(--color-accent-fg); /* Добавлена акцентная граница */
+  border: none;
 }
 
 /* Status Messages */
