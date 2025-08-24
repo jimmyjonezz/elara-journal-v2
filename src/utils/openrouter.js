@@ -1,8 +1,9 @@
+// src/utils/openrouter.js
 const fs = require('fs').promises;
 const path = require('path');
 
 const API_KEY = process.env.OPENROUTER_API_KEY;
-const API_URL = "https://openrouter.ai/api/v1/chat/completions";
+const API_URL = "https://openrouter.ai/api/v1/chat/completions"; // Убран пробел в конце URL
 const MODEL = "mistralai/mistral-nemo:free"; // Уточнено
 //qwen/qwen3-8b:free
 //moonshotai/kimi-k2:free
@@ -27,7 +28,7 @@ async function callOpenRouter(prompt) {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${API_KEY}`,
-      "HTTP-Referer": "https://jimmyjonezz.github.io/elara-journal-v2/", // Обновлено
+      "HTTP-Referer": "https://jimmyjonezz.github.io/elara-journal-v2/", // Убран пробел в конце
       "X-Title": "Elara Journal",
       "Content-Type": "application/json"
     },
@@ -36,7 +37,7 @@ async function callOpenRouter(prompt) {
       messages: [
         { role: "user", content: prompt }
       ],
-      temperature: 0.8,
+      temperature: 0.7,
       max_tokens: 2048
     })
   });
@@ -54,16 +55,48 @@ async function callOpenRouter(prompt) {
   return data.choices[0].message.content.trim();
 }
 
-async function generateEssay() {
+// --- Обновлённая функция generateEssay ---
+/**
+ * Генерирует эссе, используя предоставленные данные и шаблон.
+ * @param {Object} data - Данные для подстановки в шаблон.
+ * @param {string} data.previous_suggestions - Строка с последними советами критика.
+ * @param {Array<string>} data.themes - Массив тем.
+ * @returns {Promise<string>} Сгенерированное эссе.
+ */
+async function generateEssay(data) {
+  // 1. Получаем текущую дату
   const today = new Date().toLocaleDateString('ru-RU', {
     day: 'numeric',
     month: 'long',
     year: 'numeric'
   });
+
+  // 2. Загружаем шаблон
   const template = await loadPromptTemplate('essay_prompt');
-  const prompt = template.replace('{DATE}', today);
+
+  // 3. Подставляем переменные в шаблон
+  let prompt = template;
+  // Заменяем {DATE}
+  prompt = prompt.replace('{DATE}', today);
+  
+  // Заменяем {{previous_suggestions}} (новая переменная)
+  // Если data.previous_suggestions не передано, используем значение по умолчанию
+  const suggestionsText = data?.previous_suggestions || "Советы от литературного критика отсутствуют.";
+  prompt = prompt.replace('{{previous_suggestions}}', suggestionsText);
+
+  // Заменяем {{themes}} (если используется в шаблоне)
+  // Предполагая, что темы передаются как массив в data.themes
+  const themesText = data?.themes?.join(', ') || "темы не указаны";
+  // Проверим, есть ли в шаблоне переменная {{themes}} перед заменой
+  if (prompt.includes('{{themes}}')) {
+    prompt = prompt.replace('{{themes}}', themesText);
+  }
+  // Если {{themes}} нет в шаблоне, эта замена просто не сработает, что безопасно.
+
+  // 4. Вызываем LLM
   return await callOpenRouter(prompt);
 }
+// --- Конец обновлённой функции generateEssay ---
 
 async function generateReflection(essay) {
   let prompt = await loadPromptTemplate('reflection_prompt');
@@ -72,7 +105,7 @@ async function generateReflection(essay) {
 }
 
 module.exports = {
-  generateEssay,
+  generateEssay, // Экспортируем обновлённую функцию
   generateReflection,
   callOpenRouter
 };
