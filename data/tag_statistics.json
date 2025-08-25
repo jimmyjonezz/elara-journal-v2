@@ -1,1 +1,34 @@
-
+{
+  "время": {
+    "count": 1,
+    "firstSeen": "2025-08-25",
+    "lastSeen": "2025-08-25",
+    "types": [
+      "static"
+    ]
+  },
+  "жизнь": {
+    "count": 1,
+    "firstSeen": "2025-08-25",
+    "lastSeen": "2025-08-25",
+    "types": [
+      "static"
+    ]
+  },
+  "перемена": {
+    "count": 1,
+    "firstSeen": "2025-08-25",
+    "lastSeen": "2025-08-25",
+    "types": [
+      "critic"
+    ]
+  },
+  "самоисследование": {
+    "count": 1,
+    "firstSeen": "2025-08-25",
+    "lastSeen": "2025-08-25",
+    "types": [
+      "critic"
+    ]
+  }
+}
