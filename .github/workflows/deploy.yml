@@ -54,7 +54,7 @@ jobs:
           git config --local user.name "GitHub Action"
           
           # Добавляем в индекс файлы журнала, анализа и динамических тегов
-          git add data/journal.json data/literary_analysis.json data/dynamic_tags.json
+          git add data/journal.json data/literary_analysis.json data/dynamic_tags.json data/tag_statistics.json
           
           # Проверяем, есть ли изменения для коммита
           if git diff --cached --quiet; then
