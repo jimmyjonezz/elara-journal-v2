@@ -37,6 +37,36 @@ function extractTags(text) {
 }
 
 /**
+ * Определяет уровень рефлексии.
+ * @param {string} reflectionText - Текст рефлексии.
+ * @returns {string} - Уровень рефлексии ("низкий", "средний", "высокий").
+ */
+function determineReflectionLevel(reflectionText) {
+  let level = "средний";
+  const levelMatch = reflectionText.match(/Уровень\s*:\s*(.*)$/i);
+  if (levelMatch && levelMatch[1]) {
+    const extractedLevel = levelMatch[1].trim().toLowerCase();
+    if (["глубокий", "высокий", "глубокая", "высокая"].includes(extractedLevel)) {
+      level = "высокий";
+    } else if (["средний", "средняя"].includes(extractedLevel)) {
+      level = "средний";
+    } else if (["поверхностный", "низкий", "поверхностная", "низкая"].includes(extractedLevel)) {
+      level = "низкий";
+    }
+  }
+  return level;
+}
+
+/**
+ * Удаляет строку "Уровень: ..." из текста рефлексии.
+ * @param {string} reflectionText - Текст рефлексии.
+ * @returns {string} - Очищенный текст.
+ */
+function cleanReflectionText(reflectionText) {
+  return reflectionText.replace(/Уровень\s*:\s*.*$/i, '').trim();
+}
+
+/**
  * Выполняет функцию с повторными попытками в случае ошибки.
  */
 async function withRetry(fn, maxRetries, baseDelay, actionName) {
@@ -80,7 +110,6 @@ async function prepareEntryData() {
     console.warn("⚠️ Ошибка при загрузке файла литературного анализа:", error.message);
   }
 
-  // Загрузка тегов критика
   let criticTags = [];
   try {
     const dynamicTagsData = await readJSON(DYNAMIC_TAGS_PATH);
@@ -94,7 +123,6 @@ async function prepareEntryData() {
     console.warn("⚠️ Ошибка при загрузке файла тегов критика:", error.message);
   }
 
-  // Генерируем эссе
   console.log("✍️ Генерируем эссе...");
   const essayData = {
     previous_suggestions: previousSuggestions,
@@ -104,52 +132,38 @@ async function prepareEntryData() {
   if (!rawEssay || rawEssay.trim().length < 10) throw new Error(`Подозрительно короткий ответ эссе (длина: ${rawEssay?.length || 0}).`);
   console.log("📄 Длина сырого эссе:", rawEssay.length);
 
-  // Генерируем рефлексию
   console.log("💭 Генерируем рефлексию...");
   const rawReflection = await withRetry(() => generateReflection(rawEssay), MAX_RETRIES, BASE_DELAY_MS, "генерации рефлексии");
   if (!rawReflection || rawReflection.trim().length < 10) throw new Error(`Подозрительно короткий ответ рефлексии (длина: ${rawReflection?.length || 0}).`);
   console.log("💭 Длина сырой рефлексии:", rawReflection.length);
 
-  const cleanEntry = `${rawEssay}\n\n${rawReflection}`;
+  const cleanReflection = cleanReflectionText(rawReflection);
+  const fullEntryClean = `${rawEssay}\n\n${cleanReflection}`;
 
-  const staticTags = extractTags(cleanEntry);
+  const staticTags = extractTags(fullEntryClean);
   console.log(`🏷️ Извлечено статических тегов: ${staticTags.length}`, staticTags);
 
-  // Итоги тегов
   const allTags = Array.from(new Set([...staticTags, ...criticTags]));
   console.log(`🏷️ Всего уникальных тегов: ${allTags.length}`, allTags);
 
-  // Уровень рефлексии (по вашему текущему коду можно добавить функцию определения уровня)
-  const level = "средний"; // Например, заглушка
+  const level = determineReflectionLevel(rawReflection);
 
-  return { rawEssay, rawReflection, cleanEntry, staticTags, criticTags, tags: allTags, level };
+  return { rawEssay, rawReflection: cleanReflection, cleanEntry: fullEntryClean, staticTags, criticTags, tags: allTags, level };
 }
 
-/**
- * Загружает журнал
- */
 async function loadJournal() {
   const journal = await readJSON(JOURNAL_PATH);
   return Array.isArray(journal) ? journal : [];
 }
 
-/**
- * Сохраняет журнал
- */
 async function saveJournal(journal) {
   await writeJSON(JOURNAL_PATH, journal);
 }
 
-/**
- * Загружает статистику тегов
- */
 async function loadTagStatistics() {
   return await readJSON(TAG_STATS_PATH);
 }
 
-/**
- * Обновляет и сохраняет статистику тегов
- */
 async function updateAndSaveTagStatistics(currentStats, staticTags, criticTags, entryDate) {
   const updatedStats = { ...currentStats };
   const allTagsFromEntry = new Set([...staticTags, ...criticTags]);
@@ -176,9 +190,6 @@ async function updateAndSaveTagStatistics(currentStats, staticTags, criticTags, 
   console.log('✅ Статистика тегов обновлена и сохранена.');
 }
 
-/**
- * Создает новую запись
- */
 async function createNewEntry() {
   try {
     const { rawEssay, rawReflection, cleanEntry, staticTags, criticTags, tags, level } = await prepareEntryData();
@@ -189,7 +200,7 @@ async function createNewEntry() {
       tags,
       reflection_level: level,
       raw_essay: rawEssay,
-      raw_reflection: rawReflection
+      raw_reflection: rawReflection // очищенный текст без строки "Уровень"
     };
 
     const journal = await loadJournal();
