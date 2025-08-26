@@ -1,10 +1,11 @@
 {
   "время": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-08-25",
-    "lastSeen": "2025-08-25",
+    "lastSeen": "2025-08-26",
     "types": [
-      "static"
+      "static",
+      "critic"
     ]
   },
   "жизнь": {
@@ -51,6 +52,22 @@
     "count": 1,
     "firstSeen": "2025-08-25",
     "lastSeen": "2025-08-25",
+    "types": [
+      "critic"
+    ]
+  },
+  "память": {
+    "count": 1,
+    "firstSeen": "2025-08-26",
+    "lastSeen": "2025-08-26",
+    "types": [
+      "static"
+    ]
+  },
+  "принятие перемен": {
+    "count": 1,
+    "firstSeen": "2025-08-26",
+    "lastSeen": "2025-08-26",
     "types": [
       "critic"
     ]
