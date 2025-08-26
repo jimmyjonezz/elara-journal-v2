@@ -33,9 +33,9 @@
     ]
   },
   "ветер": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-08-25",
-    "lastSeen": "2025-08-25",
+    "lastSeen": "2025-08-26",
     "types": [
       "static"
     ]
@@ -65,6 +65,46 @@
     ]
   },
   "принятие перемен": {
+    "count": 1,
+    "firstSeen": "2025-08-26",
+    "lastSeen": "2025-08-26",
+    "types": [
+      "critic"
+    ]
+  },
+  "голос": {
+    "count": 1,
+    "firstSeen": "2025-08-26",
+    "lastSeen": "2025-08-26",
+    "types": [
+      "static"
+    ]
+  },
+  "любовь": {
+    "count": 1,
+    "firstSeen": "2025-08-26",
+    "lastSeen": "2025-08-26",
+    "types": [
+      "static"
+    ]
+  },
+  "грусть": {
+    "count": 1,
+    "firstSeen": "2025-08-26",
+    "lastSeen": "2025-08-26",
+    "types": [
+      "static"
+    ]
+  },
+  "Память и время": {
+    "count": 1,
+    "firstSeen": "2025-08-26",
+    "lastSeen": "2025-08-26",
+    "types": [
+      "critic"
+    ]
+  },
+  "Личные воспоминания": {
     "count": 1,
     "firstSeen": "2025-08-26",
     "lastSeen": "2025-08-26",
