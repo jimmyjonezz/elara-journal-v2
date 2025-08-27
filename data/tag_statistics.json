@@ -1,8 +1,8 @@
 {
   "время": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2025-08-25",
-    "lastSeen": "2025-08-26",
+    "lastSeen": "2025-08-27",
     "types": [
       "static",
       "critic"
@@ -89,9 +89,9 @@
     ]
   },
   "грусть": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-08-26",
+    "lastSeen": "2025-08-27",
     "types": [
       "static"
     ]
@@ -108,6 +108,14 @@
     "count": 1,
     "firstSeen": "2025-08-26",
     "lastSeen": "2025-08-26",
+    "types": [
+      "critic"
+    ]
+  },
+  "воспоминания": {
+    "count": 1,
+    "firstSeen": "2025-08-27",
+    "lastSeen": "2025-08-27",
     "types": [
       "critic"
     ]
