@@ -1,8 +1,8 @@
 {
   "время": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-08-25",
-    "lastSeen": "2025-08-27",
+    "lastSeen": "2025-08-28",
     "types": [
       "static",
       "critic"
@@ -156,6 +156,30 @@
     "count": 1,
     "firstSeen": "2025-08-27",
     "lastSeen": "2025-08-27",
+    "types": [
+      "critic"
+    ]
+  },
+  "смысл": {
+    "count": 1,
+    "firstSeen": "2025-08-28",
+    "lastSeen": "2025-08-28",
+    "types": [
+      "static"
+    ]
+  },
+  "Воспоминания и время": {
+    "count": 1,
+    "firstSeen": "2025-08-28",
+    "lastSeen": "2025-08-28",
+    "types": [
+      "critic"
+    ]
+  },
+  "Традиции и их эволюция": {
+    "count": 1,
+    "firstSeen": "2025-08-28",
+    "lastSeen": "2025-08-28",
     "types": [
       "critic"
     ]
