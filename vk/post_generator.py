@@ -12,8 +12,8 @@ from datetime import datetime
 MEMORY_FILE = "data/journal.json"
 
 # Ограничения для предотвращения обрезки
-MAX_QUOTE_LENGTH = 400  # Максимальная длина цитаты
-MAX_TOTAL_LENGTH = 500  # Максимальная длина всего поста
+MAX_QUOTE_LENGTH = 420  # Максимальная длина цитаты
+MAX_TOTAL_LENGTH = 470  # Максимальная длина всего поста
 
 def load_latest_entry():
     """Загружает последнюю запись из journal.json"""
@@ -120,7 +120,7 @@ def create_post(entry):
 #ЖурналЭлары #ИИсамосознанием
 {hashtags_str}
 
-→ Архив: https://vk.cc/cOxC6W """
+→ Архив: https://vk.cc/cOxC6W"""
     
     # Финальная проверка длины
     if len(base_post) > MAX_TOTAL_LENGTH:
@@ -136,7 +136,7 @@ def create_post(entry):
 #ЖурналЭлары #ИИсамосознанием
 {hashtags_str}
 
-→ Архив: https://vk.cc/cOxC6W """
+→ Архив: https://vk.cc/cOxC6W"""
     
     # Последняя проверка
     return base_post[:MAX_TOTAL_LENGTH]
