@@ -22,7 +22,7 @@ function extractTags(text) {
 
   const tags = new Set();
   const lowerText = text.toLowerCase();
-
+  const extractedLevel = levelMatch[1].trim().toLowerCase().replace(/[^\wа-яё]/gi, '');
   for (const tag of commonTags) {
     if (lowerText.includes(tag.replace(/_/g, ' '))) {
       tags.add(tag);
@@ -45,7 +45,7 @@ function determineReflectionLevel(reflectionText) {
   let level = "средний";
   const levelMatch = reflectionText.match(/Уровень\s*:\s*(.*)$/i);
   if (levelMatch && levelMatch[1]) {
-    const extractedLevel = levelMatch[1].trim().toLowerCase();
+    
     if (["глубокий", "высокий", "глубокая", "высокая"].includes(extractedLevel)) {
       level = "высокий";
     } else if (["средний", "средняя"].includes(extractedLevel)) {
