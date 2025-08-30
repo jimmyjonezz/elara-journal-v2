@@ -1,10 +1,9 @@
 {
   "время": {
-    "count": 9,
-    "firstSeen": "2025-08-25",
-    "lastSeen": "2025-08-30",
+    "count": 3,
+    "firstSeen": "2025-08-27",
+    "lastSeen": "2025-08-29",
     "types": [
-      "static",
       "critic"
     ]
   },
@@ -99,49 +98,33 @@
   "воспоминания": {
     "count": 3,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-08-30",
+    "lastSeen": "2025-08-29",
     "types": [
       "critic"
     ]
   },
   "размышление": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-08-28",
+    "lastSeen": "2025-08-30",
     "types": [
       "static"
     ]
   },
   "внутренний_диалог": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-08-28",
+    "lastSeen": "2025-08-30",
     "types": [
       "static"
     ]
   },
   "осмысление": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-08-28",
+    "lastSeen": "2025-08-30",
     "types": [
       "static"
-    ]
-  },
-  "воспоминания": {
-    "count": 3,
-    "firstSeen": "2025-08-27",
-    "lastSeen": "2025-08-29",
-    "types": [
-      "critic"
-    ]
-  },
-  "время": {
-    "count": 3,
-    "firstSeen": "2025-08-27",
-    "lastSeen": "2025-08-29",
-    "types": [
-      "critic"
     ]
   },
   "смысл": {
@@ -174,6 +157,22 @@
     "lastSeen": "2025-08-30",
     "types": [
       "static"
+    ]
+  },
+  "восприятие": {
+    "count": 1,
+    "firstSeen": "2025-08-30",
+    "lastSeen": "2025-08-30",
+    "types": [
+      "critic"
+    ]
+  },
+  "наблюдение": {
+    "count": 1,
+    "firstSeen": "2025-08-30",
+    "lastSeen": "2025-08-30",
+    "types": [
+      "critic"
     ]
   }
 }
