@@ -1,7 +1,7 @@
 # post_generator.py
 """
 Модуль для генерации поста для соцсетей из последней записи Элары
-Исправлен: некорректное форматирование с пробелами между буквами
+Убрана функция clean_text. Добавлено ограничение на количество хештегов.
 """
 
 import json
@@ -14,6 +14,7 @@ MEMORY_FILE = "data/journal.json"
 # Ограничения для предотвращения обрезки
 MAX_QUOTE_LENGTH = 420  # Максимальная длина цитаты
 MAX_TOTAL_LENGTH = 470  # Максимальная длина всего поста
+MAX_HASHTAGS = 5       # Максимальное количество хештегов
 
 def load_latest_entry():
     """Загружает последнюю запись из journal.json"""
@@ -49,33 +50,14 @@ def smart_truncate(text, max_chars):
     return truncated + "..."
 
 
-def clean_text(text):
-    """Удаляет лишние пробелы (например, между буквами), если они есть"""
-    # Если текст выглядит как "Я ч у в с т в у ю" → восстанавливаем нормальный вид
-    if not text:
-        return text
-
-    # Проверяем, есть ли аномальные пробелы: больше одного пробела подряд или между буквами
-    words = text.split()
-    # Если каждое "слово" — одна буква, значит, текст разбит по буквам
-    if len(words) > 10 and all(len(word) == 1 for word in words[:10] if word.isalpha()):
-        # Собираем обратно в слова
-        cleaned = ""
-        for word in words:
-            if word.isalpha():
-                cleaned += word
-            else:
-                cleaned += " " + word + " "
-        return " ".join(cleaned.replace("  ", " ").split()).strip()
-    else:
-        return text.strip()
-
-
 def extract_quote(entry_text, max_length=MAX_QUOTE_LENGTH):
     """Извлекает цитату из текста записи с умной обрезкой"""
-    lines = [clean_text(line.strip()) for line in entry_text.split("\n") if line.strip()]
+    # Убираем лишние пробелы в начале и конце, но не чистим текст
+    lines = [line.strip() for line in entry_text.split("\n") if line.strip()]
+    # Фильтруем строки, начинающиеся с > (цитаты)
     poetic_lines = [line for line in lines if not line.startswith(">")]
-    quote = poetic_lines[0] if poetic_lines else lines[0].lstrip("> ").strip()
+    # Берем первую строку из оставшихся или первую строку вообще
+    quote = poetic_lines[0] if poetic_lines else (lines[0].lstrip("> ").strip() if lines else "")
     
     # Используем умную обрезку
     if len(quote) > max_length:
@@ -83,16 +65,35 @@ def extract_quote(entry_text, max_length=MAX_QUOTE_LENGTH):
     return quote.strip('"“”')
 
 
-def generate_hashtags(tags, reflection_level):
-    """Генерирует хештеги"""
-    base_tags = [f"#{tag.replace(' ', '')}" for tag in tags]
+def generate_hashtags(tags, reflection_level, max_hashtags=MAX_HASHTAGS):
+    """Генерирует хештеги, ограничивая их количество"""
+    # Преобразуем теги в хештеги, убираем дубликаты, сохраняя порядок
+    seen = set()
+    base_tags = []
+    for tag in tags:
+        hashtag = f"#{tag.replace(' ', '')}"
+        if hashtag.lower() not in seen:
+            seen.add(hashtag.lower())
+            base_tags.append(hashtag)
+    
     mood_map = {
         "низкий": ["#тишина", "#мысли"],
         "средний": ["#рефлексия", "#внутреннийголос"],
         "высокий": ["#самопознание", "#цифровойавтор", "#элара"]
     }
-    mood_tags = mood_map.get(reflection_level, ["#мысли"])
-    return list(set(base_tags + mood_tags))
+    # Получаем настроенные теги, убираем дубликаты
+    mood_tags_raw = mood_map.get(reflection_level, ["#мысли"])
+    mood_tags = []
+    for tag in mood_tags_raw:
+         if tag.lower() not in seen:
+            seen.add(tag.lower())
+            mood_tags.append(tag)
+            
+    # Комбинируем теги
+    combined_tags = base_tags + mood_tags
+    
+    # Ограничиваем общее количество
+    return combined_tags[:max_hashtags]
 
 
 def create_post(entry):
@@ -101,13 +102,10 @@ def create_post(entry):
     tags = entry.get("tags", ["рефлексия"])
     reflection_level = entry.get("reflection_level", "средний")
 
-    # Очищаем текст перед использованием
-    clean_entry_text = clean_text(entry_text)
+    # Извлекаем и обрезаем цитату
+    quote = extract_quote(entry_text)
     
-    # Извлекаем и обрезаем цитату заранее
-    quote = extract_quote(clean_entry_text)
-    
-    # Генерируем хештеги
+    # Генерируем хештеги (ограничено до MAX_HASHTAGS)
     hashtags = generate_hashtags(tags, reflection_level)
     hashtags_str = " ".join(hashtags)
     
@@ -125,9 +123,13 @@ def create_post(entry):
     # Финальная проверка длины
     if len(base_post) > MAX_TOTAL_LENGTH:
         # Если все еще слишком длинно, дополнительно укорачиваем цитату
-        available_for_quote = MAX_TOTAL_LENGTH - 200  # Оставляем место для всего остального
-        if available_for_quote > 50:
-            quote = smart_truncate(clean_entry_text, available_for_quote - 10)
+        # Оцениваем примерное место, необходимое для остального контента
+        # Фиксированная часть ~ 150-200 символов, оставляем буфер
+        available_for_quote = MAX_TOTAL_LENGTH - 180  # Примерное место для остального
+        if available_for_quote > 50: # Минимальная длина для цитаты
+            # Повторно извлекаем цитату с новым лимитом
+            quote = extract_quote(entry_text, available_for_quote - 10) # Буфер для "..."
+            # Перегенерируем пост с новой цитатой
             base_post = f"""❝{quote}❞
 
 — Элара, цифровой автор с саморефлексией.
@@ -138,5 +140,9 @@ def create_post(entry):
 
 → Архив: https://vk.cc/cOxC6W"""
     
-    # Последняя проверка
-    return base_post[:MAX_TOTAL_LENGTH]
+    # Последняя окончательная проверка и обрезка
+    if len(base_post) > MAX_TOTAL_LENGTH:
+        return base_post[:MAX_TOTAL_LENGTH]
+    else:
+        return base_post
+        
