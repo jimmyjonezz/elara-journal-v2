@@ -14,6 +14,6 @@ jobs:
 
       - name: Push to GitVerse
         run: |
-          git config --global user.name "Jimmy Jonezz"
+          git config --global user.name "jimmyjonezz"
           git remote add gitverse https://jimmyjonezz:token@gitverse.ru/jimmyjonezz/Elara_Journal
           git push --mirror gitverse
