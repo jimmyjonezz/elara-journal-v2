@@ -15,5 +15,5 @@ jobs:
       - name: Push to GitVerse
         run: |
           git config --global user.name "jimmyjonezz"
-          git remote add gitverse https://jimmyjonezz:GITVERSE_TOKEN@gitverse.ru/jimmyjonezz/Elara_Journal.git
-          git push --mirror gitverse
+          git remote set-url origin https://jimmyjonezz:${{ secrets.GITVERSE_TOKEN }}@gitverse.ru/jimmyjonezz/Elara_Journal.git
+          git push origin main
