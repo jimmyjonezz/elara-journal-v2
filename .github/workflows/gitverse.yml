@@ -1,0 +1,20 @@
+name: Sync to GitVerse
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Push to GitVerse
+        run: |
+          git config --global user.name "Jimmy Jonezz"
+          git remote add gitverse https://jimmyjonezz:token@gitverse.ru/jimmyjonezz/Elara_Journal
+          git push --mirror gitverse
