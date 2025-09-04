@@ -178,9 +178,9 @@
     ]
   },
   "выбор": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-08-31",
-    "lastSeen": "2025-09-01",
+    "lastSeen": "2025-09-04",
     "types": [
       "static"
     ]
@@ -197,6 +197,22 @@
     "count": 1,
     "firstSeen": "2025-09-02",
     "lastSeen": "2025-09-02",
+    "types": [
+      "critic"
+    ]
+  },
+  "привычка": {
+    "count": 1,
+    "firstSeen": "2025-09-04",
+    "lastSeen": "2025-09-04",
+    "types": [
+      "critic"
+    ]
+  },
+  "мелочи": {
+    "count": 1,
+    "firstSeen": "2025-09-04",
+    "lastSeen": "2025-09-04",
     "types": [
       "critic"
     ]
