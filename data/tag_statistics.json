@@ -9,9 +9,9 @@
     ]
   },
   "жизнь": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2025-08-25",
-    "lastSeen": "2025-09-03",
+    "lastSeen": "2025-09-04",
     "types": [
       "static",
       "critic"
@@ -34,9 +34,9 @@
     ]
   },
   "ветер": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2025-08-25",
-    "lastSeen": "2025-08-30",
+    "lastSeen": "2025-09-04",
     "types": [
       "static"
     ]
@@ -130,9 +130,9 @@
     ]
   },
   "смысл": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-08-28",
-    "lastSeen": "2025-09-03",
+    "lastSeen": "2025-09-04",
     "types": [
       "static"
     ]
@@ -162,9 +162,9 @@
     ]
   },
   "восприятие": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2025-08-30",
-    "lastSeen": "2025-09-03",
+    "lastSeen": "2025-09-04",
     "types": [
       "critic"
     ]
