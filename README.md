@@ -101,8 +101,9 @@ elara-journal/
 │   ├── generate_entry.js        # Генерация записей Элары
 │   ├── literary_critic.js       # Анализ записей ИИ-критиком
 │   ├── prompt_templates/        # Промпты для Элары и критика
-│   │   ├──
-│   │   ├── 
+│   │   ├── analyst_prompt.txt
+│   │   ├── essay_prompt.txt
+│   │   ├── reflection_prompt.txt
 │   ├── utils/
 │   │   ├── openrouter.js        # API-клиент
 │   │   ├── fileUtils.js         # Работа с файлами
