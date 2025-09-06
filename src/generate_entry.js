@@ -11,6 +11,8 @@ const {
   BASE_DELAY_MS
 } = require('./config');
 
+const path = require('path');
+
 // 🔹 Путь к расширенному семантическому словарю
 //const SEMANTIC_DICT_PATH = require('path').join(__dirname, 'config', 'semantic-dictionary.json');
 const SEMANTIC_DICT_PATH = path.join(__dirname, 'config', 'semantic-dictionary.json');
