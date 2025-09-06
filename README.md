@@ -96,6 +96,7 @@
 elara-journal/
 ├── .github/workflows/
 │   ├── deploy.yml       # Генерация, анализ, коммит, деплой
+│   ├──gitverse.yml
 │   └── vk-post.yml      # Публикация в ВКонтакте
 ├── src/
 │   ├── generate_entry.js        # Генерация записей Элары
