@@ -130,11 +130,20 @@ async function analyzeLatestEntry() {
 
     let analysisResult;
     try {
-      analysisResult = JSON.parse(response);
-      console.log("✅ JSON успешно распарсен напрямую.");
+      // 🔧 Очищаем ответ от Markdown-блоков ```json и ```
+      let cleanResponse = response
+        .replace(/```json\s*/g, '')   // Убираем "```json" в начале
+        .replace(/```\s*$/g, '')      // Убираем "```" в конце
+        .trim();
+
+      console.log("[DEBUG] Очищенный ответ от LLM:", cleanResponse); // Опционально: для отладки
+
+      analysisResult = JSON.parse(cleanResponse);
+      console.log("✅ JSON успешно распарсен после очистки.");
     } catch (parseError) {
-      console.error('Ошибка парсинга JSON от LLM на первом этапе:', parseError.message);
-      throw parseError;
+      console.error('❌ Ошибка парсинга JSON после очистки. Исходный ответ:', response);
+      console.error('❌ Детали ошибки:', parseError.message);
+      throw new Error(`Не удалось распарсить ответ критика. Возможно, модель вернула не-JSON. Ошибка: ${parseError.message}`);
     }
 
     let dynamicTagsForSaving = [];
