@@ -110,10 +110,9 @@ elara-journal/
 │   ├── literary_analysis.json   # Советы критика
 │   ├── dynamic_tags.json        # Теги от критика
 │   └── tag_stats.json           # Статистика по тегам
-├── public/
-│   ├── index.html
-│   └── style.css
-└── scripts/
+├── index.html
+├── style.css
+└── vk/
     ├── post_generator.py
     └── vk_poster.py
 ```
