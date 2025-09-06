@@ -9,7 +9,7 @@
     ]
   },
   "жизнь": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2025-08-25",
     "lastSeen": "2025-09-06",
     "types": [
@@ -66,7 +66,7 @@
     ]
   },
   "голос": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-08-26",
     "lastSeen": "2025-09-06",
     "types": [
@@ -82,9 +82,9 @@
     ]
   },
   "грусть": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-08-29",
+    "lastSeen": "2025-09-06",
     "types": [
       "static"
     ]
@@ -218,7 +218,7 @@
     ]
   },
   "изменение": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-09-06",
     "lastSeen": "2025-09-06",
     "types": [
@@ -226,7 +226,7 @@
     ]
   },
   "настоящее": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-09-06",
     "lastSeen": "2025-09-06",
     "types": [
