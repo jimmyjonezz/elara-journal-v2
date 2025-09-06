@@ -1,6 +1,6 @@
 {
   "время": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2025-08-27",
     "lastSeen": "2025-09-06",
     "types": [
@@ -9,9 +9,9 @@
     ]
   },
   "жизнь": {
-    "count": 9,
+    "count": 10,
     "firstSeen": "2025-08-25",
-    "lastSeen": "2025-09-04",
+    "lastSeen": "2025-09-06",
     "types": [
       "static",
       "critic"
@@ -50,9 +50,9 @@
     ]
   },
   "память": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-08-26",
+    "lastSeen": "2025-09-06",
     "types": [
       "static"
     ]
@@ -66,9 +66,9 @@
     ]
   },
   "голос": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-08-26",
+    "lastSeen": "2025-09-06",
     "types": [
       "static"
     ]
@@ -130,9 +130,9 @@
     ]
   },
   "смысл": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2025-08-28",
-    "lastSeen": "2025-09-04",
+    "lastSeen": "2025-09-06",
     "types": [
       "static"
     ]
@@ -218,7 +218,7 @@
     ]
   },
   "изменение": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-09-06",
     "lastSeen": "2025-09-06",
     "types": [
@@ -226,11 +226,19 @@
     ]
   },
   "настоящее": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-09-06",
     "lastSeen": "2025-09-06",
     "types": [
       "critic"
+    ]
+  },
+  "ностальгия": {
+    "count": 1,
+    "firstSeen": "2025-09-06",
+    "lastSeen": "2025-09-06",
+    "types": [
+      "static"
     ]
   }
 }
