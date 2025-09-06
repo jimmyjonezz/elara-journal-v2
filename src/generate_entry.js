@@ -12,7 +12,8 @@ const {
 } = require('./config');
 
 // 🔹 Путь к расширенному семантическому словарю
-const SEMANTIC_DICT_PATH = require('path').join(__dirname, 'config', 'semantic-dictionary.json');
+//const SEMANTIC_DICT_PATH = require('path').join(__dirname, 'config', 'semantic-dictionary.json');
+const SEMANTIC_DICT_PATH = path.join(__dirname, 'config', 'semantic-dictionary.json');
 
 /**
  * Загружает расширенный семантический словарь
