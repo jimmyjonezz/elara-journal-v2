@@ -112,6 +112,8 @@ elara-journal/
 │   └── tag_stats.json           # Статистика по тегам
 ├── index.html
 ├── style.css
+├── package.json
+├──
 └── vk/
     ├── post_generator.py
     └── vk_poster.py
