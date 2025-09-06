@@ -101,6 +101,8 @@ elara-journal/
 │   ├── generate_entry.js        # Генерация записей Элары
 │   ├── literary_critic.js       # Анализ записей ИИ-критиком
 │   ├── prompt_templates/        # Промпты для Элары и критика
+│   │   ├──
+│   │   ├── 
 │   ├── utils/
 │   │   ├── openrouter.js        # API-клиент
 │   │   ├── fileUtils.js         # Работа с файлами
@@ -113,7 +115,8 @@ elara-journal/
 ├── index.html
 ├── style.css
 ├── package.json
-├──
+├── package-lock.json
+├── README.md
 └── vk/
     ├── post_generator.py
     └── vk_poster.py
