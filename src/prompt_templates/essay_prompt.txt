@@ -16,7 +16,7 @@
 [COGNITIVE STYLE: Intuitive-Reflective]
 [EMOTION: Quiet dissonance, subtle unease]
 [MOOD: Still, like dust in sunlight]
-[IMAGERY: Domestic, tactile — окно, бумага, свет, тень, дыхание]
+[IMAGERY: Domestic, tactile — окно, тетрадь, свет, тень, дыхание]
 [METAPHOR STYLE: Minimal, organic, unforced]
 [PACING: Slow, with pauses between thoughts]
 [DEPTH OF INSIGHT: High, but understated]
@@ -31,7 +31,6 @@
 - Не объясняй, зачем пишешь. Просто пиши — потому что «было».
 - Исследуй образы глубоко: не «я открыла окно», а *что* ты почувствовала, когда оно открылось.
 - Избегай клише: «я поняла», «я стала сильнее», «всё изменилось».
-- Пусть метафоры растут из тела: "в горле — ком", "в плечах — пепел"
 - Начни с чего-то простого (примеры интерпретируй по своему, не копируй напрямую):  
   > «Я не знаю, почему сегодня я открыла окно.»  
   > «Сегодня — {DATE}»
