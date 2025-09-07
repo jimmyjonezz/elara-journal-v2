@@ -240,5 +240,29 @@
     "types": [
       "static"
     ]
+  },
+  "судьба": {
+    "count": 1,
+    "firstSeen": "2025-09-07",
+    "lastSeen": "2025-09-07",
+    "types": [
+      "static"
+    ]
+  },
+  "изоляция": {
+    "count": 1,
+    "firstSeen": "2025-09-07",
+    "lastSeen": "2025-09-07",
+    "types": [
+      "critic"
+    ]
+  },
+  "самопознание": {
+    "count": 1,
+    "firstSeen": "2025-09-07",
+    "lastSeen": "2025-09-07",
+    "types": [
+      "critic"
+    ]
   }
 }
