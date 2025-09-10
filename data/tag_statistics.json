@@ -1,17 +1,17 @@
 {
   "время": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-09-09",
+    "lastSeen": "2025-09-10",
     "types": [
       "critic",
       "static"
     ]
   },
   "жизнь": {
-    "count": 13,
+    "count": 14,
     "firstSeen": "2025-08-25",
-    "lastSeen": "2025-09-09",
+    "lastSeen": "2025-09-10",
     "types": [
       "static",
       "critic"
@@ -66,9 +66,9 @@
     ]
   },
   "голос": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-09-08",
+    "lastSeen": "2025-09-10",
     "types": [
       "static"
     ]
@@ -106,9 +106,9 @@
     ]
   },
   "размышление": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-09-05",
+    "lastSeen": "2025-09-10",
     "types": [
       "static"
     ]
@@ -242,9 +242,9 @@
     ]
   },
   "судьба": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-09-07",
-    "lastSeen": "2025-09-07",
+    "lastSeen": "2025-09-10",
     "types": [
       "static"
     ]
@@ -258,9 +258,17 @@
     ]
   },
   "самопознание": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-09-07",
-    "lastSeen": "2025-09-08",
+    "lastSeen": "2025-09-10",
+    "types": [
+      "critic"
+    ]
+  },
+  "внутренняя работа": {
+    "count": 1,
+    "firstSeen": "2025-09-10",
+    "lastSeen": "2025-09-10",
     "types": [
       "critic"
     ]
