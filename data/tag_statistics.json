@@ -1,17 +1,17 @@
 {
   "время": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-09-11",
+    "lastSeen": "2025-09-12",
     "types": [
       "critic",
       "static"
     ]
   },
   "жизнь": {
-    "count": 14,
+    "count": 15,
     "firstSeen": "2025-08-25",
-    "lastSeen": "2025-09-10",
+    "lastSeen": "2025-09-12",
     "types": [
       "static",
       "critic"
@@ -50,9 +50,9 @@
     ]
   },
   "память": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-09-11",
+    "lastSeen": "2025-09-12",
     "types": [
       "static"
     ]
@@ -66,9 +66,9 @@
     ]
   },
   "голос": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-09-10",
+    "lastSeen": "2025-09-12",
     "types": [
       "static"
     ]
@@ -258,17 +258,17 @@
     ]
   },
   "самопознание": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-09-07",
-    "lastSeen": "2025-09-11",
+    "lastSeen": "2025-09-12",
     "types": [
       "critic"
     ]
   },
   "внутренняя работа": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-09-10",
-    "lastSeen": "2025-09-11",
+    "lastSeen": "2025-09-12",
     "types": [
       "critic"
     ]
