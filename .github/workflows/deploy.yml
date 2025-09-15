@@ -1,0 +1,61 @@
+name: Deploy Elara Journal
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: true  # Разрешаем запись
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Create logs directory
+      run: mkdir -p logs
+
+    - name: Set environment variables
+      run: |
+        echo "OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}" >> .env
+
+    - name: Generate new entry
+      run: npm run generate
+
+    - name: Analyze with literary critic
+      run: npm run analyze
+
+    - name: Build site (if needed)
+      run: |
+        # Здесь может быть сборка, если у тебя есть сборщик
+        echo "Сайт готов к деплою."
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add .
+        if git status --porcelain | grep -q "logs/"; then
+          git add logs/
+          git commit -m "chore: save raw LLM responses for debugging"
+        fi
+        git add data/ src/config/semantic-dictionary.json
+        git commit -m "chore: update journal, analysis, and stats" || echo "Нет изменений для коммита."
+        git push
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
