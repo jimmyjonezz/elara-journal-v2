@@ -1,58 +1,105 @@
-name: Deploy Elara Journal
+name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
+  schedule:
+    # Запуск каждые 12 часов (в 06:00 и 18:00 UTC)
+    - cron: '0 6 * * *'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        persist-credentials: true  # Разрешаем запись
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
-    - name: Create logs directory
-      run: mkdir -p logs
+      # 🔹 Создаём папку logs/ для сырых ответов
+      - name: Create logs directory
+        run: mkdir -p logs
 
-    - name: Set environment variables
-      run: |
-        echo "OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}" >> .env
+      - name: Генерация новой записи в журнал
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          node src/generate_entry.js
 
-    - name: Generate new entry
-      run: npm run generate
+      - name: Run Literary Critic Analysis
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          echo "🖋️ Литературный критик приступает к анализу журнала (включая новую запись)..."
+          node src/literary_critic.js
+          echo "✅ Анализ литературного критика завершен. Файл literary_analysis.json создан/обновлен."
 
-    - name: Analyze with literary critic
-      run: npm run analyze
+      # 🔹 Коммитим ВСЁ: журнал, анализ, теги, статистику, логи
+      - name: Commit and push updated files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Добавляем ВСЕ изменённые файлы (включая logs/, если были ошибки)
+          git add data/journal.json
+          git add data/literary_analysis.json
+          git add data/dynamic_tags.json
+          git add data/tag_statistics.json
+          git add logs/  # ← Это новое — логи теперь тоже коммитятся
 
-    - name: Build site (if needed)
-      run: |
-        # Здесь может быть сборка, если у тебя есть сборщик
-        echo "Сайт готов к деплою."
+          # Проверяем, есть ли изменения
+          if git diff --cached --quiet; then
+            echo "ℹ️  Нет изменений для коммита."
+            exit 0
+          fi
+          
+          echo "📁 Изменения обнаружены, создаём коммит..."
+          
+          # Обновляем ветку
+          git pull --ff-only || {
+            git pull --rebase || {
+              echo "❌ Не удалось обновить локальную ветку."
+              exit 1
+            }
+          }
+          
+          # Коммитим
+          git commit -m "📝 Автоматическое обновление: журнал, анализ, теги, статистика, логи"
+          
+          # Пушим
+          git push --force-with-lease
+          
+          echo "✅ Все изменения успешно запушены."
 
-    - name: Commit and push changes
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add .
-        if git status --porcelain | grep -q "logs/"; then
-          git add logs/
-          git commit -m "chore: save raw LLM responses for debugging"
-        fi
-        git add data/ src/config/semantic-dictionary.json
-        git commit -m "chore: update journal, analysis, and stats" || echo "Нет изменений для коммита."
-        git push
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
