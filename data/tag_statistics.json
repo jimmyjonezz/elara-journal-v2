@@ -1,15 +1,15 @@
 {
   "время": {
-    "count": 14,
+    "count": 15,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-09-15",
+    "lastSeen": "2025-09-16",
     "types": [
       "critic",
       "static"
     ]
   },
   "жизнь": {
-    "count": 19,
+    "count": 20,
     "firstSeen": "2025-08-25",
     "lastSeen": "2025-09-16",
     "types": [
@@ -50,7 +50,7 @@
     ]
   },
   "память": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2025-08-26",
     "lastSeen": "2025-09-16",
     "types": [
@@ -67,25 +67,25 @@
     ]
   },
   "голос": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-09-12",
+    "lastSeen": "2025-09-16",
     "types": [
       "static"
     ]
   },
   "любовь": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-08-30",
+    "lastSeen": "2025-09-16",
     "types": [
       "static"
     ]
   },
   "грусть": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-09-11",
+    "lastSeen": "2025-09-16",
     "types": [
       "static"
     ]
@@ -123,17 +123,17 @@
     ]
   },
   "осмысление": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-09-05",
+    "lastSeen": "2025-09-16",
     "types": [
       "static"
     ]
   },
   "смысл": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-08-28",
-    "lastSeen": "2025-09-06",
+    "lastSeen": "2025-09-16",
     "types": [
       "static"
     ]
@@ -155,7 +155,7 @@
     ]
   },
   "осознание": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2025-08-30",
     "lastSeen": "2025-09-16",
     "types": [
@@ -179,9 +179,9 @@
     ]
   },
   "выбор": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-08-31",
-    "lastSeen": "2025-09-05",
+    "lastSeen": "2025-09-16",
     "types": [
       "static"
     ]
@@ -259,9 +259,9 @@
     ]
   },
   "самопознание": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2025-09-07",
-    "lastSeen": "2025-09-12",
+    "lastSeen": "2025-09-16",
     "types": [
       "critic"
     ]
@@ -275,9 +275,9 @@
     ]
   },
   "свобода": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-09-13",
-    "lastSeen": "2025-09-14",
+    "lastSeen": "2025-09-16",
     "types": [
       "static",
       "critic"
@@ -300,6 +300,22 @@
     ]
   },
   "inner struggle": {
+    "count": 1,
+    "firstSeen": "2025-09-16",
+    "lastSeen": "2025-09-16",
+    "types": [
+      "critic"
+    ]
+  },
+  "мысль": {
+    "count": 1,
+    "firstSeen": "2025-09-16",
+    "lastSeen": "2025-09-16",
+    "types": [
+      "static"
+    ]
+  },
+  "внутренняя борьба": {
     "count": 1,
     "firstSeen": "2025-09-16",
     "lastSeen": "2025-09-16",
