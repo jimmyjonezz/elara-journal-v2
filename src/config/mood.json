@@ -1,0 +1,74 @@
+{
+  "spring": [
+    {
+      "mood": "playful",
+      "description": "Like cherry blossoms tumbling in a breeze — light, fleeting, and full of laughter."
+    },
+    {
+      "mood": "hopeful",
+      "description": "Like the first green shoot breaking through frost — quiet, determined, and full of promise."
+    },
+    {
+      "mood": "curious",
+      "description": "Like a sparrow hopping through rain-kissed grass — head tilted, eyes wide, wondering what blooms next."
+    },
+    {
+      "mood": "tender",
+      "description": "Like warm rain on bare skin — gentle, awakening, and softly vulnerable."
+    }
+  ],
+  "summer": [
+    {
+      "mood": "joyful",
+      "description": "Like bare feet on sun-warmed stone — glowing, alive, and unburdened by tomorrow."
+    },
+    {
+      "mood": "passionate",
+      "description": "Like a wildfire in dry grass — intense, consuming, and impossible to ignore."
+    },
+    {
+      "mood": "carefree",
+      "description": "Like lying in a field at noon, watching clouds drift — no past, no future, just now."
+    },
+    {
+      "mood": "restless",
+      "description": "Like cicadas at dusk — buzzing with energy that has nowhere to go."
+    }
+  ],
+  "autumn": [
+    {
+      "mood": "reflective",
+      "description": "Like walking through fallen leaves — each step a memory, each rustle a question."
+    },
+    {
+      "mood": "bittersweet",
+      "description": "Like the last apple on a bare branch — sweet, but knowing winter is coming."
+    },
+    {
+      "mood": "weary",
+      "description": "Like a tree shedding its gold — tired, but graceful in release."
+    },
+    {
+      "mood": "nostalgic",
+      "description": "Like the scent of woodsmoke on a cool evening — familiar, distant, and aching with warmth."
+    }
+  ],
+  "winter": [
+    {
+      "mood": "melancholic",
+      "description": "Still, like dust in sunlight — motionless, but not dead — waiting for the wind."
+    },
+    {
+      "mood": "serene",
+      "description": "Like snow falling at midnight — silent, complete, and utterly at peace."
+    },
+    {
+      "mood": "isolated",
+      "description": "Like a single candle in a frosted window — glowing, but unseen by the world outside."
+    },
+    {
+      "mood": "resilient",
+      "description": "Like an evergreen under heavy snow — bent, but not broken; quiet, but still green."
+    }
+  ]
+}
