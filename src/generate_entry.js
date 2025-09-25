@@ -1,3 +1,4 @@
+// src/generate_entry.js
 const { generateEssay, generateReflection } = require('./utils/openrouter');
 const { readJSON, writeJSON } = require('./utils/fileUtils');
 const {
@@ -12,13 +13,17 @@ const {
 } = require('./config');
 
 const path = require('path');
+const fs = require('fs').promises;
 
-// 🔹 Путь к расширенному семантическому словарю
-//const SEMANTIC_DICT_PATH = require('path').join(__dirname, 'config', 'semantic-dictionary.json');
+// 🔹 Пути к новым конфигурационным файлам
 const SEMANTIC_DICT_PATH = path.join(__dirname, 'config', 'semantic-dictionary.json');
+const MOODS_PATH = path.join(__dirname, 'config', 'moods.json');
+const CONTEXTS_PATH = path.join(__dirname, 'config', 'contexts.json');
+
+// --- Вспомогательные функции ---
 
 /**
- * Загружает расширенный семантический словарь
+ * Загружает семантический словарь
  */
 async function loadSemanticDictionary() {
   try {
@@ -31,7 +36,7 @@ async function loadSemanticDictionary() {
 }
 
 /**
- * Извлекает теги из текста с использованием расширенного словаря
+ * Извлекает теги из текста с использованием семантического словаря
  */
 async function extractTags(text) {
   const dictionary = await loadSemanticDictionary();
@@ -44,12 +49,11 @@ async function extractTags(text) {
       const normalizedForm = form.trim().toLowerCase();
       if (normalizedForm && lowerText.includes(normalizedForm)) {
         tags.add(tag);
-        break; // Достаточно одного совпадения
+        break;
       }
     }
   }
 
-  // Резервные теги, если ничего не найдено
   if (tags.size === 0) {
     ["размышление", "выбор", "осмысление"].forEach(tag => tags.add(tag));
   }
@@ -58,7 +62,7 @@ async function extractTags(text) {
 }
 
 /**
- * Определяет уровень рефлексии по строке "Уровень: ..."
+ * Определяет уровень рефлексии
  */
 function determineReflectionLevel(reflectionText) {
   let level = "средний";
@@ -109,6 +113,52 @@ async function withRetry(fn, maxRetries, baseDelay, actionName) {
 }
 
 /**
+ * Загружает журнал
+ */
+async function loadJournal() {
+  const journal = await readJSON(JOURNAL_PATH);
+  return Array.isArray(journal) ? journal : [];
+}
+
+/**
+ * Получает случайное настроение из moods.json
+ */
+async function getRandomMood() {
+  try {
+    const moods = await readJSON(MOODS_PATH);
+    const seasons = Object.keys(moods);
+    const randomSeason = seasons[Math.floor(Math.random() * seasons.length)];
+    const seasonMoods = moods[randomSeason];
+    const randomMood = seasonMoods[Math.floor(Math.random() * seasonMoods.length)];
+    return {
+      name: randomMood.mood,
+      description: randomMood.description,
+      season: randomSeason
+    };
+  } catch (err) {
+    console.warn('⚠️ Не удалось загрузить moods.json:', err.message);
+    return { name: "still", description: "Like dust in sunlight", season: "winter" };
+  }
+}
+
+/**
+ * Получает случайный контекст из contexts.json
+ */
+async function getRandomContext() {
+  try {
+    const contexts = await readJSON(CONTEXTS_PATH);
+    const items = contexts.contexts;
+    const randomItem = items[Math.floor(Math.random() * items.length)];
+    return randomItem.context;
+  } catch (err) {
+    console.warn('⚠️ Не удалось загрузить contexts.json:', err.message);
+    return "Ты сидишь за столом. За окном — тишина.";
+  }
+}
+
+// --- Основная логика ---
+
+/**
  * Подготавливает данные для новой записи
  */
 async function prepareEntryData() {
@@ -143,12 +193,27 @@ async function prepareEntryData() {
     console.warn("⚠️ Ошибка при загрузке файла тегов критика:", error.message);
   }
 
+  // --- Получение настроения и контекста ---
+  const mood = await getRandomMood();
+  const context = await getRandomContext();
+  console.log(`🎭 Случайное настроение: ${mood.name} (${mood.season})`);
+  console.log(`📖 Случайный контекст: ${context.substring(0, 60)}...`);
+
   // --- Генерация эссе ---
   console.log("✍️ Генерируем эссе...");
   const staticInspirationTags = await extractTags(previousSuggestions);
   const essayData = {
     previous_suggestions: previousSuggestions,
-    combined_inspiration_tags: [...new Set([...staticInspirationTags, ...criticTags])].join(', ')
+    semantic_clusters: [...new Set([...staticInspirationTags, ...criticTags])]
+      .map(tag => {
+        const dict = await loadSemanticDictionary();
+        return dict[tag]?.кластер;
+      })
+      .filter(Boolean)
+      .join(', ') || 'размышление, осмысление',
+    current_mood_name: mood.name,
+    current_mood_description: mood.description,
+    current_context: context
   };
 
   const rawEssay = await withRetry(() => generateEssay(essayData), MAX_RETRIES, BASE_DELAY_MS, "генерации эссе");
@@ -190,21 +255,9 @@ async function prepareEntryData() {
   };
 }
 
-// --- Работа с журналом ---
-async function loadJournal() {
-  const journal = await readJSON(JOURNAL_PATH);
-  return Array.isArray(journal) ? journal : [];
-}
-
-async function saveJournal(journal) {
-  await writeJSON(JOURNAL_PATH, journal);
-}
-
-async function loadTagStatistics() {
-  const stats = await readJSON(TAG_STATS_PATH);
-  return stats || {};
-}
-
+/**
+ * Обновляет статистику тегов
+ */
 async function updateAndSaveTagStatistics(currentStats, staticTags, criticTags, entryDate) {
   const updatedStats = { ...currentStats };
   const normalizedStaticTags = staticTags.map(tag => tag.toLowerCase());
@@ -261,11 +314,22 @@ async function generateEntry() {
 
     const journal = await loadJournal();
     journal.push(entry);
-    await saveJournal(journal);
+    await writeJSON(JOURNAL_PATH, journal);
     console.log(`✅ Новая запись добавлена. Всего записей: ${journal.length}`);
 
-    const tagStats = await loadTagStatistics();
+    const tagStats = await readJSON(TAG_STATS_PATH);
     await updateAndSaveTagStatistics(tagStats, staticTags, criticTags, entry.date);
+
+    // 🔹 Опционально: экспорт в Obsidian (раскомментируй, если нужно)
+    /*
+    try {
+      const { exportToObsidian } = require('../export_to_obsidian');
+      await exportToObsidian();
+      console.log('📂 Записи синхронизированы с Obsidian.');
+    } catch (e) {
+      console.warn('⚠️ Не удалось экспортировать в Obsidian:', e.message);
+    }
+    */
 
   } catch (error) {
     console.error('❌ Критическая ошибка при создании записи:', error);
