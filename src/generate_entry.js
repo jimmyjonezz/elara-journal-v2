@@ -199,18 +199,24 @@ async function prepareEntryData() {
   console.log(`🎭 Случайное настроение: ${mood.name} (${mood.season})`);
   console.log(`📖 Случайный контекст: ${context.substring(0, 60)}...`);
 
+
   // --- Генерация эссе ---
   console.log("✍️ Генерируем эссе...");
+  
+  // Загружаем словарь один раз
+  const semanticDict = await loadSemanticDictionary();
+  
+  // Извлекаем теги из советов
   const staticInspirationTags = await extractTags(previousSuggestions);
+  
+  // Определяем кластеры
+  const clusters = [...new Set([...staticInspirationTags, ...criticTags])]
+    .map(tag => semanticDict[tag]?.кластер)
+    .filter(Boolean);
+  
   const essayData = {
     previous_suggestions: previousSuggestions,
-    semantic_clusters: [...new Set([...staticInspirationTags, ...criticTags])]
-      .map(tag => {
-        const dict = await loadSemanticDictionary();
-        return dict[tag]?.кластер;
-      })
-      .filter(Boolean)
-      .join(', ') || 'размышление, осмысление',
+    semantic_clusters: clusters.join(', ') || 'размышление, осмысление',
     current_mood_name: mood.name,
     current_mood_description: mood.description,
     current_context: context
