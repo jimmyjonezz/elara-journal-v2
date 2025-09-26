@@ -12,11 +12,11 @@ from post_generator import create_post, load_latest_entry
 # Конфигурация ВКонтакте
 VK_GROUP_ID = os.getenv("VK_GROUP_ID")        # например: 222111000
 VK_ACCESS_TOKEN = os.getenv("VK_ACCESS_TOKEN") # токен группы
-VK_API_VERSION = "5.131"
+VK_API_VERSION = "5.199"
 
 def get_wall_upload_server():
     """Получает адрес сервера для загрузки изображений"""
-    url = "https://api.vk.com/method/photos.getWallUploadServer"
+    url = "https://api.vk.ru/method/photos.getWallUploadServer"
     params = {
         "group_id": VK_GROUP_ID,
         "access_token": VK_ACCESS_TOKEN,
@@ -37,7 +37,7 @@ def upload_image_to_server(upload_url, image_path):
 
 def save_wall_photo(photo, server, hash_value):
     """Сохраняет фото в альбоме группы"""
-    url = "https://api.vk.com/method/photos.saveWallPhoto"
+    url = "https://api.vk.ru/method/photos.saveWallPhoto"
     params = {
         "group_id": VK_GROUP_ID,
         "photo": photo,
@@ -53,7 +53,7 @@ def save_wall_photo(photo, server, hash_value):
 
 def post_to_vk(message, attachment=None):
     """Публикует пост на стене группы"""
-    url = "https://api.vk.com/method/wall.post"
+    url = "https://api.vk.ru/method/wall.post"
     params = {
         "owner_id": -int(VK_GROUP_ID),
         "from_group": 1,
@@ -112,7 +112,7 @@ def main():
 
     # 3. Результат
     if "response" in result:
-        print(f"✅ Пост опубликован: https://vk.com/club{VK_GROUP_ID}")
+        print(f"✅ Пост опубликован: https://vk.ru/club{VK_GROUP_ID}")
         print(f"Post ID: {result['response']['post_id']}")
     else:
         print(f"❌ Ошибка публикации: {result}")
