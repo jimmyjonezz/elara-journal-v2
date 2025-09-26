@@ -12,7 +12,7 @@ from datetime import datetime
 MEMORY_FILE = "data/journal.json"
 
 # Ограничения для предотвращения обрезки
-MAX_QUOTE_LENGTH = 420  # Максимальная длина цитаты
+MAX_QUOTE_LENGTH = 430  # Максимальная длина цитаты
 MAX_TOTAL_LENGTH = 470  # Максимальная длина всего поста
 MAX_HASHTAGS = 5       # Максимальное количество хештегов
 
