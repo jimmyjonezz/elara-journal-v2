@@ -32,9 +32,21 @@ jobs:
           PROMPT: ${{ inputs.prompt }}
         run: python src/generate_image.py
 
-      - name: Upload generated image
+      - name: List files for debug  # Debug: Проверяем, что файл создался
+        run: |
+          ls -la data/
+          if [ ! -f data/*.png ]; then echo "Предупреждение: Нет PNG в data/"; fi
+
+      - name: Commit and push generated image  # Новый step: Автоматический коммит в repo
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Add generated image from Flux.1: ${{ inputs.prompt }} | $(date)"
+          file_pattern: data/*
+          branch: main  # Или ваша default branch
+
+      - name: Upload generated image  # Artifact для быстрого скачивания
         uses: actions/upload-artifact@v4
         with:
           name: image-output
           path: data/
-          retention-days: 7  # Хранить 7 дней
+          retention-days: 7
