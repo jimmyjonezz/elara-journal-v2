@@ -48,9 +48,9 @@ def generate_image(prompt, headers, num_inference_steps=4, guidance_scale=0.0, w
 
 def save_image(image_bytes, filename="generated_image.png"):
     """
-    Сохраняет изображение в ./output/.
+    Сохраняет изображение в ./data/.
     """
-    os.makedirs("output", exist_ok=True)
+    os.makedirs("data", exist_ok=True)
     filepath = os.path.join("output", filename)
     
     if image_bytes:
