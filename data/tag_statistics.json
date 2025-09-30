@@ -1,8 +1,8 @@
 {
   "время": {
-    "count": 27,
+    "count": 28,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-09-29",
+    "lastSeen": "2025-09-30",
     "types": [
       "critic",
       "static"
@@ -50,9 +50,9 @@
     ]
   },
   "память": {
-    "count": 25,
+    "count": 26,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-09-29",
+    "lastSeen": "2025-09-30",
     "types": [
       "static",
       "critic"
@@ -107,9 +107,9 @@
     ]
   },
   "размышление": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-09-29",
+    "lastSeen": "2025-09-30",
     "types": [
       "static"
     ]
