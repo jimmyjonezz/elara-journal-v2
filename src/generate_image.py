@@ -51,7 +51,7 @@ def save_image(image_bytes, filename="generated_image.png"):
     Сохраняет изображение в ./data/.
     """
     os.makedirs("data", exist_ok=True)
-    filepath = os.path.join("output", filename)
+    filepath = os.path.join("data", filename)
     
     if image_bytes:
         image = Image.open(BytesIO(image_bytes))
