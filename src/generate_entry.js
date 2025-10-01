@@ -105,7 +105,7 @@ async function withRetry(fn, maxRetries, baseDelay, actionName) {
   let lastError;
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
-      console.log(`🔄 Попытка ${attempt}/${maxRettries} для ${actionName}...`);
+      console.log(`🔄 Попытка ${attempt}/${maxRetries} для ${actionName}...`);
       const result = await fn();
       console.log(`✅ ${actionName} успешно завершена на попытке ${attempt}.`);
       return result;
