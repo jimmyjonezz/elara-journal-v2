@@ -5,7 +5,7 @@ on:
     inputs:
       prompt:
         description: 'Промпт для генерации изображения (на английском для лучшего результата)'
-        required: true
+        required: false
         default: 'A cute dog in a park'
         type: string
 
