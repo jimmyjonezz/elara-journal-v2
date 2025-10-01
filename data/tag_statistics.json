@@ -1,6 +1,6 @@
 {
   "время": {
-    "count": 29,
+    "count": 30,
     "firstSeen": "2025-08-27",
     "lastSeen": "2025-10-01",
     "types": [
@@ -18,9 +18,9 @@
     ]
   },
   "перемены": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-08-25",
-    "lastSeen": "2025-08-31",
+    "lastSeen": "2025-10-01",
     "types": [
       "critic"
     ]
@@ -308,9 +308,9 @@
     ]
   },
   "мысль": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-09-16",
-    "lastSeen": "2025-09-29",
+    "lastSeen": "2025-10-01",
     "types": [
       "static"
     ]
@@ -340,7 +340,7 @@
     ]
   },
   "страх": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2025-09-25",
     "lastSeen": "2025-10-01",
     "types": [
