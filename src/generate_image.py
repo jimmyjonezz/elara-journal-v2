@@ -81,7 +81,7 @@ if __name__ == "__main__":
     image_bytes = generate_image(prompt, headers)
     
     if save_image(image_bytes):
-        print("Готово! Изображение в ./output/generated_image.png")
+        print("Готово! Изображение в ./data/generated_image.png")
     else:
         print("Не удалось сгенерировать изображение.")
         sys.exit(1)
