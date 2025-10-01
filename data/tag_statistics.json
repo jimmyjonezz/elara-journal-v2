@@ -34,9 +34,9 @@
     ]
   },
   "ветер": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2025-08-25",
-    "lastSeen": "2025-09-29",
+    "lastSeen": "2025-10-01",
     "types": [
       "static"
     ]
@@ -353,6 +353,22 @@
     "lastSeen": "2025-09-28",
     "types": [
       "static"
+    ]
+  },
+  "осень": {
+    "count": 1,
+    "firstSeen": "2025-10-01",
+    "lastSeen": "2025-10-01",
+    "types": [
+      "critic"
+    ]
+  },
+  "изменения": {
+    "count": 1,
+    "firstSeen": "2025-10-01",
+    "lastSeen": "2025-10-01",
+    "types": [
+      "critic"
     ]
   }
 }
