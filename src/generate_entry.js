@@ -9,16 +9,19 @@ const {
   TAG_STATS_PATH,
   PROMPT_TEMPLATE_PATH,
   MAX_RETRIES,
-  BASE_DELAY_MS
+  BASE_DELAY_MS,
+  SEMANTIC_DICT_PATH,
+  MOODS_PATH,
+  CONTEXTS_PATH
 } = require('./config');
 
 const path = require('path');
 const fs = require('fs').promises;
 
 // 🔹 Пути к новым конфигурационным файлам
-const SEMANTIC_DICT_PATH = path.join(__dirname, 'config', 'semantic-dictionary.json');
-const MOODS_PATH = path.join(__dirname, 'config', 'moods.json');
-const CONTEXTS_PATH = path.join(__dirname, 'config', 'contexts.json');
+//const SEMANTIC_DICT_PATH = path.join(__dirname, 'config', 'semantic-dictionary.json');
+//const MOODS_PATH = path.join(__dirname, 'config', 'moods.json');
+//const CONTEXTS_PATH = path.join(__dirname, 'config', 'contexts.json');
 
 // --- Вспомогательные функции ---
 
