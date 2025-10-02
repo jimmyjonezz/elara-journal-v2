@@ -270,11 +270,11 @@ async function prepareEntryData() {
   }
   console.log("📄 Длина сырого эссе:", rawEssay.length);
 
-  // --- 🔹 Парсинг сцены ---
+  // --- 🔹 Парсинг сцены (устойчивый к отсутствию [/SCENE]) ---
   let pose = "сидит, свернувшись в потрёпанном винтажном кресле, поджав под себя ноги";
   let setting = "тусклая комната, заполненная книгами, последние лучи сентябрьского солнца";
-
-  const sceneMatch = rawEssay.match(/\[SCENE\]\s*Поза:\s*(.+?)\s*Обстановка:\s*(.+?)\s*\[\/SCENE\]/s);
+  
+  const sceneMatch = rawEssay.match(/\[SCENE\]\s*Поза:\s*([^\n]+)\s*Обстановка:\s*([\s\S]*?)(?=\n\n|\n\[|$)/);
   if (sceneMatch) {
     pose = sceneMatch[1].trim().replace(/\.$/, '');
     setting = sceneMatch[2].trim().replace(/\.$/, '');
@@ -282,10 +282,10 @@ async function prepareEntryData() {
   } else {
     console.warn('⚠️ Блок [SCENE] не найден. Используются значения по умолчанию.');
   }
-
-  // Удаляем [SCENE] из текста
-  const cleanEssay = rawEssay.replace(/\[SCENE\].*?\[\/SCENE\]/gs, '').trim();
-
+  
+  // Удаляем блок [SCENE] из текста (даже без [/SCENE])
+  const cleanEssay = rawEssay.replace(/\[SCENE\][\s\S]*?(?=\n\n|\n\[|$)/, '').trim();
+  
   // --- Генерация рефлексии ---
   console.log("💭 Генерируем рефлексию...");
   const rawReflection = await withRetry(() => generateReflection(cleanEssay), MAX_RETRIES, BASE_DELAY_MS, "генерации рефлексии");
