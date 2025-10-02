@@ -107,9 +107,9 @@
     ]
   },
   "размышление": {
-    "count": 15,
+    "count": 16,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-01",
+    "lastSeen": "2025-10-02",
     "types": [
       "static"
     ]
@@ -340,7 +340,7 @@
     ]
   },
   "страх": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2025-09-25",
     "lastSeen": "2025-10-02",
     "types": [
@@ -364,9 +364,9 @@
     ]
   },
   "изменения": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-10-01",
-    "lastSeen": "2025-10-01",
+    "lastSeen": "2025-10-02",
     "types": [
       "critic"
     ]
