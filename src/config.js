@@ -8,8 +8,8 @@ module.exports = {
   TAG_STATS_PATH: path.join(__dirname, '../data/tag_statistics.json'),
   PROMPT_TEMPLATE_PATH: path.join(__dirname, 'prompt_templates/analyst_prompt.txt'),
   SEMANTIC_DICT_PATH: path.join(__dirname, 'config/semantic-dictionary.json'),
-  MOODS_PATH: path.join(__dirname, 'config/moods.json'),
-  CONTEXTS_PATH: path.join(__dirname, 'config/contexts.json'),
+  MOODS_PATH: path.join(__dirname, 'config/mood.json'),
+  CONTEXTS_PATH: path.join(__dirname, 'config/context.json'),
 
 
   MAX_RETRIES: 3,
