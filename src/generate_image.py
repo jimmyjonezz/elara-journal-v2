@@ -31,7 +31,7 @@ def read_prompt_from_file(filepath):
         print(f"❌ Не удалось прочитать файл промпта: {e}")
         sys.exit(1)
 
-def generate_image(prompt, headers, num_inference_steps=4, guidance_scale=0.0):
+def generate_image(prompt, headers, num_inference_steps=4, guidance_scale=8.0):
     """
     Генерирует изображение через Hugging Face Inference API.
     FLUX.1-schnell работает быстро и не требует guidance_scale.
