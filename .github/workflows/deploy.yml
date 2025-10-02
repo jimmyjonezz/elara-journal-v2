@@ -59,7 +59,8 @@ jobs:
           git add data/literary_analysis.json
           git add data/dynamic_tags.json
           git add data/tag_statistics.json
-          git add logs/  # ← Это новое — логи теперь тоже коммитятся
+          git add data/latest_image_prompt.txt
+          git add logs/
 
           # Проверяем, есть ли изменения
           if git diff --cached --quiet; then
