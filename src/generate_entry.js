@@ -18,11 +18,6 @@ const {
 const path = require('path');
 const fs = require('fs').promises;
 
-// 🔹 Пути к новым конфигурационным файлам
-//const SEMANTIC_DICT_PATH = path.join(__dirname, 'config', 'semantic-dictionary.json');
-//const MOODS_PATH = path.join(__dirname, 'config', 'moods.json');
-//const CONTEXTS_PATH = path.join(__dirname, 'config', 'contexts.json');
-
 // --- Вспомогательные функции ---
 
 /**
@@ -179,7 +174,7 @@ async function getRandomContext() {
  */
 async function buildImagePrompt(pose, setting) {
   try {
-    const templatePath = path.join(__dirname, 'src/prompt_templates/image.txt');
+    const templatePath = path.join(__dirname, 'prompt_templates/image.txt');
     let template = await fs.readFile(templatePath, 'utf8');
 
     // Поддержка плейсхолдеров
