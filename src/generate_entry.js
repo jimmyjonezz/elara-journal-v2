@@ -179,7 +179,7 @@ async function getRandomContext() {
  */
 async function buildImagePrompt(pose, setting) {
   try {
-    const templatePath = path.join(__dirname, '../prompt_templates/image.txt');
+    const templatePath = path.join(__dirname, 'src/prompt_templates/image.txt');
     let template = await fs.readFile(templatePath, 'utf8');
 
     // Поддержка плейсхолдеров
