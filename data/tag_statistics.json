@@ -50,9 +50,9 @@
     ]
   },
   "память": {
-    "count": 27,
+    "count": 28,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-01",
+    "lastSeen": "2025-10-02",
     "types": [
       "static",
       "critic"
@@ -340,9 +340,9 @@
     ]
   },
   "страх": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-09-25",
-    "lastSeen": "2025-10-01",
+    "lastSeen": "2025-10-02",
     "types": [
       "critic"
     ]
