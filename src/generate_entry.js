@@ -315,7 +315,7 @@ async function prepareEntryData() {
 
   // --- 🔹 Генерация промпта для изображения ---
   const imagePrompt = await buildImagePrompt(pose, setting);
-  await fs.writeFile(path.join(__dirname, '../../data/latest_image_prompt.txt'), imagePrompt, 'utf8');
+  await fs.writeFile(path.join(__dirname, '../data/latest_image_prompt.txt'), imagePrompt, 'utf8');
   console.log('🖼️ Промпт для изображения сохранён в data/latest_image_prompt.txt');
 
   return {
