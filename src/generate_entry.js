@@ -377,6 +377,7 @@ async function generateEntry() {
     const entry = {
       date: new Date().toISOString().split('T')[0],
       season: season,
+      context: context, // ← сохраняем контекст, использованный при генерации
       entry: cleanEntry,
       tags,
       reflection_level: level,
@@ -391,17 +392,6 @@ async function generateEntry() {
 
     const tagStats = await readJSON(TAG_STATS_PATH);
     await updateAndSaveTagStatistics(tagStats, staticTags, criticTags, entry.date);
-
-    // 🔹 Опционально: экспорт в Obsidian
-    /*
-    try {
-      const { exportToObsidian } = require('../export_to_obsidian');
-      await exportToObsidian();
-      console.log('📂 Записи синхронизированы с Obsidian.');
-    } catch (e) {
-      console.warn('⚠️ Не удалось экспортировать в Obsidian:', e.message);
-    }
-    */
 
   } catch (error) {
     console.error('❌ Критическая ошибка при создании записи:', error);
