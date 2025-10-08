@@ -1,6 +1,6 @@
 {
   "время": {
-    "count": 36,
+    "count": 37,
     "firstSeen": "2025-08-27",
     "lastSeen": "2025-10-08",
     "types": [
@@ -50,7 +50,7 @@
     ]
   },
   "память": {
-    "count": 36,
+    "count": 37,
     "firstSeen": "2025-08-26",
     "lastSeen": "2025-10-08",
     "types": [
@@ -132,9 +132,9 @@
     ]
   },
   "смысл": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2025-08-28",
-    "lastSeen": "2025-09-27",
+    "lastSeen": "2025-10-08",
     "types": [
       "static"
     ]
@@ -244,9 +244,9 @@
     ]
   },
   "судьба": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2025-09-07",
-    "lastSeen": "2025-09-25",
+    "lastSeen": "2025-10-08",
     "types": [
       "static"
     ]
