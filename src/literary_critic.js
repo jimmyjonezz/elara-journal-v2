@@ -53,51 +53,36 @@ async function withRetry(fn, maxRetries, baseDelay, actionName) {
 }
 
 /**
- * Загружает последние записи из журнала
+ * Основная функция анализа последней записи
  */
-async function loadLatestEntries(count = 5) {
+async function runLiteraryCritique() {
+  console.log('🔍 Запуск литературного анализа...');
+
+  // Загружаем только последнюю запись (анализ по RPP v2.0 — для одной записи)
   const journal = await readJSON(JOURNAL_PATH);
   if (!Array.isArray(journal) || journal.length === 0) {
     throw new Error('Журнал пуст — нечего анализировать.');
   }
-  return journal.slice(-count); // последние N записей
-}
 
-/**
- * Форматирует записи для анализа
- */
-function formatEntriesForCritique(entries) {
-  return entries.map((entry, i) => {
-    return `Запись от ${entry.date}:\n${entry.entry}\n`;
-  }).join('\n---\n\n');
-}
+  const lastEntry = journal[journal.length - 1];
 
-/**
- * Сохраняет анализ в файл
- */
-async function saveAnalysis(analysis) {
-  // Добавляем дату генерации
-  const result = {
-    generated_at: new Date().toISOString(),
-    ...analysis
-  };
-  await writeJSON(ANALYSIS_PATH, result);
-  console.log(`✅ Анализ сохранён в ${ANALYSIS_PATH}`);
-}
-
-// --- Основная функция ---
-async function runLiteraryCritique() {
-  console.log('🔍 Запуск литературного анализа...');
-
-  const entries = await loadLatestEntries(5);
-  const entriesText = formatEntriesForCritique(entries);
+  // Формат даты как в эссе: "7 октября 2025 года"
+  const today = new Date().toLocaleDateString('ru-RU', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
 
   const critiqueData = {
-    entries: entriesText,
-    count: entries.length
+    entry_date: today,
+    entry_tags: lastEntry.tags || [],
+    entry_reflection_level: lastEntry.reflection_level || 'средний',
+    entry_essay: lastEntry.raw_essay || '',
+    entry_reflection: lastEntry.raw_reflection || '',
+    history_context: lastEntry.context || 'Контекст не сохранён.'
   };
 
-  // Генерация с ретраями
+  // Генерация с ретраями при временных ошибках
   const rawResponse = await withRetry(
     () => generateCritique(critiqueData),
     MAX_RETRIES,
@@ -105,11 +90,16 @@ async function runLiteraryCritique() {
     'генерации литературного анализа'
   );
 
-  // Парсинг JSON (если нужно)
+  // Парсинг JSON
   let analysis;
   if (typeof rawResponse === 'string') {
     try {
-      analysis = JSON.parse(rawResponse);
+      // Удаляем возможные блоки кода, если модель их добавила
+      const cleanJson = rawResponse
+        .replace(/^```json\s*/i, '')
+        .replace(/\s*```$/i, '')
+        .trim();
+      analysis = JSON.parse(cleanJson);
     } catch (e) {
       console.error('❌ Ошибка парсинга JSON от критика:', e.message);
       console.error('Сырой ответ:', rawResponse);
@@ -119,8 +109,13 @@ async function runLiteraryCritique() {
     analysis = rawResponse; // уже объект
   }
 
-  await saveAnalysis(analysis);
-  console.log('🏁 Литературный анализ завершён.');
+  // Сохраняем анализ
+  const result = {
+    generated_at: new Date().toISOString(),
+    ...analysis
+  };
+  await writeJSON(ANALYSIS_PATH, result);
+  console.log(`✅ Анализ сохранён в ${ANALYSIS_PATH}`);
 }
 
 module.exports = { runLiteraryCritique };
