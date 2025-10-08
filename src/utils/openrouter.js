@@ -10,7 +10,7 @@ const ESSAY_MODEL = "mistralai/mistral-nemo:free";
 // Альтернативы: "qwen/qwen3-8b:free", "cognitivecomputations/dolphin-mistral-24b-venice-edition:free"
 
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
-const CRITIQUE_MODEL = "anthropic/claude-3.5-sonnet";
+const CRITIQUE_MODEL = "mistralai/mistral-nemo:free";
 // Если нужна бесплатная: "qwen/qwen3-8b:free" — но возможны ошибки формата
 const today = new Date().toLocaleDateString('ru-RU', {
   day: 'numeric',
