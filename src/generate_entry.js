@@ -321,7 +321,8 @@ async function prepareEntryData() {
     criticTags,
     tags: allTags,
     level,
-    season: mood.season
+    season: mood.season,
+    current_context
   };
 }
 
@@ -371,13 +372,14 @@ async function generateEntry() {
       criticTags,
       tags,
       level,
-      season
+      season,
+      current_context
     } = await prepareEntryData();
 
     const entry = {
       date: new Date().toISOString().split('T')[0],
       season: season,
-      context: context, // ← сохраняем контекст, использованный при генерации
+      context: current_context, // ← сохраняем контекст, использованный при генерации
       entry: cleanEntry,
       tags,
       reflection_level: level,
