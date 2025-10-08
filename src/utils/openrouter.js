@@ -12,6 +12,11 @@ const ESSAY_MODEL = "mistralai/mistral-nemo:free";
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
 const CRITIQUE_MODEL = "anthropic/claude-3.5-sonnet";
 // Если нужна бесплатная: "qwen/qwen3-8b:free" — но возможны ошибки формата
+const today = new Date().toLocaleDateString('ru-RU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+});
 
 /**
  * Загружает шаблон промпта из папки prompt_templates
@@ -30,11 +35,6 @@ async function loadPromptTemplate(templateName) {
  * Генерирует эссе, используя предоставленные данные и шаблон.
  */
 async function generateEssay(data) {
-  const today = new Date().toLocaleDateString('ru-RU', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  });
 
   let prompt = await loadPromptTemplate('essay_prompt');
   prompt = prompt.replace('{DATE}', today);
@@ -111,7 +111,7 @@ async function generateCritique(data) {
   let prompt = await loadPromptTemplate('critique_prompt'); // ← должен содержать твой RPP v2.0
 
   const substitutions = {
-    '{{entry_title}}': data.entry_title || 'Без названия',
+    '{{entry_title}}': data.entry_title || today,
     '{{entry_tags}}': JSON.stringify(data.entry_tags || []),
     '{{entry_reflection_level}}': data.entry_reflection_level || 'средний',
     '{{entry_essay}}': data.entry_essay || '',
@@ -134,8 +134,8 @@ async function generateCritique(data) {
     body: JSON.stringify({
       model: CRITIQUE_MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.4,
-      max_tokens: 1200
+      temperature: 0.7,
+      max_tokens: 2024
     })
   });
 
