@@ -111,7 +111,7 @@ async function generateCritique(data) {
   let prompt = await loadPromptTemplate('critique_prompt'); // ← должен содержать твой RPP v2.0
 
   const substitutions = {
-    '{{entry_title}}': data.entry_title || today,
+    '{{entry_title}}': data.entry_date,
     '{{entry_tags}}': JSON.stringify(data.entry_tags || []),
     '{{entry_reflection_level}}': data.entry_reflection_level || 'средний',
     '{{entry_essay}}': data.entry_essay || '',
