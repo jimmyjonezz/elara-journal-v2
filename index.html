@@ -340,7 +340,7 @@
                     return '';
                 };
 
-                const excludeFields = ['generated_at'];
+                const excludeFields = ['generated_at', 'tags_for_search'];
                 Object.keys(critiqueData)
                     .filter(key => !excludeFields.includes(key))
                     .forEach(key => {
