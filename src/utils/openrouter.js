@@ -90,8 +90,8 @@ async function generateReflection(essay) {
     body: JSON.stringify({
       model: ESSAY_MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.6,
-      max_tokens: 512
+      temperature: 0.7,
+      max_tokens: 2024
     })
   });
 
