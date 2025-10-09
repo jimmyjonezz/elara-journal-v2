@@ -2,7 +2,7 @@ name: Публикация в ВКонтакте
 
 on:
   workflow_run:
-    workflows: [Deploy to GitHub Pages]
+    workflows: [Новое эссе]
     types:
       - completed
 
