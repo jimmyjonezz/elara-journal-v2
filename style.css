@@ -286,6 +286,28 @@ body {
   text-decoration: underline;
 }
 
+/* Стили для списков внутри карточек (включая раздел "О Журнале") */
+.entry-card ul {
+  list-style-type: none;
+  padding-left: 1.4em;
+  margin: 1.2em 0;
+}
+
+.entry-card li {
+  position: relative;
+  padding-left: 0.8em;
+  margin-bottom: 0.8em;
+  line-height: 1.5;
+}
+
+.entry-card li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .header {
