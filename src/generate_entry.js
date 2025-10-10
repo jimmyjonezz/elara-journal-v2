@@ -356,7 +356,8 @@ async function prepareEntryData() {
     ...tagData,
     ...finalData,
     season: mood.season,
-    context
+    context,
+    criticTags: externalContext.criticTags
   };
 }
 
