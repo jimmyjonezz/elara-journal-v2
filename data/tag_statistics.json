@@ -1,8 +1,8 @@
 {
   "время": {
-    "count": 39,
+    "count": 40,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-10",
+    "lastSeen": "2025-10-11",
     "types": [
       "critic",
       "static"
@@ -50,9 +50,9 @@
     ]
   },
   "память": {
-    "count": 39,
+    "count": 40,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-10",
+    "lastSeen": "2025-10-11",
     "types": [
       "static",
       "critic"
@@ -83,9 +83,9 @@
     ]
   },
   "грусть": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-07",
+    "lastSeen": "2025-10-11",
     "types": [
       "static"
     ]
@@ -107,9 +107,9 @@
     ]
   },
   "размышление": {
-    "count": 21,
+    "count": 22,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-10",
+    "lastSeen": "2025-10-11",
     "types": [
       "static",
       "critic"
@@ -124,9 +124,9 @@
     ]
   },
   "осмысление": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-01",
+    "lastSeen": "2025-10-11",
     "types": [
       "static"
     ]
@@ -244,9 +244,9 @@
     ]
   },
   "судьба": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2025-09-07",
-    "lastSeen": "2025-10-08",
+    "lastSeen": "2025-10-11",
     "types": [
       "static"
     ]
@@ -276,9 +276,9 @@
     ]
   },
   "свобода": {
-    "count": 15,
+    "count": 16,
     "firstSeen": "2025-09-13",
-    "lastSeen": "2025-10-09",
+    "lastSeen": "2025-10-11",
     "types": [
       "static",
       "critic"
