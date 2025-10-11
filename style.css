@@ -1,0 +1,491 @@
+/* ====================== ОБЩИЕ СТИЛИ ====================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.theme-dark {
+  background-color: #121212;
+  color: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* ====================== ШАПКА ====================== */
+
+.header {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  padding: 2rem 0;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.header-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+}
+
+.update-info {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
+
+/* ====================== НАВИГАЦИЯ ====================== */
+
+.tabnav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #fff;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #eee;
+}
+
+.tabnav-tab {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  color: #666;
+}
+
+.tabnav-tab:hover {
+  background-color: #f0f0f0;
+}
+
+.tabnav-tab.selected {
+  background-color: #6e8efb;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body.theme-dark .tabnav {
+  background-color: #1e1e1e;
+  border-bottom: 1px solid #333;
+}
+
+body.theme-dark .tabnav-tab {
+  color: #ccc;
+}
+
+body.theme-dark .tabnav-tab:hover {
+  background-color: #333;
+}
+
+body.theme-dark .tabnav-tab.selected {
+  background-color: #6e8efb;
+  color: white;
+}
+
+/* ====================== ОСНОВНОЙ КОНТЕНТ ====================== */
+
+.application-main-content {
+  padding: 2rem;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  position: relative;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #6e8efb;
+}
+
+body.theme-dark .section-title {
+  color: #f8f9fa;
+  border-bottom: 2px solid #a777e3;
+}
+
+/* ====================== КАРТОЧКИ ЗАПИСЕЙ ====================== */
+
+.entries-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.entry-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  word-wrap: break-word;
+}
+
+body.theme-dark .entry-card {
+  background: #1e1e1e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #f8f9fa;
+}
+
+.entry-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+body.theme-dark .entry-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+
+body.theme-dark .entry-header {
+  border-bottom: 1px solid #333;
+}
+
+.entry-meta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.entry-date {
+  font-weight: 500;
+  color: #666;
+}
+
+body.theme-dark .entry-date {
+  color: #ccc;
+}
+
+.reflection-level {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.Label--outline {
+  border: 1px solid #6e8efb;
+  color: #6e8efb;
+}
+
+.Label--accent {
+  background-color: #6e8efb;
+  color: white;
+}
+
+body.theme-dark .Label--outline {
+  border: 1px solid #a777e3;
+  color: #a777e3;
+}
+
+body.theme-dark .Label--accent {
+  background-color: #a777e3;
+  color: white;
+}
+
+.entry-section {
+  margin: 1.25rem 0;
+}
+
+.section-title-small {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: #333;
+  font-weight: 500;
+}
+
+body.theme-dark .section-title-small {
+  color: #f8f9fa;
+}
+
+.entry-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #333;
+  white-space: pre-line;
+}
+
+body.theme-dark .entry-text {
+  color: #f8f9fa;
+}
+
+.entry-reflection {
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #555;
+  white-space: pre-line;
+}
+
+body.theme-dark .entry-reflection {
+  color: #ccc;
+}
+
+.entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* ====================== СТИЛИ ДЛЯ РАЗДЕЛА "О ЖУРНАЛЕ" ====================== */
+
+#about .entry-card ul {
+  list-style-type: none;
+  padding-left: 1em;
+  margin: 0.8em 0;
+}
+
+#about .entry-card li {
+  position: relative;
+  padding-left: 0.6em;
+  margin-bottom: 0.6em;
+  line-height: 1.5;
+}
+
+#about .entry-card li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent, #6e8efb);
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+/* ====================== СТИЛИ ДЛЯ РАЗДЕЛА "АНАЛИЗ ТВОРЧЕСТВА" ====================== */
+
+#critique .entry-card ul,
+#critique .entry-card ol {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0.5em 0;
+}
+
+#critique .entry-card li {
+  margin-bottom: 0.5em;
+  line-height: 1.5;
+  padding-left: 0;
+}
+
+#critique .entry-card li:before {
+  content: none;
+}
+
+/* ====================== ЗАГРУЗКА И ОШИБКИ ====================== */
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  font-style: italic;
+  color: #666;
+}
+
+body.theme-dark .loading {
+  color: #ccc;
+}
+
+.error {
+  color: #dc3545;
+  padding: 1rem;
+  background: #f8d7da;
+  border-radius: 8px;
+  border-left: 4px solid #dc3545;
+}
+
+body.theme-dark .error {
+  background: #3a1a1a;
+  color: #f8d7da;
+  border-left: 4px solid #dc3545;
+}
+
+.empty {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+}
+
+body.theme-dark .empty {
+  color: #ccc;
+}
+
+/* ====================== ПОДВАЛ ====================== */
+
+.footer {
+  background: #f8f9fa;
+  padding: 1.5rem 0;
+  text-align: center;
+  border-top: 1px solid #eee;
+  margin-top: 2rem;
+}
+
+body.theme-dark .footer {
+  background: #1e1e1e;
+  border-top: 1px solid #333;
+  color: #f8f9fa;
+}
+
+.footer p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+body.theme-dark .footer p {
+  color: #ccc;
+}
+
+.footer a {
+  color: #6e8efb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+body.theme-dark .footer a {
+  color: #a777e3;
+}
+
+/* ====================== ВСПОМОГАТЕЛЬНЫЕ КЛАССЫ ====================== */
+
+.suggestions-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0.5em 0;
+}
+
+.suggestion-item {
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #6e8efb;
+}
+
+body.theme-dark .suggestion-item {
+  background: #2a2a2a;
+  border-left: 4px solid #a777e3;
+}
+
+.analysis-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0.5em 0;
+}
+
+.analysis-list-item-text {
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #6e8efb;
+}
+
+body.theme-dark .analysis-list-item-text {
+  background: #2a2a2a;
+  border-left: 4px solid #a777e3;
+}
+
+/* ====================== МОБИЛЬНАЯ АДАПТАЦИЯ ====================== */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .header-title {
+    font-size: 2rem;
+  }
+
+  .header-subtitle {
+    font-size: 1rem;
+  }
+
+  .tabnav {
+    flex-wrap: wrap;
+    padding: 0.5rem;
+  }
+
+  .tabnav-tab {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .application-main-content {
+    padding: 1rem;
+  }
+
+  .entry-card {
+    padding: 1rem;
+  }
+
+  .entry-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .entry-meta {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-title-small {
+    font-size: 1rem;
+  }
+
+  .entry-text,
+  .entry-reflection {
+    font-size: 1rem;
+  }
+}
