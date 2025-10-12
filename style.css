@@ -311,34 +311,11 @@ body {
 
 /* ====================== СТИЛИ ДЛЯ РАЗДЕЛОВ ====================== */
 
-/* --- Стили для раздела "О журнале" --- */
-#about .entry-card ul {
-  list-style-type: none;
-  padding-left: 0;
-  margin: 0.8em 0;
-}
-
-#about .entry-card li {
-  position: relative;
-  padding-left: 0;
-  margin-bottom: 0.6em;
-  line-height: 1.5;
-}
-
-#about .entry-card li:before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: var(--color-accent-fg);
-  font-weight: bold;
-  font-size: 0.9em;
-}
-
 /* --- Стили для раздела "Анализ творчества" --- */
 #critique .entry-card ul,
 #critique .entry-card ol {
   list-style-type: none;
-  padding-left: 0;
+  padding-left: 4px; /* ← Отступ от оранжевой линии слева */
   margin: 0.5em 0;
 }
 
@@ -350,6 +327,29 @@ body {
 
 #critique .entry-card li:before {
   content: none;
+}
+
+/* --- Стили для раздела "О журнале" --- */
+#about .entry-card ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0.8em 0;
+}
+
+#about .entry-card li {
+  position: relative;
+  padding-left: 12px; /* ← Отступ от маркера */
+  margin-bottom: 0.6em;
+  line-height: 1.5;
+}
+
+#about .entry-card li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: white; /* ← Белый маркер */
+  font-weight: bold;
+  font-size: 0.9em;
 }
 
 /* Responsive */
