@@ -166,7 +166,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   gap: var(--spacing-2);
-  flex-direction: row-reverse; /* ← Гарантирует, что уровень справа */
+  flex-direction: row; /* ← Гарантирует, что уровень справа */
 }
 
 .entry-date {
@@ -312,14 +312,14 @@ body {
 #critique .entry-card ul,
 #critique .entry-card ol {
   list-style-type: none;
-  padding-left: 4px; /* ← Отступ от оранжевой линии слева */
+  padding-left: 0px;
   margin: 0.5em 0;
 }
 
 #critique .entry-card li {
   margin-bottom: 0.5em;
   line-height: 1.5;
-  padding-left: 0;
+  padding-left: 4px;
 }
 
 #critique .entry-card li:before {
