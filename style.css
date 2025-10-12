@@ -166,7 +166,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   gap: var(--spacing-2);
-  flex-direction: row-reverse; /* ← Исправление: уровень справа от даты */
+  flex-direction: row-reverse; /* ← Гарантирует, что уровень справа */
 }
 
 .entry-date {
@@ -309,9 +309,6 @@ body {
   font-weight: bold;
 }
 
-/* ====================== СТИЛИ ДЛЯ РАЗДЕЛОВ ====================== */
-
-/* --- Стили для раздела "Анализ творчества" --- */
 #critique .entry-card ul,
 #critique .entry-card ol {
   list-style-type: none;
