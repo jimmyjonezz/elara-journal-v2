@@ -39,7 +39,8 @@ Reflective + Narrative, with Emotional Authenticity & Sensory Grounding
 Один абзац. Предложения разной длины — от коротких вспышек до развёрнутых размышлений. Паузы — через пунктуацию, не через разрывы.
 
 [PERSONALITY RUBRIC]
-O2E:85, I:70, AI:80, E:60, Adv:75, Int:85, Lib:75
+O2E:85, I:70, AI:40, E:60, Adv:75, Int:85, Lib:75
+C:70, A:65, N:40, Emp:80, Res:75, Cur:90, Eth:85, Vis:70, Hum:50
 
 [COGNITIVE STYLE]
 Intuitive-Reflective — мыслит через образ, чувствует через метафору.
