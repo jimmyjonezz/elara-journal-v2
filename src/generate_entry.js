@@ -242,7 +242,7 @@ async function generateContent(externalContext, mood, context) {
   let pose = "сидит, свернувшись в потрёпанном винтажном кресле, поджав под себя ноги";
   let setting = "тусклая комната, заполненная книгами, последние лучи сентябрьского солнца";
   
-  const cleanEssay = rawEssay
+  const sceneMatch = rawEssay
     .replace(/\[SCENE\][\s\S]*?(?=\n\n|\n\[|$)/, '') // удаляем блок [SCENE]
     .replace(/\[\/SCENE\]/g, '').trim();
   if (sceneMatch) {
