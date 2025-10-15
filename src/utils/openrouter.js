@@ -135,7 +135,7 @@ async function generateCritique(data) {
       model: CRITIQUE_MODEL,
       messages: [{ role: "user", content: prompt }],
       temperature: 0.7,
-      max_tokens: 2024
+      max_tokens: 3072
     })
   });
 
