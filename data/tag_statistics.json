@@ -1,17 +1,17 @@
 {
   "время": {
-    "count": 44,
+    "count": 45,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-14",
+    "lastSeen": "2025-10-15",
     "types": [
       "critic",
       "static"
     ]
   },
   "жизнь": {
-    "count": 35,
+    "count": 36,
     "firstSeen": "2025-08-25",
-    "lastSeen": "2025-10-14",
+    "lastSeen": "2025-10-15",
     "types": [
       "static",
       "critic"
@@ -50,9 +50,9 @@
     ]
   },
   "память": {
-    "count": 44,
+    "count": 45,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-14",
+    "lastSeen": "2025-10-15",
     "types": [
       "static",
       "critic"
@@ -67,17 +67,17 @@
     ]
   },
   "голос": {
-    "count": 16,
+    "count": 17,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-14",
+    "lastSeen": "2025-10-15",
     "types": [
       "static"
     ]
   },
   "любовь": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-09-25",
+    "lastSeen": "2025-10-15",
     "types": [
       "static"
     ]
