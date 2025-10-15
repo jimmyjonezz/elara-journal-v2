@@ -8,9 +8,6 @@ const {
   BASE_DELAY_MS = 2000
 } = require('./config');
 
-const path = require('path');
-const fs = require('fs').promises;
-
 /**
  * Выполняет функцию с повторными попытками при сетевых/временных ошибках
  */
@@ -18,7 +15,7 @@ async function withRetry(fn, maxRetries, baseDelay, actionName) {
   let lastError;
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
-      console.log(`🔄 Попытка ${attempt}/${maxRetries} для ${actionName}...`);
+      console.log(`🔄 Попытка ${attempt}/${maxRettries} для ${actionName}...`);
       const result = await fn();
       console.log(`✅ ${actionName} успешно завершён на попытке ${attempt}.`);
       return result;
@@ -44,7 +41,7 @@ async function withRetry(fn, maxRetries, baseDelay, actionName) {
         console.log(`⏳ Ожидание ${delay} мс перед повтором...`);
         await new Promise(resolve => setTimeout(resolve, delay));
       } else {
-        break; // не повторяем при фатальных ошибках (напр., неверный промпт)
+        break; // не повторяем при фатальных ошибках
       }
     }
   }
@@ -58,7 +55,7 @@ async function withRetry(fn, maxRetries, baseDelay, actionName) {
 async function runLiteraryCritique() {
   console.log('🔍 Запуск литературного анализа...');
 
-  // Загружаем только последнюю запись (анализ по RPP v2.0 — для одной записи)
+  // Загружаем журнал
   const journal = await readJSON(JOURNAL_PATH);
   if (!Array.isArray(journal) || journal.length === 0) {
     throw new Error('Журнал пуст — нечего анализировать.');
@@ -73,16 +70,27 @@ async function runLiteraryCritique() {
     year: 'numeric'
   });
 
+  // Собираем стилевую историю из последних 3 записей
+  const lastEntries = journal.slice(-3);
+  const style_history = lastEntries.map(entry => ({
+    date: entry.date,
+    reflection_level: entry.reflection_level || 'средний',
+    tags: Array.isArray(entry.tags) ? entry.tags : [],
+    word_count: (entry.entry || '').split(/\s+/).filter(w => w).length,
+    // Простой признак метафоры — наличие "как" или "словно"
+    has_metaphor: /(?:как|словно|будто|точно)\s/i.test(entry.entry || '')
+  }));
+
   const critiqueData = {
     entry_date: today,
     entry_tags: lastEntry.tags || [],
     entry_reflection_level: lastEntry.reflection_level || 'средний',
     entry_essay: lastEntry.raw_essay || '',
     entry_reflection: lastEntry.raw_reflection || '',
-    history_context: lastEntry.context || 'Контекст не сохранён.'
+    style_history: style_history
   };
 
-  // Генерация с ретраями при временных ошибках
+  // Генерация с ретраями
   const rawResponse = await withRetry(
     () => generateCritique(critiqueData),
     MAX_RETRIES,
@@ -94,7 +102,7 @@ async function runLiteraryCritique() {
   let analysis;
   if (typeof rawResponse === 'string') {
     try {
-      // Удаляем возможные блоки кода, если модель их добавила
+      // Удаляем возможные блоки кода
       const cleanJson = rawResponse
         .replace(/^```json\s*/i, '')
         .replace(/\s*```$/i, '')
@@ -109,11 +117,15 @@ async function runLiteraryCritique() {
     analysis = rawResponse; // уже объект
   }
 
-  // Сохраняем анализ
+  // Удаляем generated_at, если модель его добавила (чтобы не перезаписал системную дату)
+  delete analysis.generated_at;
+
+  // Сохраняем анализ с актуальной датой
   const result = {
     generated_at: new Date().toISOString(),
     ...analysis
   };
+
   await writeJSON(ANALYSIS_PATH, result);
   console.log(`✅ Анализ сохранён в ${ANALYSIS_PATH}`);
 }
