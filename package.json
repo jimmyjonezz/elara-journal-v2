@@ -1,6 +1,6 @@
 {
   "name": "elara-journal",
-  "version": "1.0.0",
+  "version": "2.3.0",
   "description": "Журнал Элары - исследование ИИ через автономное письмо и рефлексию",
   "main": "src/generate_entry.js",
   "scripts": {
