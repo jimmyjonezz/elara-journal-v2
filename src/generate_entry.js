@@ -356,6 +356,10 @@ async function prepareEntryData() {
     ...tagData,
     ...finalData,
     season: mood.season,
+    mood: {                   // ← добавить это
+      name: mood.name,
+      description: mood.description
+    },
     context,
     criticTags: externalContext.criticTags
   };
@@ -408,6 +412,7 @@ async function generateEntry() {
       allTags,
       level,
       season,
+      mood,
       context,
       imagePrompt
     } = await prepareEntryData();
@@ -419,7 +424,7 @@ async function generateEntry() {
     const entry = {
       date: new Date().toISOString().split('T')[0],
       season: season,
-      mood: { name: mood.name },
+      mood: { name: mood.name, description: mood.description },
       context: context, // ← сохраняем контекст, использованный при генерации
       entry: fullEntryText,
       tags: allTags,
