@@ -1,6 +1,6 @@
 {
   "время": {
-    "count": 47,
+    "count": 48,
     "firstSeen": "2025-08-27",
     "lastSeen": "2025-10-17",
     "types": [
@@ -50,7 +50,7 @@
     ]
   },
   "память": {
-    "count": 47,
+    "count": 48,
     "firstSeen": "2025-08-26",
     "lastSeen": "2025-10-17",
     "types": [
@@ -107,9 +107,9 @@
     ]
   },
   "размышление": {
-    "count": 24,
+    "count": 25,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-14",
+    "lastSeen": "2025-10-17",
     "types": [
       "static",
       "critic"
