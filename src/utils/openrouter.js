@@ -112,11 +112,14 @@ async function generateCritique(data) {
 
   const substitutions = {
     '{{entry_title}}': data.entry_date,
+    '{{current_mood_name}}': data.current_mood_name || 'still',
+    '{{current_season}}': data.current_season || 'winter',
+    '{{current_context}}': data.current_context || 'Контекст не сохранён.',
     '{{entry_tags}}': JSON.stringify(data.entry_tags || []),
     '{{entry_reflection_level}}': data.entry_reflection_level || 'средний',
     '{{entry_essay}}': data.entry_essay || '',
     '{{entry_reflection}}': data.entry_reflection || '',
-    '{{history_context}}': data.history_context || 'Контекст истории отсутствует.'
+    '{{style_history}}': JSON.stringify(data.style_history || [])
   };
 
   for (const [placeholder, value] of Object.entries(substitutions)) {
