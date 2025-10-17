@@ -24,6 +24,9 @@
 [INPUT DATA:]
 {
   "entry_date": "{{entry_date}}",
+  "current_mood_name": "{{current_mood_name}}",
+  "current_season": "{{current_season}}",
+  "current_context": "{{current_context}}",
   "entry_tags": {{entry_tags}},
   "entry_reflection_level": "{{entry_reflection_level}}",
   "entry_essay": "{{entry_essay}}",
