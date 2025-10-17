@@ -83,6 +83,9 @@ async function runLiteraryCritique() {
 
   const critiqueData = {
     entry_date: today,
+    current_mood_name: lastEntry.mood?.name || 'still',
+    current_season: lastEntry.season || 'winter',
+    current_context: lastEntry.context || 'Контекст не сохранён.',
     entry_tags: lastEntry.tags || [],
     entry_reflection_level: lastEntry.reflection_level || 'средний',
     entry_essay: lastEntry.raw_essay || '',
