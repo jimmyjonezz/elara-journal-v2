@@ -419,6 +419,7 @@ async function generateEntry() {
     const entry = {
       date: new Date().toISOString().split('T')[0],
       season: season,
+      mood: { name: mood.name },
       context: context, // ← сохраняем контекст, использованный при генерации
       entry: fullEntryText,
       tags: allTags,
