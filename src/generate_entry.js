@@ -363,6 +363,8 @@ async function updateAndSaveTagStatistics(currentStats, staticTags, criticTagsFr
     ...normalizedCriticTagsFromAnalysis
   ]);
 
+  const updatedStats = { ...currentStats };
+
   // ... (остальная логика обновления статистики)
   for (const tag of allTagsFromEntry) {
     if (updatedStats[tag]) {
