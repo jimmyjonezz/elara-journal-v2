@@ -59,6 +59,7 @@ jobs:
           git add data/literary_analysis.json
           git add data/tag_statistics.json
           git add data/latest_image_prompt.txt
+          git add /src/config/context.json
           git add logs/
 
           # Проверяем, есть ли изменения
