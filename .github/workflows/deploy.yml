@@ -57,7 +57,6 @@ jobs:
           # Добавляем ВСЕ изменённые файлы (включая logs/, если были ошибки)
           git add data/journal.json
           git add data/literary_analysis.json
-          git add data/dynamic_tags.json
           git add data/tag_statistics.json
           git add data/latest_image_prompt.txt
           git add logs/
