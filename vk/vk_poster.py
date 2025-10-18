@@ -26,7 +26,7 @@ def get_wall_upload_server():
     }
     response = requests.get(url, params=params)
     data = response.json()
-    if 'error' in 
+    if 'error' in data:
         raise Exception(f"VK API Error getting upload server: {data['error']}")
     return data["response"]["upload_url"]
 
