@@ -131,6 +131,37 @@ async function runLiteraryCritique() {
 
   await writeJSON(ANALYSIS_PATH, result);
   console.log(`✅ Анализ сохранён в ${ANALYSIS_PATH}`);
+
+  // --- Обновление последней записи в journal.json с тегами критика ---
+  try {
+    const { readJSON, writeJSON } = require('./utils/fileUtils');
+    const { JOURNAL_PATH } = require('./config'); // Убедись, что JOURNAL_PATH есть в config.js
+    
+    const journal = await readJSON(JOURNAL_PATH);
+    if (!Array.isArray(journal) || journal.length === 0) {
+      console.warn('⚠️ Журнал пуст, невозможно обновить запись с тегами критика.');
+    } else {
+      const lastEntry = journal[journal.length - 1];
+
+    // Извлекаем теги критика из только что сгенерированного анализа
+    const criticTagsFromAnalysis = Array.isArray(result.tags_for_search) ? result.tags_for_search : [];
+    if (criticTagsFromAnalysis.length > 0) {
+      // Добавляем теги критика как отдельное поле в запись
+      lastEntry.critic_tags = criticTagsFromAnalysis;
+
+      console.log(`🏷️ Теги критика добавлены к последней записи:`, criticTagsFromAnalysis);
+
+      // Сохраняем обновлённый журнал
+      await writeJSON(JOURNAL_PATH, journal);
+      console.log('✅ Журнал обновлён с тегами критика.');
+    } else {
+      console.warn('⚠️ В анализе нет тегов критика (tags_for_search) для добавления в запись.');
+    }
+  }
+} catch (e) {
+  console.error('❌ Ошибка обновления journal.json с тегами критика:', e.message);
+  // Не останавливаем весь процесс, если теги не обновились
+}
 }
 
 module.exports = { runLiteraryCritique };
