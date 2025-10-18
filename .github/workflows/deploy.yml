@@ -47,7 +47,17 @@ jobs:
           echo "🖋️ Литературный критик приступает к анализу журнала (включая новую запись)..."
           node src/literary_critic.js
           echo "✅ Анализ литературного критика завершен. Файл literary_analysis.json создан/обновлен."
-      
+
+      - name: 🔹 Установка Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 🔹 Установка Python-зависимостей
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt # Убедись, что replicate и requests там
+          
       - name: Генерация изображения
         run: python src/generate_image.py
         env:
