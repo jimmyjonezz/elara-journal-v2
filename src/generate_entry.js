@@ -227,8 +227,8 @@ async function generateContent(externalContext, mood, context) {
   console.log("📄 Длина сырого эссе:", rawEssay.length);
 
   // --- Парсинг сцены (устойчивый к отсутствию [/SCENE]) ---
-  let pose = "сидит, свернувшись в потрёпанном винтажном кресле, поджав под себя ноги";
-  let setting = "тусклая комната, заполненная книгами, последние лучи сентябрьского солнца";
+  let pose = "she is sitting curled up in a worn vintage armchair, with her legs tucked under her.";
+  let setting = "a dimly lit room filled with books, the last rays of the autumn sun.";
   
   const sceneMatch = rawEssay.match(/\[SCENE\]\s*Поза:\s*([\s\S]*?)\s*Обстановка:\s*([\s\S]*?)(?=\n\n|\n\[|$)/);
   if (sceneMatch) {
