@@ -245,7 +245,8 @@ async function generateContent(externalContext, mood, context) {
   }
   
   // Удаляем блок [SCENE] из текста
-  const essayWithoutScene = rawEssay.replace(/\[SCENE\][\s\S]*?(?=\n\n|\n\[|$)/, '').trim();
+  //const essayWithoutScene = rawEssay.replace(/\[SCENE\][\s\S]*?(?=\n\n|\n\[|$)/, '').trim();
+  const essayWithoutScene = rawEssay.replace(/\[SCENE\][\s\S]*?Setting:[\s\S]*?\[\/SCENE\]/i, '').trim();
 
   // --- Генерация рефлексии ---
   console.log("💭 Генерируем рефлексию...");
