@@ -286,11 +286,24 @@
                 `;
             }
 
+            // --- Добавить этот блок ---
+            let criticTagsHtml = '';
+            if (entry.critic_tags && Array.isArray(entry.critic_tags) && entry.critic_tags.length > 0) {
+                const sortedCriticTags = [...entry.critic_tags].sort();
+                criticTagsHtml = `
+                     <div class="entry-critic-tags">
+                          <span class="critic-tags-label">Теги критика:</span>
+                          ${sortedCriticTags.map(tag => `<span class="Label Label--outline">${escapeHtml(tag)}</span>`).join(' ')}
+                     </div>
+                `;
+            }
+
             container.innerHTML = `
-                ${headerHtml}
-                ${essayHtml}
-                ${reflectionHtml}
-                ${tagsHtml}
+            ${headerHtml}
+            ${essayHtml}
+            ${reflectionHtml}
+            ${tagsHtml}
+            ${criticTagsHtml}
             `;
         }
 
