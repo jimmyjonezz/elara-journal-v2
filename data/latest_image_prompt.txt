@@ -1,9 +1,9 @@
-Character: A 24-year-old woman with long wavy brown hair casually gathered at the back. She is sitting at a table by the window, her hands wrapped around a cup of coffee, head inclined, eyes hidden beneath half-lowered eyelashes. She is wearing a white blouse with ruffles and a deep neckline, a thin gold chain with a pendant around her neck. Her expression is pensive, calm, with a hint of unresolved tension: her gaze is detached, lips slightly parted, cheeks lightly flushed.
+Character: A 24-year-old woman with long wavy brown hair casually gathered at the back. сидит, свернувшись в потрёпанном винтажном кресле, поджав под себя ноги. She is wearing a white blouse with ruffles and a deep neckline, with a thin gold chain and pendant around her neck. Her expression is pensive, calm, with a hint of unresolved tension: her gaze is detached, lips slightly parted, cheeks lightly flushed.
 
-Setting: A café bathed in soft early morning light. Outside the window, it's a rainy October day, city sounds are muted, and the air is filled with the scent of wet asphalt and roasted chestnuts.
+Setting: тусклая комната, заполненная книгами, последние лучи сентябрьского солнца
 
 Atmosphere: melancholic, intimate, timeless, filled with emotional nuances.
 
 Key requirements: keep the character's appearance, clothing, and proportions absolutely unchanged; change only the background and surroundings.
 
-Artistic style: hyper-realistic painterly illustration, soft natural lighting, slight depth of field, subdued earthy tones with "golden hour" accents.
+Art style: hyper-realistic painterly illustration, soft natural lighting, slight depth of field, muted earthy tones with "golden hour" accents.
