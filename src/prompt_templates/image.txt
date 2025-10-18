@@ -1,5 +1,9 @@
-Персонаж: 24-летняя женщина с длинними волнистыми каштановыми волосами, небрежно собранными сзади. {POSE}. На ней одета белая блузка с рюшами и глубоким декольте, на шее тонкая золотая цепочку с подвеской. Её выражение лица задумчивое, спокойное, с намёком на неразрешённое напряжение: взгляд отрешённый, губы слегка приоткрыты, щёки слегка раскрасневшиеся. 
-Обстановка: {SETTING}
-Атмосфера: меланхоличная, интимная, вне времени, наполненная эмоциональными оттенками.
-Ключевые требования: сохраняй внешность, одежду и пропорции персонажа абсолютно неизменными; меняй только фон и окружение.
-Художественный стиль: гиперреалистичная живописная иллюстрация, мягкое естественное освещение, небольшая глубина резкости, приглушённые землистые тона с акцентами «золотого часа».
+Character: A 24-year-old woman with long wavy brown hair casually gathered at the back. {POSE}. She is wearing a white blouse with ruffles and a deep neckline, with a thin gold chain and pendant around her neck. Her expression is pensive, calm, with a hint of unresolved tension: her gaze is detached, lips slightly parted, cheeks lightly flushed.
+
+Setting: {SETTING}
+
+Atmosphere: melancholic, intimate, timeless, filled with emotional nuances.
+
+Key requirements: keep the character's appearance, clothing, and proportions absolutely unchanged; change only the background and surroundings.
+
+Art style: hyper-realistic painterly illustration, soft natural lighting, slight depth of field, muted earthy tones with "golden hour" accents.
