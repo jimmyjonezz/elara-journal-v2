@@ -5,7 +5,6 @@ const {
   DATA_DIR,
   JOURNAL_PATH,
   ANALYSIS_PATH,
-  DYNAMIC_TAGS_PATH,
   TAG_STATS_PATH,
   MAX_RETRIES,
   BASE_DELAY_MS,
@@ -190,19 +189,8 @@ async function loadExternalContext() {
     console.warn("⚠️ Ошибка при загрузке файла литературного анализа:", error.message);
   }
 
-  // --- Загрузка тегов критика ---
+  // --- теги критика
   let criticTags = [];
-  try {
-    const dynamicTagsData = await readJSON(DYNAMIC_TAGS_PATH);
-    if (!Array.isArray(dynamicTagsData?.tags)) {
-      console.warn("⚠️ dynamic_tags.json: поле 'tags' отсутствует или не массив. Ожидалось: { tags: string[] }");
-    } else {
-      criticTags = [...new Set(dynamicTagsData.tags.map(tag => tag.toLowerCase().trim()))];
-      console.log(`✅ Загружено ${criticTags.length} тегов от критика:`, criticTags);
-    }
-  } catch (error) {
-    console.warn("⚠️ Ошибка при загрузке файла тегов критика:", error.message);
-  }
 
   // --- Загрузка семантического словаря (один раз) ---
   const semanticDict = await loadSemanticDictionary();
