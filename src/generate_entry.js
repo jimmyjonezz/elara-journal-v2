@@ -230,7 +230,7 @@ async function generateContent(externalContext, mood, context) {
   let pose = "she is sitting curled up in a worn vintage armchair, with her legs tucked under her.";
   let setting = "a dimly lit room filled with books, the last rays of the autumn sun.";
   
-  const sceneMatch = rawEssay.match(/\[SCENE\]\s*Поза:\s*([\s\S]*?)\s*Обстановка:\s*([\s\S]*?)(?=\n\n|\n\[|$)/);
+  const sceneMatch = rawEssay.match(/\[SCENE\]\s*Pose:\s*([\s\S]*?)\s*Setting:\s*([\s\S]*?)(?=\n\n|\n\[|$)/);
   if (sceneMatch) {
     pose = sceneMatch[1].trim().replace(/\.$/, '');
     setting = sceneMatch[2].trim().replace(/\.$/, '');
