@@ -8,6 +8,10 @@ on:
         required: false
         default: 'A cute dog in a park'
         type: string
+  workflow_call:
+    secrets:
+      REPLICATE_API_TOKEN:
+        required: true
 
 jobs:
   generate:
