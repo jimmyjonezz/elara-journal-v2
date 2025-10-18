@@ -81,7 +81,7 @@ def main():
     post_text = create_post(entry)
 
     # 2. Загружаем изображение (лог, скриншот и т.п.)
-    image_path = "logs/latest_run.png"  # или путь к вашему изображению
+    image_path = "data/images/rt.png"  # или путь к вашему изображению
     if not os.path.exists(image_path):
         print(f"🖼️ Изображение не найдено: {image_path} → публикация без фото")
         result = post_to_vk(post_text)
