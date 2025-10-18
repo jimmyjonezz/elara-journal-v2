@@ -151,19 +151,24 @@ async function getSeasonalMood() {
 }
 
 /**
- * Получает случайный контекст из contexts.json
+ * Получает первый контекст из contexts.json и удаляет его из файла.
  */
-async function getRandomContext() {
+async function getAndRemoveFirstContext() {
   try {
     const contexts = await readJSON(CONTEXTS_PATH);
-    if (!Array.isArray(contexts?.contexts)) {
-      throw new Error("Формат contexts.json нарушен: ожидается { contexts: Array<{ context: string }> }");
+    if (!Array.isArray(contexts?.contexts) || contexts.contexts.length === 0) {
+      throw new Error("Формат contexts.json нарушен или файл пуст: ожидается { contexts: Array<{ context: string }> } с элементами.");
     }
-    const items = contexts.contexts;
-    const randomItem = items[Math.floor(Math.random() * items.length)];
-    return randomItem.context;
+    const firstItem = contexts.contexts.shift(); // Удаляем первый элемент
+    const firstContext = firstItem.context;
+
+    // Сохраняем обновлённый массив обратно
+    await writeJSON(CONTEXTS_PATH, contexts);
+    console.log(`🔄 Использован и удалён первый контекст: ${firstContext.substring(0, 60)}...`);
+
+    return firstContext;
   } catch (err) {
-    console.warn('⚠️ Не удалось загрузить contexts.json:', err.message);
+    console.warn('⚠️ Не удалось загрузить или изменить contexts.json:', err.message);
     return "Ты сидишь за столом. За окном — тишина.";
   }
 }
@@ -322,7 +327,7 @@ async function prepareEntryData() {
 
   const externalContext = await loadExternalContext();
   const mood = await getSeasonalMood();
-  const context = await getRandomContext();
+  const context = await getAndRemoveFirstContext();
   console.log(`🎭 Текущее настроение: ${mood.name} (${mood.season})`);
   console.log(`📖 Случайный контекст: ${context.substring(0, 60)}...`);
 
