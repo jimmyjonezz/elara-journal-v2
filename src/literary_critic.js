@@ -3,6 +3,7 @@ const { generateCritique } = require('./utils/openrouter');
 const { readJSON, writeJSON } = require('./utils/fileUtils');
 const {
   JOURNAL_PATH,
+  CONTEXTS_PATH,
   ANALYSIS_PATH,
   MAX_RETRIES = 3,
   BASE_DELAY_MS = 2000
@@ -171,6 +172,45 @@ async function runLiteraryCritique() {
     console.error('❌ Ошибка обновления journal.json с тегами критика:', e.message);
     // Не останавливаем весь процесс, если теги не обновились
   }
+
+  // --- Добавление нового контекста в конец contexts.json ---
+  try {
+  const { readJSON, writeJSON } = require('./utils/fileUtils');
+  const { CONTEXTS_PATH } = require('./config'); // Убедись, что CONTEXTS_PATH есть в config.js
+
+  // 1. Прочитать новый контекст из result (предполагается, что он в next_context_suggestion)
+  const newContextSuggestion = result.next_context_suggestion; // Из literary_analysis.json
+
+  if (!newContextSuggestion || typeof newContextSuggestion !== 'string' || newContextSuggestion.trim() === '') {
+    console.warn('⚠️ Критик не сгенерировал next_context_suggestion или он пуст. Пропускаем обновление contexts.json.');
+  } else {
+    console.log(`🔄 Критик предложил новый контекст: ${newContextSuggestion.substring(0, 60)}...`);
+
+    // 2. Прочитать текущие contexts
+    let currentContextsData;
+    try {
+      currentContextsData = await readJSON(CONTEXTS_PATH);
+      if (!currentContextsData || !Array.isArray(currentContextsData.contexts)) {
+        throw new Error("Структура contexts.json некорректна. Ожидается { contexts: [] }.");
+      }
+    } catch (e) {
+      console.error('❌ Ошибка чтения contexts.json:', e.message);
+      // Если файл не существует или сломан, создаём новый
+      currentContextsData = { contexts: [] };
+      console.log('ℹ️ Создаём новый файл contexts.json.');
+    }
+
+    // 3. Добавить новый контекст в конец
+    currentContextsData.contexts.push({ context: newContextSuggestion.trim() });
+
+    // 4. Сохранить contexts.json
+    await writeJSON(CONTEXTS_PATH, currentContextsData);
+    console.log(`✅ Новый контекст добавлен в конец contexts.json. Всего контекстов: ${currentContextsData.contexts.length}.`);
+  }
+} catch (e) {
+  console.error('❌ Ошибка обновления contexts.json с новым контекстом:', e.message);
+  // Не останавливаем весь процесс, если контекст не обновился
+}
 }
 
 module.exports = { runLiteraryCritique };
