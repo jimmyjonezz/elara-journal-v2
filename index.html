@@ -276,27 +276,28 @@
                 `;
             }
 
+            // --- Новый блок ---
             let tagsHtml = '';
-            if (entry.tags && Array.isArray(entry.tags) && entry.tags.length > 0) {
-                const sortedTags = [...entry.tags].sort();
+            // Объединяем статические теги и теги критика
+            const allTags = [];
+            if (entry.tags && Array.isArray(entry.tags)) {
+                allTags.push(...entry.tags);
+            }
+            if (entry.critic_tags && Array.isArray(entry.critic_tags)) {
+                allTags.push(...entry.critic_tags);
+            }
+            
+            // Убираем дубликаты и сортируем
+            const uniqueSortedTags = [...new Set(allTags)].sort();
+            
+            if (uniqueSortedTags.length > 0) {
                 tagsHtml = `
-                    <div class="entry-tags">
-                        ${sortedTags.map(tag => `<span class="Label Label--accent">${escapeHtml(tag)}</span>`).join(' ')}
-                    </div>
+                <div class="entry-tags">
+                ${uniqueSortedTags.map(tag => `<span class="Label Label--accent">${escapeHtml(tag)}</span>`).join(' ')}
+                </div>
                 `;
             }
-
-            // --- Добавить этот блок ---
-            let criticTagsHtml = '';
-            if (entry.critic_tags && Array.isArray(entry.critic_tags) && entry.critic_tags.length > 0) {
-                const sortedCriticTags = [...entry.critic_tags].sort();
-                criticTagsHtml = `
-                     <div class="entry-critic-tags">
-                          <span class="critic-tags-label">Теги критика:</span>
-                          ${sortedCriticTags.map(tag => `<span class="Label Label--outline">${escapeHtml(tag)}</span>`).join(' ')}
-                     </div>
-                `;
-            }
+            // --- Конец блока ---
 
             container.innerHTML = `
                  ${headerHtml}
