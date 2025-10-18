@@ -70,7 +70,7 @@ async function extractTags(text, dictionary) {
  * Определяет уровень рефлексии
  */
 function determineReflectionLevel(reflectionText) {
-  let level = "средний";
+  let level = "поверхностный";
   const levelMatch = reflectionText.match(/Уровень\s*:\s*(.*)$/i);
   if (levelMatch && levelMatch[1]) {
     const extractedLevel = levelMatch[1].trim().toLowerCase().replace(/[^\wа-яё]/gi, '');
@@ -234,7 +234,7 @@ async function generateContent(externalContext, mood, context) {
   if (sceneMatch) {
     pose = sceneMatch[1].trim().replace(/\.$/, '');
     setting = sceneMatch[2].trim().replace(/\.$/, '');
-    console.log(`🖼️ Извлечена сцена: Поза="${pose}", Обстановка="${setting}"`);
+    console.log(`🖼️ Извлечена сцена: Поза:"${pose}", Обстановка:"${setting}"`);
   } else {
     console.warn('⚠️ Блок [SCENE] не найден. Используются значения по умолчанию.');
   }
