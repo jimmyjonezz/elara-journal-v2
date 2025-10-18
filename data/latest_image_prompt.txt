@@ -1,5 +1,9 @@
-Персонаж: 24-летняя женщина с длинними волнистыми каштановыми волосами, небрежно собранными сзади. Элара сидит за столиком у окна, руки обёрнуты вокруг чашки кофе, голова склонена, глаза скрыты под полуопущенными ресницами. На ней одета белая блузка с рюшами и глубоким декольте, на шее тонкая золотая цепочку с подвеской. Её выражение лица задумчивое, спокойное, с намёком на неразрешённое напряжение: взгляд отрешённый, губы слегка приоткрыты, щёки слегка раскрасневшиеся. 
-Обстановка: Кафе, залитое мягким светом раннего утра. За окном дождливый октябрь, звуки города доносятся приглушенно, а в воздухе витает запах влажного асфальта и жареных каштанов
-Атмосфера: меланхоличная, интимная, вне времени, наполненная эмоциональными оттенками.
-Ключевые требования: сохраняй внешность, одежду и пропорции персонажа абсолютно неизменными; меняй только фон и окружение.
-Художественный стиль: гиперреалистичная живописная иллюстрация, мягкое естественное освещение, небольшая глубина резкости, приглушённые землистые тона с акцентами «золотого часа».
+Character: A 24-year-old woman with long wavy brown hair casually gathered at the back. She is sitting at a table by the window, her hands wrapped around a cup of coffee, head inclined, eyes hidden beneath half-lowered eyelashes. She is wearing a white blouse with ruffles and a deep neckline, a thin gold chain with a pendant around her neck. Her expression is pensive, calm, with a hint of unresolved tension: her gaze is detached, lips slightly parted, cheeks lightly flushed.
+
+Setting: A café bathed in soft early morning light. Outside the window, it's a rainy October day, city sounds are muted, and the air is filled with the scent of wet asphalt and roasted chestnuts.
+
+Atmosphere: melancholic, intimate, timeless, filled with emotional nuances.
+
+Key requirements: keep the character's appearance, clothing, and proportions absolutely unchanged; change only the background and surroundings.
+
+Artistic style: hyper-realistic painterly illustration, soft natural lighting, slight depth of field, subdued earthy tones with "golden hour" accents.
