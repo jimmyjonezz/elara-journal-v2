@@ -310,7 +310,7 @@ const path = require('path');
 
 async function buildImagePrompt(pose, setting) {
   try {
-    const templatePath = path.join(__dirname, 'prompt_templates/image.txt');
+    const templatePath = path.join(__dirname, 'prompt_templates/image_prompt.txt');
     let template = await fs.readFile(templatePath, 'utf8');
 
     let prompt = template
