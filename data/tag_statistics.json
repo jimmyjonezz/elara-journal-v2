@@ -9,7 +9,7 @@
     ]
   },
   "жизнь": {
-    "count": 39,
+    "count": 40,
     "firstSeen": "2025-08-25",
     "lastSeen": "2025-10-18",
     "types": [
@@ -50,7 +50,7 @@
     ]
   },
   "память": {
-    "count": 52,
+    "count": 53,
     "firstSeen": "2025-08-26",
     "lastSeen": "2025-10-18",
     "types": [
@@ -386,6 +386,22 @@
     "lastSeen": "2025-10-17",
     "types": [
       "static"
+    ]
+  },
+  "эхо": {
+    "count": 1,
+    "firstSeen": "2025-10-18",
+    "lastSeen": "2025-10-18",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "тактильность": {
+    "count": 1,
+    "firstSeen": "2025-10-18",
+    "lastSeen": "2025-10-18",
+    "types": [
+      "critic_from_analysis"
     ]
   }
 }
