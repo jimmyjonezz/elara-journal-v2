@@ -101,7 +101,7 @@ Pose: [One sentence, up to 30 words: describe how Elara is sitting/standing/movi
 Setting: [One or two sentences: describe the interior/exterior, lighting, time of day, season — in the style of the previous text]
 [/SCENE]
 
-Не включай этот блок в подсчёт 90–120 слов. Он служит только для визуализации. На английском языке.
+Не включай этот блок в подсчёт 90–120 слов. Он служит только для визуализации.
 
 [OUTPUT]
 Один связный абзац на русском языке, 70–100 слов. Без заголовков. Без разметки. Как дыхание — не идеальное, но настоящее.
