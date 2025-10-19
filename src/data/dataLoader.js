@@ -1,11 +1,14 @@
 // src/data/dataLoader.js
+
 const { readJSON, writeJSON } = require('../utils/fileUtils');
 const {
+  DATA_DIR,
   JOURNAL_PATH,
   ANALYSIS_PATH,
+  TAG_STATS_PATH,
   SEMANTIC_DICT_PATH,
   MOODS_PATH,
-  CONTEXTS_PATH
+  CONTEXTS_PATH // Обновленный путь к contexts.json
 } = require('../config');
 
 /**
@@ -17,12 +20,26 @@ async function loadJournal() {
 }
 
 /**
+ * Загружает последнюю запись из журнала
+ */
+async function loadLastJournalEntry() {
+  const journal = await loadJournal();
+  if (journal.length > 0) {
+    return journal[journal.length - 1];
+  }
+  return null; // или undefined, в зависимости от предпочтения
+}
+
+/**
  * Получает настроение, соответствующее текущему сезону
  */
 async function getSeasonalMood() {
   try {
     const moods = await readJSON(MOODS_PATH);
+    // Импортируем getCurrentSeason из нового файла утилит
+    const { getCurrentSeason } = require('../utils/dateUtils');
     const season = getCurrentSeason();
+
     const seasonMoods = moods[season];
 
     if (!seasonMoods || !Array.isArray(seasonMoods) || seasonMoods.length === 0) {
@@ -46,7 +63,7 @@ async function getSeasonalMood() {
  */
 async function getAndRemoveFirstContext() {
   try {
-    const contexts = await readJSON(CONTEXTS_PATH);
+    const contexts = await readJSON(CONTEXTS_PATH); // Используем CONTEXTS_PATH из config
     if (!Array.isArray(contexts?.contexts) || contexts.contexts.length === 0) {
       throw new Error("Формат contexts.json нарушен или файл пуст: ожидается { contexts: Array<{ context: string }> } с элементами.");
     }
@@ -61,19 +78,6 @@ async function getAndRemoveFirstContext() {
   } catch (err) {
     console.warn('⚠️ Не удалось загрузить или изменить contexts.json:', err.message);
     return "Ты сидишь за столом. За окном — тишина.";
-  }
-}
-
-/**
- * Загружает семантический словарь
- */
-async function loadSemanticDictionary() {
-  try {
-    const dict = await readJSON(SEMANTIC_DICT_PATH);
-    return dict;
-  } catch (error) {
-    console.warn('⚠️ Не удалось загрузить семантический словарь:', error.message);
-    return {};
   }
 }
 
@@ -105,13 +109,24 @@ async function loadExternalContext() {
   return { previousSuggestions, criticTags, semanticDict };
 }
 
-// Импортируем getCurrentSeason из dateUtils
-const { getCurrentSeason } = require('../utils/dateUtils');
+/**
+ * Загружает семантический словарь
+ */
+async function loadSemanticDictionary() {
+  try {
+    const dict = await readJSON(SEMANTIC_DICT_PATH);
+    return dict;
+  } catch (error) {
+    console.warn('⚠️ Не удалось загрузить семантический словарь:', error.message);
+    return {};
+  }
+}
 
 module.exports = {
   loadJournal,
+  loadLastJournalEntry, // Экспортируем новую функцию
   getSeasonalMood,
   getAndRemoveFirstContext,
-  loadSemanticDictionary,
-  loadExternalContext
+  loadExternalContext,
+  loadSemanticDictionary
 };
