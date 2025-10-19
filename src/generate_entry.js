@@ -234,20 +234,22 @@ async function generateContent(externalContext, mood, context) {
   // --- Парсинг сцены (устойчивый к отсутствию [/SCENE]) ---
   let pose = "she is sitting curled up in a worn vintage armchair, with her legs tucked under her.";
   let setting = "a dimly lit room filled with books, the last rays of the autumn sun.";
-  
-  const sceneMatch = rawEssay.match(/\[SCENE\]\s*Pose:\s*([\s\S]*?)\s*Setting:\s*([\s\S]*?)(?=\n\n|\n\[|$)/);
+
+  // Обновленное регулярное выражение, учитывающее [/SCENE]
+  const sceneMatch = rawEssay.match(/\[SCENE\]\s*\n(?:Pose:\s*(.*?)\s*\n)?(?:Setting:\s*(.*?)\s*\n)?\s*\[\/SCENE\]/);
+
   if (sceneMatch) {
-    pose = sceneMatch[1].trim().replace(/\.$/, '');
-    setting = sceneMatch[2].trim().replace(/\.$/, '');
+    // Используем захваченные группы, если они есть, иначе значения по умолчанию
+    pose = sceneMatch[1] ? sceneMatch[1].trim().replace(/\.$/, '') : pose;
+    setting = sceneMatch[2] ? sceneMatch[2].trim().replace(/\.$/, '') : setting;
     console.log(`🖼️ Извлечена сцена: Поза:"${pose}", Обстановка:"${setting}"`);
   } else {
-    console.warn('⚠️ Блок [SCENE] не найден. Используются значения по умолчанию.');
+    console.warn('⚠️ Блок [SCENE] в формате [SCENE]\nPose: ...\nSetting: ...\n[/SCENE] не найден. Используются значения по умолчанию.');
   }
-  
-  // Удаляем блок [SCENE] из текста
-  //const essayWithoutScene = rawEssay.replace(/\[SCENE\][\s\S]*?(?=\n\n|\n\[|$)/, '').trim();
-  const essayWithoutScene = rawEssay.replace(/\[SCENE\][\s\S]*?Setting:[\s\S]*?\[\/SCENE\]/i, '').trim();
 
+  // Удаляем ВЕСЬ блок [SCENE] ... [/SCENE] из текста эссе
+  const essayWithoutScene = rawEssay.replace(/\[SCENE\][\s\S]*?\[\/SCENE\][\s\n]*/, '').trim();
+  
   // --- Генерация рефлексии ---
   console.log("💭 Генерируем рефлексию...");
   const rawReflection = await withRetry(() => generateReflection(essayWithoutScene), MAX_RETRIES, BASE_DELAY_MS, "генерации рефлексии");
