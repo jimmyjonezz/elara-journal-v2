@@ -1,11 +1,12 @@
 {
   "время": {
-    "count": 50,
+    "count": 51,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-18",
+    "lastSeen": "2025-10-19",
     "types": [
       "critic",
-      "static"
+      "static",
+      "critic_from_analysis"
     ]
   },
   "жизнь": {
@@ -50,12 +51,13 @@
     ]
   },
   "память": {
-    "count": 50,
+    "count": 51,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-18",
+    "lastSeen": "2025-10-19",
     "types": [
       "static",
-      "critic"
+      "critic",
+      "critic_from_analysis"
     ]
   },
   "принятие": {
@@ -83,9 +85,9 @@
     ]
   },
   "грусть": {
-    "count": 15,
+    "count": 16,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-17",
+    "lastSeen": "2025-10-19",
     "types": [
       "static"
     ]
