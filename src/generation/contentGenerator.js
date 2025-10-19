@@ -2,7 +2,7 @@
 
 const { generateEssay, generateReflection } = require('../utils/openrouter');
 const { parseScene } = require('../utils/sceneParser'); // Импортируем функцию из нового файла
-const { cleanReflectionText, determineReflectionLevel } = require('../utils/textProcessor');
+const { cleanReflectionText, determineReflectionLevel, extractTags } = require('../utils/textProcessor'); // Импортируем extractTags из textProcessor
 const { withRetry } = require('../utils/retryHandler');
 const { MAX_RETRIES, BASE_DELAY_MS } = require('../config');
 
@@ -12,7 +12,7 @@ const { MAX_RETRIES, BASE_DELAY_MS } = require('../config');
 async function generateContent(externalContext, mood, context) {
   const { previousSuggestions, semanticDict, criticTags } = externalContext;
 
-  // Извлекаем теги из советов
+  // Извлекаем теги из советов, используя импортированную функцию
   const staticInspirationTags = await extractTags(previousSuggestions, semanticDict);
 
   // Определяем кластеры
@@ -35,7 +35,7 @@ async function generateContent(externalContext, mood, context) {
   console.log("📄 Длина сырого эссе:", rawEssay.length);
 
   // --- Используем вынесенную функцию parseScene ---
-  const { pose, setting, essayWithoutScene } = parseScene(rawEssay); // Вызываем функцию из utils
+  const { pose, setting, essayWithoutScene } = parseScene(rawEssay);
 
   // --- Генерация рефлексии ---
   console.log("💭 Генерируем рефлексию...");
@@ -57,27 +57,7 @@ async function generateContent(externalContext, mood, context) {
   };
 }
 
-// Вспомогательная функция, возможно, тоже стоит вынести в textProcessor
-async function extractTags(text, dictionary) {
-  const lowerText = text.toLowerCase();
-  const tags = new Set();
-
-  for (const [tag, data] of Object.entries(dictionary)) {
-    if (!data.формы || !Array.isArray(data.формы)) continue;
-    for (const form of data.формы) {
-      const normalizedForm = form.trim().toLowerCase();
-      if (normalizedForm && lowerText.includes(normalizedForm)) {
-        tags.add(tag);
-        break;
-      }
-    }
-  }
-
-  if (tags.size === 0) {
-    ["размышление", "выбор", "осмысление"].forEach(tag => tags.add(tag));
-  }
-
-  return Array.from(tags);
-}
+// // Удаляем дублирующую функцию extractTags из этого файла
+// async function extractTags(text, dictionary) { ... }
 
 module.exports = { generateContent };
