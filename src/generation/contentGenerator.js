@@ -1,10 +1,10 @@
 // src/generation/contentGenerator.js
 
 const { generateEssay, generateReflection } = require('../utils/openrouter');
-const { parseScene } = require('../utils/sceneParser'); // Импортируем новую функцию
-const { cleanReflectionText, determineReflectionLevel } = require('../utils/textProcessor'); // Импортируем функции
-const { withRetry } = require('../utils/retryHandler'); // Импортируем сюда
-const { MAX_RETRIES, BASE_DELAY_MS } = require('../config'); // Импортируем конфиг
+const { parseScene } = require('../utils/sceneParser'); // Импортируем функцию из нового файла
+const { cleanReflectionText, determineReflectionLevel } = require('../utils/textProcessor');
+const { withRetry } = require('../utils/retryHandler');
+const { MAX_RETRIES, BASE_DELAY_MS } = require('../config');
 
 /**
  * Генерирует эссе и рефлексию
@@ -13,7 +13,7 @@ async function generateContent(externalContext, mood, context) {
   const { previousSuggestions, semanticDict, criticTags } = externalContext;
 
   // Извлекаем теги из советов
-  const staticInspirationTags = await extractTags(previousSuggestions, semanticDict); // Предполагаем, что extractTags будет вынесена в textProcessor или останется здесь
+  const staticInspirationTags = await extractTags(previousSuggestions, semanticDict);
 
   // Определяем кластеры
   const clusters = [...new Set([...staticInspirationTags, ...criticTags])]
@@ -34,24 +34,8 @@ async function generateContent(externalContext, mood, context) {
   }
   console.log("📄 Длина сырого эссе:", rawEssay.length);
 
-  // --- Парсинг сцены (устойчивый к отсутствию [/SCENE]) ---
-  let pose = "she is sitting curled up in a worn vintage armchair, with her legs tucked under her.";
-  let setting = "a dimly lit room filled with books, the last rays of the autumn sun.";
-
-  // Обновленное регулярное выражение, учитывающее [/SCENE]
-  const sceneMatch = rawEssay.match(/\[SCENE\]\s*\n(?:Pose:\s*(.*?)\s*\n)?(?:Setting:\s*(.*?)\s*\n)?\s*\[\/SCENE\]/);
-
-  if (sceneMatch) {
-    // Используем захваченные группы, если они есть, иначе значения по умолчанию
-    pose = sceneMatch[1] ? sceneMatch[1].trim().replace(/\.$/, '') : pose;
-    setting = sceneMatch[2] ? sceneMatch[2].trim().replace(/\.$/, '') : setting;
-    console.log(`🖼️ Извлечена сцена: Поза:"${pose}", Обстановка:"${setting}"`);
-  } else {
-    console.warn('⚠️ Блок [SCENE] в формате [SCENE]\nPose: ...\nSetting: ...\n[/SCENE] не найден. Используются значения по умолчанию.');
-  }
-
-  // Удаляем ВЕСЬ блок [SCENE] ... [/SCENE] из текста эссе
-  const essayWithoutScene = rawEssay.replace(/\[SCENE\][\s\S]*?\[\/SCENE\][\s\n]*/, '').trim();
+  // --- Используем вынесенную функцию parseScene ---
+  const { pose, setting, essayWithoutScene } = parseScene(rawEssay); // Вызываем функцию из utils
 
   // --- Генерация рефлексии ---
   console.log("💭 Генерируем рефлексию...");
@@ -73,7 +57,7 @@ async function generateContent(externalContext, mood, context) {
   };
 }
 
-// Вспомогательная функция, возможно, тоже стоит вынести
+// Вспомогательная функция, возможно, тоже стоит вынести в textProcessor
 async function extractTags(text, dictionary) {
   const lowerText = text.toLowerCase();
   const tags = new Set();
@@ -95,6 +79,5 @@ async function extractTags(text, dictionary) {
 
   return Array.from(tags);
 }
-
 
 module.exports = { generateContent };
