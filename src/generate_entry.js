@@ -244,7 +244,7 @@ async function generateContent(externalContext, mood, context) {
     setting = sceneMatch[2] ? sceneMatch[2].trim().replace(/\.$/, '') : setting;
     console.log(`🖼️ Извлечена сцена: Поза:"${pose}", Обстановка:"${setting}"`);
   } else {
-    console.warn('⚠️ Блок [SCENE] в формате [SCENE]\nPose: ...\nSetting: ...\n[/SCENE] не найден. Используются значения по умолчанию.');
+    console.warn('⚠️ Блок [SCENE] в формате [SCENE]Pose: ...Setting: ...[/SCENE] не найден. Используются значения по умолчанию.');
   }
 
   // Удаляем ВЕСЬ блок [SCENE] ... [/SCENE] из текста эссе
