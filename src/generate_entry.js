@@ -236,7 +236,7 @@ async function generateContent(externalContext, mood, context) {
   let setting = "a dimly lit room filled with books, the last rays of the autumn sun.";
 
   // Обновленное регулярное выражение, учитывающее [/SCENE]
-  const sceneMatch = rawEssay.match(/\[SCENE\]\s*\n(?:Pose:\s*(.*?)\s*\n)?(?:Setting:\s*(.*?)\s*\n)?\s*\[\/SCENE\]/);
+  const sceneMatch = rawEssay.match(/\[SCENE\]\s*\n(?:Pose:\s*(.*?)\s*\n)?(?:Setting:\s*(.*?)\s*\n)?\s*(?:\[\/SCENE\]|\n{2,})/);
 
   if (sceneMatch) {
     // Используем захваченные группы, если они есть, иначе значения по умолчанию
