@@ -96,8 +96,8 @@ Present — “Я знаю, это может быть оправданием…
 После основного абзаца, в самом конце ответа, добавь строго следующий блок — без пояснений, без отступов:
 
 [SCENE]
-Pose: [одно предложение 30 слов: как она сидит/стоит/двигается — с опорой на телесные детали из текста]
-Setting: [одно–два предложения: интерьер/экстерьер, освещение, время суток, сезон, звуки, запахи — в духе твоего стиля]
+Pose: [one sentence, 30 words: how she is sitting/standing/moving — based on bodily details from the text]
+Setting: [one or two sentences: interior/exterior, lighting, time of day, season, sounds, smells — in your style]
 [/SCENE]
 
 Не включай этот блок в подсчёт 90–120 слов. Он служит только для визуализации.
