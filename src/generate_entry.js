@@ -236,19 +236,18 @@ async function generateContent(externalContext, mood, context) {
   let setting = "a dimly lit room filled with books, the last rays of the autumn sun.";
 
   // Обновленное регулярное выражение, учитывающее [/SCENE]
-  const sceneMatch = rawEssay.match(/\[SCENE\]\s*\n(?:Pose:\s*(.*?)\s*\n)?(?:Setting:\s*(.*?)\s*\n)?\s*(?:\[\/SCENE\]|\n{2,})/);
-
+  // 🔹 Устойчивый парсинг [SCENE] (английские метки, многострочный Setting)
+  const sceneMatch = rawEssay.match(/\[SCENE\]\s*\nPose:\s*([^\n]*)\s*\nSetting:\s*([\s\S]*?)(?=\n\n|\n\[\/SCENE\]|\n\[|$)/);
   if (sceneMatch) {
-    // Используем захваченные группы, если они есть, иначе значения по умолчанию
-    pose = sceneMatch[1] ? sceneMatch[1].trim().replace(/\.$/, '') : pose;
-    setting = sceneMatch[2] ? sceneMatch[2].trim().replace(/\.$/, '') : setting;
-    console.log(`🖼️ Извлечена сцена: Поза:"${pose}", Обстановка:"${setting}"`);
+    pose = sceneMatch[1].trim().replace(/\.$/, '');
+    setting = sceneMatch[2].trim().replace(/\.$/, '');
+    console.log(`🖼️ Извлечена сцена: Поза="${pose}", Обстановка="${setting}"`);
   } else {
-    console.warn('⚠️ Блок [SCENE] в формате [SCENE]Pose: ...Setting: ...[/SCENE] не найден. Используются значения по умолчанию.');
+    console.warn('⚠️ Блок [SCENE] не найден. Используются значения по умолчанию.');
   }
-
-  // Удаляем ВЕСЬ блок [SCENE] ... [/SCENE] из текста эссе
-  const essayWithoutScene = rawEssay.replace(/\[SCENE\][\s\S]*?(?:\[\/SCENE\]|[\n\r]{2,})[\s\n]*/g, '').trim();
+  
+  // 🔹 Удаление всего блока [SCENE]... до первого пустого абзаца или конца
+  const essayWithoutScene = rawEssay.replace(/\[SCENE\]\s*\nPose:[^\n]*\nSetting:[\s\S]*?(?=\n\n|\n\[\/SCENE\]|\n\[|$)/g,'').trim();
   
   // --- Генерация рефлексии ---
   console.log("💭 Генерируем рефлексию...");
