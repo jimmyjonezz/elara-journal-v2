@@ -1,8 +1,8 @@
 {
   "время": {
-    "count": 54,
+    "count": 55,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-20",
+    "lastSeen": "2025-10-21",
     "types": [
       "critic",
       "static",
@@ -10,9 +10,9 @@
     ]
   },
   "жизнь": {
-    "count": 42,
+    "count": 43,
     "firstSeen": "2025-08-25",
-    "lastSeen": "2025-10-20",
+    "lastSeen": "2025-10-21",
     "types": [
       "static",
       "critic"
@@ -51,9 +51,9 @@
     ]
   },
   "память": {
-    "count": 55,
+    "count": 56,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-20",
+    "lastSeen": "2025-10-21",
     "types": [
       "static",
       "critic",
@@ -69,9 +69,9 @@
     ]
   },
   "голос": {
-    "count": 17,
+    "count": 18,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-15",
+    "lastSeen": "2025-10-21",
     "types": [
       "static"
     ]
@@ -85,9 +85,9 @@
     ]
   },
   "грусть": {
-    "count": 15,
+    "count": 16,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-17",
+    "lastSeen": "2025-10-21",
     "types": [
       "static"
     ]
@@ -109,9 +109,9 @@
     ]
   },
   "размышление": {
-    "count": 26,
+    "count": 27,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-18",
+    "lastSeen": "2025-10-21",
     "types": [
       "static",
       "critic"
@@ -410,6 +410,22 @@
     "count": 2,
     "firstSeen": "2025-10-19",
     "lastSeen": "2025-10-20",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "палимпсест": {
+    "count": 1,
+    "firstSeen": "2025-10-21",
+    "lastSeen": "2025-10-21",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "телесность": {
+    "count": 1,
+    "firstSeen": "2025-10-21",
+    "lastSeen": "2025-10-21",
     "types": [
       "critic_from_analysis"
     ]
