@@ -158,9 +158,9 @@
     ]
   },
   "осознание": {
-    "count": 16,
+    "count": 17,
     "firstSeen": "2025-08-30",
-    "lastSeen": "2025-10-13",
+    "lastSeen": "2025-10-22",
     "types": [
       "static"
     ]
@@ -407,9 +407,9 @@
     ]
   },
   "идентичность": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-10-19",
-    "lastSeen": "2025-10-20",
+    "lastSeen": "2025-10-22",
     "types": [
       "critic_from_analysis"
     ]
@@ -426,6 +426,14 @@
     "count": 1,
     "firstSeen": "2025-10-21",
     "lastSeen": "2025-10-21",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "потеря": {
+    "count": 1,
+    "firstSeen": "2025-10-22",
+    "lastSeen": "2025-10-22",
     "types": [
       "critic_from_analysis"
     ]
