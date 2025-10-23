@@ -1,10 +1,6 @@
 {
   "contexts": [
     {
-      "id": 2,
-      "context": "The smell of wet wool in a subway station — identical to the scarf she wore the winter her mother stopped calling. She doesn’t shiver. She stops breathing."
-    },
-    {
       "id": 3,
       "context": "A child’s laughter echoing in an empty hallway — the exact pitch of her younger brother’s. For three seconds, she turns, expecting him. The hallway stays empty. Her chest doesn’t."
     },
@@ -59,6 +55,9 @@
     {
       "id": 16,
       "context": "A sudden silence between subway stops — deep enough to hear the echo of her own voice whispering 'I’m sorry' into a phone that’s long since dead. She doesn’t speak. She listens."
+    },
+    {
+      "context": "Звук шагов по мокрому асфальту, который внезапно совпадает с ритмом мелодии из кафе — и на миг кажется, что кто-то идёт рядом."
     }
   ]
 }
