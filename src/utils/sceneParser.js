@@ -5,7 +5,7 @@
  * @param {string} rawEssayText - Исходный текст эссе, содержащий блок [SCENE].
  * @returns {Object} Объект с полями pose, setting и essayWithoutScene.
  */
-function parseScene(rawEssayText) {
+function parseScene(rawEssay) {
   let pose = "she is sitting curled up in a worn vintage armchair, with her legs tucked under her.";
   let setting = "a dimly lit room filled with books, the last rays of the autumn sun.";
 
