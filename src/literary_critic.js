@@ -101,35 +101,31 @@ async function runLiteraryCritique() {
     BASE_DELAY_MS,
     'генерации литературного анализа'
   );
-
-  // --- НАЧАЛО: усиленная проверка и парсинг JSON ---
+  
+  //Надёжное извлечение и парсинг JSON из ответа модели ---
   let analysis;
-  if (typeof rawResponse === 'string' && rawResponse.trim() !== '') {
+  if (typeof rawResponse === 'string') {
     try {
-      // Удаляем возможные блоки кода
-      const cleanJson = rawResponse
-        .replace(/^```json\s*/i, '')
-        .replace(/\s*```$/i, '')
-        .trim();
-      if (cleanJson) {
-        analysis = JSON.parse(cleanJson);
-      } else {
-        throw new Error('Модель вернула пустой JSON-ответ после очистки.');
+      // Находим первую '{' и последнюю '}' — отсекаем всё лишнее
+      const startIdx = rawResponse.indexOf('{');
+      const endIdx = rawResponse.lastIndexOf('}');
+      
+      if (startIdx === -1 || endIdx === -1 || startIdx >= endIdx) {
+        throw new Error('Не удалось найти корректные границы JSON-объекта');
       }
+    
+      const jsonStr = rawResponse.slice(startIdx, endIdx + 1);
+      analysis = JSON.parse(jsonStr);
     } catch (e) {
       console.error('❌ Ошибка парсинга JSON от критика:', e.message);
-      console.error('📝 Сырой ответ от модели:');
-      console.error(rawResponse);
+      console.error('📝 Сырой ответ от модели (первые 500 символов):');
+      console.error(rawResponse.substring(0, 500));
       throw new Error('Некорректный формат ответа от модели');
     }
   } else {
-    console.error('❌ Модель вернула пустой или некорректный ответ (не строка или пустая строка).');
-    console.error('📝 Сырой ответ от модели (тип):', typeof rawResponse);
-    console.error('📝 Сырой ответ от модели (содержимое):', rawResponse);
-    throw new Error('Модель вернула пустой или некорректный ответ');
+    analysis = rawResponse; // уже объект
   }
-  // --- КОНЕЦ: усиленная проверка и парсинг JSON ---
-
+  
   // Удаляем generated_at, если модель его добавила (чтобы не перезаписал системную дату)
   delete analysis.generated_at;
 
