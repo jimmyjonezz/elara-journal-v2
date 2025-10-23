@@ -9,21 +9,20 @@ function parseScene(rawEssayText) {
   let pose = "she is sitting curled up in a worn vintage armchair, with her legs tucked under her.";
   let setting = "a dimly lit room filled with books, the last rays of the autumn sun.";
 
-  // Обновленное регулярное выражение, учитывающее [/SCENE]
-  const sceneMatch = rawEssayText.match(/\[SCENE\]\s*\n(?:Pose:\s*(.*?)\s*\n)?(?:Setting:\s*(.*?)\s*\n)?\s*\[\/SCENE\]/);
-
+  //Обновленное регулярное выражение, учитывающее [/SCENE]
+  //Устойчивый парсинг [SCENE] (английские метки, многострочный Setting)
+  const sceneMatch = rawEssay.match(/\[SCENE\]\s*\nPose:\s*([^\n]*)\s*\nSetting:\s*([\s\S]*?)(?=\n\n|\n\[\/SCENE\]|\n\[|$)/);
   if (sceneMatch) {
-    // Используем захваченные группы, если они есть, иначе значения по умолчанию
-    pose = sceneMatch[1] ? sceneMatch[1].trim().replace(/\.$/, '') : pose;
-    setting = sceneMatch[2] ? sceneMatch[2].trim().replace(/\.$/, '') : setting;
-    console.log(`🖼️ Извлечена сцена: Поза:"${pose}", Обстановка:"${setting}"`);
+    pose = sceneMatch[1].trim().replace(/\.$/, '');
+    setting = sceneMatch[2].trim().replace(/\.$/, '');
+    console.log(`🖼️ Извлечена сцена: Поза="${pose}", Обстановка="${setting}"`);
   } else {
-    console.warn('⚠️ Блок [SCENE] в формате [SCENE]\nPose: ...\nSetting: ...\n[/SCENE] не найден. Используются значения по умолчанию.');
+    console.warn('⚠️ Блок [SCENE] не найден. Используются значения по умолчанию.');
   }
-
-  // Удаляем ВЕСЬ блок [SCENE] ... [/SCENE] из текста эссе
-  const essayWithoutScene = rawEssayText.replace(/\[SCENE\][\s\S]*?\[\/SCENE\][\s\n]*/, '').trim();
-
+  
+  //Удаление всего блока [SCENE]... до первого пустого абзаца или конца
+  const essayWithoutScene = rawEssay.replace(/\[SCENE\]\s*\nPose:[^\n]*\nSetting:[\s\S]*?(?=\n\n|\n\[\/SCENE\]|\n\[|$)/g,'').trim();
+  
   return { pose, setting, essayWithoutScene };
 }
 
