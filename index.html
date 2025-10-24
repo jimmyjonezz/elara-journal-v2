@@ -231,50 +231,46 @@
         }
 
         function renderEntry(entry, container) {
-            const parts = entry.entry.split('\n\n');
-            let essayContent = '';
-            let reflectionContent = '';
-
-            if (parts.length >= 2) {
-                essayContent = parts.slice(0, -1).join('\n\n');
-                reflectionContent = parts[parts.length - 1];
-            } else {
-                essayContent = entry.entry;
-            }
-
+            // --- ИСПОЛЬЗУЕМ НОВЫЕ ПОЛЯ ---
+            const essayContent = entry.raw_essay || entry.entry || ''; // Резервное значение: старое поле
+            const reflectionContent = entry.raw_reflection || ''; // Используем новое поле
+            // --- КОНЕЦ ИЗМЕНЕНИЯ ---
+            
             const formattedEssay = essayContent.replace(/^> /gm, '');
-
+            
             const headerHtml = `
-                <div class="entry-header">
-                    <div class="entry-meta">
-                        <span class="entry-date">${entry.date || 'Без даты'}</span>
-                        <span class="reflection-level Label Label--outline">Рефлексия: ${
-                            {
-                                'высокий': 'Глубокая',
-                                'средний': 'Средняя',
-                                'низкий': 'Поверхностная'
-                            }[entry.reflection_level] || entry.reflection_level || ''
-                        }</span>
-                    </div>
-                </div>
-            `;
+            <div class="entry-header">
+            <div class="entry-meta">
+            <span class="entry-date">${entry.date || 'Без даты'}</span>
+                <span class="reflection-level Label Label--outline">Рефлексия: ${
+                    {
+                        'высокий': 'Глубокая',
+                        'средний': 'Средняя',
+                        'низкий': 'Поверхностная'
+                    }[entry.reflection_level] || entry.reflection_level || ''
+                }</span>
+            </div>
+        </div>
+    `;
 
-            const essayHtml = `
-                <div class="entry-section">
-                    <h3 class="section-title-small">Эссе</h3>
-                    <div class="entry-text">${escapeHtml(formattedEssay).replace(/\n/g, '<br>')}</div>
-                </div>
-            `;
+    const essayHtml = `
+        <div class="entry-section">
+            <h3 class="section-title-small">Эссе</h3>
+            <div class="entry-text">${escapeHtml(formattedEssay).replace(/\n/g, '<br>')}</div>
+        </div>
+    `;
 
-            let reflectionHtml = '';
-            if (reflectionContent.trim() !== '') {
-                reflectionHtml = `
-                    <div class="entry-section">
-                        <h3 class="section-title-small">Рефлексия Элары</h3>
-                        <div class="entry-reflection">${escapeHtml(reflectionContent).replace(/\n/g, '<br>')}</div>
-                    </div>
-                `;
-            }
+    let reflectionHtml = '';
+    // Проверяем теперь новое поле
+    if (reflectionContent && reflectionContent.trim() !== '') {
+        reflectionHtml = `
+            <div class="entry-section">
+                <h3 class="section-title-small">Рефлексия Элары</h3>
+                <div class="entry-reflection">${escapeHtml(reflectionContent).replace(/\n/g, '<br>')}</div>
+            </div>
+        `;
+    }
+
 
             // --- Новый блок ---
             let tagsHtml = '';
