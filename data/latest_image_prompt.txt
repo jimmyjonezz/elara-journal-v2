@@ -1,9 +1,9 @@
-Character: A 24-year-old woman with long wavy brown hair casually gathered at the back. Slumped in the seat, hands clutched around a worn-out book, eyes fixed on the passing lights outside the window. She is wearing a white blouse with ruffles and a deep neckline, with a thin gold chain and pendant around her neck. Her expression is pensive, calm, with a hint of unresolved tension: her gaze is detached, lips slightly parted, cheeks lightly flushed.
+Character: A 24-year-old woman with long wavy brown hair casually gathered at the back. She sits at her desk, elbows on the table, hands clasped around a cup of tea, staring at the envelope in front of her, her eyes reflecting the soft glow of the lamp. She is wearing a white blouse with ruffles and a deep neckline, with a thin gold chain and pendant around her neck. Her expression is pensive, calm, with a hint of unresolved tension: her gaze is detached, lips slightly parted, cheeks lightly flushed.
 
-Setting: A dimly lit train carriage, filled with the hum of the tracks and the distant murmurs of other passengers. The scent of old paper and distant rain hangs in the air, as the train rumbles through the city at dusk
+Setting: The room is bathed in a warm, amber light from the setting sun, filtering through the slightly parted curtains. The air is filled with the faint scent of old books and dust, mixed with the faint, lingering aroma of the letter's cologne. The clock on the wall ticks away the seconds, each one echoing in the otherwise silent room
 
 Atmosphere: melancholic, intimate, timeless, filled with emotional nuances.
 
 Key requirements: keep the character's appearance, clothing, and proportions absolutely unchanged; change only the background and surroundings.
 
-Art style: hyper-realistic painterly illustration, soft natural lighting, slight depth of field, muted earthy tones with "golden hour" accents.
+Style: ultra-realistic painterly illustration with sharp 8K details, soft natural lighting, slight depth of field, muted earthy tones with "golden hour" accents.

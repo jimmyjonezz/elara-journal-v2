@@ -1,8 +1,8 @@
 {
   "время": {
-    "count": 58,
+    "count": 59,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-25",
+    "lastSeen": "2025-10-26",
     "types": [
       "critic",
       "static",
@@ -51,9 +51,9 @@
     ]
   },
   "память": {
-    "count": 59,
+    "count": 60,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-25",
+    "lastSeen": "2025-10-26",
     "types": [
       "static",
       "critic",
@@ -69,9 +69,9 @@
     ]
   },
   "голос": {
-    "count": 19,
+    "count": 20,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-23",
+    "lastSeen": "2025-10-26",
     "types": [
       "static"
     ]
@@ -158,9 +158,9 @@
     ]
   },
   "осознание": {
-    "count": 18,
+    "count": 19,
     "firstSeen": "2025-08-30",
-    "lastSeen": "2025-10-25",
+    "lastSeen": "2025-10-26",
     "types": [
       "static"
     ]
@@ -246,11 +246,12 @@
     ]
   },
   "судьба": {
-    "count": 17,
+    "count": 18,
     "firstSeen": "2025-09-07",
-    "lastSeen": "2025-10-25",
+    "lastSeen": "2025-10-26",
     "types": [
-      "static"
+      "static",
+      "critic_from_analysis"
     ]
   },
   "изоляция": {
@@ -458,6 +459,14 @@
     "count": 1,
     "firstSeen": "2025-10-24",
     "lastSeen": "2025-10-24",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "темные мысли": {
+    "count": 1,
+    "firstSeen": "2025-10-26",
+    "lastSeen": "2025-10-26",
     "types": [
       "critic_from_analysis"
     ]
