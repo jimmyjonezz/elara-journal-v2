@@ -10,9 +10,9 @@
     ]
   },
   "жизнь": {
-    "count": 45,
+    "count": 46,
     "firstSeen": "2025-08-25",
-    "lastSeen": "2025-10-24",
+    "lastSeen": "2025-10-28",
     "types": [
       "static",
       "critic"
@@ -51,7 +51,7 @@
     ]
   },
   "память": {
-    "count": 62,
+    "count": 63,
     "firstSeen": "2025-08-26",
     "lastSeen": "2025-10-28",
     "types": [
@@ -85,9 +85,9 @@
     ]
   },
   "грусть": {
-    "count": 19,
+    "count": 20,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-27",
+    "lastSeen": "2025-10-28",
     "types": [
       "static"
     ]
@@ -101,11 +101,12 @@
     ]
   },
   "воспоминания": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-03",
+    "lastSeen": "2025-10-28",
     "types": [
-      "critic"
+      "critic",
+      "critic_from_analysis"
     ]
   },
   "размышление": {
@@ -134,9 +135,9 @@
     ]
   },
   "смысл": {
-    "count": 13,
+    "count": 14,
     "firstSeen": "2025-08-28",
-    "lastSeen": "2025-10-24",
+    "lastSeen": "2025-10-28",
     "types": [
       "static"
     ]
@@ -328,11 +329,12 @@
     ]
   },
   "одиночество": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2025-09-18",
     "lastSeen": "2025-10-28",
     "types": [
-      "static"
+      "static",
+      "critic_from_analysis"
     ]
   },
   "самоопределение": {
