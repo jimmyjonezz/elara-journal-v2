@@ -1,4 +1,4 @@
-name: Generate Image with Flux.1
+name: Generate Image
 
 on:
   workflow_dispatch:
@@ -8,6 +8,10 @@ on:
         required: false
         default: 'A cute dog in a park'
         type: string
+  workflow_call:
+    secrets:
+      REPLICATE_API_TOKEN:
+        required: true
 
 jobs:
   generate:
@@ -29,13 +33,14 @@ jobs:
       - name: Generate image
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }} # <-- Добавить эту строку
           PROMPT: ${{ inputs.prompt }}
         run: python src/generate_image.py
 
       - name: List files for debug  # Debug: Проверяем, что файл создался
         run: |
           ls -la data/
-          if [ ! -f data/*.png ]; then echo "Предупреждение: Нет PNG в data/"; fi
+          if [ ! -f data/*.webp ]; then echo "Предупреждение: Нет webp в data/"; fi
 
       - name: Commit and push generated image  # Новый step: Автоматический коммит в repo
         uses: stefanzweifel/git-auto-commit-action@v5

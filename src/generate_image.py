@@ -1,133 +1,126 @@
-#generate_image.py
+#src/generate_image.py
 """
-Генератор изображений для Журнала Элары
-Использует black-forest-labs/FLUX.1-schnell через Hugging Face Inference API
+Скрипт генерации изображения для Журнала Элары.
+Использует промпт из data/latest_image_prompt.txt и дату из data/journal.json.
+Сохраняет изображение в data/images/{date}.webp
 """
 
+import replicate
 import requests
 import os
+import datetime
+import json
 import sys
-import argparse
-from PIL import Image
-from io import BytesIO
 
-# 🔹 Эндпоинт FLUX.1-schnell (работает при наличии валидного HF_TOKEN)
-API_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell"
+# 🔑 Убедитесь, что установлен API ключ Replicate
+REPLICATE_API_TOKEN = os.environ.get("REPLICATE_API_TOKEN")
+if not REPLICATE_API_TOKEN or not REPLICATE_API_TOKEN.startswith("r8_"):
+    print("❌ Не найден или некорректный API ключ Replicate (ожидается r8_...)")
+    print("Пожалуйста, установите переменную окружения REPLICATE_API_TOKEN.")
+    sys.exit(1)
 
-def get_hf_token():
-    """Получает токен из переменной окружения."""
-    token = os.getenv('HF_TOKEN')
-    if not token:
-        print("❌ Ошибка: HF_TOKEN не найден. Установите его в .env или GitHub Secrets.")
-        sys.exit(1)
-    return {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+# 📁 Определяем пути
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(PROJECT_ROOT, "data")
+IMAGES_DIR = os.path.join(DATA_DIR, "images")
+IMAGE_PROMPT_FILE = os.path.join(DATA_DIR, "latest_image_prompt.txt")
+JOURNAL_FILE = os.path.join(DATA_DIR, "journal.json")
 
-def read_prompt_from_file(filepath):
-    """Читает промпт из текстового файла."""
-    try:
-        with open(filepath, 'r', encoding='utf-8') as f:
-            return f.read().strip()
-    except Exception as e:
-        print(f"❌ Не удалось прочитать файл промпта: {e}")
-        sys.exit(1)
+# 📁 Создаём папку для изображений, если её нет
+os.makedirs(IMAGES_DIR, exist_ok=True)
 
-def generate_image(prompt, headers, num_inference_steps=4, guidance_scale=8.0, seed=None):
-    """
-    Генерирует изображение через Hugging Face Inference API.
-    """
-    parameters = {
-        "num_inference_steps": num_inference_steps,
-        "guidance_scale": guidance_scale
-    }
-    if seed is not None:
-        parameters["seed"] = seed
+# 📄 Читаем дату последней записи из journal.json
+try:
+    with open(JOURNAL_FILE, "r", encoding="utf-8") as f:
+        journal_data = json.load(f)
+    if not journal_data or not isinstance(journal_data, list):
+        raise ValueError("Файл journal.json пуст или не содержит массив записей.")
+    last_entry = journal_data[-1]  # Берём последнюю запись
+    entry_date_str = last_entry.get("date")
+    if not entry_date_str:
+        raise ValueError("Поле 'date' отсутствует в последней записи journal.json.")
+    # Проверяем формат даты (YYYY-MM-DD)
+    entry_date = datetime.datetime.strptime(entry_date_str, "%Y-%m-%d").date()
+    print(f"✅ Дата из последней записи: {entry_date_str}")
+except FileNotFoundError:
+    print(f"❌ Файл {JOURNAL_FILE} не найден!")
+    sys.exit(1)
+except (ValueError, KeyError, IndexError) as e:
+    print(f"❌ Ошибка чтения даты из {JOURNAL_FILE}: {e}")
+    sys.exit(1)
+except Exception as e:
+    print(f"❌ Непредвиденная ошибка при чтении {JOURNAL_FILE}: {e}")
+    sys.exit(1)
 
-    payload = {
-        "inputs": prompt,
-        "parameters": parameters
-    }
+# 📄 Читаем промпт из latest_image_prompt.txt
+try:
+    with open(IMAGE_PROMPT_FILE, "r", encoding="utf-8") as f:
+        prompt_text = f.read().strip()
+    if not prompt_text:
+        raise ValueError("Файл latest_image_prompt.txt пуст.")
+    print("✅ Промпт загружен из latest_image_prompt.txt")
+except FileNotFoundError:
+    print(f"❌ Файл {IMAGE_PROMPT_FILE} не найден!")
+    print("Убедитесь, что generate_entry.js успешно отработал и создал файл.")
+    sys.exit(1)
+except Exception as e:
+    print(f"❌ Ошибка чтения файла {IMAGE_PROMPT_FILE}: {e}")
+    sys.exit(1)
 
-    print("🖼️ Отправляю запрос к FLUX.1-schnell...")
-    try:
-        response = requests.post(API_URL, headers=headers, json=payload, timeout=60)
-        
-        # Модель может быть в очереди — Hugging Face возвращает 503 с estimated_time
-        if response.status_code == 503:
-            error_data = response.json()
-            wait_time = error_data.get("estimated_time", 20)
-            print(f"⏳ Модель загружается. Примерное ожидание: {wait_time} секунд.")
-            print("ℹ️ Повторный запуск через CI рекомендуется, если это локальный запуск.")
-            return None
+# 🖼️ Генерируем изображение
+try:
+    print("🖼️ Запускаем генерацию изображения через Replicate (black-forest-labs/flux-dev)...")
 
-        response.raise_for_status()
-        content_type = response.headers.get('content-type', '')
+    output = replicate.run(
+        "black-forest-labs/flux-dev",
+        input={
+            "prompt": prompt_text,
+            "go_fast": True,
+            "guidance": 4.5,
+            "megapixels": "1",
+            "num_outputs": 1,
+            "aspect_ratio": "1:1",
+            "output_format": "webp",
+            "output_quality": 80,
+            "prompt_strength": 0.8,
+            "num_inference_steps": 28,
+            "seed": 2909 # <-- ИСПРАВЛЕНО: seed возвращён для постоянства облика
+        }
+    )
 
-        if 'image' in content_type:
-            return response.content
-        else:
-            # Иногда возвращается JSON с ошибкой
-            try:
-                error_json = response.json()
-                print(f"❌ Ошибка API: {error_json}")
-            except:
-                print(f"❌ Неожиданный ответ: {response.text[:200]}...")
-            return None
+    if not output or len(output) == 0:
+        raise ValueError("Replicate вернул пустой ответ.")
 
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Ошибка сети или запроса: {e}")
-        return None
+    image_url = output[0]
+    print(f"✅ Изображение сгенерировано! Ссылка: {image_url}")
 
-def save_image(image_bytes, output_path="data/generated_image.png"):
-    """Сохраняет изображение в указанный путь."""
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    if image_bytes:
-        try:
-            image = Image.open(BytesIO(image_bytes))
-            image.save(output_path)
-            print(f"✅ Изображение сохранено: {output_path}")
-            return True
-        except Exception as e:
-            print(f"❌ Ошибка при сохранении изображения: {e}")
-    else:
-        print("❌ Нет данных изображения для сохранения.")
-    return False
+    # 📥 Скачиваем изображение
+    print("📥 Скачиваем изображение...")
+    response = requests.get(image_url, headers={'User-Agent': 'Mozilla/5.0 (compatible; ImageGenerator/1.0)'})
 
-def main():
-    parser = argparse.ArgumentParser(description="Генерация изображения Элары через FLUX.1-schnell")
-    parser.add_argument("--prompt", type=str, help="Прямой промпт для генерации")
-    parser.add_argument("--prompt-file", type=str, help="Путь к файлу с промптом (например, data/latest_image_prompt.txt)")
-    parser.add_argument("--output", type=str, default="data/generated_image.png", help="Путь для сохранения изображения")
-    parser.add_argument("--seed", type=int, help="Числовой seed для детерминированной генерации (например, 42)")
-    args = parser.parse_args()
+    if response.status_code != 200:
+        raise requests.HTTPError(f"HTTP {response.status_code}: Не удалось скачать изображение.")
 
-    # Определяем промпт
-    if args.prompt_file:
-        prompt = read_prompt_from_file(args.prompt_file)
-        print(f"📄 Промпт загружен из: {args.prompt_file}")
-    elif args.prompt:
-        prompt = args.prompt
-        print("✏️  Используется промпт из аргумента.")
-    else:
-        prompt = os.getenv('PROMPT')
-        if not prompt:
-            print("❌ Не указан промпт: используйте --prompt, --prompt-file или переменную PROMPT.")
-            sys.exit(1)
-        print("🌍 Промпт взят из переменной окружения PROMPT.")
+    # 🆕 Формируем имя файла на основе даты записи
+    filename = f"{entry_date_str}.webp"
+    filepath = os.path.join(IMAGES_DIR, filename)
 
-    print(f"
-🔍 Длина промпта: {len(prompt)} символов
-")
+    # 📁 Проверяем, существует ли файл с таким именем (на случай повторного запуска)
+    if os.path.exists(filepath):
+        print(f"⚠️ Файл {filepath} уже существует. Перезаписываем...")
 
-    headers = get_hf_token()
-    image_bytes = generate_image(prompt, headers, seed=args.seed)
+    with open(filepath, "wb") as f:
+        f.write(response.content)
 
-    if image_bytes and save_image(image_bytes, args.output):
-        print("
-🎉 Генерация завершена успешно!")
-    else:
-        print("
-💥 Не удалось сгенерировать изображение.")
-        sys.exit(1)
+    print(f"✅ Изображение успешно сохранено как '{filepath}'")
+    print(f"📁 Полный путь: {os.path.abspath(filepath)}")
 
-if __name__ == "__main__":
-    main()
+except replicate.ReplicateError as e:
+    print(f"❌ Ошибка Replicate API: {e}")
+    sys.exit(1)
+except requests.RequestException as e:
+    print(f"❌ Ошибка скачивания изображения: {e}")
+    sys.exit(1)
+except Exception as e:
+    print(f"❌ Непредвиденная ошибка: {e}")
+    sys.exit(1)

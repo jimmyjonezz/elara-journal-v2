@@ -7,6 +7,8 @@
 import os
 import json
 import requests
+import glob
+from datetime import datetime
 from post_generator import create_post, load_latest_entry
 
 # Конфигурация ВКонтакте
@@ -24,14 +26,19 @@ def get_wall_upload_server():
     }
     response = requests.get(url, params=params)
     data = response.json()
+    if 'error' in data:
+        raise Exception(f"VK API Error getting upload server: {data['error']}")
     return data["response"]["upload_url"]
 
 
 def upload_image_to_server(upload_url, image_path):
     """Загружает изображение на сервер ВК"""
-    files = {"photo": open(image_path, "rb")}
-    response = requests.post(upload_url, files=files)
+    with open(image_path, "rb") as f:
+        files = {"photo": f}
+        response = requests.post(upload_url, files=files)
     data = response.json()
+    if 'error' in data:
+        raise Exception(f"VK API Error uploading photo: {data['error']}")
     return data
 
 
@@ -48,7 +55,9 @@ def save_wall_photo(photo, server, hash_value):
     }
     response = requests.post(url, params=params)
     data = response.json()
-    return data["response"][0]  # attachment string
+    if 'error' in data:
+        raise Exception(f"VK API Error saving photo: {data['error']}")
+    return data["response"][0]  # attachment object
 
 
 def post_to_vk(message, attachment=None):
@@ -69,6 +78,27 @@ def post_to_vk(message, attachment=None):
     return response.json()
 
 
+def get_latest_image_from_folder(folder_path="data/images/"):
+    """Находит последнее по дате создания изображение в папке"""
+    # Поддерживаемые расширения изображений
+    extensions = ["*.webp", "*.png", "*.jpg", "*.jpeg"]
+    image_files = []
+    for ext in extensions:
+        # Ищем файлы в указанной папке
+        image_files.extend(glob.glob(os.path.join(folder_path, ext)))
+        image_files.extend(glob.glob(os.path.join(folder_path, ext.upper()))) # для *.WEBP и т.п.
+
+    if not image_files:
+        print(f"🖼️ В папке {folder_path} не найдено изображений.")
+        return None
+
+    # Находим файл с самой поздней датой модификации (mtime)
+    latest_file = max(image_files, key=os.path.getmtime)
+    latest_time = datetime.fromtimestamp(os.path.getmtime(latest_file))
+    print(f"🖼️ Найдено последнее изображение: {latest_file} (изменено: {latest_time.strftime('%Y-%m-%d %H:%M:%S')})")
+    return latest_file
+
+
 def main():
     print("🚀 Подготовка поста для ВКонтакте...")
 
@@ -80,10 +110,11 @@ def main():
 
     post_text = create_post(entry)
 
-    # 2. Загружаем изображение (лог, скриншот и т.п.)
-    image_path = "logs/latest_run.png"  # или путь к вашему изображению
-    if not os.path.exists(image_path):
-        print(f"🖼️ Изображение не найдено: {image_path} → публикация без фото")
+    # 2. Находим последнее сгенерированное изображение
+    image_path = get_latest_image_from_folder()
+
+    if not image_path or not os.path.exists(image_path):
+        print(f"🖼️ Изображение не найдено или путь неверен: {image_path} → публикация без фото")
         result = post_to_vk(post_text)
     else:
         try:
@@ -112,7 +143,7 @@ def main():
 
     # 3. Результат
     if "response" in result:
-        print(f"✅ Пост опубликован: https://vk.ru/club{VK_GROUP_ID}")
+        print(f"✅ Пост опубликован: https://vk.com/club{VK_GROUP_ID}")
         print(f"Post ID: {result['response']['post_id']}")
     else:
         print(f"❌ Ошибка публикации: {result}")

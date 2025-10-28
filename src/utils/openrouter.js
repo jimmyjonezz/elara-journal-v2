@@ -10,7 +10,7 @@ const ESSAY_MODEL = "mistralai/mistral-nemo:free";
 // Альтернативы: "qwen/qwen3-8b:free", "cognitivecomputations/dolphin-mistral-24b-venice-edition:free"
 
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
-const CRITIQUE_MODEL = "tngtech/deepseek-r1t2-chimera:free";
+const CRITIQUE_MODEL = "nousresearch/deephermes-3-llama-3-8b-preview:free";
 // Если нужна бесплатная: "tngtech/deepseek-r1t2-chimera:free" — но возможны ошибки формата
 const today = new Date().toLocaleDateString('ru-RU', {
   day: 'numeric',
@@ -138,7 +138,7 @@ async function generateCritique(data) {
       model: CRITIQUE_MODEL,
       messages: [{ role: "user", content: prompt }],
       temperature: 0.7,
-      max_tokens: 3072
+      max_tokens: 6000
     })
   });
 
