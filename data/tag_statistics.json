@@ -1,0 +1,490 @@
+{
+  "время": {
+    "count": 61,
+    "firstSeen": "2025-08-27",
+    "lastSeen": "2025-10-28",
+    "types": [
+      "critic",
+      "static",
+      "critic_from_analysis"
+    ]
+  },
+  "жизнь": {
+    "count": 45,
+    "firstSeen": "2025-08-25",
+    "lastSeen": "2025-10-24",
+    "types": [
+      "static",
+      "critic"
+    ]
+  },
+  "перемены": {
+    "count": 3,
+    "firstSeen": "2025-08-25",
+    "lastSeen": "2025-10-01",
+    "types": [
+      "critic"
+    ]
+  },
+  "самоисследование": {
+    "count": 2,
+    "firstSeen": "2025-08-25",
+    "lastSeen": "2025-08-25",
+    "types": [
+      "critic"
+    ]
+  },
+  "ветер": {
+    "count": 10,
+    "firstSeen": "2025-08-25",
+    "lastSeen": "2025-10-02",
+    "types": [
+      "static"
+    ]
+  },
+  "гармония": {
+    "count": 2,
+    "firstSeen": "2025-08-25",
+    "lastSeen": "2025-08-25",
+    "types": [
+      "critic"
+    ]
+  },
+  "память": {
+    "count": 62,
+    "firstSeen": "2025-08-26",
+    "lastSeen": "2025-10-28",
+    "types": [
+      "static",
+      "critic",
+      "critic_from_analysis"
+    ]
+  },
+  "принятие": {
+    "count": 3,
+    "firstSeen": "2025-08-26",
+    "lastSeen": "2025-10-05",
+    "types": [
+      "critic"
+    ]
+  },
+  "голос": {
+    "count": 21,
+    "firstSeen": "2025-08-26",
+    "lastSeen": "2025-10-27",
+    "types": [
+      "static"
+    ]
+  },
+  "любовь": {
+    "count": 5,
+    "firstSeen": "2025-08-26",
+    "lastSeen": "2025-10-15",
+    "types": [
+      "static"
+    ]
+  },
+  "грусть": {
+    "count": 19,
+    "firstSeen": "2025-08-26",
+    "lastSeen": "2025-10-27",
+    "types": [
+      "static"
+    ]
+  },
+  "Личные воспоминания": {
+    "count": 1,
+    "firstSeen": "2025-08-26",
+    "lastSeen": "2025-08-26",
+    "types": [
+      "critic"
+    ]
+  },
+  "воспоминания": {
+    "count": 4,
+    "firstSeen": "2025-08-27",
+    "lastSeen": "2025-10-03",
+    "types": [
+      "critic"
+    ]
+  },
+  "размышление": {
+    "count": 30,
+    "firstSeen": "2025-08-27",
+    "lastSeen": "2025-10-28",
+    "types": [
+      "static",
+      "critic"
+    ]
+  },
+  "внутренний_диалог": {
+    "count": 3,
+    "firstSeen": "2025-08-27",
+    "lastSeen": "2025-08-30",
+    "types": [
+      "static"
+    ]
+  },
+  "осмысление": {
+    "count": 9,
+    "firstSeen": "2025-08-27",
+    "lastSeen": "2025-10-11",
+    "types": [
+      "static"
+    ]
+  },
+  "смысл": {
+    "count": 13,
+    "firstSeen": "2025-08-28",
+    "lastSeen": "2025-10-24",
+    "types": [
+      "static"
+    ]
+  },
+  "воспоминания и время": {
+    "count": 2,
+    "firstSeen": "2025-08-28",
+    "lastSeen": "2025-08-28",
+    "types": [
+      "critic"
+    ]
+  },
+  "традиции": {
+    "count": 2,
+    "firstSeen": "2025-08-28",
+    "lastSeen": "2025-08-28",
+    "types": [
+      "critic"
+    ]
+  },
+  "осознание": {
+    "count": 19,
+    "firstSeen": "2025-08-30",
+    "lastSeen": "2025-10-26",
+    "types": [
+      "static"
+    ]
+  },
+  "восприятие": {
+    "count": 7,
+    "firstSeen": "2025-08-30",
+    "lastSeen": "2025-09-05",
+    "types": [
+      "critic"
+    ]
+  },
+  "наблюдение": {
+    "count": 1,
+    "firstSeen": "2025-08-30",
+    "lastSeen": "2025-08-30",
+    "types": [
+      "critic"
+    ]
+  },
+  "выбор": {
+    "count": 8,
+    "firstSeen": "2025-08-31",
+    "lastSeen": "2025-10-01",
+    "types": [
+      "static"
+    ]
+  },
+  "природа": {
+    "count": 1,
+    "firstSeen": "2025-09-01",
+    "lastSeen": "2025-09-01",
+    "types": [
+      "critic"
+    ]
+  },
+  "волшебство": {
+    "count": 1,
+    "firstSeen": "2025-09-02",
+    "lastSeen": "2025-09-02",
+    "types": [
+      "critic"
+    ]
+  },
+  "привычка": {
+    "count": 1,
+    "firstSeen": "2025-09-04",
+    "lastSeen": "2025-09-04",
+    "types": [
+      "critic"
+    ]
+  },
+  "мелочи": {
+    "count": 2,
+    "firstSeen": "2025-09-04",
+    "lastSeen": "2025-09-05",
+    "types": [
+      "critic"
+    ]
+  },
+  "изменение": {
+    "count": 4,
+    "firstSeen": "2025-09-06",
+    "lastSeen": "2025-09-26",
+    "types": [
+      "critic"
+    ]
+  },
+  "настоящее": {
+    "count": 4,
+    "firstSeen": "2025-09-06",
+    "lastSeen": "2025-09-09",
+    "types": [
+      "critic"
+    ]
+  },
+  "ностальгия": {
+    "count": 2,
+    "firstSeen": "2025-09-06",
+    "lastSeen": "2025-10-06",
+    "types": [
+      "static"
+    ]
+  },
+  "судьба": {
+    "count": 18,
+    "firstSeen": "2025-09-07",
+    "lastSeen": "2025-10-26",
+    "types": [
+      "static",
+      "critic_from_analysis"
+    ]
+  },
+  "изоляция": {
+    "count": 2,
+    "firstSeen": "2025-09-07",
+    "lastSeen": "2025-09-08",
+    "types": [
+      "critic"
+    ]
+  },
+  "самопознание": {
+    "count": 6,
+    "firstSeen": "2025-09-07",
+    "lastSeen": "2025-09-16",
+    "types": [
+      "critic"
+    ]
+  },
+  "внутренняя работа": {
+    "count": 3,
+    "firstSeen": "2025-09-10",
+    "lastSeen": "2025-09-12",
+    "types": [
+      "critic"
+    ]
+  },
+  "свобода": {
+    "count": 16,
+    "firstSeen": "2025-09-13",
+    "lastSeen": "2025-10-11",
+    "types": [
+      "static",
+      "critic"
+    ]
+  },
+  "саморефлексия": {
+    "count": 3,
+    "firstSeen": "2025-09-15",
+    "lastSeen": "2025-09-18",
+    "types": [
+      "critic"
+    ]
+  },
+  "self-reflection": {
+    "count": 1,
+    "firstSeen": "2025-09-16",
+    "lastSeen": "2025-09-16",
+    "types": [
+      "critic"
+    ]
+  },
+  "inner struggle": {
+    "count": 1,
+    "firstSeen": "2025-09-16",
+    "lastSeen": "2025-09-16",
+    "types": [
+      "critic"
+    ]
+  },
+  "мысль": {
+    "count": 6,
+    "firstSeen": "2025-09-16",
+    "lastSeen": "2025-10-18",
+    "types": [
+      "static"
+    ]
+  },
+  "внутренняя борьба": {
+    "count": 1,
+    "firstSeen": "2025-09-16",
+    "lastSeen": "2025-09-16",
+    "types": [
+      "critic"
+    ]
+  },
+  "одиночество": {
+    "count": 5,
+    "firstSeen": "2025-09-18",
+    "lastSeen": "2025-10-28",
+    "types": [
+      "static"
+    ]
+  },
+  "самоопределение": {
+    "count": 1,
+    "firstSeen": "2025-09-21",
+    "lastSeen": "2025-09-21",
+    "types": [
+      "static"
+    ]
+  },
+  "страх": {
+    "count": 8,
+    "firstSeen": "2025-09-25",
+    "lastSeen": "2025-10-02",
+    "types": [
+      "critic"
+    ]
+  },
+  "утро": {
+    "count": 1,
+    "firstSeen": "2025-09-28",
+    "lastSeen": "2025-09-28",
+    "types": [
+      "static"
+    ]
+  },
+  "осень": {
+    "count": 1,
+    "firstSeen": "2025-10-01",
+    "lastSeen": "2025-10-01",
+    "types": [
+      "critic"
+    ]
+  },
+  "изменения": {
+    "count": 3,
+    "firstSeen": "2025-10-01",
+    "lastSeen": "2025-10-02",
+    "types": [
+      "critic"
+    ]
+  },
+  "начало": {
+    "count": 1,
+    "firstSeen": "2025-10-01",
+    "lastSeen": "2025-10-01",
+    "types": [
+      "critic"
+    ]
+  },
+  "ночь": {
+    "count": 1,
+    "firstSeen": "2025-10-17",
+    "lastSeen": "2025-10-17",
+    "types": [
+      "static"
+    ]
+  },
+  "эхо": {
+    "count": 1,
+    "firstSeen": "2025-10-18",
+    "lastSeen": "2025-10-18",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "тактильность": {
+    "count": 1,
+    "firstSeen": "2025-10-18",
+    "lastSeen": "2025-10-18",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "идентичность": {
+    "count": 3,
+    "firstSeen": "2025-10-19",
+    "lastSeen": "2025-10-22",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "палимпсест": {
+    "count": 1,
+    "firstSeen": "2025-10-21",
+    "lastSeen": "2025-10-21",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "телесность": {
+    "count": 1,
+    "firstSeen": "2025-10-21",
+    "lastSeen": "2025-10-21",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "потеря": {
+    "count": 2,
+    "firstSeen": "2025-10-22",
+    "lastSeen": "2025-10-23",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "самоосознание": {
+    "count": 1,
+    "firstSeen": "2025-10-23",
+    "lastSeen": "2025-10-23",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "внутренний голос": {
+    "count": 1,
+    "firstSeen": "2025-10-24",
+    "lastSeen": "2025-10-24",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "борьба с собой": {
+    "count": 1,
+    "firstSeen": "2025-10-24",
+    "lastSeen": "2025-10-24",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "темные мысли": {
+    "count": 1,
+    "firstSeen": "2025-10-26",
+    "lastSeen": "2025-10-26",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "невидимое разрушение": {
+    "count": 1,
+    "firstSeen": "2025-10-28",
+    "lastSeen": "2025-10-28",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "поиск смысла": {
+    "count": 1,
+    "firstSeen": "2025-10-28",
+    "lastSeen": "2025-10-28",
+    "types": [
+      "critic_from_analysis"
+    ]
+  }
+}
