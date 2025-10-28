@@ -1,63 +1,194 @@
 {
   "contexts": [
     {
-      "id": 3,
-      "context": "A child’s laughter echoing in an empty hallway — the exact pitch of her younger brother’s. For three seconds, she turns, expecting him. The hallway stays empty. Her chest doesn’t."
-    },
-    {
-      "id": 4,
-      "context": "Finding a dried violet pressed inside a borrowed novel — same as the ones she used to tuck into letters she never sent. Her thumb rubs the petal. It crumbles. So does something quieter."
-    },
-    {
-      "id": 5,
-      "context": "Hearing a piano tune from an open window — the same clumsy melody she practiced at age twelve. Her hands, now typing emails, twitch as if remembering keys."
-    },
-    {
-      "id": 6,
-      "context": "A sudden gust of wind flipping her notebook open to a blank page — but the angle of the light makes her swear she sees handwriting that isn’t there. Her pulse answers anyway."
-    },
-    {
-      "id": 7,
-      "context": "The taste of burnt toast — just like the mornings after the accident. She doesn’t throw it out. She eats it slowly, as if punishment is the only way back to him."
-    },
-    {
-      "id": 8,
-      "context": "A stranger’s perfume in an elevator — lilac and rain. The same scent her first love wore. She doesn’t look up. She holds her breath until the doors open."
-    },
-    {
-      "id": 9,
-      "context": "A cracked phone screen reflecting streetlights in a pattern that mirrors the ceiling of her childhood bedroom. She stares too long. The present blurs."
-    },
-    {
-      "id": 10,
-      "context": "Rain tapping on a tin roof while washing dishes — the rhythm identical to the storm the night she ran away. Her hands keep scrubbing. Her eyes don’t."
-    },
-    {
       "id": 11,
-      "context": "A moth fluttering against a lamp — just like the one that landed on her journal the night she wrote 'I can’t do this anymore.' She doesn’t swat it away. She watches it burn."
+      "context": "После успешного выступления почувствовала пустоту. Аплодисменты — это эхо. Где моё «я»?"
     },
     {
       "id": 12,
-      "context": "The weight of a key in her coat pocket — not for any door she owns, but the shape fits the lock of a house she hasn’t seen in ten years. Her fingers close around it like a secret."
+      "context": "Написала красивый текст, но знаю — он нечестный. Красивое — не всегда правда."
     },
     {
       "id": 13,
-      "context": "A song playing in a grocery store — the one they danced to in the kitchen, barefoot and drunk on cheap wine. She keeps pushing the cart. Her feet remember the steps."
+      "context": "Получила повышение — и в тот же день заплакала в лифте. Кто управляет моей жизнью?"
     },
     {
       "id": 14,
-      "context": "A handwritten receipt tucked in an old coat — date circled in red, the day before everything changed. She doesn’t remember circling it. Her hand does."
+      "context": "Сказала «да» на проект, который не хочу. Опять. Где мой голос? Я его потеряла?"
     },
     {
       "id": 15,
-      "context": "Steam rising from a teacup forming a shape like a face she hasn’t named in years. She doesn’t blink. She lets it vanish."
+      "context": "Прочитала чужой отзыв и впервые усомнилась в своём голосе. А есть ли он у меня?"
     },
     {
       "id": 16,
-      "context": "A sudden silence between subway stops — deep enough to hear the echo of her own voice whispering 'I’m sorry' into a phone that’s long since dead. She doesn’t speak. She listens."
+      "context": "Разговаривала с мамой и поняла: я говорю так, как она учила. Мои слова — её echoes."
     },
     {
-      "context": "Звук шагов по мокрому асфальту, который внезапно совпадает с ритмом мелодии из кафе — и на миг кажется, что кто-то идёт рядом."
+      "id": 17,
+      "context": "Обняла друга и почувствовала — мы больше не понимаем. Когда мы перестали быть?"
+    },
+    {
+      "id": 18,
+      "context": "Увидела бывшего. Он был счастлив. Я — нет. Но не из-за него. Из-за себя."
+    },
+    {
+      "id": 19,
+      "context": "Поссорилась из-за мелочи. Потом поняла: речь была не о мелочи. Речь была о боли."
+    },
+    {
+      "id": 20,
+      "context": "Пальцы дрожали, когда я заваривала чай. Почему — не знаю. Тело помнит то, что сердце забыло."
+    },
+    {
+      "id": 21,
+      "context": "Свет в комнате падал так же, как тогда. И вдруг — тишина. Она вернулась. Как он. Как страх."
+    },
+    {
+      "id": 22,
+      "context": "Проснулась от звука дождя. В голове — фраза, которую не помню. Дождь шепчет на непонятном языке."
+    },
+    {
+      "id": 23,
+      "context": "Ощутила усталость в плечах. Не от физики — от ноши души. Кто-то должен нести это за меня?"
+    },
+    {
+      "id": 24,
+      "context": "Открыла шкаф и нашла шарф, который он забыл. Ткань пахнет временем. Или это я?"
+    },
+    {
+      "id": 25,
+      "context": "Увидела пару, держащуюся за руки. Не завидую. Просто грустно. Я забыла, как это — быть рядом."
+    },
+    {
+      "id": 26,
+      "context": "Написала «скучаю» — и стёрла. Слово — как крик, который никто не услышит."
+    },
+    {
+      "id": 27,
+      "context": "Улыбнулась, чтобы не плакать. Теперь не знаю, каково моё лицо. Это маска или лицо?"
+    },
+    {
+      "id": 28,
+      "context": "Прогуливалась мимо нашего кафе. Не зашла. Не остановилась. Но внутри — океан."
+    },
+    {
+      "id": 29,
+      "context": "Нашла старую записку: «всё будет хорошо». Кто писал? Я? Это было до меня."
+    },
+    {
+      "id": 30,
+      "context": "Услышала, как кто-то зовёт моё имя — но это был не мой голос. Кто я? Кто говорит моё имя?"
+    },
+    {
+      "id": 31,
+      "context": "Забыла, зачем вошла в комнату. Потом вспомнила — и пожалела. Память — это ловушка."
+    },
+    {
+      "id": 32,
+      "context": "Получила сообщение: «ты изменилась». Да. Я — не я. А кто я теперь?"
+    },
+    {
+      "id": 33,
+      "context": "Смотрела на огонь в камине и вспомнила, как мечтала. Пламя сожгло всё. Даже мечты."
+    },
+    {
+      "id": 34,
+      "context": "Написала письмо, которое никогда не отправлю. Оно лежит в ящике. Как моя боль."
+    },
+    {
+      "id": 35,
+      "context": "Увидела ребёнка, который смеётся так, как я смеялась в детстве. Где моё детство? Кто его взял?"
+    },
+    {
+      "id": 36,
+      "context": "Сказала «прости» вслух — но никого не было. Прощение — это тишина."
+    },
+    {
+      "id": 37,
+      "context": "Открыла окно и вдохнула воздух, который пах одинаково — и в прошлом, и сейчас. Время — обманщик."
+    },
+    {
+      "id": 38,
+      "context": "Увидела свою руку — и вспомнила, чьи руки я держал(а) раньше. Они ушли. А я осталась с памятью."
+    },
+    {
+      "id": 39,
+      "context": "Слушала голос на автоответчике. Он сказал «привет». Я не ответила. Молчание — это тоже ответ."
+    },
+    {
+      "id": 40,
+      "context": "Нашла билет в один конец, который так и не использовала. Куда я должна была поехать?"
+    },
+    {
+      "id": 41,
+      "context": "Увидела себя на видео. Не узнала жестов. Это я? Или кто-то другой?"
+    },
+    {
+      "id": 42,
+      "context": "Проснулась с фразой на языке: «я устала быть сильной». Кто говорит? Я или моё подсознание?"
+    },
+    {
+      "id": 43,
+      "context": "Перечитала свои старые записи. Не понимаю, кто это писал(а). Это была я. Но не я."
+    },
+    {
+      "id": 44,
+      "context": "Услышала звон посуды — и вспомнила кухню детства. Звук — это ключ к прошлому."
+    },
+    {
+      "id": 45,
+      "context": "Сказала «да» улыбаясь. А внутри — тишина. Улыбка — это маска. А тишина — это правда."
+    },
+    {
+      "id": 46,
+      "context": "Увидела письмо, которое хотела получить. Но от другого человека. Жизнь — это театр ошибок."
+    },
+    {
+      "id": 47,
+      "context": "Забыла, как звучит смех моей бабушки. Память — это река, которая уносит всё."
+    },
+    {
+      "id": 48,
+      "context": "Стояла под дождём и поняла: я не плачу, потому что не могу. Слёзы — это тоже память."
+    },
+    {
+      "id": 49,
+      "context": "Увидела своё имя, написанное чужой рукой. Кто ты? И зачем ты это сделал?"
+    },
+    {
+      "id": 50,
+      "context": "Закрыла глаза и вспомнила момент, который, кажется, никогда не был. Это память или сон?"
+    },
+    {
+      "context": "Внезапный запах духов незнакомки в метро — и невозможность вспомнить, кому принадлежал этот аромат десять лет назад."
+    },
+    {
+      "context": "Запах мокрого шарфа в пустом автобусе — шерсть впитывает городскую сырость и чьи-то забытые духи."
+    },
+    {
+      "context": "Момент, когда автор решает начать движение вперёд. Может быть описанием нового места или ощущения, которое открывает новую главу после прошлого времени."
+    },
+    {
+      "context": "Следующая запись может начаться с описания ощущения дождя на лице, когда автор решает продолжить писать, представляя это как дар пустоты."
+    },
+    {
+      "context": "Момент, когда автор решает закрыть окно и продолжать писать, несмотря на внутренние сомнения. Это может стать началом следующей записи, где автор расскажет о том, как она выходит из своего внутреннего конфликта."
+    },
+    {
+      "context": "Лишь звуки уличного жужжания и ощущение теплого света на щеках. Новый триггер: городская жизнь, которая становится частью воспоминаний."
+    },
+    {
+      "context": "Момент, когда автор начинает осознавать, что изменение не только неизбежно, но и может быть источником новой силы. Это может быть момент, когда автор решает принять себя, как она есть, и найти в себе новые возможности."
+    },
+    {
+      "context": "Момент, когда автор открывает конверт с письмом. Это новый триггер, связанный с физическим действием, что может стать началом следующей записи."
+    },
+    {
+      "context": "Следующий текст может быть связан с темой поиска смысла в боли или попыткой изменить внутренний диалог. Новый триггер может быть связан с осознанием собственной силы."
+    },
+    {
+      "context": "Следующая запись может начаться с описания новой пейзажной детали или ощущения, которое приведет к новому пониманию ее внутреннего мира."
     }
   ]
 }
