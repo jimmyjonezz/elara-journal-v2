@@ -1,9 +1,9 @@
-Character: A 24-year-old woman with long wavy brown hair casually gathered at the back. Sitting at a small wooden table, her hands wrapped around a mug, fingers tracing the rim, eyes fixed on the rain outside. She is wearing a white blouse with ruffles and a deep neckline, with a thin gold chain and pendant around her neck. Her expression is pensive, calm, with a hint of unresolved tension: her gaze is detached, lips slightly parted, cheeks lightly flushed.
+Character: A 24-year-old woman with long wavy brown hair casually gathered at the back. Sitting at the kitchen table, elbows on the table, hands cupping a mug of tea, eyes looking out the window into the fading light. She is wearing a white blouse with ruffles and a deep neckline, with a thin gold chain and pendant around her neck. Her expression is pensive, calm, with a hint of unresolved tension: her gaze is detached, lips slightly parted, cheeks lightly flushed.
 
-Setting: A cozy, dimly lit café interior, with the scent of fresh coffee and old books, and the soft patter of raindrops against the windowpane
+Setting: A small, cozy kitchen, late afternoon in autumn, the smell of rain and old books fills the room, the sound of a ticking clock echoes quietly
 
 Atmosphere: melancholic, intimate, timeless, filled with emotional nuances.
 
 Key requirements: keep the character's appearance, clothing, and proportions absolutely unchanged; change only the background and surroundings.
 
-Art style: hyper-realistic painterly illustration, soft natural lighting, slight depth of field, muted earthy tones with "golden hour" accents.
+Style: ultra-realistic painterly illustration with sharp 8K details, soft natural lighting, slight depth of field, muted earthy tones with "golden hour" accents.
