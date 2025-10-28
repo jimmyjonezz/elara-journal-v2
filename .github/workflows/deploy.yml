@@ -38,14 +38,14 @@ jobs:
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
-          node src/generate_entry.js
+          node src/core/entryGenerator.js
 
       - name: Run Literary Critic Analysis
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
           echo "🖋️ Литературный критик приступает к анализу журнала (включая новую запись)..."
-          node src/literary_critic.js
+          node src/core/literaryAnalyzer.js
           echo "✅ Анализ литературного критика завершен. Файл literary_analysis.json создан/обновлен."
       
       # Коммитим ВСЁ: журнал, анализ, теги, статистику, логи
@@ -59,7 +59,7 @@ jobs:
           git add data/literary_analysis.json
           git add data/tag_statistics.json
           git add data/latest_image_prompt.txt
-          git add src/config/context.json
+          git add src/config/context.json # Убедиться в правильности пути
           git add logs/
 
           # Проверяем, есть ли изменения

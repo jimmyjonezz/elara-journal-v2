@@ -10,6 +10,7 @@ module.exports = {
   SEMANTIC_DICT_PATH: path.join(__dirname, 'config/semantic-dictionary.json'),
   MOODS_PATH: path.join(__dirname, 'config/mood.json'),
   CONTEXTS_PATH: path.join(__dirname, 'config/context.json'),
+  IMAGE_PROMPT_PATH: path.join(__dirname, 'prompt_templates/image_prompt.txt'),
 
 
   MAX_RETRIES: 3,
