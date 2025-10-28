@@ -1,6 +1,6 @@
-Character: A 24-year-old woman with long wavy brown hair casually gathered at the back. She sits at the kitchen table, elbows on the table, fingers interlaced, chin resting on them, gaze fixed on the window. She is wearing a white blouse with ruffles and a deep neckline, with a thin gold chain and pendant around her neck. Her expression is pensive, calm, with a hint of unresolved tension: her gaze is detached, lips slightly parted, cheeks lightly flushed.
+Character: A 24-year-old woman with long wavy brown hair casually gathered at the back. Sitting at the kitchen table, elbows on the table, hands cupping a mug of tea, eyes looking out the window into the fading light. She is wearing a white blouse with ruffles and a deep neckline, with a thin gold chain and pendant around her neck. Her expression is pensive, calm, with a hint of unresolved tension: her gaze is detached, lips slightly parted, cheeks lightly flushed.
 
-Setting: The kitchen is dimly lit, the only sound the tapping of raindrops on the window and the hum of the old refrigerator. The air is cool and damp, carrying the scent of wet earth and distant smoke
+Setting: A small, cozy kitchen, late afternoon in autumn, the smell of rain and old books fills the room, the sound of a ticking clock echoes quietly
 
 Atmosphere: melancholic, intimate, timeless, filled with emotional nuances.
 
