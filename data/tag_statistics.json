@@ -1,8 +1,8 @@
 {
   "время": {
-    "count": 61,
+    "count": 62,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-28",
+    "lastSeen": "2025-10-29",
     "types": [
       "critic",
       "static",
@@ -69,9 +69,9 @@
     ]
   },
   "голос": {
-    "count": 21,
+    "count": 22,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-27",
+    "lastSeen": "2025-10-29",
     "types": [
       "static"
     ]
@@ -110,9 +110,9 @@
     ]
   },
   "размышление": {
-    "count": 30,
+    "count": 31,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-28",
+    "lastSeen": "2025-10-29",
     "types": [
       "static",
       "critic"
@@ -485,6 +485,22 @@
     "count": 1,
     "firstSeen": "2025-10-28",
     "lastSeen": "2025-10-28",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "поисксебя": {
+    "count": 1,
+    "firstSeen": "2025-10-29",
+    "lastSeen": "2025-10-29",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "пустота": {
+    "count": 1,
+    "firstSeen": "2025-10-29",
+    "lastSeen": "2025-10-29",
     "types": [
       "critic_from_analysis"
     ]
