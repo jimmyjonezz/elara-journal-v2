@@ -31,7 +31,7 @@ async function extractTags(text, dictionary) {
  * Определяет уровень рефлексии
  */
 function determineReflectionLevel(reflectionText) {
-  let level = "поверхностный";
+  let level = "средний";
   const levelMatch = reflectionText.match(/Уровень\s*:\s*(.*)$/i);
   if (levelMatch && levelMatch[1]) {
     const extractedLevel = levelMatch[1].trim().toLowerCase().replace(/[^\wа-яё]/gi, '');
