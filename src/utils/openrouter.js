@@ -10,7 +10,7 @@ const ESSAY_MODEL = "mistralai/mistral-nemo:free";
 // Альтернативы: "qwen/qwen3-8b:free", "cognitivecomputations/dolphin-mistral-24b-venice-edition:free"
 
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
-const CRITIQUE_MODEL = "nvidia/nemotron-nano-12b-v2-vl:free";
+const CRITIQUE_MODEL = "google/gemini-2.0-flash-exp:free";
 // nousresearch/deephermes-3-llama-3-8b-preview:free
 const today = new Date().toLocaleDateString('ru-RU', {
   day: 'numeric',
