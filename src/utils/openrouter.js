@@ -12,6 +12,8 @@ const ESSAY_MODEL = "mistralai/mistral-nemo:free";
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
 const CRITIQUE_MODEL = "google/gemini-2.0-flash-exp:free";
 // nousresearch/deephermes-3-llama-3-8b-preview:free
+// cognitivecomputations/dolphin-mistral-24b-venice-edition:free
+
 const today = new Date().toLocaleDateString('ru-RU', {
   day: 'numeric',
   month: 'long',
