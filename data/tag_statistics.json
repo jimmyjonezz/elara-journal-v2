@@ -1,8 +1,8 @@
 {
   "время": {
-    "count": 63,
+    "count": 64,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-30",
+    "lastSeen": "2025-10-31",
     "types": [
       "critic",
       "static",
@@ -51,9 +51,9 @@
     ]
   },
   "память": {
-    "count": 63,
+    "count": 64,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-28",
+    "lastSeen": "2025-10-31",
     "types": [
       "static",
       "critic",
@@ -69,9 +69,9 @@
     ]
   },
   "голос": {
-    "count": 22,
+    "count": 23,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-29",
+    "lastSeen": "2025-10-31",
     "types": [
       "static"
     ]
@@ -183,9 +183,9 @@
     ]
   },
   "выбор": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2025-08-31",
-    "lastSeen": "2025-10-01",
+    "lastSeen": "2025-10-31",
     "types": [
       "static"
     ]
@@ -247,9 +247,9 @@
     ]
   },
   "судьба": {
-    "count": 19,
+    "count": 20,
     "firstSeen": "2025-09-07",
-    "lastSeen": "2025-10-30",
+    "lastSeen": "2025-10-31",
     "types": [
       "static",
       "critic_from_analysis"
