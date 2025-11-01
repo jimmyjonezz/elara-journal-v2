@@ -69,11 +69,12 @@
     ]
   },
   "голос": {
-    "count": 23,
+    "count": 24,
     "firstSeen": "2025-08-26",
-    "lastSeen": "2025-10-31",
+    "lastSeen": "2025-11-01",
     "types": [
-      "static"
+      "static",
+      "critic_from_analysis"
     ]
   },
   "любовь": {
@@ -110,9 +111,9 @@
     ]
   },
   "размышление": {
-    "count": 31,
+    "count": 32,
     "firstSeen": "2025-08-27",
-    "lastSeen": "2025-10-29",
+    "lastSeen": "2025-11-01",
     "types": [
       "static",
       "critic"
@@ -386,9 +387,9 @@
     ]
   },
   "ночь": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-10-17",
-    "lastSeen": "2025-10-17",
+    "lastSeen": "2025-11-01",
     "types": [
       "static"
     ]
@@ -517,6 +518,14 @@
     "count": 1,
     "firstSeen": "2025-10-30",
     "lastSeen": "2025-10-30",
+    "types": [
+      "critic_from_analysis"
+    ]
+  },
+  "пассивность": {
+    "count": 1,
+    "firstSeen": "2025-11-01",
+    "lastSeen": "2025-11-01",
     "types": [
       "critic_from_analysis"
     ]
