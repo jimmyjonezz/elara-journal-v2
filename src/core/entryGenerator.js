@@ -71,7 +71,6 @@ async function finalizeEntryData(content, externalContext, mood) {
 /**
  * Обновляет статистику тегов
  */
-async function updateAndSaveTagStatistics(currentStats, staticTags, criticTagsFromCurrentRun, criticTagsFromAnalysis, entryDate) {
 async function updateAndSaveTagStatistics(currentStats, staticTags, criticTagsFromAnalysis, entryDate) {
   // staticTags: из новой записи (извлечённые теги из эссе)
   // criticTagsFromAnalysis: из literary_analysis.json (из поля tags_for_search)
