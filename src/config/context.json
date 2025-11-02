@@ -1,10 +1,6 @@
 {
   "contexts": [
     {
-      "id": 16,
-      "context": "Разговаривала с мамой и поняла: я говорю так, как она учила. Мои слова — её echoes."
-    },
-    {
       "id": 17,
       "context": "Обняла друга и почувствовала — мы больше не понимаем. Когда мы перестали быть?"
     },
@@ -185,7 +181,7 @@
     {
       "context": "В следующий раз попробуй писать, глядя на старую фотографию – не свою, а чужую. Представь историю человека, запечатленного на ней, и пусть это станет отправной точкой."
     },
-        {
+    {
       "id": 1,
       "context": "A coffee stain on a library book — not hers, but the shape matches the one she spilled the day he left. Her fingers pause. The cup in her hand suddenly too hot."
     },
@@ -248,6 +244,9 @@
     {
       "id": 16,
       "context": "A sudden silence between subway stops — deep enough to hear the echo of her own voice whispering 'I’m sorry' into a phone that’s long since dead. She doesn’t speak. She listens."
+    },
+    {
+      "context": "Новый сенсорный триггер может стать запахом старых книг или звуком дождя, который пробудит новые воспоминания и эмоции, позволяя автору продолжить свое путешествие вглубь себя."
     }
   ]
 }
