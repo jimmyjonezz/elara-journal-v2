@@ -115,7 +115,7 @@ try:
     print(f"✅ Изображение успешно сохранено как '{filepath}'")
     print(f"📁 Полный путь: {os.path.abspath(filepath)}")
 
-except replicate.ReplicateError as e:
+except replicate.exceptions.ReplicateError as e:
     print(f"❌ Ошибка Replicate API: {e}")
     sys.exit(1)
 except requests.RequestException as e:
