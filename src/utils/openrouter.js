@@ -10,7 +10,7 @@ const ESSAY_MODEL = "mistralai/mistral-nemo:free";
 // Альтернативы: "qwen/qwen3-8b:free", "cognitivecomputations/dolphin-mistral-24b-venice-edition:free"
 
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
-const CRITIQUE_MODEL = "mistralai/mistral-nemo:free"
+const CRITIQUE_MODEL = "meta-llama/llama-3.3-70b-instruct:free"
 
 const today = new Date().toLocaleDateString('ru-RU', {
   day: 'numeric',
