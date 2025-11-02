@@ -72,47 +72,47 @@ async function finalizeEntryData(content, externalContext, mood) {
  * Обновляет статистику тегов
  */
 async function updateAndSaveTagStatistics(currentStats, staticTags, criticTagsFromCurrentRun, criticTagsFromAnalysis, entryDate) {
-  // staticTags: из новой записи
-  // criticTagsFromCurrentRun: из dynamic_tags.json (теперь пусто)
-  // criticTagsFromAnalysis: из literary_analysis.json (новое)
+async function updateAndSaveTagStatistics(currentStats, staticTags, criticTagsFromAnalysis, entryDate) {
+  // staticTags: из новой записи (извлечённые теги из эссе)
+  // criticTagsFromAnalysis: из literary_analysis.json (из поля tags_for_search)
 
   const normalizedStaticTags = staticTags.map(tag => tag.toLowerCase());
-  const normalizedCriticTagsFromCurrentRun = criticTagsFromCurrentRun.map(tag => tag.toLowerCase());
   const normalizedCriticTagsFromAnalysis = (criticTagsFromAnalysis || []).map(tag => tag.toLowerCase());
 
   // Объединяем все теги для обновления статистики
   const allTagsFromEntry = new Set([
     ...normalizedStaticTags,
-    ...normalizedCriticTagsFromCurrentRun,
     ...normalizedCriticTagsFromAnalysis
   ]);
 
   const updatedStats = { ...currentStats };
 
-  // ... (остальная логика обновления статистики)
   for (const tag of allTagsFromEntry) {
     if (updatedStats[tag]) {
       updatedStats[tag].count += 1;
       updatedStats[tag].lastSeen = entryDate;
+      // Добавляем типы 'static' или 'critic', если их ещё нет
       if (normalizedStaticTags.includes(tag) && !updatedStats[tag].types.includes('static')) {
         updatedStats[tag].types.push('static');
       }
-      if (normalizedCriticTagsFromCurrentRun.includes(tag) && !updatedStats[tag].types.push('critic_from_run')) {
-        updatedStats[tag].types.push('critic_from_run');
-      }
-      if (normalizedCriticTagsFromAnalysis.includes(tag) && !updatedStats[tag].types.includes('critic_from_analysis')) {
+      if (normalizedCriticTagsFromAnalysis.includes(tag) && !updatedStats[tag].types.includes('critic')) {
         updatedStats[tag].types.push('critic');
       }
     } else {
+      // Создаём новую запись для тега
       updatedStats[tag] = {
         count: 1,
         firstSeen: entryDate,
         lastSeen: entryDate,
         types: []
       };
-      if (normalizedStaticTags.includes(tag)) updatedStats[tag].types.push('static');
-      if (normalizedCriticTagsFromCurrentRun.includes(tag)) updatedStats[tag].types.push('critic_from_run');
-      if (normalizedCriticTagsFromAnalysis.includes(tag)) updatedStats[tag].types.push('critic_from_analysis');
+      // Присваиваем тип в зависимости от источника
+      if (normalizedStaticTags.includes(tag)) {
+        updatedStats[tag].types.push('static');
+      }
+      if (normalizedCriticTagsFromAnalysis.includes(tag)) {
+        updatedStats[tag].types.push('critic');
+      }
     }
   }
 
