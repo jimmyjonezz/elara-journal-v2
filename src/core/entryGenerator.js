@@ -101,7 +101,7 @@ async function updateAndSaveTagStatistics(currentStats, staticTags, criticTagsFr
         updatedStats[tag].types.push('critic_from_run');
       }
       if (normalizedCriticTagsFromAnalysis.includes(tag) && !updatedStats[tag].types.includes('critic_from_analysis')) {
-        updatedStats[tag].types.push('critic_from_analysis');
+        updatedStats[tag].types.push('critic');
       }
     } else {
       updatedStats[tag] = {
