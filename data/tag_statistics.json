@@ -1,1 +1,44 @@
-
+{
+  "память": {
+    "count": 1,
+    "firstSeen": "2025-11-03",
+    "lastSeen": "2025-11-03",
+    "types": [
+      "static",
+      "critic"
+    ]
+  },
+  "время": {
+    "count": 1,
+    "firstSeen": "2025-11-03",
+    "lastSeen": "2025-11-03",
+    "types": [
+      "static",
+      "critic"
+    ]
+  },
+  "размышление": {
+    "count": 1,
+    "firstSeen": "2025-11-03",
+    "lastSeen": "2025-11-03",
+    "types": [
+      "static"
+    ]
+  },
+  "грусть": {
+    "count": 1,
+    "firstSeen": "2025-11-03",
+    "lastSeen": "2025-11-03",
+    "types": [
+      "static"
+    ]
+  },
+  "судьба": {
+    "count": 1,
+    "firstSeen": "2025-11-03",
+    "lastSeen": "2025-11-03",
+    "types": [
+      "static"
+    ]
+  }
+}
