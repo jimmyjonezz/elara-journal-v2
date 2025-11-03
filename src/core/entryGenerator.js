@@ -147,12 +147,11 @@ async function generateEntry() {
       season: season,
       mood: { name: mood.name, description: mood.description },
       context: context, // ← сохраняем контекст, использованный при генерации
-      entry: fullEntryText, // <-- Старое поле: эссе + рефлексия
+      //entry: fullEntryText, // <-- Старое поле: эссе + рефлексия
       raw_essay: essayWithoutScene, // <-- Уже есть
       raw_reflection: reflectionWithoutLevel, // <-- НОВОЕ ПОЛЕ: только рефлексия
       tags: allTags,
-      reflection_level: level,
-      // ... другие поля ...
+      reflection_level: level
     };
 
     const journal = await loadJournal();
