@@ -174,7 +174,7 @@ async function generateEntry() {
       console.warn('⚠️ Ошибка чтения literary_analysis.json для обновления статистики:', e.message);
       // Не останавливаем процесс, просто не добавляем теги из анализа
     }
-    await updateAndSaveTagStatistics(tagStats, staticTags, criticTags, tagsFromAnalysis, entry.date);
+    await updateAndSaveTagStatistics(tagStats, staticTags, tagsFromAnalysis, entry.date);
 
   } catch (error) {
     console.error('❌ Критическая ошибка при создании записи:', error);
