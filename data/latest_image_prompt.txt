@@ -1,9 +1,5 @@
-Character: A 24-year-old woman with long wavy brown hair casually gathered at the back. She sits at the table, hunched over the keyboard, fingers trembling slightly as they hover over the keys. She is wearing a white blouse with ruffles and a deep neckline, with a thin gold chain and pendant around her neck. Her expression is pensive, calm, with a hint of unresolved tension: her gaze is detached, lips slightly parted, cheeks lightly flushed.
-
-Setting: The room is dimly lit, the only light coming from the laptop screen. The window is closed, the curtains drawn. The air is filled with the scent of old books and faint echoes of her mother's voice. The clock on the wall ticks slowly, marking the passage of time in the quiet, empty room
-
+Character: A 24-year-old woman with long wavy brown hair casually gathered at the back. She is sitting at a table, her back slightly hunched, one hand wrapped around a mug, fingers tracing its shape. She is wearing a white blouse with ruffles and a deep neckline, with a thin gold chain and pendant around her neck. Her expression is pensive, calm, with a hint of unresolved tension: her gaze is detached, lips slightly parted, cheeks lightly flushed.
+Setting: The room is bathed in the warm, golden light of late afternoon. Outside the window, leaves dance in the breeze, their colors fading with the season. The scent of old books and slightly burned coffee fills the air. A clock ticks softly in the background, each second echoing the passing of time
 Atmosphere: melancholic, intimate, timeless, filled with emotional nuances.
-
 Key requirements: keep the character's appearance, clothing, and proportions absolutely unchanged; change only the background and surroundings.
-
 Style: ultra-realistic painterly illustration with sharp 8K details, soft natural lighting, slight depth of field, muted earthy tones with "golden hour" accents.
