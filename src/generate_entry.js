@@ -354,7 +354,7 @@ async function prepareEntryData() {
 /**
  * Обновляет статистику тегов
  */
-async function updateAndSaveTagStatistics(currentStats, staticTags, criticTagsFromCurrentRun, criticTagsFromAnalysis, entryDate) {
+async function updateAndSaveTagStatistics(currentStats, staticTags, criticTagsFromAnalysis, entryDate) {
   // staticTags: из новой записи
   // criticTagsFromCurrentRun: из dynamic_tags.json (теперь пусто)
   // criticTagsFromAnalysis: из literary_analysis.json (новое)
@@ -457,7 +457,7 @@ async function generateEntry() {
       console.warn('⚠️ Ошибка чтения literary_analysis.json для обновления статистики:', e.message);
       // Не останавливаем процесс, просто не добавляем теги из анализа
     }
-    await updateAndSaveTagStatistics(tagStats, staticTags, criticTags, tagsFromAnalysis, entry.date);
+    await updateAndSaveTagStatistics(tagStats, staticTags, tagsFromAnalysis, entry.date);
 
   } catch (error) {
     console.error('❌ Критическая ошибка при создании записи:', error);
