@@ -1,3 +1,4 @@
 requests
 pillow
 replicate
+vk_api
