@@ -1,82 +1,20 @@
-#vk/vk_poster.py
 """
 Автоматическая публикация поста в группу ВКонтакте
-Использует API ВКонтакте и токен пользователя
+Использует библиотеку vk_api для взаимодействия с API ВКонтакте.
+Предполагается использование токена сообщества.
 """
 
 import os
 import json
-import requests
+import vk_api  # Импортируем библиотеку vk_api
 import glob
 from datetime import datetime
 from post_generator import create_post, load_latest_entry
 
 # Конфигурация ВКонтакте
-VK_GROUP_ID = os.getenv("VK_GROUP_ID")        # например: 222111000
-VK_ACCESS_TOKEN = os.getenv("VK_ACCESS_TOKEN") # токен пользователя
+VK_GROUP_ID_RAW = os.getenv("VK_GROUP_ID")  # например: 222111000 (в виде строки)
+VK_ACCESS_TOKEN = os.getenv("VK_ACCESS_TOKEN") # токен сообщества
 VK_API_VERSION = "5.199"
-
-def get_wall_upload_server():
-    """Получает адрес сервера для загрузки изображений"""
-    url = "https://api.vk.ru/method/photos.getWallUploadServer "
-    params = {
-        "group_id": VK_GROUP_ID,
-        "access_token": VK_ACCESS_TOKEN,
-        "v": VK_API_VERSION
-    }
-    response = requests.get(url, params=params)
-    data = response.json()
-    if 'error' in data:
-        raise Exception(f"VK API Error getting upload server: {data['error']}")
-    return data["response"]["upload_url"]
-
-
-def upload_image_to_server(upload_url, image_path):
-    """Загружает изображение на сервер ВК"""
-    with open(image_path, "rb") as f:
-        files = {"photo": f}
-        response = requests.post(upload_url, files=files)
-    data = response.json()
-    if 'error' in data:
-        raise Exception(f"VK API Error uploading photo: {data['error']}")
-    return data
-
-
-def save_wall_photo(photo, server, hash_value):
-    """Сохраняет фото в альбоме группы"""
-    url = "https://api.vk.ru/method/photos.saveWallPhoto "
-    params = {
-        "group_id": VK_GROUP_ID,
-        "photo": photo,
-        "server": server,
-        "hash": hash_value,
-        "access_token": VK_ACCESS_TOKEN,
-        "v": VK_API_VERSION
-    }
-    response = requests.post(url, params=params)
-    data = response.json()
-    if 'error' in data:
-        raise Exception(f"VK API Error saving photo: {data['error']}")
-    return data["response"][0]  # attachment object
-
-
-def post_to_vk(message, attachment=None):
-    """Публикует пост на стене группы"""
-    url = "https://api.vk.ru/method/wall.post "
-    params = {
-        "owner_id": -int(VK_GROUP_ID),
-        "from_group": 1,
-        "message": message,
-        "signed": 0,
-        "access_token": VK_ACCESS_TOKEN,
-        "v": VK_API_VERSION
-    }
-    if attachment:
-        params["attachments"] = attachment
-
-    response = requests.post(url, params=params)
-    return response.json()
-
 
 def get_oldest_image_from_folder(folder_path="data/images/"):
     """Находит САМОЕ СТАРОЕ (по дате модификации) изображение в папке"""
@@ -110,7 +48,32 @@ def delete_image(image_path):
 def main():
     print("🚀 Подготовка поста для ВКонтакте...")
 
-    # 1. Генерируем текст поста
+    # Проверка и преобразование VK_GROUP_ID
+    if not VK_GROUP_ID_RAW:
+        print("❌ Ошибка: Не задан VK_GROUP_ID в переменных окружения.")
+        return
+    try:
+        # Убираем знак минус, если он есть, так как vk_api ожидает положительное число для group_id в upload методах
+        # Но для wall.post нужно отрицательное
+        VK_GROUP_ID = int(VK_GROUP_ID_RAW.lstrip('-'))
+    except ValueError:
+        print(f"❌ Ошибка: VK_GROUP_ID должен быть числом, получено: '{VK_GROUP_ID_RAW}'")
+        return
+
+    # 1. Инициализация API ВКонтакте через библиотеку
+    try:
+        session = vk_api.VkApi(token=VK_ACCESS_TOKEN, api_version=VK_API_VERSION)
+        # Проверка токена (опционально, но полезно для отладки)
+        session.get_api().users.get()
+        print("✅ Токен ВКонтакте действителен.")
+    except vk_api.exceptions.ApiError as e:
+        print(f"❌ Ошибка аутентификации ВКонтакте: {e}")
+        return
+    except Exception as e:
+        print(f"❌ Ошибка инициализации ВКонтакте: {e}")
+        return
+
+    # 2. Генерируем текст поста
     entry = load_latest_entry()
     if not entry:
         print("❌ Нечего публиковать")
@@ -118,48 +81,50 @@ def main():
 
     post_text = create_post(entry)
 
-    # 2. Находим САМОЕ СТАРОЕ сгенерированное изображение
+    # 3. Находим САМОЕ СТАРОЕ сгенерированное изображение
     image_path = get_oldest_image_from_folder()
 
+    # 4. Инициализация загрузчика
+    upload = vk_api.upload.VkUpload(session)
+
+    attachment = None
     if not image_path or not os.path.exists(image_path):
         print(f"🖼️ Изображение не найдено или путь неверен: {image_path} → публикация без фото")
-        result = post_to_vk(post_text)
-        # Даже если фото не было, завершаем
     else:
         try:
-            # Получаем сервер загрузки
-            upload_url = get_wall_upload_server()
-
-            # Загружаем изображение
-            upload_data = upload_image_to_server(upload_url, image_path)
-
-            # Сохраняем фото в альбоме
-            photo_data = save_wall_photo(
-                upload_data["photo"],
-                upload_data["server"],
-                upload_data["hash"]
-            )
-
+            # Загружаем фото на стену (библиотека сама обрабатывает получение сервера, загрузку и сохранение)
+            photo_list = upload.photo_wall(photos=image_path, group_id=VK_GROUP_ID)
             # Формируем вложение
-            attachment = f"photo{photo_data['owner_id']}_{photo_data['id']}"
-
-            # Публикуем с фото
-            result = post_to_vk(post_text, attachment)
-        except Exception as e:
-            print(f"❌ Ошибка с изображением: {e}")
+            attachment = f"photo{photo_list[0]['owner_id']}_{photo_list[0]['id']}"
+            print(f"🖼️ Изображение загружено и готово к публикации: {attachment}")
+        except vk_api.exceptions.ApiError as e:
+            print(f"❌ Ошибка загрузки изображения в ВК: {e}")
             print("📤 Публикация без изображения...")
-            result = post_to_vk(post_text)
-        finally:
-            # Удаляем изображение В ЛЮБОМ СЛУЧАЕ (успешная публикация или ошибка)
-            if image_path and os.path.exists(image_path):
-                delete_image(image_path)
+        except Exception as e:
+            print(f"❌ Неожиданная ошибка при загрузке изображения: {e}")
+            print("📤 Публикация без изображения...")
 
-    # 3. Результат
-    if "response" in result:
-        print(f"✅ Пост опубликован: https://vk.ru/club {VK_GROUP_ID}")
-        print(f"Post ID: {result['response']['post_id']}")
-    else:
-        print(f"❌ Ошибка публикации: {result}")
+    # 5. Публикация поста
+    try:
+        api = session.get_api()
+        result = api.wall.post(
+            owner_id=-VK_GROUP_ID,  # Отрицательный ID для группы
+            from_group=1,
+            message=post_text,
+            attachments=attachment # Передаём вложение (может быть None)
+        )
+        print(f"✅ Пост опубликован: https://vk.ru/wall-{VK_GROUP_ID}_{result['post_id']}")
+        post_id = result['post_id']
+    except vk_api.exceptions.ApiError as e:
+        print(f"❌ Ошибка публикации поста в ВК: {e}")
+        return
+    except Exception as e:
+        print(f"❌ Неожиданная ошибка при публикации поста: {e}")
+        return
+
+    # 6. Удаление изображения (только если оно существовало и было найдено)
+    if image_path and os.path.exists(image_path):
+        delete_image(image_path)
 
 
 if __name__ == "__main__":
