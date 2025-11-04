@@ -1,6 +1,6 @@
 {
   "память": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2025-11-03",
     "lastSeen": "2025-11-04",
     "types": [
@@ -26,7 +26,7 @@
     ]
   },
   "грусть": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-11-03",
     "lastSeen": "2025-11-04",
     "types": [
@@ -59,11 +59,19 @@
     ]
   },
   "жизнь": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-11-04",
     "lastSeen": "2025-11-04",
     "types": [
       "static"
+    ]
+  },
+  "одиночество": {
+    "count": 1,
+    "firstSeen": "2025-11-04",
+    "lastSeen": "2025-11-04",
+    "types": [
+      "critic"
     ]
   }
 }
