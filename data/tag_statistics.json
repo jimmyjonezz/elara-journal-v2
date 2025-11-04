@@ -1,6 +1,6 @@
 {
   "память": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-11-03",
     "lastSeen": "2025-11-04",
     "types": [
@@ -42,11 +42,12 @@
     ]
   },
   "ностальгия": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-11-04",
     "lastSeen": "2025-11-04",
     "types": [
-      "static"
+      "static",
+      "critic"
     ]
   },
   "голос": {
@@ -58,7 +59,7 @@
     ]
   },
   "жизнь": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-11-04",
     "lastSeen": "2025-11-04",
     "types": [
