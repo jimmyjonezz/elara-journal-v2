@@ -31,7 +31,7 @@ jobs:
 
       - name: 🔹 Установка зависимостей
         run: |
-          pip install requests
+          pip install requests vk-api
 
       - name: 🔹 Публикация в ВК
         env:
