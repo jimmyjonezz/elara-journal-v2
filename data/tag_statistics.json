@@ -1,34 +1,34 @@
 {
   "память": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-03",
+    "lastSeen": "2025-11-04",
     "types": [
       "static",
       "critic"
     ]
   },
   "время": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-03",
+    "lastSeen": "2025-11-04",
     "types": [
       "static",
       "critic"
     ]
   },
   "размышление": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-03",
+    "lastSeen": "2025-11-04",
     "types": [
       "static"
     ]
   },
   "грусть": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-03",
+    "lastSeen": "2025-11-04",
     "types": [
       "static"
     ]
@@ -37,6 +37,30 @@
     "count": 1,
     "firstSeen": "2025-11-03",
     "lastSeen": "2025-11-03",
+    "types": [
+      "static"
+    ]
+  },
+  "ностальгия": {
+    "count": 1,
+    "firstSeen": "2025-11-04",
+    "lastSeen": "2025-11-04",
+    "types": [
+      "static"
+    ]
+  },
+  "голос": {
+    "count": 1,
+    "firstSeen": "2025-11-04",
+    "lastSeen": "2025-11-04",
+    "types": [
+      "static"
+    ]
+  },
+  "жизнь": {
+    "count": 1,
+    "firstSeen": "2025-11-04",
+    "lastSeen": "2025-11-04",
     "types": [
       "static"
     ]
