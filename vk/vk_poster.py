@@ -143,7 +143,7 @@ def main():
 
     # 3. Результат
     if "response" in result:
-        print(f"✅ Пост опубликован: https://vk.com/club{VK_GROUP_ID}")
+        print(f"✅ Пост опубликован: https://vk.ru/club{VK_GROUP_ID}")
         print(f"Post ID: {result['response']['post_id']}")
     else:
         print(f"❌ Ошибка публикации: {result}")
