@@ -9,7 +9,7 @@
     ]
   },
   "время": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-11-03",
     "lastSeen": "2025-11-05",
     "types": [
@@ -18,9 +18,9 @@
     ]
   },
   "размышление": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-04",
+    "lastSeen": "2025-11-05",
     "types": [
       "static"
     ]
@@ -42,7 +42,7 @@
     ]
   },
   "ностальгия": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-11-04",
     "lastSeen": "2025-11-05",
     "types": [
@@ -59,9 +59,9 @@
     ]
   },
   "жизнь": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-11-04",
+    "lastSeen": "2025-11-05",
     "types": [
       "static"
     ]
@@ -75,9 +75,9 @@
     ]
   },
   "осознание": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-11-04",
+    "lastSeen": "2025-11-05",
     "types": [
       "static"
     ]
