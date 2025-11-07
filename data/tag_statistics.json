@@ -1,26 +1,26 @@
 {
   "память": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-06",
+    "lastSeen": "2025-11-07",
     "types": [
       "static",
       "critic"
     ]
   },
   "время": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-06",
+    "lastSeen": "2025-11-07",
     "types": [
       "static",
       "critic"
     ]
   },
   "размышление": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-05",
+    "lastSeen": "2025-11-07",
     "types": [
       "static"
     ]
@@ -34,9 +34,9 @@
     ]
   },
   "судьба": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-04",
+    "lastSeen": "2025-11-07",
     "types": [
       "static"
     ]
@@ -51,9 +51,9 @@
     ]
   },
   "голос": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-11-05",
+    "lastSeen": "2025-11-07",
     "types": [
       "static"
     ]
@@ -86,6 +86,14 @@
     "count": 1,
     "firstSeen": "2025-11-06",
     "lastSeen": "2025-11-06",
+    "types": [
+      "static"
+    ]
+  },
+  "ветер": {
+    "count": 1,
+    "firstSeen": "2025-11-07",
+    "lastSeen": "2025-11-07",
     "types": [
       "static"
     ]
