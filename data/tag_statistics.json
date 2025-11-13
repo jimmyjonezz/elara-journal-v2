@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 13,
+    "count": 14,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-12",
+    "lastSeen": "2025-11-13",
     "types": [
       "static",
       "critic"
@@ -26,9 +26,9 @@
     ]
   },
   "грусть": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-11",
+    "lastSeen": "2025-11-13",
     "types": [
       "static"
     ]
@@ -51,9 +51,9 @@
     ]
   },
   "голос": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-11-10",
+    "lastSeen": "2025-11-13",
     "types": [
       "static"
     ]
@@ -75,9 +75,9 @@
     ]
   },
   "осознание": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-11-10",
+    "lastSeen": "2025-11-13",
     "types": [
       "static"
     ]
@@ -99,9 +99,9 @@
     ]
   },
   "смысл": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-11-09",
-    "lastSeen": "2025-11-09",
+    "lastSeen": "2025-11-13",
     "types": [
       "static"
     ]
@@ -126,6 +126,14 @@
     "count": 1,
     "firstSeen": "2025-11-11",
     "lastSeen": "2025-11-11",
+    "types": [
+      "critic"
+    ]
+  },
+  "боль": {
+    "count": 1,
+    "firstSeen": "2025-11-13",
+    "lastSeen": "2025-11-13",
     "types": [
       "critic"
     ]
