@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 20,
+    "count": 21,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-19",
+    "lastSeen": "2025-11-20",
     "types": [
       "static",
       "critic"
@@ -18,17 +18,17 @@
     ]
   },
   "размышление": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-16",
+    "lastSeen": "2025-11-20",
     "types": [
       "static"
     ]
   },
   "грусть": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-17",
+    "lastSeen": "2025-11-20",
     "types": [
       "static"
     ]
@@ -51,17 +51,17 @@
     ]
   },
   "голос": {
-    "count": 9,
+    "count": 10,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-11-19",
+    "lastSeen": "2025-11-20",
     "types": [
       "static"
     ]
   },
   "жизнь": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-11-19",
+    "lastSeen": "2025-11-20",
     "types": [
       "static"
     ]
@@ -108,11 +108,12 @@
     ]
   },
   "самоопределение": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2025-11-10",
-    "lastSeen": "2025-11-19",
+    "lastSeen": "2025-11-20",
     "types": [
-      "static"
+      "static",
+      "critic"
     ]
   },
   "мысль": {
@@ -145,6 +146,14 @@
     "lastSeen": "2025-11-19",
     "types": [
       "static"
+    ]
+  },
+  "интроспекция": {
+    "count": 1,
+    "firstSeen": "2025-11-20",
+    "lastSeen": "2025-11-20",
+    "types": [
+      "critic"
     ]
   }
 }
