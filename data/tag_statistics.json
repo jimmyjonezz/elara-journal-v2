@@ -1,17 +1,17 @@
 {
   "память": {
-    "count": 25,
+    "count": 26,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-24",
+    "lastSeen": "2025-11-25",
     "types": [
       "static",
       "critic"
     ]
   },
   "время": {
-    "count": 21,
+    "count": 22,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-24",
+    "lastSeen": "2025-11-25",
     "types": [
       "static",
       "critic"
@@ -51,9 +51,9 @@
     ]
   },
   "голос": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-11-20",
+    "lastSeen": "2025-11-25",
     "types": [
       "static"
     ]
