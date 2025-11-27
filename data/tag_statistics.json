@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 27,
+    "count": 28,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-26",
+    "lastSeen": "2025-11-27",
     "types": [
       "static",
       "critic"
@@ -67,9 +67,9 @@
     ]
   },
   "одиночество": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-11-18",
+    "lastSeen": "2025-11-27",
     "types": [
       "critic",
       "static"
@@ -84,25 +84,25 @@
     ]
   },
   "свобода": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2025-11-06",
-    "lastSeen": "2025-11-17",
+    "lastSeen": "2025-11-27",
     "types": [
       "static"
     ]
   },
   "ветер": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2025-11-07",
-    "lastSeen": "2025-11-26",
+    "lastSeen": "2025-11-27",
     "types": [
       "static"
     ]
   },
   "смысл": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-11-09",
-    "lastSeen": "2025-11-23",
+    "lastSeen": "2025-11-27",
     "types": [
       "static"
     ]
