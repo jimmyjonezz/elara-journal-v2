@@ -11,7 +11,7 @@ function parseScene(rawEssay) {
 
   //Обновленное регулярное выражение, учитывающее [/SCENE]
   //Устойчивый парсинг [SCENE] (английские метки, многострочный Setting)
-  const sceneMatch = rawEssay.match(/\[SCENE\]\s*\nPose:\s*([^\n]*)\s*\nSetting:\s*([\s\S]*?)(?=\n\n|\n\[\/SCENE\]|\n\[|$)/);
+  const sceneMatch = rawEssay.match(/\[SCENE\]\s*\nPose:\s*([^\n]*)\s*\nSetting:\s*([\s\S]*?)(?:\n\s*\[\/SCENE\]|\n\s*\n|$)/);
   if (sceneMatch) {
     pose = sceneMatch[1].trim().replace(/\.$/, '');
     setting = sceneMatch[2].trim().replace(/\.$/, '');
