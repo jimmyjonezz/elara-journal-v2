@@ -9,9 +9,11 @@ function parseScene(rawEssay) {
   let pose = "she is sitting curled up in a worn vintage armchair, with her legs tucked under her.";
   let setting = "a dimly lit room filled with books, the last rays of the autumn sun.";
 
-  //Обновленное регулярное выражение, учитывающее [/SCENE]
-  //Устойчивый парсинг [SCENE] (английские метки, многострочный Setting)
-  const sceneMatch = rawEssay.match(/\[SCENE\]\s*\nPose:\s*([^\n]*)\s*\nSetting:\s*([\s\S]*?)(?:\n\s*\[\/SCENE\]|\n\s*\n|$)/);
+  // Одинаковая регулярка для поиска и удаления
+  const sceneRegex = /\[SCENE\]\s*\nPose:\s*([^\n]*)\s*\nSetting:\s*([\s\S]*?)(?:\n\s*\[\/SCENE\]|\n\s*\n|$)/;
+
+  const sceneMatch = rawEssay.match(sceneRegex);
+
   if (sceneMatch) {
     pose = sceneMatch[1].trim().replace(/\.$/, '');
     setting = sceneMatch[2].trim().replace(/\.$/, '');
@@ -19,10 +21,10 @@ function parseScene(rawEssay) {
   } else {
     console.warn('⚠️ Блок [SCENE] не найден. Используются значения по умолчанию.');
   }
-  
-  //Удаление всего блока [SCENE]... до первого пустого абзаца или конца
-  const essayWithoutScene = rawEssay.replace(/\[SCENE\]\s*\nPose:[^\n]*\nSetting:[\s\S]*?(?=\n\n|\n\[\/SCENE\]|\n\[|$)/g,'').trim();
-  
+
+  // Удаляем ВЕСЬ блок, включая [/SCENE] или пустую строку
+  const essayWithoutScene = rawEssay.replace(sceneRegex, '').trim();
+
   return { pose, setting, essayWithoutScene };
 }
 
