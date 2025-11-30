@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 30,
+    "count": 31,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-29",
+    "lastSeen": "2025-11-30",
     "types": [
       "static",
       "critic"
@@ -51,9 +51,9 @@
     ]
   },
   "голос": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-11-25",
+    "lastSeen": "2025-11-30",
     "types": [
       "static"
     ]
@@ -100,11 +100,12 @@
     ]
   },
   "смысл": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2025-11-09",
-    "lastSeen": "2025-11-29",
+    "lastSeen": "2025-11-30",
     "types": [
-      "static"
+      "static",
+      "critic"
     ]
   },
   "самоопределение": {
@@ -165,9 +166,9 @@
     ]
   },
   "любовь": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-11-24",
-    "lastSeen": "2025-11-24",
+    "lastSeen": "2025-11-30",
     "types": [
       "static"
     ]
