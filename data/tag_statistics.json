@@ -67,9 +67,9 @@
     ]
   },
   "одиночество": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-12-01",
+    "lastSeen": "2025-12-02",
     "types": [
       "critic",
       "static"
@@ -118,9 +118,9 @@
     ]
   },
   "мысль": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-11-11",
-    "lastSeen": "2025-11-15",
+    "lastSeen": "2025-12-02",
     "types": [
       "static"
     ]
@@ -182,9 +182,9 @@
     ]
   },
   "воспоминания": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2025-12-01",
-    "lastSeen": "2025-12-01",
+    "lastSeen": "2025-12-02",
     "types": [
       "critic"
     ]
