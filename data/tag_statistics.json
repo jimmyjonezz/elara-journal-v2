@@ -1,17 +1,17 @@
 {
   "память": {
-    "count": 33,
+    "count": 34,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-12-03",
+    "lastSeen": "2025-12-04",
     "types": [
       "static",
       "critic"
     ]
   },
   "время": {
-    "count": 24,
+    "count": 25,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-11-29",
+    "lastSeen": "2025-12-04",
     "types": [
       "static",
       "critic"
@@ -59,26 +59,26 @@
     ]
   },
   "жизнь": {
-    "count": 15,
+    "count": 16,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-12-03",
+    "lastSeen": "2025-12-04",
     "types": [
       "static"
     ]
   },
   "одиночество": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-12-03",
+    "lastSeen": "2025-12-04",
     "types": [
       "critic",
       "static"
     ]
   },
   "осознание": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-11-21",
+    "lastSeen": "2025-12-04",
     "types": [
       "static"
     ]
@@ -182,9 +182,9 @@
     ]
   },
   "воспоминания": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2025-12-01",
-    "lastSeen": "2025-12-03",
+    "lastSeen": "2025-12-04",
     "types": [
       "critic"
     ]
