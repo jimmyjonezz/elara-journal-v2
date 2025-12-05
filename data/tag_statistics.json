@@ -51,9 +51,9 @@
     ]
   },
   "голос": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-11-30",
+    "lastSeen": "2025-12-05",
     "types": [
       "static"
     ]
@@ -67,18 +67,18 @@
     ]
   },
   "одиночество": {
-    "count": 9,
+    "count": 10,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-12-04",
+    "lastSeen": "2025-12-05",
     "types": [
       "critic",
       "static"
     ]
   },
   "осознание": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-12-04",
+    "lastSeen": "2025-12-05",
     "types": [
       "static"
     ]
@@ -182,9 +182,9 @@
     ]
   },
   "воспоминания": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-12-01",
-    "lastSeen": "2025-12-04",
+    "lastSeen": "2025-12-05",
     "types": [
       "critic"
     ]
