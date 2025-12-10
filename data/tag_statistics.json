@@ -18,9 +18,9 @@
     ]
   },
   "размышление": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-12-08",
+    "lastSeen": "2025-12-10",
     "types": [
       "static",
       "critic"
@@ -60,26 +60,26 @@
     ]
   },
   "жизнь": {
-    "count": 17,
+    "count": 18,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-12-06",
+    "lastSeen": "2025-12-10",
     "types": [
       "static"
     ]
   },
   "одиночество": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-12-09",
+    "lastSeen": "2025-12-10",
     "types": [
       "critic",
       "static"
     ]
   },
   "осознание": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-12-08",
+    "lastSeen": "2025-12-10",
     "types": [
       "static",
       "critic"
@@ -152,9 +152,9 @@
     ]
   },
   "интроспекция": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2025-11-20",
-    "lastSeen": "2025-12-09",
+    "lastSeen": "2025-12-10",
     "types": [
       "critic"
     ]
