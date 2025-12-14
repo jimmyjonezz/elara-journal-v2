@@ -1066,5 +1066,26 @@
       "одиночество",
       "самопознание"
     ]
+  },
+  {
+    "date": "2025-12-14",
+    "season": "winter",
+    "mood": {
+      "name": "melancholic",
+      "description": "Still, like dust in sunlight — motionless, but not dead — waiting for the wind."
+    },
+    "context": "A coffee stain on a library book — not hers, but the shape matches the one she spilled the day he left. Her fingers pause. The cup in her hand suddenly too hot.",
+    "raw_essay": "Сегодня — 14 декабря 2025 г. Я держу чашку кофе, и мои пальцы задерживаются на странице с пятном — таким же, как то, которое я пролила в день, когда он ушёл. Внезапно чашка кажется слишком горячей, и я чувствую, как по моей спине пробегает дрожь. Воздух вокруг меня наполнен запахом старых книг и тихим шелестом страниц. Я не знаю, что происходит, но вдруг это пятно на странице становится связью с прошлым, и я чувствую, как моё сердце начинает биться быстрее.\n\n[SCENE] Pose: Her fingers wrap around the cup, feeling the warmth seep into her skin as she stands still. Setting: The old library, with its musty smell and faint sound of pages turning, is quiet, except for the soft hum of the heating system, on a cold winter morning.",
+    "raw_reflection": "Чувствую себя потерянной в воспоминаниях, слова на странице — как отголоски прошлого. Это правда или бегство?",
+    "tags": [
+      "память",
+      "голос",
+      "жизнь"
+    ],
+    "reflection_level": "средний",
+    "critic_tags": [
+      "память",
+      "одиночество"
+    ]
   }
 ]
