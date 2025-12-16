@@ -1,10 +1,6 @@
 {
   "contexts": [
     {
-      "id": 3,
-      "context": "A child’s laughter echoing in an empty hallway — the exact pitch of her younger brother’s. For three seconds, she turns, expecting him. The hallway stays empty. Her chest doesn’t."
-    },
-    {
       "id": 4,
       "context": "Finding a dried violet pressed inside a borrowed novel — same as the ones she used to tuck into letters she never sent. Her thumb rubs the petal. It crumbles. So does something quieter."
     },
@@ -211,6 +207,9 @@
     },
     {
       "context": "Запах старых книг в библиотеке — и чувство, что между страницами спрятаны секреты и истории, которые ждут, чтобы быть открытыми."
+    },
+    {
+      "context": "Звук старой пластинки, играющей в пустой комнате, с мелодией, которая вызывает воспоминания о детстве и ушедших днях."
     }
   ]
 }
