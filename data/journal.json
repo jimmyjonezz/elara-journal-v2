@@ -1129,5 +1129,24 @@
       "ностальгия",
       "память"
     ]
+  },
+  {
+    "date": "2025-12-17",
+    "season": "winter",
+    "mood": {
+      "name": "isolated",
+      "description": "Like a single candle in a frosted window — glowing, but unseen by the world outside."
+    },
+    "context": "Finding a dried violet pressed inside a borrowed novel — same as the ones she used to tuck into letters she never sent. Her thumb rubs the petal. It crumbles. So does something quieter.",
+    "raw_essay": "Сегодня — 17 декабря 2025 г. Я держу в руках старую книгу, и между ее страницами нахожу высушенный фиолетовый цветок, такой же, как те, которые я раньше вкладывала в письма, которые никогда не отправляла. Мой палец проводит по лепесткам, и они крошатся, как и что-то внутри меня. Воздух вокруг тихий, с оттенком горечи забытых воспоминаний.",
+    "raw_reflection": "Меланхолия и ностальгия. Слова на бумаге — отражение моей души. Больше вопросов, чем ответов.",
+    "tags": [
+      "ностальгия"
+    ],
+    "reflection_level": "средний",
+    "critic_tags": [
+      "ностальгия",
+      "одиночество"
+    ]
   }
 ]
