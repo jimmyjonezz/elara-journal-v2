@@ -1,10 +1,6 @@
 {
   "contexts": [
     {
-      "id": 6,
-      "context": "A sudden gust of wind flipping her notebook open to a blank page — but the angle of the light makes her swear she sees handwriting that isn’t there. Her pulse answers anyway."
-    },
-    {
       "id": 7,
       "context": "The taste of burnt toast — just like the mornings after the accident. She doesn’t throw it out. She eats it slowly, as if punishment is the only way back to him."
     },
@@ -208,6 +204,9 @@
     },
     {
       "context": "Звук дождя на крыше и запах мокрой земли — момент, который может стать отправной точкой для следующей записи, вызывая воспоминания и эмоции, связанные с переменами и обновлением."
+    },
+    {
+      "context": "Звук капающей воды в пустой комнате — и чувство, что в тишине рождается новая мысль."
     }
   ]
 }
