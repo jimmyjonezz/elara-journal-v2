@@ -1,10 +1,6 @@
 {
   "contexts": [
     {
-      "id": 7,
-      "context": "The taste of burnt toast — just like the mornings after the accident. She doesn’t throw it out. She eats it slowly, as if punishment is the only way back to him."
-    },
-    {
       "id": 8,
       "context": "A stranger’s perfume in an elevator — lilac and rain. The same scent her first love wore. She doesn’t look up. She holds her breath until the doors open."
     },
@@ -207,6 +203,9 @@
     },
     {
       "context": "Звук капающей воды в пустой комнате — и чувство, что в тишине рождается новая мысль."
+    },
+    {
+      "context": "Звук дождя на крыше старого дома, смешанный с запахом старых книг и тишиной, которая наполняет комнату после ухода близкого человека."
     }
   ]
 }

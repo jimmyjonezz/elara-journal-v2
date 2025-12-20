@@ -1187,5 +1187,24 @@
       "одиночество",
       "воспоминания"
     ]
+  },
+  {
+    "date": "2025-12-20",
+    "season": "winter",
+    "mood": {
+      "name": "resilient",
+      "description": "Like an evergreen under heavy snow — bent, but not broken; quiet, but still green."
+    },
+    "context": "The taste of burnt toast — just like the mornings after the accident. She doesn’t throw it out. She eats it slowly, as if punishment is the only way back to him.",
+    "raw_essay": "Сегодня — 20 декабря 2025 г. Я едва слышу звук капель дождя на окне, когда жую тост, который сгорел в тостере. Вкус горелого хлеба возвращает меня к утренним часам после аварии. Я не выбрасываю его, а медленно съедаю, как будто наказание — единственный способ вернуться к нему. Воздух в комнате густ от запаха мокрого асфальта и вчерашней кофе, и я чувствую, как прошлое тихо касается настоящего, оставляя на стекле жизни тонкий след.",
+    "raw_reflection": "В тишине я нахожу себя, перечитывая слова. Чувствую ностальгию и боль. Это правда, но и бегство. Многое осталось за кадром.",
+    "tags": [
+      "память"
+    ],
+    "reflection_level": "средний",
+    "critic_tags": [
+      "память",
+      "ностальгия"
+    ]
   }
 ]
