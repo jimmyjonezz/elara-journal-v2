@@ -1,10 +1,6 @@
 {
   "contexts": [
     {
-      "id": 8,
-      "context": "A stranger’s perfume in an elevator — lilac and rain. The same scent her first love wore. She doesn’t look up. She holds her breath until the doors open."
-    },
-    {
       "id": 9,
       "context": "A cracked phone screen reflecting streetlights in a pattern that mirrors the ceiling of her childhood bedroom. She stares too long. The present blurs."
     },
@@ -206,6 +202,9 @@
     },
     {
       "context": "Звук дождя на крыше старого дома, смешанный с запахом старых книг и тишиной, которая наполняет комнату после ухода близкого человека."
+    },
+    {
+      "context": "Звук дождя на крыше и запах мокрой земли, который напоминает ей о детских воспоминаниях о летних ливнях."
     }
   ]
 }
