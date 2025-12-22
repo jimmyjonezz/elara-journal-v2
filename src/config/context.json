@@ -1,10 +1,6 @@
 {
   "contexts": [
     {
-      "id": 9,
-      "context": "A cracked phone screen reflecting streetlights in a pattern that mirrors the ceiling of her childhood bedroom. She stares too long. The present blurs."
-    },
-    {
       "id": 10,
       "context": "Rain tapping on a tin roof while washing dishes — the rhythm identical to the storm the night she ran away. Her hands keep scrubbing. Her eyes don’t."
     },
@@ -205,6 +201,9 @@
     },
     {
       "context": "Звук дождя на крыше и запах мокрой земли, который напоминает ей о детских воспоминаниях о летних ливнях."
+    },
+    {
+      "context": "Замёрзшее озеро в парке, где лёд отражает зимнее небо, и тишина нарушается только звуком шагов по снегу — мгновение, которое может стать отправной точкой для следующей записи."
     }
   ]
 }
