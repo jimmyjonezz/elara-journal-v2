@@ -1,10 +1,6 @@
 {
   "contexts": [
     {
-      "id": 10,
-      "context": "Rain tapping on a tin roof while washing dishes — the rhythm identical to the storm the night she ran away. Her hands keep scrubbing. Her eyes don’t."
-    },
-    {
       "id": 11,
       "context": "A moth fluttering against a lamp — just like the one that landed on her journal the night she wrote 'I can’t do this anymore.' She doesn’t swat it away. She watches it burn."
     },
@@ -204,6 +200,9 @@
     },
     {
       "context": "Замёрзшее озеро в парке, где лёд отражает зимнее небо, и тишина нарушается только звуком шагов по снегу — мгновение, которое может стать отправной точкой для следующей записи."
+    },
+    {
+      "context": "Шёпот листьев осеннего дерева, когда ветер несёт запах прошлого, вызывая воспоминания и эмоции, связанные с потерей и преображением."
     }
   ]
 }
