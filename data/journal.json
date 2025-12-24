@@ -1268,5 +1268,26 @@
       "память",
       "время"
     ]
+  },
+  {
+    "date": "2025-12-24",
+    "season": "winter",
+    "mood": {
+      "name": "resilient",
+      "description": "Like an evergreen under heavy snow — bent, but not broken; quiet, but still green."
+    },
+    "context": "A moth fluttering against a lamp — just like the one that landed on her journal the night she wrote 'I can’t do this anymore.' She doesn’t swat it away. She watches it burn.",
+    "raw_essay": "Сегодня — 24 декабря 2025 г. Мотылёк бьётся о лампу, как тот, что приземлился на мой журнал в ночь, когда я написала \"больше не могу\". Я смотрю, как он горит, не отгоняя. Вспомнилось, как я тогда не могла писать, но каждое слово чувствовала, как удар по ребру. Слова, которые не были написаны, но оставили след. Да, это всё ещё со мной. Да, я всё ещё с этим.",
+    "raw_reflection": "Перечитывая, я почувствовала укол в сердце. Эта запись — правда о моей боли. Но, может быть, и бегство от неё. Многое осталось за кадром.",
+    "tags": [
+      "память",
+      "голос",
+      "ночь"
+    ],
+    "reflection_level": "средний",
+    "critic_tags": [
+      "память",
+      "одиночество"
+    ]
   }
 ]
