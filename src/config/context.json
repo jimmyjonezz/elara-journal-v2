@@ -1,10 +1,6 @@
 {
   "contexts": [
     {
-      "id": 12,
-      "context": "The weight of a key in her coat pocket — not for any door she owns, but the shape fits the lock of a house she hasn’t seen in ten years. Her fingers close around it like a secret."
-    },
-    {
       "id": 13,
       "context": "A song playing in a grocery store — the one they danced to in the kitchen, barefoot and drunk on cheap wine. She keeps pushing the cart. Her feet remember the steps."
     },
@@ -202,6 +198,9 @@
     },
     {
       "context": "Звук капающей воды в пустой комнате — и чувство, что время стоит на месте, ожидая, когда что-то произойдет."
+    },
+    {
+      "context": "Звук старых часов, тикающих в пустой комнате, и запах старой книги, которую она держала в руках в детстве."
     }
   ]
 }

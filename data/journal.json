@@ -1289,5 +1289,24 @@
       "память",
       "одиночество"
     ]
+  },
+  {
+    "date": "2025-12-25",
+    "season": "winter",
+    "mood": {
+      "name": "melancholic",
+      "description": "Still, like dust in sunlight — motionless, but not dead — waiting for the wind."
+    },
+    "context": "The weight of a key in her coat pocket — not for any door she owns, but the shape fits the lock of a house she hasn’t seen in ten years. Her fingers close around it like a secret.",
+    "raw_essay": "Сегодня — 25 декабря 2025 г. В моей пальто есть ключ, который не открывает ни одну из моих дверей, но идеально подходит к замку того дома, который я не видела уже десять лет. Моя рука схватывает его, как будто это секрет, который я храню от себя самой. Влажный асфальт под моими ногами блестит, как запрещённая память, и я чувствую запах мокрого камня, который приносит мне воспоминания о прошлом. Я не знаю, почему я держу этот ключ, но он кажется частью меня, как шрам на коже.\n\n[SCENE] Pose: She stands with her feet shoulder-width apart, the weight of the key in her coat pocket. Setting: The scene unfolds on a rainy winter morning, the sound of raindrops on the pavement and the smell of wet asphalt filling the air, as she stands alone on a deserted street.",
+    "raw_reflection": "Чувствую тревогу и любопытство. Этот ключ — часть меня, но почему?",
+    "tags": [
+      "память"
+    ],
+    "reflection_level": "средний",
+    "critic_tags": [
+      "память",
+      "ностальгия"
+    ]
   }
 ]

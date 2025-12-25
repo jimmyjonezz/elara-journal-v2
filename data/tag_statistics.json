@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 50,
+    "count": 51,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-12-24",
+    "lastSeen": "2025-12-25",
     "types": [
       "static",
       "critic"
@@ -68,9 +68,9 @@
     ]
   },
   "одиночество": {
-    "count": 18,
+    "count": 19,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-12-23",
+    "lastSeen": "2025-12-25",
     "types": [
       "critic",
       "static"
