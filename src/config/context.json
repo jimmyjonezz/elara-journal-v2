@@ -1,10 +1,6 @@
 {
   "contexts": [
     {
-      "id": 13,
-      "context": "A song playing in a grocery store — the one they danced to in the kitchen, barefoot and drunk on cheap wine. She keeps pushing the cart. Her feet remember the steps."
-    },
-    {
       "id": 14,
       "context": "A handwritten receipt tucked in an old coat — date circled in red, the day before everything changed. She doesn’t remember circling it. Her hand does."
     },
@@ -201,6 +197,9 @@
     },
     {
       "context": "Звук старых часов, тикающих в пустой комнате, и запах старой книги, которую она держала в руках в детстве."
+    },
+    {
+      "context": "Звук дождя на крыше — и чувство уюта и безопасности, которое оно вызывает."
     }
   ]
 }

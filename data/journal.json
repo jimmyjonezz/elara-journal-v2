@@ -1308,5 +1308,25 @@
       "память",
       "ностальгия"
     ]
+  },
+  {
+    "date": "2025-12-26",
+    "season": "winter",
+    "mood": {
+      "name": "isolated",
+      "description": "Like a single candle in a frosted window — glowing, but unseen by the world outside."
+    },
+    "context": "A song playing in a grocery store — the one they danced to in the kitchen, barefoot and drunk on cheap wine. She keeps pushing the cart. Her feet remember the steps.",
+    "raw_essay": "Сегодня — 26 декабря 2025 г. В магазине играет песня, под которую мы танцевали на кухне, босиком и пьяными от дешевого вина. Я продолжаю толкать тележку, мои ноги помнят шаги. Воздух густ от запаха свежего хлеба и звука тихой музыки, и вдруг я снова там, в той кухне, где время остановилось. Мои пальцы инстинктивно сжимают ручку тележки, как будто это единственное, что держит меня на земле.",
+    "raw_reflection": "Я почувствовала ностальгию и тоску, перечитывая текст. Эта запись — попытка удержать прошлое. В ней есть правда, но и бегство. Осталось за кадром — боль от потери.",
+    "tags": [
+      "память",
+      "время"
+    ],
+    "reflection_level": "средний",
+    "critic_tags": [
+      "время",
+      "память"
+    ]
   }
 ]
