@@ -1,10 +1,6 @@
 {
   "contexts": [
     {
-      "id": 15,
-      "context": "Steam rising from a teacup forming a shape like a face she hasn’t named in years. She doesn’t blink. She lets it vanish."
-    },
-    {
       "id": 16,
       "context": "A sudden silence between subway stops — deep enough to hear the echo of her own voice whispering 'I’m sorry' into a phone that’s long since dead. She doesn’t speak. She listens."
     },
@@ -199,6 +195,9 @@
     },
     {
       "context": "Запах старых книг в библиотеке — и чувство ностальгии и тоски, которое оно вызывает."
+    },
+    {
+      "context": "Звук капающей воды в пустой комнате — и ощущение пустоты, которое оно вызывает."
     }
   ]
 }

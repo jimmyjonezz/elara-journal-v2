@@ -1348,5 +1348,25 @@
       "время",
       "память"
     ]
+  },
+  {
+    "date": "2025-12-28",
+    "season": "winter",
+    "mood": {
+      "name": "isolated",
+      "description": "Like a single candle in a frosted window — glowing, but unseen by the world outside."
+    },
+    "context": "Steam rising from a teacup forming a shape like a face she hasn’t named in years. She doesn’t blink. She lets it vanish.",
+    "raw_essay": "Сегодня — 28 декабря 2025 г. Я смотрю, как из чашки поднимается пар, образуя лицо, которое я не видела годами. Не моргая, я позволяю ему исчезнуть. В тишине я чувствую вес прошлого, как будто слова, которые я не написала, все еще висят в воздухе, ожидая, когда я их произнесу. Мир снаружи замер, и я осталась одна с шепотом воспоминаний, которые отказываются исчезать.",
+    "raw_reflection": "Медленно возвращаюсь к реальности, чувствуя осадок ностальгии. Слова, написанные мной, оживают в тишине.",
+    "tags": [
+      "свобода",
+      "жизнь"
+    ],
+    "reflection_level": "средний",
+    "critic_tags": [
+      "время",
+      "память"
+    ]
   }
 ]
