@@ -1,10 +1,6 @@
 {
   "contexts": [
     {
-      "id": 16,
-      "context": "A sudden silence between subway stops — deep enough to hear the echo of her own voice whispering 'I’m sorry' into a phone that’s long since dead. She doesn’t speak. She listens."
-    },
-    {
       "context": "Новый сенсорный триггер может стать запахом старых книг или звуком дождя, который пробудит новые воспоминания и эмоции, позволяя автору продолжить свое путешествие вглубь себя."
     },
     {
@@ -198,6 +194,9 @@
     },
     {
       "context": "Звук капающей воды в пустой комнате — и ощущение пустоты, которое оно вызывает."
+    },
+    {
+      "context": "Звук капающей воды в пустой комнате - и чувство ностальгии, которое оно вызывает."
     }
   ]
 }

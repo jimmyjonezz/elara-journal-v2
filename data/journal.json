@@ -1368,5 +1368,24 @@
       "время",
       "память"
     ]
+  },
+  {
+    "date": "2025-12-29",
+    "season": "winter",
+    "mood": {
+      "name": "isolated",
+      "description": "Like a single candle in a frosted window — glowing, but unseen by the world outside."
+    },
+    "context": "A sudden silence between subway stops — deep enough to hear the echo of her own voice whispering 'I’m sorry' into a phone that’s long since dead. She doesn’t speak. She listens.",
+    "raw_essay": "Сегодня — 29 декабря 2025 г. Внезапно тишина между станциями метро стала такой глубокой, что я услышала эхо своего голоса, прошептавшего \"прости\" в телефон, который давно мёртв. Я не говорю, я слушаю. Воздух в вагоне густ от запаха мокрой кожи и угасающих огней. Мои пальцы замёрзли, прижавшись к холодному окну. В темноте снаружи мерцают огни города, как искры в темноте.\n\n[SCENE] Pose: She sits with her back against the cold subway window, fingers pressed against the glass. Setting: The dimly lit subway car rumbles through the city, filled with the smell of wet leather and fading lights, on a chilly winter evening.",
+    "raw_reflection": "Я почувствовала пустоту и удивление собой. Эта запись - бегство в тишине.",
+    "tags": [
+      "голос"
+    ],
+    "reflection_level": "средний",
+    "critic_tags": [
+      "одиночество",
+      "интроспекция"
+    ]
   }
 ]
