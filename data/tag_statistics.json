@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 55,
+    "count": 56,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-12-29",
+    "lastSeen": "2025-12-30",
     "types": [
       "static",
       "critic"
@@ -60,17 +60,17 @@
     ]
   },
   "жизнь": {
-    "count": 22,
+    "count": 23,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-12-28",
+    "lastSeen": "2025-12-30",
     "types": [
       "static"
     ]
   },
   "одиночество": {
-    "count": 19,
+    "count": 20,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-12-25",
+    "lastSeen": "2025-12-30",
     "types": [
       "critic",
       "static"
@@ -94,17 +94,17 @@
     ]
   },
   "ветер": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2025-11-07",
-    "lastSeen": "2025-12-21",
+    "lastSeen": "2025-12-30",
     "types": [
       "static"
     ]
   },
   "смысл": {
-    "count": 9,
+    "count": 10,
     "firstSeen": "2025-11-09",
-    "lastSeen": "2025-12-03",
+    "lastSeen": "2025-12-30",
     "types": [
       "static",
       "critic"
@@ -152,9 +152,9 @@
     ]
   },
   "интроспекция": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2025-11-20",
-    "lastSeen": "2025-12-19",
+    "lastSeen": "2025-12-30",
     "types": [
       "critic"
     ]
@@ -176,9 +176,9 @@
     ]
   },
   "ночь": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2025-12-01",
-    "lastSeen": "2025-12-24",
+    "lastSeen": "2025-12-30",
     "types": [
       "static"
     ]
