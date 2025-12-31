@@ -1410,5 +1410,24 @@
       "ностальгия",
       "время"
     ]
+  },
+  {
+    "date": "2025-12-31",
+    "season": "winter",
+    "mood": {
+      "name": "serene",
+      "description": "Like snow falling at midnight — silent, complete, and utterly at peace."
+    },
+    "context": "Новый сенсорный триггер может стать звуком дождя, стучащего по оконному стеклу, вызывая новые размышления о времени, памяти и одиночестве.",
+    "raw_essay": "Сегодня — 31 декабря 2025 г. Я слышу звук дождя, стучащего по оконному стеклу, и вдруг понимаю, что не писала этого, но чувствовала каждое слово, как удар по ребру. Воздух наполнен запахом мокрого асфальта и жареных каштанов, и я чувствую холод, как будто я оставила окно открытым. Моя рука двигается по странице, как будто пытается найти ответы на вопросы, которые я еще не задала.\n\n[SCENE] Pose: She is sitting with her back slightly bent, fingers tracing the edge of the window frame. Setting: The room is dimly lit, with only a faint glow of the city lights outside, and the sound of raindrops hitting the pavement creates a soothing melody.",
+    "raw_reflection": "Я чувствую себя потерянной в своих мыслях, как будто я открыла дверь в комнату, которую забыла. Слова на странице — это эхо моей души, но что они значат?",
+    "tags": [
+      "голос"
+    ],
+    "reflection_level": "средний",
+    "critic_tags": [
+      "время",
+      "память"
+    ]
   }
 ]

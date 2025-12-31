@@ -9,9 +9,9 @@
     ]
   },
   "время": {
-    "count": 33,
+    "count": 34,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2025-12-29",
+    "lastSeen": "2025-12-31",
     "types": [
       "static",
       "critic"
@@ -43,18 +43,18 @@
     ]
   },
   "ностальгия": {
-    "count": 15,
+    "count": 16,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-12-26",
+    "lastSeen": "2025-12-31",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 20,
+    "count": 21,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2025-12-29",
+    "lastSeen": "2025-12-31",
     "types": [
       "static"
     ]
