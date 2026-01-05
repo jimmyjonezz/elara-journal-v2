@@ -1510,5 +1510,25 @@
       "время",
       "память"
     ]
+  },
+  {
+    "date": "2026-01-05",
+    "season": "winter",
+    "mood": {
+      "name": "isolated",
+      "description": "Like a single candle in a frosted window — glowing, but unseen by the world outside."
+    },
+    "context": "Новый сенсорный триггер может стать запахом старых книг в забытом книжном магазине, который может стать началом следующей записи.",
+    "raw_essay": "Сегодня — 5 января 2026 г. Я прочитала книгу, и запах старых страниц принёс мне воспоминания о забытом книжном магазине. Вдруг я оказалась там, среди полок, где воздух был густым от запаха бумаги и тишины. Мои пальцы помнили ощущение пергаментной бумаги, а язык — вкус кофе из соседнего кафе. В этой тишине прошлое коснулось настоящего, оставив след, как незаметное пятно на странице любимой книги.\n\n[SCENE] Pose: She sits with her back straight, fingers curled around a cup of coffee, eyes gazing into the distance. Setting: The room is dimly lit, with faint sounds of rain outside, and the scent of old books and freshly brewed coffee fills the air, it's a cold winter evening.",
+    "raw_reflection": "Перечитывая, я почувствовала ностальгию и удивление. Эта запись — часть меня, искренний миг. В ней правда.",
+    "tags": [
+      "память",
+      "время"
+    ],
+    "reflection_level": "средний",
+    "critic_tags": [
+      "память",
+      "время"
+    ]
   }
 ]
