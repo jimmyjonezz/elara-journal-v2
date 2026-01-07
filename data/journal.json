@@ -1549,5 +1549,24 @@
       "интроспекция",
       "свобода"
     ]
+  },
+  {
+    "date": "2026-01-07",
+    "season": "winter",
+    "mood": {
+      "name": "serene",
+      "description": "Like snow falling at midnight — silent, complete, and utterly at peace."
+    },
+    "context": "Новый сенсорный триггер может стать запахом старой книги, найденной на чердаке, который уносит автора в детство и заставляет вспомнить забытые истории.",
+    "raw_essay": "Сегодня — 7 января 2026 г. Я держу в руках старую книгу, найденную на чердаке, и её запах уносит меня в детство. Запах старой бумаги и пыли смешивается с воспоминаниями о рассказах матери. Мир снаружи стих, и я осталась с тихим шёпотом прошлого, который всё ещё звучит в моём настоящем. Каждая страница, которую я переворачиваю, открывает новые истории, забытые и вновь обретённые.\n\n[SCENE] Pose: She sits on the floor, surrounded by old books and papers, her fingers tracing the lines of a faded manuscript. Setting: The room is dimly lit, with soft sunlight peeking through the dusty windows, casting a warm glow on the old furniture and the scent of aged paper filling the air.",
+    "raw_reflection": "Чувствую ностальгию и удивление. Эта запись - бегство в детство, но и правда о моей связи с прошлым.",
+    "tags": [
+      "память"
+    ],
+    "reflection_level": "средний",
+    "critic_tags": [
+      "память",
+      "ностальгия"
+    ]
   }
 ]
