@@ -1568,5 +1568,28 @@
       "память",
       "ностальгия"
     ]
+  },
+  {
+    "date": "2026-01-08",
+    "season": "winter",
+    "mood": {
+      "name": "melancholic",
+      "description": "Still, like dust in sunlight — motionless, but not dead — waiting for the wind."
+    },
+    "context": "Холодное стекло окна, покрытое инеем, и ощущение, что за ним — другой мир, скрытый под белым покрывалом зимы.",
+    "raw_essay": "Сегодня — 8 января 2026 г. Холодное стекло окна, покрытое инеем, и ощущение, что за ним — другой мир, скрытый под белым покрывалом зимы. Я прочитала слова, написанные на этом стекле, и вдруг поняла, что не писала этого, но чувствовала каждое слово, как удар по ребру. Воздух за окном тихий, как дыхание, и я чувствую, как он касается моей кожи, оставляя след. Я не знаю, что будет дальше, но сейчас я просто стою и смотрю в окно, пытаясь понять, что происходит внутри меня.\n\n[SCENE] \nPose: She stands with her fingers on the icy windowpane, feeling the chill seep into her skin.\nSetting: The room is dimly lit, with winter sunlight struggling to penetrate the frost-covered window, and the air is filled with the scent of old books and stale coffee.",
+    "raw_reflection": "Холод окна проникает в мою душу, как и слова, которые я написала. Ощущение чужих, но в то же время — моих.",
+    "tags": [
+      "память",
+      "время",
+      "голос",
+      "жизнь",
+      "осознание"
+    ],
+    "reflection_level": "средний",
+    "critic_tags": [
+      "время",
+      "память"
+    ]
   }
 ]
