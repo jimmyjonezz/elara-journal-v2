@@ -2,38 +2,45 @@
 
 /**
  * Извлекает Pose и Setting из блока [SCENE] и удаляет его из текста эссе.
- * @param {string} rawEssayText - Исходный текст эссе, содержащий блок [SCENE].
+ * Предполагается, что блок [SCENE] всегда находится в конце rawEssay.
+ * @param {string} rawEssayText - Исходный текст эссе, содержащий блок [SCENE] в конце.
  * @returns {Object} Объект с полями pose, setting и essayWithoutScene.
  */
 function parseScene(rawEssay) {
   let pose = "she is sitting curled up in a worn vintage armchair, with her legs tucked under her.";
   let setting = "a dimly lit room filled with books, the last rays of the autumn sun.";
 
-  // Регулярное выражение для поиска блока [SCENE] от начала до конца (включая [/SCENE] или до конца строки/текста)
-  // Используем жадный захват [\s\S]*? только для содержимого Setting, но четко определяем конец блока.
-  // (?=...) - позитивная опережающая проверка, не входит в захват.
-  const sceneRegex = /\[SCENE\]\s*\nPose:\s*([^\n]*)\s*\nSetting:\s*([\s\S]*?)(?=\n\s*\[\/SCENE\]|\n\s*\n|$)/;
+  const sceneStartIndex = rawEssay.indexOf('[SCENE]');
 
-  const sceneMatch = rawEssay.match(sceneRegex);
+  if (sceneStartIndex !== -1) {
+    // Извлекаем часть текста *до* [SCENE] для эссе
+    let essayWithoutScene = rawEssay.substring(0, sceneStartIndex).trim();
 
-  if (sceneMatch) {
-    pose = sceneMatch[1].trim().replace(/\.$/, '');
-    // Убираем лишние переводы строк и пробелы из setting
-    setting = sceneMatch[2].trim().replace(/\.$/, '');
+    // Извлекаем часть текста *после* [SCENE] для поиска Pose и Setting
+    const sceneContent = rawEssay.substring(sceneStartIndex);
+
+    // Простые регулярки для извлечения Pose и Setting из оставшегося контента
+    const poseMatch = sceneContent.match(/Pose:\s*(.*?)(?:\n|$)/i);
+    if (poseMatch && poseMatch[1]) {
+      pose = poseMatch[1].trim().replace(/\.$/, '');
+    }
+
+    const settingMatch = sceneContent.match(/Setting:\s*([\s\S]*?)(?:\n\s*\[\/SCENE\]|\n.*$|$)/i); // Учитываем [/SCENE] или конец строки/текста
+    if (settingMatch && settingMatch[1]) {
+      setting = settingMatch[1].trim().replace(/\.$/, '');
+    }
+
     console.log(`🖼️ Извлечена сцена: Поза="${pose}", Обстановка="${setting}"`);
+
+    // Возвращаем извлечённые pose, setting и текст эссе без блока [SCENE]
+    return { pose, setting, essayWithoutScene };
+
   } else {
-    console.warn('⚠️ Блок [SCENE] не найден. Используются значения по умолчанию.');
+    // Блок [SCENE] не найден
+    console.warn('⚠️ Блок [SCENE] не найден в конце raw_essay. Используются значения по умолчанию.');
+    // Возвращаем весь текст как essayWithoutScene, если блок не найден
+    return { pose, setting, essayWithoutScene: rawEssay.trim() };
   }
-
-  // Регулярное выражение для УДАЛЕНИЯ ВСЕГО блока [SCENE] (включая Pose, Setting и опциональный [/SCENE])
-  // Более точное, учитывает возможное отсутствие [/SCENE] и разные окончания
-  // Удаляет [SCENE], Pose, Setting и до следующего \n\n или [/SCENE]\n\n или конца строки/текста
-  const sceneBlockRegex = /\[SCENE\][\s\S]*?\n(?:\s*\[\/SCENE\])?(?=\s*\n|$)/;
-
-  // Удаляем ВЕСЬ блок, включая [/SCENE] или пустую строку после него
-  const essayWithoutScene = rawEssay.replace(sceneBlockRegex, '').trim();
-
-  return { pose, setting, essayWithoutScene };
 }
 
 module.exports = { parseScene };
