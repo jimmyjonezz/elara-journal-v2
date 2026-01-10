@@ -1610,5 +1610,25 @@
       "память",
       "время"
     ]
+  },
+  {
+    "date": "2026-01-10",
+    "season": "winter",
+    "mood": {
+      "name": "serene",
+      "description": "Like snow falling at midnight — silent, complete, and utterly at peace."
+    },
+    "context": "Звук скрипучих половиц в старом доме, где каждый шаг отзывается эхом забытых дней.",
+    "raw_essay": "Сегодня — 10 января 2026 г. Я хожу по старому дому, и каждый шаг отзывается эхом забытых дней. Скрипучие половицы под ногами — это как страницы старой книги, которые шуршат, когда их переворачиваешь. Воздух густ от запаха старого дерева и пыли. Я останавливаюсь на середине комнаты, и тишина вокруг меня становится как тихий снег, который падает на город ночью. Мой взгляд падает на старое кресло, где я провела бесчисленные часы, читая и пиша. Слово застряло в горле, как кость, которую я не могу откашлять.\n\n[SCENE] Pose: She stands with her feet shoulder-width apart, her eyes fixed on the old armchair, her fingers tracing the edge of a nearby shelf. Setting: The interior of the old house, with faded wallpaper and the scent of old books, the soft glow of afternoon sunlight filtering through the dusty windows, casting a warm silence over the room.",
+    "raw_reflection": "Перечитывая, я почувствовалаwave эмоций. Эта запись - фрагмент моей души. В ней правда, но и бегство.",
+    "tags": [
+      "голос",
+      "ночь"
+    ],
+    "reflection_level": "средний",
+    "critic_tags": [
+      "воспоминания",
+      "одиночество"
+    ]
   }
 ]
