@@ -18,9 +18,9 @@
     ]
   },
   "размышление": {
-    "count": 21,
+    "count": 22,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-01-20",
+    "lastSeen": "2026-01-21",
     "types": [
       "static",
       "critic"
@@ -185,9 +185,9 @@
     ]
   },
   "воспоминания": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2025-12-01",
-    "lastSeen": "2026-01-11",
+    "lastSeen": "2026-01-21",
     "types": [
       "critic"
     ]
@@ -220,6 +220,14 @@
     "count": 1,
     "firstSeen": "2025-12-14",
     "lastSeen": "2025-12-14",
+    "types": [
+      "critic"
+    ]
+  },
+  "размышления": {
+    "count": 1,
+    "firstSeen": "2026-01-21",
+    "lastSeen": "2026-01-21",
     "types": [
       "critic"
     ]
