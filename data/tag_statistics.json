@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 80,
+    "count": 81,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-01-25",
+    "lastSeen": "2026-01-26",
     "types": [
       "static",
       "critic"
@@ -35,9 +35,9 @@
     ]
   },
   "судьба": {
-    "count": 9,
+    "count": 10,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-01-12",
+    "lastSeen": "2026-01-26",
     "types": [
       "static"
     ]
@@ -52,9 +52,9 @@
     ]
   },
   "голос": {
-    "count": 25,
+    "count": 26,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-01-17",
+    "lastSeen": "2026-01-26",
     "types": [
       "static"
     ]
@@ -68,9 +68,9 @@
     ]
   },
   "одиночество": {
-    "count": 25,
+    "count": 26,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-01-25",
+    "lastSeen": "2026-01-26",
     "types": [
       "critic",
       "static"
