@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # Запуск каждые 12 часов (в 06:00 и 18:00 UTC)
-    - cron: '0 6 * * *'
+    - cron: '0 3 * * *'
 
 permissions:
   contents: write
