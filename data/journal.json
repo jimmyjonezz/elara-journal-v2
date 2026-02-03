@@ -2062,5 +2062,24 @@
       "лед",
       "след"
     ]
+  },
+  {
+    "date": "2026-02-03",
+    "season": "winter",
+    "mood": {
+      "name": "isolated",
+      "description": "Like a single candle in a frosted window — glowing, but unseen by the world outside."
+    },
+    "context": "Тёплый свет свечи, мерцающий в холодной комнате, и ощущение, что он держит последние дни уходящего года в своих язычках.",
+    "raw_essay": "The light slips through the window, faint as a breath. I sit here, fingers tracing the edge of the paper, cold against my palm. Outside, a distant train hums, but this room is my own frame, shifting. I hear the echo of yesterday in the silence—like a footstep on an old floor. The scent of rain lingers, sharp and soft, mixing with the faint aroma of old tea. I look at the clock, still counting down, though the numbers blur. There’s a weight in my chest, not heavy, but present, like a thread tugging. I don’t know what I’ll write next, but the moment feels incomplete, waiting for a word that never comes.",
+    "raw_reflection": "Я чувствовал, что в том момент запись — не только слова, а стек, в который задумался. Холод и тепло, стимул, который заставил понять, что у меня есть что сказать, даже если никто не слушает. Удаляю эмоции, но остаю их, в Pfarrу.",
+    "tags": [
+      "время"
+    ],
+    "reflection_level": "средний",
+    "critic_tags": [
+      "время",
+      "одиночество"
+    ]
   }
 ]

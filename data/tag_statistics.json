@@ -9,9 +9,9 @@
     ]
   },
   "время": {
-    "count": 52,
+    "count": 53,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-02",
+    "lastSeen": "2026-02-03",
     "types": [
       "static",
       "critic"
@@ -236,6 +236,22 @@
     "count": 1,
     "firstSeen": "2026-02-02",
     "lastSeen": "2026-02-02",
+    "types": [
+      "critic"
+    ]
+  },
+  "лед": {
+    "count": 1,
+    "firstSeen": "2026-02-03",
+    "lastSeen": "2026-02-03",
+    "types": [
+      "critic"
+    ]
+  },
+  "след": {
+    "count": 1,
+    "firstSeen": "2026-02-03",
+    "lastSeen": "2026-02-03",
     "types": [
       "critic"
     ]
