@@ -6,7 +6,7 @@ const API_KEY = process.env.OPENROUTER_API_KEY;
 const API_URL = "https://openrouter.ai/api/v1/chat/completions"; // без пробела
 
 // Модель для генерации записей (бесплатная)
-const ESSAY_MODEL = "liquid/lfm-2.5-1.2b-instruct:free";
+const ESSAY_MODEL = "tngtech/tng-r1t-chimera:free";
 // Альтернативы: ""
 
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
