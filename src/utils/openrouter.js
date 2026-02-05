@@ -6,7 +6,7 @@ const API_KEY = process.env.OPENROUTER_API_KEY;
 const API_URL = "https://openrouter.ai/api/v1/chat/completions"; // без пробела
 
 // Модель для генерации записей (бесплатная)
-const ESSAY_MODEL = "openai/gpt-oss-120b:free";
+const ESSAY_MODEL = "tngtech/deepseek-r1t2-chimera:free";
 // Альтернативы: ""
 
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
