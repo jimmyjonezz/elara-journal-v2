@@ -10,7 +10,7 @@ const ESSAY_MODEL = "tngtech/deepseek-r1t2-chimera:free";
 // Альтернативы: ""
 
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
-const CRITIQUE_MODEL = "stepfun/step-3.5-flash:free"
+const CRITIQUE_MODEL = "tngtech/deepseek-r1t2-chimera:free"
 
 const today = new Date().toLocaleDateString('ru-RU', {
   day: 'numeric',
