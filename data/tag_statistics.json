@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 89,
+    "count": 90,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-06",
+    "lastSeen": "2026-02-07",
     "types": [
       "static",
       "critic"
@@ -18,9 +18,9 @@
     ]
   },
   "размышление": {
-    "count": 25,
+    "count": 26,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-01-29",
+    "lastSeen": "2026-02-07",
     "types": [
       "static",
       "critic"
@@ -60,9 +60,9 @@
     ]
   },
   "жизнь": {
-    "count": 31,
+    "count": 32,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-02-04",
+    "lastSeen": "2026-02-07",
     "types": [
       "static"
     ]
@@ -169,9 +169,9 @@
     ]
   },
   "любовь": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2025-11-24",
-    "lastSeen": "2025-11-30",
+    "lastSeen": "2026-02-07",
     "types": [
       "static"
     ]
@@ -284,6 +284,22 @@
     "count": 1,
     "firstSeen": "2026-02-06",
     "lastSeen": "2026-02-06",
+    "types": [
+      "critic"
+    ]
+  },
+  "фрагментарность": {
+    "count": 1,
+    "firstSeen": "2026-02-07",
+    "lastSeen": "2026-02-07",
+    "types": [
+      "critic"
+    ]
+  },
+  "тактильность": {
+    "count": 1,
+    "firstSeen": "2026-02-07",
+    "lastSeen": "2026-02-07",
     "types": [
       "critic"
     ]
