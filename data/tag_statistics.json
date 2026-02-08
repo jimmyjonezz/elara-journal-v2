@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 90,
+    "count": 91,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-07",
+    "lastSeen": "2026-02-08",
     "types": [
       "static",
       "critic"
@@ -52,17 +52,17 @@
     ]
   },
   "голос": {
-    "count": 29,
+    "count": 30,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-02-04",
+    "lastSeen": "2026-02-08",
     "types": [
       "static"
     ]
   },
   "жизнь": {
-    "count": 32,
+    "count": 33,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-02-07",
+    "lastSeen": "2026-02-08",
     "types": [
       "static"
     ]
@@ -121,9 +121,9 @@
     ]
   },
   "мысль": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2025-11-11",
-    "lastSeen": "2025-12-02",
+    "lastSeen": "2026-02-08",
     "types": [
       "static"
     ]
@@ -300,6 +300,22 @@
     "count": 1,
     "firstSeen": "2026-02-07",
     "lastSeen": "2026-02-07",
+    "types": [
+      "critic"
+    ]
+  },
+  "эфемерность": {
+    "count": 1,
+    "firstSeen": "2026-02-08",
+    "lastSeen": "2026-02-08",
+    "types": [
+      "critic"
+    ]
+  },
+  "письмо": {
+    "count": 1,
+    "firstSeen": "2026-02-08",
+    "lastSeen": "2026-02-08",
     "types": [
       "critic"
     ]
