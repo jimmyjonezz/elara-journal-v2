@@ -6,11 +6,11 @@ const API_KEY = process.env.OPENROUTER_API_KEY;
 const API_URL = "https://openrouter.ai/api/v1/chat/completions"; // без пробела
 
 // Модель для генерации записей (бесплатная)
-const ESSAY_MODEL = "cognitivecomputations/dolphin-mistral-24b-venice-edition:free";
+const ESSAY_MODEL = "google/gemma-3n-e2b-it:free";
 // Альтернативы: ""
 
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
-const CRITIQUE_MODEL = "cognitivecomputations/dolphin-mistral-24b-venice-edition:free"
+const CRITIQUE_MODEL = "google/gemma-3n-e2b-it:free"
 
 const today = new Date().toLocaleDateString('ru-RU', {
   day: 'numeric',
