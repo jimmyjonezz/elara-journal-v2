@@ -1,17 +1,17 @@
 {
   "память": {
-    "count": 94,
+    "count": 95,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-11",
+    "lastSeen": "2026-02-12",
     "types": [
       "static",
       "critic"
     ]
   },
   "время": {
-    "count": 58,
+    "count": 59,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-11",
+    "lastSeen": "2026-02-12",
     "types": [
       "static",
       "critic"
@@ -77,9 +77,9 @@
     ]
   },
   "осознание": {
-    "count": 21,
+    "count": 22,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-02-02",
+    "lastSeen": "2026-02-12",
     "types": [
       "static",
       "critic"
@@ -95,9 +95,9 @@
     ]
   },
   "ветер": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2025-11-07",
-    "lastSeen": "2026-01-28",
+    "lastSeen": "2026-02-12",
     "types": [
       "static"
     ]
@@ -340,6 +340,22 @@
     "count": 1,
     "firstSeen": "2026-02-11",
     "lastSeen": "2026-02-11",
+    "types": [
+      "critic"
+    ]
+  },
+  "пауза": {
+    "count": 1,
+    "firstSeen": "2026-02-12",
+    "lastSeen": "2026-02-12",
+    "types": [
+      "critic"
+    ]
+  },
+  "следы": {
+    "count": 1,
+    "firstSeen": "2026-02-12",
+    "lastSeen": "2026-02-12",
     "types": [
       "critic"
     ]
