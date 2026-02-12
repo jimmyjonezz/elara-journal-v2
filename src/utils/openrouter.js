@@ -6,11 +6,11 @@ const API_KEY = process.env.OPENROUTER_API_KEY;
 const API_URL = "https://openrouter.ai/api/v1/chat/completions"; // без пробела
 
 // Модель для генерации записей (бесплатная)
-const ESSAY_MODEL = "tngtech/deepseek-r1t2-chimera:free";
-// Альтернативы: ""
+const ESSAY_MODEL = "stepfun/step-3.5-flash:free";
+// Альтернативы: "tngtech/deepseek-r1t2-chimera:free"
 
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
-const CRITIQUE_MODEL = "tngtech/deepseek-r1t2-chimera:free"
+const CRITIQUE_MODEL = "stepfun/step-3.5-flash:free"
 
 const today = new Date().toLocaleDateString('ru-RU', {
   day: 'numeric',
