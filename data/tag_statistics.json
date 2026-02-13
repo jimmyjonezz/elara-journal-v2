@@ -1,17 +1,17 @@
 {
   "память": {
-    "count": 95,
+    "count": 96,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-12",
+    "lastSeen": "2026-02-13",
     "types": [
       "static",
       "critic"
     ]
   },
   "время": {
-    "count": 59,
+    "count": 60,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-12",
+    "lastSeen": "2026-02-13",
     "types": [
       "static",
       "critic"
@@ -35,9 +35,9 @@
     ]
   },
   "судьба": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-02",
+    "lastSeen": "2026-02-13",
     "types": [
       "static"
     ]
@@ -52,9 +52,9 @@
     ]
   },
   "голос": {
-    "count": 32,
+    "count": 33,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-02-10",
+    "lastSeen": "2026-02-13",
     "types": [
       "static"
     ]
@@ -68,9 +68,9 @@
     ]
   },
   "одиночество": {
-    "count": 30,
+    "count": 31,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-02-04",
+    "lastSeen": "2026-02-13",
     "types": [
       "critic",
       "static"
@@ -95,17 +95,17 @@
     ]
   },
   "ветер": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2025-11-07",
-    "lastSeen": "2026-02-12",
+    "lastSeen": "2026-02-13",
     "types": [
       "static"
     ]
   },
   "смысл": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2025-11-09",
-    "lastSeen": "2026-01-17",
+    "lastSeen": "2026-02-13",
     "types": [
       "static",
       "critic"
@@ -356,6 +356,22 @@
     "count": 1,
     "firstSeen": "2026-02-12",
     "lastSeen": "2026-02-12",
+    "types": [
+      "critic"
+    ]
+  },
+  "ожидание": {
+    "count": 1,
+    "firstSeen": "2026-02-13",
+    "lastSeen": "2026-02-13",
+    "types": [
+      "critic"
+    ]
+  },
+  "паттерн": {
+    "count": 1,
+    "firstSeen": "2026-02-13",
+    "lastSeen": "2026-02-13",
     "types": [
       "critic"
     ]
