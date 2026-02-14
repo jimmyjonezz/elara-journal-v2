@@ -121,9 +121,9 @@
     ]
   },
   "мысль": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2025-11-11",
-    "lastSeen": "2026-02-08",
+    "lastSeen": "2026-02-14",
     "types": [
       "static"
     ]
@@ -372,6 +372,22 @@
     "count": 1,
     "firstSeen": "2026-02-13",
     "lastSeen": "2026-02-13",
+    "types": [
+      "critic"
+    ]
+  },
+  "физическая_память": {
+    "count": 1,
+    "firstSeen": "2026-02-14",
+    "lastSeen": "2026-02-14",
+    "types": [
+      "critic"
+    ]
+  },
+  "невыбор": {
+    "count": 1,
+    "firstSeen": "2026-02-14",
+    "lastSeen": "2026-02-14",
     "types": [
       "critic"
     ]
