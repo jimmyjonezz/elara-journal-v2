@@ -10,7 +10,7 @@ const ESSAY_MODEL = "mistralai/mistral-small-3.1-24b-instruct:free";
 // Альтернативы: "tngtech/deepseek-r1t2-chimera:free, stepfun/step-3.5-flash:free"
 
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
-const CRITIQUE_MODEL = "mistralai/mistral-small-3.1-24b-instruct:free"
+const CRITIQUE_MODEL = "arcee-ai/trinity-large-preview:free"
 
 const today = new Date().toLocaleDateString('ru-RU', {
   day: 'numeric',
