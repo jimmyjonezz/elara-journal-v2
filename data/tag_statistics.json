@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 96,
+    "count": 97,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-13",
+    "lastSeen": "2026-02-14",
     "types": [
       "static",
       "critic"
@@ -68,9 +68,9 @@
     ]
   },
   "одиночество": {
-    "count": 31,
+    "count": 32,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-02-13",
+    "lastSeen": "2026-02-14",
     "types": [
       "critic",
       "static"
@@ -103,9 +103,9 @@
     ]
   },
   "смысл": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2025-11-09",
-    "lastSeen": "2026-02-13",
+    "lastSeen": "2026-02-14",
     "types": [
       "static",
       "critic"
@@ -193,9 +193,9 @@
     ]
   },
   "выбор": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2025-12-03",
-    "lastSeen": "2026-02-11",
+    "lastSeen": "2026-02-14",
     "types": [
       "static"
     ]
