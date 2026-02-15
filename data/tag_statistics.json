@@ -77,7 +77,7 @@
     ]
   },
   "осознание": {
-    "count": 23,
+    "count": 24,
     "firstSeen": "2025-11-04",
     "lastSeen": "2026-02-15",
     "types": [
@@ -103,9 +103,9 @@
     ]
   },
   "смысл": {
-    "count": 13,
+    "count": 14,
     "firstSeen": "2025-11-09",
-    "lastSeen": "2026-02-14",
+    "lastSeen": "2026-02-15",
     "types": [
       "static",
       "critic"
@@ -345,9 +345,9 @@
     ]
   },
   "пауза": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2026-02-12",
-    "lastSeen": "2026-02-12",
+    "lastSeen": "2026-02-15",
     "types": [
       "critic"
     ]
@@ -393,6 +393,14 @@
     ]
   },
   "страх": {
+    "count": 1,
+    "firstSeen": "2026-02-15",
+    "lastSeen": "2026-02-15",
+    "types": [
+      "critic"
+    ]
+  },
+  "незавершённость": {
     "count": 1,
     "firstSeen": "2026-02-15",
     "lastSeen": "2026-02-15",
