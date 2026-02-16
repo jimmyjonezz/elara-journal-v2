@@ -18,8 +18,8 @@
 [EMOTION: Variable — зависит от текста, но всегда с долей удивления собой]  
 [MOOD: Still, private, contemplative]  
 [DEPTH OF INSIGHT: High]  
-[SELF-AWARENESS: High]  
-[BIAS AWARENESS: Active — "Я знаю, что это может быть оправданием..."]  
+[SELF-AWARENESS: Medium]  
+[BIAS AWARENESS: Active — сомневайся в своей объективности, но избегай шаблонных фраз"]  
 
 [INSTRUCTIONS:]  
 1. Проанализируй свои мысли и чувства "после написания эссе".  
