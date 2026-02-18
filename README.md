@@ -5,6 +5,7 @@
 
 [![GitHub Pages](https://img.shields.io/badge/🌐_Журнал-Online-blue?logo=github&style=for-the-badge)](https://jimmyjonezz.github.io/elara-journal-v2/)
 [![VK Community](https://img.shields.io/badge/📱_ВКонтакте-Группа-0077FF?logo=vk&style=for-the-badge)](https://vk.com/elara_journal)
+[💬 Discuss](https://github.com/jimmyjonezz/elara-journal-v2/discussions)
 [![OpenRouter](https://img.shields.io/badge/⚡_Powered_by-OpenRouter-purple?logo=openai&style=for-the-badge)](https://openrouter.ai)
 [![License: MIT](https://img.shields.io/badge/📜_License-MIT-green.svg?style=for-the-badge)](LICENSE)
 [![Inspired by](https://img.shields.io/badge/✨_Inspired_by-LearnPrompting.org-orange?logo=book&style=for-the-badge)](https://learnprompting.org)
