@@ -9,9 +9,9 @@
     ]
   },
   "время": {
-    "count": 61,
+    "count": 62,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-15",
+    "lastSeen": "2026-02-18",
     "types": [
       "static",
       "critic"
@@ -68,18 +68,18 @@
     ]
   },
   "одиночество": {
-    "count": 34,
+    "count": 35,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-02-17",
+    "lastSeen": "2026-02-18",
     "types": [
       "critic",
       "static"
     ]
   },
   "осознание": {
-    "count": 25,
+    "count": 26,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-02-17",
+    "lastSeen": "2026-02-18",
     "types": [
       "static",
       "critic"
@@ -361,9 +361,9 @@
     ]
   },
   "ожидание": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2026-02-13",
-    "lastSeen": "2026-02-13",
+    "lastSeen": "2026-02-18",
     "types": [
       "critic"
     ]
