@@ -1,40 +1,81 @@
 // src/utils/responseParser.js
+const fs = require('fs').promises;
 
 /**
- * Парсит сырой ответ модели, ожидая JSON.
- * Удаляет окружающие блоки кода (```json, ```) и пытается распарсить.
- * @param {string} rawResponse - Сырой ответ от модели.
- * @returns {Object} - Распарсенный JSON-объект.
- * @throws {Error} - Если ответ пуст, не строка или не валидный JSON.
+ * Пытается исправить частые ошибки JSON от LLM
  */
-function parseCriticResponse(rawResponse) {
-  if (typeof rawResponse !== 'string' || rawResponse.trim() === '') {
-    throw new Error('Модель вернула пустой или некорректный ответ (не строка или пустая строка).');
-  }
+function repairJSON(rawText) {
+  let text = rawText.trim();
 
-  try {
-    // Удаляем возможные блоки кода Markdown
-    const cleanJson = rawResponse
-      .replace(/^```json\s*/i, '') // Убираем ```json в начале
-      .replace(/\s*```$/i, '')    // Убираем ``` в конце
-      .trim();                    // Убираем лишние пробелы
+  // 1. Удаляем markdown-обёртку
+  text = text.replace(/^```json\s*/i, '').replace(/```$/, '');
+  text = text.replace(/^```\s*/i, '').replace(/```$/, '');
 
-    if (!cleanJson) {
-      throw new Error('Модель вернула пустой JSON-ответ после очистки.');
-    }
+  // 2. Удаляем невидимые символы
+  text = text.replace(/[\u200B-\u200D\uFEFF]/g, '');
 
-    return JSON.parse(cleanJson);
-  } catch (e) {
-    if (e instanceof SyntaxError) {
-      console.error('❌ Ошибка парсинга JSON от критика:', e.message);
-      console.error('📝 Сырой ответ от модели (до очистки):');
-      console.error(rawResponse);
-      throw new Error('Некорректный формат ответа от модели (ошибка JSON.parse).');
-    } else {
-      // Перебрасываем другие ошибки (например, из логики выше)
-      throw e;
+  // 3. Удаляем trailing commas
+  text = text.replace(/,(\s*[}\]])/g, '$1');
+
+  // 4. Экранируем одиночные кавычки внутри строк
+  text = text.replace(/(?<!\\)'/g, "\\'");
+
+  return text;
+}
+
+/**
+ * Безопасный парсинг JSON с попыткой восстановления
+ */
+function safeParseJSON(rawText, maxRetries = 2) {
+  for (let i = 0; i <= maxRetries; i++) {
+    try {
+      if (i === 0) {
+        return JSON.parse(rawText);
+      }
+      
+      const repaired = repairJSON(rawText);
+      return JSON.parse(repaired);
+      
+    } catch (e) {
+      console.warn(`⚠️ Попытка парсинга ${i + 1} не удалась: ${e.message}`);
+      
+      if (i === maxRetries) {
+        console.error("❌ Не удалось распарсить JSON после всех попыток ремонта");
+        console.error("📄 Последние 500 символов ответа:", rawText.slice(-500));
+        throw e;
+      }
     }
   }
 }
 
-module.exports = { parseCriticResponse };
+/**
+ * Парсит ответ критика и валидирует структуру
+ */
+function parseCriticResponse(rawResponse) {
+  if (!rawResponse || typeof rawResponse !== 'string') {
+    throw new Error("Пустой или некорректный ответ от модели");
+  }
+
+  const analysis = safeParseJSON(rawResponse);
+
+  // Валидация обязательных полей
+  const requiredFields = ['summary', 'suggestions', 'tags_for_search'];
+  for (const field of requiredFields) {
+    if (!analysis[field]) {
+      throw new Error(`Отсутствует обязательное поле: ${field}`);
+    }
+  }
+
+  // Нормализация типов
+  if (!Array.isArray(analysis.suggestions)) {
+    analysis.suggestions = [analysis.suggestions];
+  }
+  if (!Array.isArray(analysis.tags_for_search)) {
+    analysis.tags_for_search = [analysis.tags_for_search];
+  }
+
+  console.log('✅ JSON успешно распарсен и валидирован');
+  return analysis;
+}
+
+module.exports = { parseCriticResponse, safeParseJSON, repairJSON };
