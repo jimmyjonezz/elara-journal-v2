@@ -9,9 +9,9 @@
     ]
   },
   "время": {
-    "count": 62,
+    "count": 63,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-18",
+    "lastSeen": "2026-02-19",
     "types": [
       "static",
       "critic"
@@ -35,9 +35,9 @@
     ]
   },
   "судьба": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-13",
+    "lastSeen": "2026-02-19",
     "types": [
       "static"
     ]
@@ -68,9 +68,9 @@
     ]
   },
   "одиночество": {
-    "count": 35,
+    "count": 36,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-02-18",
+    "lastSeen": "2026-02-19",
     "types": [
       "critic",
       "static"
@@ -103,9 +103,9 @@
     ]
   },
   "смысл": {
-    "count": 14,
+    "count": 15,
     "firstSeen": "2025-11-09",
-    "lastSeen": "2026-02-15",
+    "lastSeen": "2026-02-19",
     "types": [
       "static",
       "critic"
