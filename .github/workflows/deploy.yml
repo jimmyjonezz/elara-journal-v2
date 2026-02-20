@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: "20"
 
-      # Создаём папку logs/ для сырых ответов
+      # 1. Создаём папку logs/
       - name: Create logs directory
         run: mkdir -p logs
 
@@ -40,31 +40,42 @@ jobs:
         run: |
           node src/core/entryGenerator.js
 
-      - name: Run Literary Critic Analysis
+      - name: Критик начинает работать
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
-          echo "🖋️ Литературный критик приступает к анализу журнала (включая новую запись)..."
           node src/core/literaryAnalyzer.js
-          echo "✅ Анализ литературного критика завершен. Файл literary_analysis.json создан/обновлен."
-      
-      # Коммитим ВСЁ: журнал, анализ, теги, статистику, логи
+      - name: Check and force add logs
+        run: |
+          echo "🔍 Проверка папки logs/..."
+          if [ -n "$(ls -A logs/ 2>/dev/null)" ]; then
+            echo "📄 Найдены файлы логов:"
+            ls -la logs/
+            # --force игнорирует .gitignore для этих файлов
+            git add --force logs/
+            echo "✅ Логи добавлены в индекс git."
+          else
+            echo "ℹ️ Папка logs/ пуста."
+          fi
+
+      # 3. Коммитим ВСЁ
       - name: Commit and push updated files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          # Добавляем ВСЕ изменённые файлы (включая logs/, если были ошибки)
+          # Добавляем основные файлы
           git add data/journal.json
           git add data/literary_analysis.json
           git add data/tag_statistics.json
           git add data/latest_image_prompt.txt
-          git add src/config/context.json # Убедиться в правильности пути
-          git add logs/
-
+          git add src/config/context.json
+          
+          # Логи уже добавлены на предыдущем шаге (если были)
+          
           # Проверяем, есть ли изменения
           if git diff --cached --quiet; then
-            echo "ℹ️  Нет изменений для коммита."
+            echo "ℹ️ Нет изменений для коммита."
             exit 0
           fi
           
@@ -82,8 +93,7 @@ jobs:
           git commit -m "📝 Автоматическое обновление: журнал, анализ, теги, статистика, логи"
           
           # Пушим
-          git push --force-with-lease
-          
+          git push --force-with-lease          
           echo "✅ Все изменения успешно запушены."
 
       - name: Setup Pages
@@ -93,6 +103,16 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
+
+      # 4. Сохраняем логи как артефакт (надежнее, чем git)
+      - name: Upload logs as artifact
+        if: always() # Загружаем даже при ошибках
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-logs
+          path: logs/
+          retention-days: 14
+          if-no-files-found: ignore
 
   deploy:
     environment:
