@@ -10,7 +10,7 @@ const {
 } = require('../config');
 
 const { withRetry } = require('../utils/retryHandler');
-const { parseCriticResponse } = require('../utils/responseParser'); // Здесь теперь живёт safeParseJSON
+const { parseCriticResponse } = require('../utils/responseParser');
 const { loadLastJournalEntry } = require('../data/dataLoader');
 const fs = require('fs').promises;
 const path = require('path');
