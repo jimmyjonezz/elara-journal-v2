@@ -1,6 +1,7 @@
 name: Публикация в ВКонтакте
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: [Новое эссе]
     types:
