@@ -1,0 +1,121 @@
+name: Новое эссе + анализ
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'   # каждые 12 часов (3:00 и 15:00 UTC)
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages-build"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Create logs directory
+        run: mkdir -p logs
+
+      # ────────────────────────────────────────────────────────────────
+      # Генерация записи (продолжаем даже если упадёт)
+      - name: Генерация новой записи журнала
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: node src/core/entryGenerator.js || echo "entryGenerator завершился с ошибкой → продолжаем"
+
+      # ────────────────────────────────────────────────────────────────
+      # Литературный анализ (самое частое место падения)
+      - name: Литературный анализ (критик)
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          echo "🖋️ Запуск критика..."
+          node src/core/literaryAnalyzer.js || echo "Анализ критика упал → сохраняем что есть"
+          echo "Код завершения анализа: $?"
+
+      # ────────────────────────────────────────────────────────────────
+      # Сохраняем логи даже при ошибках
+      - name: Сохранить логи в репозиторий (если есть)
+        if: always()
+        run: |
+          if ls logs/*.txt 1> /dev/null 2>&1; then
+            echo "Логи найдены:"
+            ls -la logs/
+            git add --force logs/ || true
+          else
+            echo "Логов в ./logs/ не обнаружено"
+            touch logs/no-logs.txt
+            git add --force logs/no-logs.txt || true
+          fi
+
+      # ────────────────────────────────────────────────────────────────
+      # Коммитим изменения (всегда пытаемся)
+      - name: Commit & push изменения
+        if: always()
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "GitHub Actions"
+
+          # Добавляем всё, что могло измениться
+          git add -f \
+            data/journal.json \
+            data/literary_analysis.json \
+            data/tag_statistics.json \
+            data/latest_image_prompt.txt \
+            src/config/context.json \
+            logs/ 2>/dev/null || true
+
+          if git diff --cached --quiet; then
+            echo "Изменений для коммита нет"
+            exit 0
+          fi
+
+          git commit -m "auto: обновление журнала + анализ + логи (возможно с ошибками)" || echo "Коммит не нужен"
+          git push --force-with-lease || echo "Push не удался (возможно конфликт), но артефакты сохранятся"
+
+      # ────────────────────────────────────────────────────────────────
+      # Артефакты логов — на всякий случай
+      - name: Загрузить логи как артефакт
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-logs-${{ github.run_id }}
+          path: logs/
+          retention-days: 10
+          if-no-files-found: ignore
+
+      # ────────────────────────────────────────────────────────────────
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact for Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
