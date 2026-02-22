@@ -1,6 +1,6 @@
 {
   "память": {
-    "count": 100,
+    "count": 101,
     "firstSeen": "2025-11-03",
     "lastSeen": "2026-02-22",
     "types": [
@@ -9,7 +9,7 @@
     ]
   },
   "время": {
-    "count": 65,
+    "count": 66,
     "firstSeen": "2025-11-03",
     "lastSeen": "2026-02-22",
     "types": [
@@ -52,9 +52,9 @@
     ]
   },
   "голос": {
-    "count": 35,
+    "count": 36,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-02-17",
+    "lastSeen": "2026-02-22",
     "types": [
       "static"
     ]
@@ -68,7 +68,7 @@
     ]
   },
   "одиночество": {
-    "count": 40,
+    "count": 41,
     "firstSeen": "2025-11-04",
     "lastSeen": "2026-02-22",
     "types": [
@@ -95,9 +95,9 @@
     ]
   },
   "ветер": {
-    "count": 13,
+    "count": 14,
     "firstSeen": "2025-11-07",
-    "lastSeen": "2026-02-13",
+    "lastSeen": "2026-02-22",
     "types": [
       "static"
     ]
