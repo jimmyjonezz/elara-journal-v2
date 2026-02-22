@@ -1,7 +1,9 @@
 {
-  "generated_at": "2026-02-22T07:31:36.962Z",
+  "generated_at": "2026-02-22T08:00:01.175Z",
   "summary": "Анализ не удался",
   "suggestions": [],
   "tags_for_search": [],
-  "next_context_suggestion": null
+  "next_context_suggestion": null,
+  "error": true,
+  "error_message": "Не удалось распарсить JSON после всех попыток: Expected ',' or '}' after property value in JSON at position 1370"
 }

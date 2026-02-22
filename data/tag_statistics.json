@@ -78,7 +78,7 @@
     ]
   },
   "осознание": {
-    "count": 29,
+    "count": 30,
     "firstSeen": "2025-11-04",
     "lastSeen": "2026-02-22",
     "types": [
@@ -87,16 +87,16 @@
     ]
   },
   "свобода": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2025-11-06",
-    "lastSeen": "2026-01-28",
+    "lastSeen": "2026-02-22",
     "types": [
       "static",
       "critic"
     ]
   },
   "ветер": {
-    "count": 14,
+    "count": 15,
     "firstSeen": "2025-11-07",
     "lastSeen": "2026-02-22",
     "types": [
