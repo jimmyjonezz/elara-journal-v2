@@ -1,4 +1,4 @@
-name: Новое эссе + анализ
+name: Новое эссе
 
 on:
   workflow_dispatch:
