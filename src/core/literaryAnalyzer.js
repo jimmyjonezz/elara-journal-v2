@@ -15,18 +15,15 @@ const {
 } = require('../config');
 
 /**
- * Проверяет существование файла и создаёт пустой массив, если файла нет
- * @param {string} filePath
- * @returns {Promise<Array|Object>}
+ * Гарантированно создаём файл, если его нет
  */
 async function ensureJsonFile(filePath, defaultValue = []) {
   try {
     await fs.access(filePath);
-    const data = await readJSON(filePath);
-    return data;
+    return await readJSON(filePath);
   } catch (err) {
     if (err.code === 'ENOENT') {
-      console.log(`ℹ️ Файл ${path.basename(filePath)} не найден → создаём`);
+      console.log(`Создаём отсутствующий файл: ${path.basename(filePath)}`);
       await writeJSON(filePath, defaultValue);
       return defaultValue;
     }
@@ -35,135 +32,85 @@ async function ensureJsonFile(filePath, defaultValue = []) {
 }
 
 /**
- * Проверяет, был ли уже выполнен анализ сегодня
- * @param {Array} journal
- * @returns {boolean}
+ * Был ли анализ уже сделан сегодня
  */
 function wasAnalyzedToday(journal) {
   if (!Array.isArray(journal) || journal.length === 0) return false;
-
-  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-  const lastEntry = journal.at(-1);
-
-  return (
-    lastEntry?.date?.startsWith(today) &&
-    Array.isArray(lastEntry.critic_tags) &&
-    lastEntry.critic_tags.length > 0
-  );
+  const today = new Date().toISOString().slice(0, 10);
+  const last = journal.at(-1);
+  return last?.date?.startsWith(today) && Array.isArray(last.critic_tags) && last.critic_tags.length > 0;
 }
 
 /**
- * Добавляет теги критика к последней записи журнала (работает с копией)
+ * Применяем теги к копии журнала
  */
 function applyCriticTags(journal, tags) {
   if (!Array.isArray(journal) || journal.length === 0) return journal;
-
   const copy = structuredClone(journal);
   const last = copy.at(-1);
-
   if (Array.isArray(tags) && tags.length > 0) {
-    last.critic_tags = [...tags];
+    last.critic_tags = [...new Set(tags)]; // убираем дубликаты
   }
-
   return copy;
 }
 
 /**
- * Добавляет новый контекст, если он осмысленный
+ * Добавляем контекст только если он выглядит полезным
  */
-async function appendContextIfMeaningful(suggestion) {
-  const text = (suggestion ?? '').trim();
+async function appendUsefulContext(suggestion) {
+  const text = String(suggestion ?? '').trim();
+  if (text.length < 12) return false;
+  if (/^(продолжить|дальше|то же|тот же|похожий|аналогичный|ещё|продолжение)$/i.test(text)) return false;
 
-  if (text.length < 15) {
-    console.warn(`Пропущен контекст — слишком короткий: "${text.substring(0, 40)}..."`);
-    return false;
-  }
-
-  if (/^(продолжить|дальше|то же|тот же|похожий|аналогичный|продолжение)$/i.test(text)) {
-    console.warn(`Пропущен бесполезный контекст: "${text.substring(0, 60)}..."`);
-    return false;
-  }
-
-  let contextsData;
+  let data = { contexts: [] };
   try {
-    contextsData = await readJSON(CONTEXTS_PATH);
-    if (!contextsData || !Array.isArray(contextsData.contexts)) {
-      contextsData = { contexts: [] };
-    }
-  } catch {
-    contextsData = { contexts: [] };
-  }
+    data = await readJSON(CONTEXTS_PATH) || { contexts: [] };
+    if (!Array.isArray(data.contexts)) data.contexts = [];
+  } catch {}
 
-  contextsData.contexts.push({ context: text, added_at: new Date().toISOString() });
-  await writeJSON(CONTEXTS_PATH, contextsData);
+  data.contexts.push({
+    context: text,
+    added_at: new Date().toISOString(),
+  });
 
-  console.log(`➕ Добавлен контекст (${contextsData.contexts.length} всего)`);
+  await writeJSON(CONTEXTS_PATH, data);
+  console.log(`Добавлен контекст (${data.contexts.length} шт)`);
   return true;
 }
 
 /**
- * Сохраняет сырой ответ модели при проблемах с парсингом
- */
-async function saveRawCriticResponse(raw, error) {
-  try {
-    const logsDir = path.join(__dirname, '../../logs/critic-errors');
-    await fs.mkdir(logsDir, { recursive: true });
-
-    const ts = new Date().toISOString().replace(/[:.]/g, '-');
-    const filename = `critic-raw-${ts}.txt`;
-    const filepath = path.join(logsDir, filename);
-
-    const content = [
-      `ERROR: ${error.message}`,
-      `TIMESTAMP: ${new Date().toISOString()}`,
-      '',
-      'RAW RESPONSE:',
-      raw,
-    ].join('\n');
-
-    await fs.writeFile(filepath, content, 'utf-8');
-    console.log(`📄 Сырой ответ сохранён → ${filename}`);
-  } catch (saveErr) {
-    console.error('Не удалось сохранить сырой ответ критика:', saveErr.message);
-  }
-}
-
-/**
- * Основная функция литературного анализа
+ * Основная функция
  */
 async function runLiteraryCritique() {
   console.log('🔍 Запуск литературного анализа...');
 
-  // ─── 1. Чтение и валидация журнала ────────────────────────────────────────
+  // 1. Читаем журнал
   let journal = await ensureJsonFile(JOURNAL_PATH, []);
 
   if (!Array.isArray(journal) || journal.length === 0) {
-    throw new Error('Журнал пуст или повреждён → анализ невозможен');
+    console.error('Журнал пуст или повреждён');
+    process.exitCode = 1;
+    return;
   }
 
-  // Проверка на дубликат за сегодня
   if (wasAnalyzedToday(journal)) {
-    console.log('→ Анализ за сегодня уже выполнен. Пропуск.');
+    console.log('Анализ за сегодня уже есть → пропуск');
     return;
   }
 
   const lastEntry = journal.at(-1);
 
-  // ─── 2. Подготовка данных для критика ──────────────────────────────────────
+  // 2. Готовим данные для критика
   const todayRu = new Date().toLocaleDateString('ru-RU', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
+    day: 'numeric', month: 'long', year: 'numeric'
   });
 
-  const recentEntries = journal.slice(-3);
-
-  const styleHistory = recentEntries.map((e) => ({
+  const recent = journal.slice(-3).map(e => ({
     date: e.date,
     reflection_level: e.reflection_level || 'средний',
     tags: Array.isArray(e.tags) ? e.tags : [],
-    word_count: typeof e.raw_essay === 'string' ? e.raw_essay.trim().split(/\s+/).filter(Boolean).length : 0,
-    has_metaphor: /как|словно|будто|точно\s/i.test(e.raw_essay || ''),
+    word_count: String(e.raw_essay || '').trim().split(/\s+/).filter(Boolean).length,
+    has_metaphor: /(как|словно|будто|точно)\s/i.test(e.raw_essay || ''),
     has_dialog: /["«»„“][^"«»„“]*["«»„“]/.test(e.raw_essay || ''),
   }));
 
@@ -176,67 +123,70 @@ async function runLiteraryCritique() {
     entry_reflection_level: lastEntry.reflection_level || 'средний',
     entry_essay: lastEntry.raw_essay || '',
     entry_reflection: lastEntry.raw_reflection || '',
-    style_history: styleHistory,
+    style_history: recent,
   };
 
-  // ─── 3. Генерация анализа с повторами ──────────────────────────────────────
+  // 3. Получаем ответ модели
   let rawResponse;
   try {
     rawResponse = await withRetry(
       () => generateCritique(critiqueData),
       MAX_RETRIES,
       BASE_DELAY_MS,
-      'генерация критики',
+      'генерация критики'
     );
   } catch (err) {
-    console.error('❌ Не удалось получить ответ от модели после всех попыток');
-    throw err;
+    console.error('Не удалось получить ответ модели после всех попыток');
+    process.exitCode = 1;
+    return;
   }
 
-  // ─── 4. Парсинг ответа ─────────────────────────────────────────────────────
-  let parsed;
+  // 4. Парсим с fallback
+  let analysis;
   try {
-    parsed = parseCriticResponse(rawResponse);
-  } catch (parseErr) {
-    console.error('💥 Ошибка парсинга ответа критика:', parseErr.message);
-    await saveRawCriticResponse(rawResponse, parseErr);
-    throw parseErr;
+    analysis = parseCriticResponse(rawResponse);
+  } catch (err) {
+    console.error('Парсер упал → используем fallback-анализ');
+    console.error(err.message);
+
+    analysis = {
+      summary: "Не удалось корректно распарсить ответ литературного критика",
+      suggestions: ["Повторите запуск позже", "Проверьте качество промпта и модель"],
+      tags_for_search: ["parse_error", "llm_failure", "техническая проблема"],
+      next_context_suggestion: lastEntry.context || "Вернитесь к предыдущему контексту",
+    };
   }
 
-  const analysisResult = {
+  const result = {
     generated_at: new Date().toISOString(),
-    ...parsed,
+    ...analysis,
   };
 
-  // ─── 5. Атомарное сохранение результатов ───────────────────────────────────
+  // 5. Сохраняем всё
   try {
-    // Сначала сохраняем анализ
-    await writeJSON(ANALYSIS_PATH, analysisResult);
-    console.log(`💾 Анализ сохранён → ${ANALYSIS_PATH}`);
+    await writeJSON(ANALYSIS_PATH, result);
+    console.log(`Анализ сохранён → ${ANALYSIS_PATH}`);
 
-    // Обновляем журнал (копия + теги)
-    const updatedJournal = applyCriticTags(journal, analysisResult.tags_for_search);
+    const updatedJournal = applyCriticTags(journal, analysis.tags_for_search || []);
     await writeJSON(JOURNAL_PATH, updatedJournal);
-    console.log(`🏷️ Теги критика добавлены в журнал`);
+    console.log('Теги критика добавлены в журнал');
 
-    // Добавляем контекст (если есть и осмысленный)
-    if (analysisResult.next_context_suggestion) {
-      await appendContextIfMeaningful(analysisResult.next_context_suggestion);
+    if (analysis.next_context_suggestion) {
+      await appendUsefulContext(analysis.next_context_suggestion);
     }
-  } catch (commitErr) {
-    console.error('❌ Ошибка при сохранении результатов:', commitErr.message);
-    console.warn('Журнал и contexts могли остаться несинхронизированными!');
-    throw commitErr;
+  } catch (err) {
+    console.error('Ошибка сохранения результатов анализа', err.message);
+    process.exitCode = 1;
   }
 
-  console.log('🎉 Литературный анализ успешно завершён');
+  console.log('Литературный анализ завершён (с или без ошибок)');
 }
 
 module.exports = { runLiteraryCritique };
 
 if (require.main === module) {
-  runLiteraryCritique().catch((err) => {
-    console.error('💥 Критическая ошибка в literaryAnalyzer:', err);
+  runLiteraryCritique().catch(err => {
+    console.error('Критическая ошибка в literaryAnalyzer:', err);
     process.exitCode = 1;
   });
 }
