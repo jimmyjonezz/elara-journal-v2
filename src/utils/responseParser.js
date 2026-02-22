@@ -3,55 +3,54 @@ const fs = require('fs').promises;
 const path = require('path');
 
 /**
- * Пытается извлечь и починить JSON из ответа LLM
- * @param {string} rawText
- * @returns {string} подготовленный текст для парсинга
+ * Экранирует вложенные двойные кавычки внутри строковых значений
+ */
+function escapeInnerQuotes(text) {
+  return text.replace(/"((?:[^"\\]|\\.)*)"/g, (match, content) => {
+    const escaped = content.replace(/(?<!\\)"/g, '\\"');
+    return `"${escaped}"`;
+  });
+}
+
+/**
+ * Извлекает и чинит JSON из ответа LLM — осторожный подход
  */
 function repairAndExtractJSON(rawText) {
-  if (typeof rawText !== 'string') return '';
+  if (typeof rawText !== 'string' || rawText.trim() === '') {
+    return '{}';
+  }
 
   let text = rawText.trim();
 
-  // 1. Удаляем всё до первого ```json или {
-  const jsonStartRegex = /(?:```json\s*|```(?:\s*\n)?|\{\s*)/i;
-  const startMatch = text.search(jsonStartRegex);
-  if (startMatch > 0) {
-    text = text.slice(startMatch);
-  }
+  // 1. Удаляем BOM, zero-width и ведущие невидимые символы
+  text = text.replace(/^[\uFEFF\u200B\u200C\u200D\u2060\s]+/, '');
 
-  // 2. Убираем распространённые markdown-обёртки
+  // 2. Убираем markdown-обёртку и лишний текст до/после
   text = text
-    .replace(/^```json\s*/i, '')
-    .replace(/```$/m, '')
-    .replace(/^```\s*/i, '')
-    .replace(/```$/m, '');
+    .replace(/^```(?:json)?\s*/i, '')
+    .replace(/```$/gm, '');
 
-  // 3. Удаляем BOM и zero-width символы
-  text = text.replace(/^[\uFEFF\u200B\u200C\u200D]+/, '');
+  // 3. Вырезаем самый большой { … } блок
+  const start = text.indexOf('{');
+  const end = text.lastIndexOf('}') + 1;
+  if (start === -1 || end <= start) return '{}';
+  text = text.slice(start, end);
 
-  // 4. Удаляем trailing commas (самый частый косяк LLM)
+  // 4. Экранируем вложенные кавычки (самая частая причина падения)
+  text = escapeInnerQuotes(text);
+
+  // 5. Убираем trailing commas
   text = text.replace(/,\s*([}\]])/g, '$1');
 
-  // 5. Чиним незакрытые строки с двойными кавычками
-  //    (очень частый случай — модель обрывает строку)
-  text = text.replace(/(".*?)(?<!\\)"\s*(?=[,\]}])/g, (m, p1) => {
-    return p1.replace(/(?<!\\)"/g, '\\"') + '"';
-  });
-
-  // 6. Удаляем лишние запятые перед закрытием объекта/массива
-  text = text.replace(/,\s*}/g, '}').replace(/,\s*\]/g, ']');
-
-  // 7. Последний штрих — убираем текст после закрывающей скобки
-  const lastBrace = text.lastIndexOf('}');
-  if (lastBrace > -1) {
-    text = text.substring(0, lastBrace + 1);
-  }
+  // 6. Опционально чиним ключи без кавычек — но только если другие попытки провалились
+  //    Здесь оставляем закомментированным, т.к. в большинстве случаев модель даёт кавычки
+  // text = text.replace(/([{\[,]\s*)([a-zA-Z_][a-zA-Z0-9_]*)\s*:/g, '$1"$2":');
 
   return text.trim();
 }
 
 /**
- * Сохраняет проблемный ответ для последующего анализа
+ * Сохраняет проблемный ответ для отладки
  */
 async function saveFailedParse(rawText, errorMessage) {
   try {
@@ -66,34 +65,49 @@ async function saveFailedParse(rawText, errorMessage) {
       `TIMESTAMP: ${new Date().toISOString()}`,
       '─'.repeat(80),
       'RAW INPUT:',
-      rawText.slice(0, 4000) + (rawText.length > 4000 ? '\n… (truncated)' : ''),
+      rawText.slice(0, 6000) + (rawText.length > 6000 ? '\n… (truncated)' : ''),
     ].join('\n');
 
     await fs.writeFile(filePath, content, 'utf-8');
-    console.log(`📄 Проблемный ответ сохранён → logs/parser-errors/${path.basename(filePath)}`);
+    console.log(`Проблемный ответ сохранён → ${path.basename(filePath)}`);
   } catch (e) {
     console.error('Не удалось сохранить лог парсинга:', e.message);
   }
 }
 
 /**
- * Многоуровневый безопасный парсинг JSON
+ * Многоуровневый безопасный парсинг
  */
 function safeParseJSON(rawText, options = {}) {
-  const { maxLength = 32000, logFailures = true } = options;
+  const { maxLength = 40000 } = options;
 
   if (typeof rawText !== 'string') {
     throw new TypeError('Ожидалась строка');
   }
 
   if (rawText.length > maxLength) {
-    console.warn(`Ответ слишком большой (${rawText.length} символов) → обрезаем`);
+    console.warn(`Ответ слишком большой (${rawText.length} > ${maxLength}) → обрезаем`);
     rawText = rawText.slice(0, maxLength);
   }
 
   const attempts = [
-    () => JSON.parse(rawText),                    // 1. как есть
-    () => JSON.parse(repairAndExtractJSON(rawText)), // 2. после ремонта
+    // 1. Как пришло
+    () => JSON.parse(rawText),
+
+    // 2. Только экранирование вложенных кавычек
+    () => JSON.parse(escapeInnerQuotes(rawText)),
+
+    // 3. Вырезание блока + экранирование + trailing commas
+    () => JSON.parse(repairAndExtractJSON(rawText)),
+
+    // 4. Агрессивная починка ключей без кавычек (последний шанс)
+    () => {
+      let t = rawText.trim().replace(/^[\s\uFEFF\u200B-\u200D\u2060]*/, '');
+      t = escapeInnerQuotes(t);
+      t = t.replace(/([{\[,]\s*)([a-zA-Z_][a-zA-Z0-9_]*)\s*:/g, '$1"$2":');
+      t = t.replace(/,\s*([}\]])/g, '$1');
+      return JSON.parse(t);
+    },
   ];
 
   let lastError;
@@ -101,23 +115,23 @@ function safeParseJSON(rawText, options = {}) {
   for (let i = 0; i < attempts.length; i++) {
     try {
       const result = attempts[i]();
-      if (result && typeof result === 'object') {
+      if (result && typeof result === 'object' && result !== null) {
+        console.log(`JSON успешно распарсен на попытке ${i + 1}`);
         return result;
       }
     } catch (e) {
       lastError = e;
       if (i < attempts.length - 1) {
-        console.debug(`Парсинг попытка ${i + 1} не удалась: ${e.message}`);
+        console.debug(`Попытка ${i + 1} не удалась: ${e.message}`);
       }
     }
   }
 
-  // финальная ошибка
-  if (logFailures) {
-    saveFailedParse(rawText, lastError?.message || 'Неизвестная ошибка парсинга').catch(() => {});
-  }
+  saveFailedParse(rawText, lastError?.message || 'Неизвестная ошибка').catch(() => {});
 
-  throw new Error(`Не удалось распарсить JSON после всех попыток: ${lastError?.message || '—'}`);
+  throw new Error(
+    `Не удалось распарсить JSON после всех попыток: ${lastError?.message || '—'}`
+  );
 }
 
 /**
@@ -125,62 +139,58 @@ function safeParseJSON(rawText, options = {}) {
  */
 function parseCriticResponse(rawResponse) {
   if (!rawResponse || typeof rawResponse !== 'string' || rawResponse.trim() === '') {
-    throw new Error('Пустой или некорректный ответ от модели');
+    console.warn('Пустой ответ от модели → fallback');
+    return {
+      summary: "Ответ модели пустой или некорректный",
+      suggestions: [],
+      tags_for_search: ["parse_error", "empty_response"],
+      next_context_suggestion: "Вернитесь к предыдущему контексту",
+    };
   }
 
   let data;
   try {
-    data = safeParseJSON(rawResponse, { maxLength: 32000 });
+    data = safeParseJSON(rawResponse);
   } catch (e) {
-    throw new Error(`Ошибка парсинга ответа критика: ${e.message}`);
+    console.error('Парсер полностью провалился:', e.message);
+    return {
+      summary: "Не удалось корректно распарсить ответ литературного критика",
+      suggestions: ["Повторите попытку позже", "Проверьте качество промпта"],
+      tags_for_search: ["parse_error", "llm_failure"],
+      next_context_suggestion: "Предыдущий контекст",
+    };
   }
 
-  // Валидация структуры
-  const required = {
-    summary: 'string',
-    suggestions: ['array', 'string'],
-    tags_for_search: ['array', 'string'],
-    next_context_suggestion: ['string', 'undefined'],
-  };
-
-  for (const [field, expected] of Object.entries(required)) {
+  // Валидация обязательных полей
+  const requiredFields = ['summary', 'suggestions', 'tags_for_search'];
+  for (const field of requiredFields) {
     if (!(field in data)) {
       throw new Error(`Отсутствует обязательное поле: ${field}`);
     }
-
-    const value = data[field];
-
-    if (Array.isArray(expected)) {
-      const [mainType, fallbackType] = expected;
-      if (mainType === 'array') {
-        if (!Array.isArray(value)) {
-          if (fallbackType && typeof value === fallbackType) {
-            data[field] = [value].filter(Boolean);
-          } else {
-            throw new Error(`Поле ${field} должно быть массивом (получено: ${typeof value})`);
-          }
-        }
-      } else if (fallbackType && typeof value !== mainType && typeof value !== fallbackType) {
-        throw new Error(`Неверный тип поля ${field}: ожидался ${mainType} или ${fallbackType}`);
-      }
-    } else if (typeof value !== expected) {
-      throw new Error(`Неверный тип поля ${field}: ожидался ${expected}, получен ${typeof value}`);
-    }
   }
 
-  // Финальная нормализация
-  data.suggestions = Array.isArray(data.suggestions) ? data.suggestions : [data.suggestions].filter(Boolean);
-  data.tags_for_search = Array.isArray(data.tags_for_search) ? data.tags_for_search : [data.tags_for_search].filter(Boolean);
+  // Нормализация типов
+  data.suggestions = Array.isArray(data.suggestions)
+    ? data.suggestions
+    : [data.suggestions].filter(Boolean);
 
-  // Удаляем служебные поля, если они есть
+  data.tags_for_search = Array.isArray(data.tags_for_search)
+    ? data.tags_for_search
+    : [data.tags_for_search].filter(Boolean);
+
+  // Удаляем ненужные служебные поля, если есть
   delete data.generated_at;
 
-  console.log(`Парсер: получено ${data.tags_for_search.length} тегов, ${data.suggestions.length} предложений`);
+  console.log(
+    `Парсер: ${data.tags_for_search.length} тегов, ${data.suggestions.length} советов`
+  );
+
   return data;
 }
 
 module.exports = {
   parseCriticResponse,
   safeParseJSON,
-  repairAndExtractJSON,   // для тестов и отладки
+  repairAndExtractJSON,
+  escapeInnerQuotes,        // для тестов / отладки
 };
