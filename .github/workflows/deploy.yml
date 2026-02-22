@@ -66,29 +66,32 @@ jobs:
 
       # ────────────────────────────────────────────────────────────────
       # Коммитим изменения (всегда пытаемся)
-      - name: Commit & push изменения
-        if: always()
+      - name: Commit and push updated files
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "GitHub Actions"
-
-          # Добавляем всё, что могло измениться
-          git add -f \
-            data/journal.json \
-            data/literary_analysis.json \
-            data/tag_statistics.json \
-            data/latest_image_prompt.txt \
-            src/config/context.json \
-            logs/ 2>/dev/null || true
-
-          if git diff --cached --quiet; then
-            echo "Изменений для коммита нет"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Добавляем файлы
+          git add data/journal.json
+          git add data/literary_analysis.json
+          git add data/tag_statistics.json
+          git add src/config/context.json
+          git add logs/ --force
+          
+          # Проверяем, есть ли ошибка в analysis.json
+          if grep -q "Не удалось" data/literary_analysis.json; then
+            echo "❌ Обнаружена ошибка в анализе — не пушим изменения."
             exit 0
           fi
-
-          git commit -m "auto: обновление журнала + анализ + логи (возможно с ошибками)" || echo "Коммит не нужен"
-          git push --force-with-lease || echo "Push не удался (возможно конфликт), но артефакты сохранятся"
-
+          
+          # Если нет ошибки, коммитим
+          if git diff --cached --quiet; then
+            echo "ℹ️ Нет изменений для коммита."
+            exit 0
+          fi
+          
+          git commit -m "📝 Автоматическое обновление журнала и анализа"
+          git push --force-with-lease
       # ────────────────────────────────────────────────────────────────
       # Артефакты логов — на всякий случай
       - name: Загрузить логи как артефакт
