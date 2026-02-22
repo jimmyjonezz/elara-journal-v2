@@ -4,48 +4,38 @@ const path = require('path');
 
 /**
  * Пытается извлечь и починить JSON из ответа LLM
- * @param {string} rawText
- * @returns {string} подготовленный текст для парсинга
  */
 function repairAndExtractJSON(rawText) {
   if (typeof rawText !== 'string') return '';
 
   let text = rawText.trim();
 
-  // 1. Удаляем всё до первого ```json или {
-  const jsonStartRegex = /(?:```json\s*|```(?:\s*\n)?|\{\s*)/i;
-  const startMatch = text.search(jsonStartRegex);
-  if (startMatch > 0) {
-    text = text.slice(startMatch);
-  }
-
-  // 2. Убираем распространённые markdown-обёртки
+  // 1. Удаляем markdown-обёртки (НО НЕ РЕЖЕМ НАЧАЛО JSON!)
   text = text
     .replace(/^```json\s*/i, '')
     .replace(/```$/m, '')
     .replace(/^```\s*/i, '')
     .replace(/```$/m, '');
 
-  // 3. Удаляем BOM и zero-width символы
+  // 2. Удаляем BOM и zero-width символы
   text = text.replace(/^[\uFEFF\u200B\u200C\u200D]+/, '');
 
-  // 4. Удаляем trailing commas (самый частый косяк LLM)
+  // 3. Находим первую { и последнюю } (защита от лишнего текста)
+  const firstBrace = text.indexOf('{');
+  const lastBrace = text.lastIndexOf('}');
+  
+  if (firstBrace > -1 && lastBrace > firstBrace) {
+    text = text.substring(firstBrace, lastBrace + 1);
+  }
+
+  // 4. Удаляем trailing commas
   text = text.replace(/,\s*([}\]])/g, '$1');
 
-  // 5. Чиним незакрытые строки с двойными кавычками
-  //    (очень частый случай — модель обрывает строку)
-  text = text.replace(/(".*?)(?<!\\)"\s*(?=[,\]}])/g, (m, p1) => {
-    return p1.replace(/(?<!\\)"/g, '\\"') + '"';
-  });
+  // 5. Заменяем русские кавычки на английские (внутри строк)
+  text = text.replace(/"([^"]*)"«([^»]*)»"([^"]*)"/g, '"$1$2$3"');
 
-  // 6. Удаляем лишние запятые перед закрытием объекта/массива
-  text = text.replace(/,\s*}/g, '}').replace(/,\s*\]/g, ']');
-
-  // 7. Последний штрих — убираем текст после закрывающей скобки
-  const lastBrace = text.lastIndexOf('}');
-  if (lastBrace > -1) {
-    text = text.substring(0, lastBrace + 1);
-  }
+  // 6. Экранируем переносы строк внутри строк (простая эвристика)
+  // text = text.replace(/(?<!\\)\n(?=[^",}\]]*"[^",}\]]*:)/g, '\\n');
 
   return text.trim();
 }
@@ -57,7 +47,6 @@ async function saveFailedParse(rawText, errorMessage) {
   try {
     const logsDir = path.join(__dirname, '../../logs/parser-errors');
     await fs.mkdir(logsDir, { recursive: true });
-
     const ts = new Date().toISOString().replace(/[:.]/g, '-');
     const filePath = path.join(logsDir, `parse-fail-${ts}.txt`);
 
@@ -92,8 +81,8 @@ function safeParseJSON(rawText, options = {}) {
   }
 
   const attempts = [
-    () => JSON.parse(rawText),                    // 1. как есть
-    () => JSON.parse(repairAndExtractJSON(rawText)), // 2. после ремонта
+    () => JSON.parse(rawText),
+    () => JSON.parse(repairAndExtractJSON(rawText)),
   ];
 
   let lastError;
@@ -107,12 +96,10 @@ function safeParseJSON(rawText, options = {}) {
     } catch (e) {
       lastError = e;
       if (i < attempts.length - 1) {
-        console.debug(`Парсинг попытка ${i + 1} не удалась: ${e.message}`);
-      }
+        console.debug(`Парсинг попытка ${i + 1} не удалась: ${e.message}`);      }
     }
   }
 
-  // финальная ошибка
   if (logFailures) {
     saveFailedParse(rawText, lastError?.message || 'Неизвестная ошибка парсинга').catch(() => {});
   }
@@ -136,50 +123,31 @@ function parseCriticResponse(rawResponse) {
     return {
       summary: "Анализ не удался",
       suggestions: [],
-      tags_for_search: [],  // пусто, чтобы не добавлять технические теги
-      next_context_suggestion: null  // не менять контекст
+      tags_for_search: [],
+      next_context_suggestion: null
     };
   }
 
-  // Валидация структуры
-  const required = {
-    summary: 'string',
-    suggestions: ['array', 'string'],
-    tags_for_search: ['array', 'string'],
-    next_context_suggestion: ['string', 'undefined'],
-  };
+  // 🔧 ИСПРАВЛЕНИЕ: Поддержка обоих вариантов именования полей
+  // Модель может вернуть tagsForSearch (camelCase) или tags_for_search (snake_case)
+  const tags = data.tags_for_search || data.tagsForSearch || data.tags_for_search || [];
+  const suggestions = data.suggestions || data.advice || [];
+  const nextContext = data.next_context_suggestion || data.nextContextSuggestion || data.next_context || null;
 
-  for (const [field, expected] of Object.entries(required)) {
-    if (!(field in data)) {
-      throw new Error(`Отсутствует обязательное поле: ${field}`);
-    }
-
-    const value = data[field];
-
-    if (Array.isArray(expected)) {
-      const [mainType, fallbackType] = expected;
-      if (mainType === 'array') {
-        if (!Array.isArray(value)) {
-          if (fallbackType && typeof value === fallbackType) {
-            data[field] = [value].filter(Boolean);
-          } else {
-            throw new Error(`Поле ${field} должно быть массивом (получено: ${typeof value})`);
-          }
-        }
-      } else if (fallbackType && typeof value !== mainType && typeof value !== fallbackType) {
-        throw new Error(`Неверный тип поля ${field}: ожидался ${mainType} или ${fallbackType}`);
-      }
-    } else if (typeof value !== expected) {
-      throw new Error(`Неверный тип поля ${field}: ожидался ${expected}, получен ${typeof value}`);
-    }
+  // Валидация структуры (минимальная)
+  if (!data.summary || typeof data.summary !== 'string') {
+    console.warn('⚠️ Отсутствует поле summary');
+    data.summary = "Анализ без резюме";
   }
 
-  // Финальная нормализация
-  data.suggestions = Array.isArray(data.suggestions) ? data.suggestions : [data.suggestions].filter(Boolean);
-  data.tags_for_search = Array.isArray(data.tags_for_search) ? data.tags_for_search : [data.tags_for_search].filter(Boolean);
+  // Нормализация
+  data.suggestions = Array.isArray(suggestions) ? suggestions : [suggestions].filter(Boolean);
+  data.tags_for_search = Array.isArray(tags) ? tags : [tags].filter(Boolean);
+  data.next_context_suggestion = typeof nextContext === 'string' ? nextContext : null;
 
-  // Удаляем служебные поля, если они есть
-  delete data.generated_at;
+  // Удаляем служебные поля  delete data.generated_at;
+  delete data.tagsForSearch;
+  delete data.nextContextSuggestion;
 
   console.log(`Парсер: получено ${data.tags_for_search.length} тегов, ${data.suggestions.length} предложений`);
   return data;
@@ -188,5 +156,5 @@ function parseCriticResponse(rawResponse) {
 module.exports = {
   parseCriticResponse,
   safeParseJSON,
-  repairAndExtractJSON,   // для тестов и отладки
+  repairAndExtractJSON,
 };
