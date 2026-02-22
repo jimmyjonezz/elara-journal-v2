@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 98,
+    "count": 99,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-21",
+    "lastSeen": "2026-02-22",
     "types": [
       "static",
       "critic"
@@ -27,9 +27,9 @@
     ]
   },
   "грусть": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-01-20",
+    "lastSeen": "2026-02-22",
     "types": [
       "static"
     ]
@@ -43,9 +43,9 @@
     ]
   },
   "ностальгия": {
-    "count": 17,
+    "count": 18,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-01-08",
+    "lastSeen": "2026-02-22",
     "types": [
       "static",
       "critic"
@@ -68,9 +68,9 @@
     ]
   },
   "одиночество": {
-    "count": 38,
+    "count": 39,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-02-21",
+    "lastSeen": "2026-02-22",
     "types": [
       "critic",
       "static"
@@ -103,9 +103,9 @@
     ]
   },
   "смысл": {
-    "count": 16,
+    "count": 17,
     "firstSeen": "2025-11-09",
-    "lastSeen": "2026-02-20",
+    "lastSeen": "2026-02-22",
     "types": [
       "static",
       "critic"
@@ -121,9 +121,9 @@
     ]
   },
   "мысль": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2025-11-11",
-    "lastSeen": "2026-02-14",
+    "lastSeen": "2026-02-22",
     "types": [
       "static"
     ]
@@ -193,9 +193,9 @@
     ]
   },
   "выбор": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2025-12-03",
-    "lastSeen": "2026-02-14",
+    "lastSeen": "2026-02-22",
     "types": [
       "static"
     ]
