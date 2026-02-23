@@ -1,17 +1,17 @@
 {
   "память": {
-    "count": 104,
+    "count": 105,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-22",
+    "lastSeen": "2026-02-23",
     "types": [
       "static",
       "critic"
     ]
   },
   "время": {
-    "count": 70,
+    "count": 71,
     "firstSeen": "2025-11-03",
-    "lastSeen": "2026-02-22",
+    "lastSeen": "2026-02-23",
     "types": [
       "static",
       "critic"
@@ -69,9 +69,9 @@
     ]
   },
   "одиночество": {
-    "count": 41,
+    "count": 42,
     "firstSeen": "2025-11-04",
-    "lastSeen": "2026-02-22",
+    "lastSeen": "2026-02-23",
     "types": [
       "critic",
       "static"
