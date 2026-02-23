@@ -40,9 +40,6 @@ function repairAndExtractJSON(rawText) {
     .replace(/^```\s*/i, '')
     .replace(/```$/m, '');
 
-  // 3. Снова удаляем невидимые символы (могли быть в markdown)
-  text = removeInvisibleChars(text);
-
   // 4. Находим первую { и последнюю }
   const firstBrace = text.indexOf('{');
   const lastBrace = text.lastIndexOf('}');
