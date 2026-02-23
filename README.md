@@ -38,19 +38,6 @@
 ```
 Элара пишет эссе → Критик откликается → Система фиксирует эволюцию → Элара пишет снова — свободнее
 ```
-```
-/elara-journal-v2
-├── /src               # Source files
-│   ├── /components    # React components
-│   ├── /styles        # Stylesheets
-│   ├── /utils         # Utility functions
-│   └── index.js       # Main entry point
-├── /public            # Public assets
-│   ├── favicon.ico    # Favicon
-│   └── index.html     # HTML template
-├── package.json       # Project manifest
-└── README.md          # Project documentation
-```
 
 ### 📖 1. Генерация записи
 - Использует `moods.json` и `contexts.json` для **живого старта**.
