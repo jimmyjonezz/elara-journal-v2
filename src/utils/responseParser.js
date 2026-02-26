@@ -34,30 +34,28 @@ function removeInvisibleChars(text) {
 
 /**
  * Пытается извлечь и починить JSON из ответа LLM
+ * 🔥 МИНИМАЛИСТИЧНАЯ ВЕРСИЯ — не ломает структуру
  */
 function repairAndExtractJSON(rawText) {
   if (typeof rawText !== 'string') return '';
 
-  let text = rawText; // ← НЕ делаем trim() сразу!
+  let text = rawText;
 
-  // 🔥 1. ПЕРВОЕ: Удаляем BOM и невидимые символы
+  // 1. Удаляем невидимые символы
   text = removeInvisibleChars(text);
-
-  // 🔥 2. ТОЛЬКО ПОСЛЕ этого делаем trim()
   text = text.trim();
 
-  // 3. Удаляем markdown-обёртки
+  // 2. Удаляем markdown-обёртки
   text = text
-    .replace(/^```json\s*/i, '')
-    .replace(/```$/m, '')
+    .replace(/^```json\s*/i, '')    .replace(/```$/m, '')
     .replace(/^```\s*/i, '')
     .replace(/```$/m, '');
 
-  // 4. Снова удаляем невидимые символы
+  // 3. Снова чистим после markdown
   text = removeInvisibleChars(text);
   text = text.trim();
 
-  // 5. Находим первую { и последнюю }
+  // 4. Находим первую { и последнюю }
   const firstBrace = text.indexOf('{');
   const lastBrace = text.lastIndexOf('}');
   
@@ -65,13 +63,13 @@ function repairAndExtractJSON(rawText) {
     text = text.substring(firstBrace, lastBrace + 1);
   }
 
-  // 6. Удаляем trailing commas
+  // 5. Удаляем trailing commas перед } или ]
   text = text.replace(/,\s*([}\]])/g, '$1');
 
-  // 7. Экранируем переносы строк
-  text = text.replace(/(?<!\\)\n/g, '\\n');
+  // ❌ УДАЛЕНО: Глобальное экранирование \n — это ломало JSON!
+  // ✅ JSON.parse() сам обрабатывает переносы строк в структуре
 
-  return text.trim();
+  return text;
 }
 
 /**
@@ -98,8 +96,7 @@ async function saveFailedParse(rawText, errorMessage) {
     }
 
     const content = [
-      `ERROR: ${errorMessage}`,
-      `TIMESTAMP: ${new Date().toISOString()}`,
+      `ERROR: ${errorMessage}`,      `TIMESTAMP: ${new Date().toISOString()}`,
       `POSITION: ${position || 'N/A'}`,
       '─'.repeat(80),
       'HEX CODES AROUND ERROR:',
@@ -107,7 +104,8 @@ async function saveFailedParse(rawText, errorMessage) {
       '─'.repeat(80),
       'CONTEXT AROUND ERROR:',
       position ? showContextAroundError(rawText, position) : 'N/A',
-      '─'.repeat(80),      'RAW INPUT:',
+      '─'.repeat(80),  // ← Исправлена запятая
+      'RAW INPUT:',
       rawText.slice(0, 4000) + (rawText.length > 4000 ? '\n… (truncated)' : ''),
     ].join('\n');
 
@@ -147,8 +145,7 @@ function safeParseJSON(rawText, options = {}) {
         return result;
       }
     } catch (e) {
-      lastError = e;
-      if (i < attempts.length - 1) {
+      lastError = e;      if (i < attempts.length - 1) {
         console.debug(`Парсинг попытка ${i + 1} не удалась: ${e.message}`);
       }
     }
@@ -197,15 +194,15 @@ function parseCriticResponse(rawResponse) {
   data.tags_for_search = Array.isArray(tags) ? tags : [tags].filter(Boolean);
   data.next_context_suggestion = typeof nextContext === 'string' ? nextContext : null;
 
-  delete data.generated_at;
-  delete data.tagsForSearch;
+  delete data.generated_at;  delete data.tagsForSearch;
   delete data.nextContextSuggestion;
 
   console.log(`Парсер: получено ${data.tags_for_search.length} тегов, ${data.suggestions.length} предложений`);
   return data;
 }
 
-module.exports = {  parseCriticResponse,
+module.exports = {
+  parseCriticResponse,
   safeParseJSON,
   repairAndExtractJSON,
   removeInvisibleChars,
