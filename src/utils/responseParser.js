@@ -19,7 +19,17 @@ function showContextAroundError(text, position, contextLength = 50) {
  */
 function removeInvisibleChars(text) {
   if (typeof text !== 'string') return '';
-  return text.replace(/[\uFEFF\u200B\u200C\u200D\u200E\u200F\u2060\u2061\u2062\u2063\u2064]/g, '');
+  
+  // 1. Удаляем BOM в начале
+  text = text.replace(/^\uFEFF/, '');
+  
+  // 2. Удаляем zero-width символы
+  text = text.replace(/[\u200B\u200C\u200D\u200E\u200F\u2060\u2061\u2062\u2063\u2064]/g, '');
+  
+  // 3. Удаляем control characters (кроме \n, \r, \t)
+  text = text.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '');
+  
+  return text;
 }
 
 /**
@@ -28,34 +38,38 @@ function removeInvisibleChars(text) {
 function repairAndExtractJSON(rawText) {
   if (typeof rawText !== 'string') return '';
 
-  let text = rawText.trim();
+  let text = rawText; // ← НЕ делаем trim() сразу!
 
-  // 1. Удаляем невидимые символы (ОДИН раз в начале)
+  // 🔥 1. ПЕРВОЕ: Удаляем BOM и невидимые символы
   text = removeInvisibleChars(text);
 
-  // 2. Удаляем markdown-обёртки
+  // 🔥 2. ТОЛЬКО ПОСЛЕ этого делаем trim()
+  text = text.trim();
+
+  // 3. Удаляем markdown-обёртки
   text = text
     .replace(/^```json\s*/i, '')
     .replace(/```$/m, '')
     .replace(/^```\s*/i, '')
     .replace(/```$/m, '');
 
-  // 4. Находим первую { и последнюю }
+  // 4. Снова удаляем невидимые символы
+  text = removeInvisibleChars(text);
+  text = text.trim();
+
+  // 5. Находим первую { и последнюю }
   const firstBrace = text.indexOf('{');
   const lastBrace = text.lastIndexOf('}');
   
-  if (firstBrace > -1 && lastBrace > firstBrace) {    text = text.substring(firstBrace, lastBrace + 1);
+  if (firstBrace > -1 && lastBrace > firstBrace) {
+    text = text.substring(firstBrace, lastBrace + 1);
   }
 
-  // 5. Удаляем trailing commas перед } или ]
+  // 6. Удаляем trailing commas
   text = text.replace(/,\s*([}\]])/g, '$1');
 
-  // 6. Экранируем переносы строк внутри строковых значений
-  // Простая эвристика: заменяем все \n на \\n, кроме тех что внутри ключей
+  // 7. Экранируем переносы строк
   text = text.replace(/(?<!\\)\n/g, '\\n');
-
-  // ❌ УДАЛЕНО: escapeQuotesInStringValues — слишком ненадёжно
-  // ✅ Ёлочки «» остаются как есть — они валидны в JSON
 
   return text.trim();
 }
