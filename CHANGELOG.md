@@ -12,7 +12,6 @@
 - **Оптимизирована функция `removeInvisibleChars()`** — корректно удаляет BOM, zero-width символы и control characters
 - **Добавлена поддержка обоих вариантов именования полей** — `tags_for_search` и `tagsForSearch` (camelCase и snake_case)
 - **Workflow загружает логи как артефакты** — файлы из `logs/parser-errors/` доступны в интерфейсе GitHub Actions 14 дней
-- **Контексты пополняются автоматически** — критик добавляет новый контекст после каждого анализа (баланс `shift()` + `push()`)
 
 #### Изменено
 - **`responseParser.js`** — упрощён `repairAndExtractJSON()`, удалена избыточная логика экранирования
