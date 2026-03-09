@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-03-08T04:29:24.578Z",
+  "generated_at": "2026-03-09T04:48:05.052Z",
   "summary": "Анализ не удался",
   "suggestions": [],
   "tags_for_search": [],
   "next_context_suggestion": null,
   "error": true,
-  "error_message": "Не удалось распарсить JSON после всех попыток: remaining is not defined"
+  "error_message": "Не удалось распарсить JSON после всех попыток: Expected ':' after property name in JSON at position 224"
 }
