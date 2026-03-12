@@ -33,17 +33,17 @@
     ]
   },
   "осознание": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-03-09",
+    "lastSeen": "2026-03-12",
     "types": [
       "static"
     ]
   },
   "изменение": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-03-11",
+    "lastSeen": "2026-03-12",
     "types": [
       "static"
     ]
@@ -81,17 +81,17 @@
     ]
   },
   "жизнь": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-09",
+    "lastSeen": "2026-03-12",
     "types": [
       "static"
     ]
   },
   "покой": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-09",
+    "lastSeen": "2026-03-12",
     "types": [
       "static"
     ]
@@ -105,9 +105,9 @@
     ]
   },
   "благодарность": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-10",
+    "lastSeen": "2026-03-12",
     "types": [
       "static"
     ]
@@ -177,9 +177,9 @@
     ]
   },
   "страх": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2026-03-10",
-    "lastSeen": "2026-03-11",
+    "lastSeen": "2026-03-12",
     "types": [
       "critic"
     ]
@@ -196,6 +196,14 @@
     "count": 1,
     "firstSeen": "2026-03-11",
     "lastSeen": "2026-03-11",
+    "types": [
+      "critic"
+    ]
+  },
+  "начало": {
+    "count": 1,
+    "firstSeen": "2026-03-12",
+    "lastSeen": "2026-03-12",
     "types": [
       "critic"
     ]
