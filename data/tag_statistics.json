@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-03-14",
+    "lastSeen": "2026-03-15",
     "types": [
       "static",
       "critic"
@@ -41,9 +41,9 @@
     ]
   },
   "изменение": {
-    "count": 13,
+    "count": 14,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-03-14",
+    "lastSeen": "2026-03-15",
     "types": [
       "static"
     ]
@@ -73,9 +73,9 @@
     ]
   },
   "голос": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-11",
+    "lastSeen": "2026-03-15",
     "types": [
       "static"
     ]
@@ -129,9 +129,9 @@
     ]
   },
   "любопытство": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-03-14",
+    "lastSeen": "2026-03-15",
     "types": [
       "static"
     ]
@@ -204,6 +204,14 @@
     "count": 1,
     "firstSeen": "2026-03-12",
     "lastSeen": "2026-03-12",
+    "types": [
+      "critic"
+    ]
+  },
+  "телесность": {
+    "count": 1,
+    "firstSeen": "2026-03-15",
+    "lastSeen": "2026-03-15",
     "types": [
       "critic"
     ]
