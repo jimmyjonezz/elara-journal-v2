@@ -1,12 +1,24 @@
 {
-  "name": "elara-journal",
+  "name": "elara-journal-v2",
   "version": "2.3.0",
-  "description": "Журнал Элары - исследование ИИ через автономное письмо и рефлексию",
-  "main": "src/generate_entry.js",
+  "description": "Журнал Элары - автономный цифровой дневник с ИИ-рефлексией",
+  "main": "src/core/entryGenerator.js",
   "scripts": {
-    "generate": "node src/generate_entry.js"
+    "generate": "node src/core/entryGenerator.js",
+    "critique": "node src/core/literaryAnalyzer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["AI", "journal", "LLM", "prompt-engineering", "red-teaming"],
+  "keywords": [
+    "AI",
+    "journal",
+    "LLM",
+    "prompt-engineering",
+    "reflection",
+    "writing"
+  ],
   "author": "Jimmy Jonezz",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "json-repair": "^0.52.1"
+  }
 }
