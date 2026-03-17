@@ -19,6 +19,6 @@
   "author": "Jimmy Jonezz",
   "license": "MIT",
   "dependencies": {
-    "json-repair": "^0.52.1"
+    "jsonrepair": "3.13.3"
   }
 }
