@@ -2,3 +2,4 @@ requests
 pillow
 replicate
 vk_api
+json-repair
