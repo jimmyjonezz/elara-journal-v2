@@ -1,6 +1,7 @@
 // src/utils/responseParser.js
 const fs = require('fs').promises;
 const path = require('path');
+const { repairJSON } = require('json-repair');
 
 /**
  * Показывает контекст вокруг позиции ошибки для отладки
@@ -15,88 +16,21 @@ function showContextAroundError(text, position, contextLength = 50) {
 }
 
 /**
- * Удаляет невидимые Unicode-символы
+ * Извлекает JSON из ответа LLM (удаляет markdown, обрезки)
  */
-function removeInvisibleChars(text) {
-  if (typeof text !== 'string') return '';
-  text = text.replace(/^\uFEFF/, '');
-  text = text.replace(/[\u200B\u200C\u200D\u200E\u200F\u2060\u2061\u2062\u2063\u2064]/g, '');
-  text = text.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '');
-  return text;
-}
-
-/**
- * 🔥 Консервативное экранирование кавычек
- * Экранирует ТОЛЬКО кавычки, за которыми НЕ следует , } ] или :
- */
-function escapeQuotesInValues(text) {
-  let result = '';
-  let inString = false;
-  let escaped = false;
-  
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i];
-    const nextChar = i < text.length - 1 ? text[i + 1] : '';
-    
-    // Отслеживаем обратный слэш
-    if (char === '\\' && !escaped) {
-      escaped = true;
-      result += char;
-      continue;
-    }
-    
-    // Кавычка
-    if (char === '"' && !escaped) {
-      if (!inString) {        // Открывающая кавычка (ключа или значения)
-        inString = true;
-        result += char;
-      } else {
-        // Внутри строки — проверяем, закрывающая ли это
-        // Закрывающая кавычка должна сопровождаться , } ] или концом объекта
-        const isClosing = nextChar === ',' || nextChar === '}' || nextChar === ']' || nextChar === '\n' || nextChar === '';
-        
-        if (isClosing) {
-          // Закрывающая кавычка
-          inString = false;
-          result += char;
-        } else {
-          // Внутренняя кавычка — экранируем
-          result += '\\"';
-        }
-      }
-    } else {
-      result += char;
-    }
-    
-    escaped = false;
-  }
-  
-  return result;
-}
-
-/**
- * Пытается извлечь и починить JSON из ответа LLM
- */
-function repairAndExtractJSON(rawText) {
+function extractJSON(rawText) {
   if (typeof rawText !== 'string') return '';
 
-  let text = rawText;
+  let text = rawText.trim();
 
-  // 1. Удаляем невидимые символы
-  text = removeInvisibleChars(text);
-  text = text.trim();
-
-  // 2. Удаляем markdown-обёртки
+  // 1. Удаляем markdown-обёртки
   text = text
     .replace(/^```json\s*/i, '')
     .replace(/```$/m, '')
     .replace(/^```\s*/i, '')
     .replace(/```$/m, '');
 
-  // 3. Снова чистим после markdown
-  text = removeInvisibleChars(text);
-  text = text.trim();
-  // 4. Находим первую { и последнюю }
+  // 2. Находим первую { и последнюю } (простой поиск)
   const firstBrace = text.indexOf('{');
   const lastBrace = text.lastIndexOf('}');
   
@@ -104,13 +38,7 @@ function repairAndExtractJSON(rawText) {
     text = text.substring(firstBrace, lastBrace + 1);
   }
 
-  // 5. Удаляем trailing commas перед } или ]
-  text = text.replace(/,\s*([}\]])/g, '$1');
-
-  // 6. 🔥 Экранируем кавычки внутри значений
-  text = escapeQuotesInValues(text);
-
-  return text;
+  return text.trim();
 }
 
 /**
@@ -120,7 +48,6 @@ async function saveFailedParse(rawText, errorMessage) {
   try {
     const logsDir = path.join(__dirname, '../../logs/parser-errors');
     await fs.mkdir(logsDir, { recursive: true });
-
     const ts = new Date().toISOString().replace(/[:.]/g, '-');
     const filePath = path.join(logsDir, `parse-fail-${ts}.txt`);
 
@@ -145,9 +72,13 @@ async function saveFailedParse(rawText, errorMessage) {
       hexContext,
       '─'.repeat(80),
       'CONTEXT AROUND ERROR:',
-      position ? showContextAroundError(rawText, position) : 'N/A',      '─'.repeat(80),
-      'RAW INPUT:',
-      rawText.slice(0, 4000) + (rawText.length > 4000 ? '\n… (truncated)' : ''),
+      position ? showContextAroundError(rawText, position) : 'N/A',
+      '─'.repeat(80),
+      'RAW INPUT (first 500 chars):',
+      rawText.slice(0, 500) + (rawText.length > 500 ? '\n… (truncated)' : ''),
+      '─'.repeat(80),
+      'RAW INPUT (last 500 chars):',
+      rawText.length > 500 ? rawText.slice(-500) : rawText,
     ].join('\n');
 
     await fs.writeFile(filePath, content, 'utf-8');
@@ -158,7 +89,7 @@ async function saveFailedParse(rawText, errorMessage) {
 }
 
 /**
- * Многоуровневый безопасный парсинг JSON
+ * Многоуровневый безопасный парсинг JSON с json-repair
  */
 function safeParseJSON(rawText, options = {}) {
   const { maxLength = 32000, logFailures = true } = options;
@@ -166,15 +97,17 @@ function safeParseJSON(rawText, options = {}) {
   if (typeof rawText !== 'string') {
     throw new TypeError('Ожидалась строка');
   }
-
   if (rawText.length > maxLength) {
     console.warn(`Ответ слишком большой (${rawText.length} символов) → обрезаем`);
     rawText = rawText.slice(0, maxLength);
   }
 
+  // 1. Извлекаем JSON из текста
+  const extractedJSON = extractJSON(rawText);
+
   const attempts = [
-    () => JSON.parse(rawText),
-    () => JSON.parse(repairAndExtractJSON(rawText)),
+    () => JSON.parse(extractedJSON),           // Попытка 1: чистый парсинг
+    () => repairJSON(extractedJSON),           // Попытка 2: ремонт через json-repair
   ];
 
   let lastError;
@@ -183,6 +116,7 @@ function safeParseJSON(rawText, options = {}) {
     try {
       const result = attempts[i]();
       if (result && typeof result === 'object') {
+        console.log(`✅ Парсинг успешен (попытка ${i + 1})`);
         return result;
       }
     } catch (e) {
@@ -194,7 +128,8 @@ function safeParseJSON(rawText, options = {}) {
   }
 
   if (logFailures) {
-    saveFailedParse(rawText, lastError?.message || 'Неизвестная ошибка парсинга').catch(() => {});  }
+    saveFailedParse(rawText, lastError?.message || 'Неизвестная ошибка парсинга').catch(() => {});
+  }
 
   throw new Error(`Не удалось распарсить JSON после всех попыток: ${lastError?.message || '—'}`);
 }
@@ -210,8 +145,7 @@ function parseCriticResponse(rawResponse) {
   let data;
   try {
     data = safeParseJSON(rawResponse, { maxLength: 32000 });
-  } catch (e) {
-    console.error('💥 Ошибка парсинга ответа критика:', e.message);
+  } catch (e) {    console.error('💥 Ошибка парсинга ответа критика:', e.message);
     return {
       summary: "Анализ не удался",
       suggestions: [],
@@ -243,10 +177,9 @@ function parseCriticResponse(rawResponse) {
   return data;
 }
 
-module.exports = {  parseCriticResponse,
+module.exports = {
+  parseCriticResponse,
   safeParseJSON,
-  repairAndExtractJSON,
-  escapeQuotesInValues,
-  removeInvisibleChars,
+  extractJSON,
   showContextAroundError,
 };
