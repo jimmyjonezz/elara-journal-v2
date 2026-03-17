@@ -1,7 +1,7 @@
 // src/utils/responseParser.js
 const fs = require('fs').promises;
 const path = require('path');
-const { repairJSON } = require('json-repair');
+const { repairJSON } = require('jsonrepair');
 
 /**
  * Показывает контекст вокруг позиции ошибки для отладки
