@@ -65,9 +65,9 @@
     ]
   },
   "время": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-16",
+    "lastSeen": "2026-03-17",
     "types": [
       "static",
       "critic"
@@ -98,9 +98,9 @@
     ]
   },
   "утро": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-16",
+    "lastSeen": "2026-03-17",
     "types": [
       "static"
     ]
@@ -122,9 +122,9 @@
     ]
   },
   "смысл": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-03-16",
+    "lastSeen": "2026-03-17",
     "types": [
       "static"
     ]
@@ -162,9 +162,9 @@
     ]
   },
   "размышление": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-03-16",
+    "lastSeen": "2026-03-17",
     "types": [
       "static"
     ]
@@ -215,6 +215,14 @@
     "lastSeen": "2026-03-15",
     "types": [
       "critic"
+    ]
+  },
+  "свобода": {
+    "count": 1,
+    "firstSeen": "2026-03-17",
+    "lastSeen": "2026-03-17",
+    "types": [
+      "static"
     ]
   }
 }
