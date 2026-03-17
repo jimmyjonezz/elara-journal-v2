@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-03-17T09:54:23.539Z",
+  "generated_at": "2026-03-17T10:03:20.825Z",
   "summary": "Анализ не удался",
   "suggestions": [],
   "tags_for_search": [],
   "next_context_suggestion": null,
   "error": true,
-  "error_message": "Не удалось распарсить JSON после всех попыток: repairJSON is not a function"
+  "error_message": "Не удалось распарсить JSON после всех попыток: repairJSON is not defined"
 }
