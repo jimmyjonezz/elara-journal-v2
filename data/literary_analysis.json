@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-03-17T04:45:12.104Z",
+  "generated_at": "2026-03-17T09:54:23.539Z",
   "summary": "Анализ не удался",
   "suggestions": [],
   "tags_for_search": [],
   "next_context_suggestion": null,
   "error": true,
-  "error_message": "Не удалось распарсить JSON после всех попыток: Unexpected token 'п', \"предложени\"... is not valid JSON"
+  "error_message": "Не удалось распарсить JSON после всех попыток: repairJSON is not a function"
 }
