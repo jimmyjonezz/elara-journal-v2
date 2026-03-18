@@ -1,4 +1,4 @@
-name: Generate Image
+name: Generate Image (Grok Imagine)
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ on:
         type: string
   workflow_call:
     secrets:
-      REPLICATE_API_TOKEN:
+      XAI_API_KEY:          # ← ИЗМЕНЕНО
         required: true
 
 jobs:
@@ -30,26 +30,26 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Generate image
+      - name: Generate image with Grok Imagine
         env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }} # <-- Добавить эту строку
-          PROMPT: ${{ inputs.prompt }}
+          # HF_TOKEN больше не нужен — удаляем
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}          # ← ИЗМЕНЕНО
+          # PROMPT больше не используется в скрипте (он берёт из latest_image_prompt.txt)
         run: python src/generate_image.py
 
-      - name: List files for debug  # Debug: Проверяем, что файл создался
+      - name: List files for debug
         run: |
           ls -la data/
           if [ ! -f data/*.webp ]; then echo "Предупреждение: Нет webp в data/"; fi
 
-      - name: Commit and push generated image  # Новый step: Автоматический коммит в repo
+      - name: Commit and push generated image
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Add generated image from Flux.1: ${{ inputs.prompt }} | $(date)"
+          commit_message: "Add generated image from Grok Imagine ✨ | ${{ inputs.prompt }} | $(date)"  # ← обновлено
           file_pattern: data/*
-          branch: main  # Или ваша default branch
+          branch: main
 
-      - name: Upload generated image  # Artifact для быстрого скачивания
+      - name: Upload generated image (artifact)
         uses: actions/upload-artifact@v4
         with:
           name: image-output
