@@ -65,9 +65,9 @@
     ]
   },
   "время": {
-    "count": 14,
+    "count": 15,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-19",
+    "lastSeen": "2026-03-20",
     "types": [
       "static",
       "critic"
@@ -179,9 +179,9 @@
     ]
   },
   "страх": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2026-03-10",
-    "lastSeen": "2026-03-16",
+    "lastSeen": "2026-03-20",
     "types": [
       "critic"
     ]
@@ -195,9 +195,9 @@
     ]
   },
   "одиночество": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2026-03-11",
-    "lastSeen": "2026-03-19",
+    "lastSeen": "2026-03-20",
     "types": [
       "critic"
     ]
