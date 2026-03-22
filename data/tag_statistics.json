@@ -25,9 +25,9 @@
     ]
   },
   "грусть": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-03-18",
+    "lastSeen": "2026-03-22",
     "types": [
       "static"
     ]
@@ -65,18 +65,18 @@
     ]
   },
   "время": {
-    "count": 16,
+    "count": 17,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-21",
+    "lastSeen": "2026-03-22",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-17",
+    "lastSeen": "2026-03-22",
     "types": [
       "static"
     ]
@@ -122,17 +122,17 @@
     ]
   },
   "смысл": {
-    "count": 9,
+    "count": 10,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-03-21",
+    "lastSeen": "2026-03-22",
     "types": [
       "static"
     ]
   },
   "любопытство": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-03-16",
+    "lastSeen": "2026-03-22",
     "types": [
       "static"
     ]
@@ -163,19 +163,20 @@
     ]
   },
   "размышление": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-03-21",
+    "lastSeen": "2026-03-22",
     "types": [
       "static"
     ]
   },
   "мысль": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-03-21",
+    "lastSeen": "2026-03-22",
     "types": [
-      "static"
+      "static",
+      "critic"
     ]
   },
   "страх": {
@@ -195,9 +196,9 @@
     ]
   },
   "одиночество": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2026-03-11",
-    "lastSeen": "2026-03-21",
+    "lastSeen": "2026-03-22",
     "types": [
       "critic",
       "static"
@@ -228,9 +229,17 @@
     ]
   },
   "творчество": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2026-03-19",
-    "lastSeen": "2026-03-21",
+    "lastSeen": "2026-03-22",
+    "types": [
+      "static"
+    ]
+  },
+  "выбор": {
+    "count": 1,
+    "firstSeen": "2026-03-22",
+    "lastSeen": "2026-03-22",
     "types": [
       "static"
     ]
