@@ -65,9 +65,9 @@
     ]
   },
   "время": {
-    "count": 17,
+    "count": 18,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-22",
+    "lastSeen": "2026-03-23",
     "types": [
       "static",
       "critic"
@@ -90,9 +90,9 @@
     ]
   },
   "покой": {
-    "count": 9,
+    "count": 10,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-18",
+    "lastSeen": "2026-03-23",
     "types": [
       "static"
     ]
@@ -155,17 +155,17 @@
     ]
   },
   "судьба": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2026-03-08",
-    "lastSeen": "2026-03-14",
+    "lastSeen": "2026-03-23",
     "types": [
       "static"
     ]
   },
   "размышление": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-03-22",
+    "lastSeen": "2026-03-23",
     "types": [
       "static"
     ]
@@ -237,11 +237,27 @@
     ]
   },
   "выбор": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2026-03-22",
-    "lastSeen": "2026-03-22",
+    "lastSeen": "2026-03-23",
     "types": [
       "static"
+    ]
+  },
+  "бег": {
+    "count": 1,
+    "firstSeen": "2026-03-23",
+    "lastSeen": "2026-03-23",
+    "types": [
+      "critic"
+    ]
+  },
+  "тело": {
+    "count": 1,
+    "firstSeen": "2026-03-23",
+    "lastSeen": "2026-03-23",
+    "types": [
+      "critic"
     ]
   }
 }
