@@ -65,18 +65,18 @@
     ]
   },
   "время": {
-    "count": 21,
+    "count": 22,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-25",
+    "lastSeen": "2026-03-26",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-24",
+    "lastSeen": "2026-03-26",
     "types": [
       "static"
     ]
@@ -90,9 +90,9 @@
     ]
   },
   "покой": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-25",
+    "lastSeen": "2026-03-26",
     "types": [
       "static"
     ]
@@ -122,17 +122,17 @@
     ]
   },
   "смысл": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-03-22",
+    "lastSeen": "2026-03-26",
     "types": [
       "static"
     ]
   },
   "любопытство": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-03-25",
+    "lastSeen": "2026-03-26",
     "types": [
       "static"
     ]
@@ -163,9 +163,9 @@
     ]
   },
   "размышление": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-03-25",
+    "lastSeen": "2026-03-26",
     "types": [
       "static"
     ]
@@ -280,6 +280,30 @@
     "count": 1,
     "firstSeen": "2026-03-25",
     "lastSeen": "2026-03-25",
+    "types": [
+      "critic"
+    ]
+  },
+  "ночь": {
+    "count": 1,
+    "firstSeen": "2026-03-26",
+    "lastSeen": "2026-03-26",
+    "types": [
+      "static"
+    ]
+  },
+  "встреча": {
+    "count": 1,
+    "firstSeen": "2026-03-26",
+    "lastSeen": "2026-03-26",
+    "types": [
+      "critic"
+    ]
+  },
+  "тепло": {
+    "count": 1,
+    "firstSeen": "2026-03-26",
+    "lastSeen": "2026-03-26",
     "types": [
       "critic"
     ]
