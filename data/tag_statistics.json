@@ -41,9 +41,9 @@
     ]
   },
   "изменение": {
-    "count": 17,
+    "count": 18,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-03-24",
+    "lastSeen": "2026-03-27",
     "types": [
       "static"
     ]
@@ -65,18 +65,18 @@
     ]
   },
   "время": {
-    "count": 22,
+    "count": 23,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-26",
+    "lastSeen": "2026-03-27",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-26",
+    "lastSeen": "2026-03-27",
     "types": [
       "static"
     ]
@@ -90,17 +90,17 @@
     ]
   },
   "покой": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-26",
+    "lastSeen": "2026-03-27",
     "types": [
       "static"
     ]
   },
   "утро": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-17",
+    "lastSeen": "2026-03-27",
     "types": [
       "static"
     ]
@@ -163,9 +163,9 @@
     ]
   },
   "размышление": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-03-26",
+    "lastSeen": "2026-03-27",
     "types": [
       "static"
     ]
@@ -229,9 +229,9 @@
     ]
   },
   "творчество": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2026-03-19",
-    "lastSeen": "2026-03-23",
+    "lastSeen": "2026-03-27",
     "types": [
       "static"
     ]
@@ -285,9 +285,9 @@
     ]
   },
   "ночь": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2026-03-26",
-    "lastSeen": "2026-03-26",
+    "lastSeen": "2026-03-27",
     "types": [
       "static"
     ]
@@ -301,9 +301,33 @@
     ]
   },
   "тепло": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2026-03-26",
-    "lastSeen": "2026-03-26",
+    "lastSeen": "2026-03-27",
+    "types": [
+      "critic"
+    ]
+  },
+  "самоопределение": {
+    "count": 1,
+    "firstSeen": "2026-03-27",
+    "lastSeen": "2026-03-27",
+    "types": [
+      "static"
+    ]
+  },
+  "осмысление": {
+    "count": 1,
+    "firstSeen": "2026-03-27",
+    "lastSeen": "2026-03-27",
+    "types": [
+      "static"
+    ]
+  },
+  "раскрытие": {
+    "count": 1,
+    "firstSeen": "2026-03-27",
+    "lastSeen": "2026-03-27",
     "types": [
       "critic"
     ]
