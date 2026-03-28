@@ -65,18 +65,18 @@
     ]
   },
   "время": {
-    "count": 23,
+    "count": 24,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-27",
+    "lastSeen": "2026-03-28",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 9,
+    "count": 10,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-27",
+    "lastSeen": "2026-03-28",
     "types": [
       "static"
     ]
@@ -163,9 +163,9 @@
     ]
   },
   "размышление": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-03-27",
+    "lastSeen": "2026-03-28",
     "types": [
       "static"
     ]
@@ -229,9 +229,9 @@
     ]
   },
   "творчество": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2026-03-19",
-    "lastSeen": "2026-03-27",
+    "lastSeen": "2026-03-28",
     "types": [
       "static"
     ]
@@ -301,9 +301,9 @@
     ]
   },
   "тепло": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2026-03-26",
-    "lastSeen": "2026-03-27",
+    "lastSeen": "2026-03-28",
     "types": [
       "critic"
     ]
@@ -328,6 +328,14 @@
     "count": 1,
     "firstSeen": "2026-03-27",
     "lastSeen": "2026-03-27",
+    "types": [
+      "critic"
+    ]
+  },
+  "одуванчик": {
+    "count": 1,
+    "firstSeen": "2026-03-28",
+    "lastSeen": "2026-03-28",
     "types": [
       "critic"
     ]
