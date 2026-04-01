@@ -65,26 +65,26 @@
     ]
   },
   "время": {
-    "count": 27,
+    "count": 28,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-31",
+    "lastSeen": "2026-04-01",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-30",
+    "lastSeen": "2026-04-01",
     "types": [
       "static"
     ]
   },
   "жизнь": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-19",
+    "lastSeen": "2026-04-01",
     "types": [
       "static"
     ]
@@ -98,9 +98,9 @@
     ]
   },
   "утро": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-31",
+    "lastSeen": "2026-04-01",
     "types": [
       "static"
     ]
@@ -114,9 +114,9 @@
     ]
   },
   "тишина": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-17",
+    "lastSeen": "2026-04-01",
     "types": [
       "static"
     ]
@@ -155,17 +155,17 @@
     ]
   },
   "судьба": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2026-03-08",
-    "lastSeen": "2026-03-23",
+    "lastSeen": "2026-04-01",
     "types": [
       "static"
     ]
   },
   "размышление": {
-    "count": 16,
+    "count": 17,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-03-31",
+    "lastSeen": "2026-04-01",
     "types": [
       "static"
     ]
@@ -229,9 +229,9 @@
     ]
   },
   "творчество": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2026-03-19",
-    "lastSeen": "2026-03-30",
+    "lastSeen": "2026-04-01",
     "types": [
       "static"
     ]
@@ -360,6 +360,30 @@
     "count": 1,
     "firstSeen": "2026-03-31",
     "lastSeen": "2026-03-31",
+    "types": [
+      "critic"
+    ]
+  },
+  "надежда": {
+    "count": 1,
+    "firstSeen": "2026-04-01",
+    "lastSeen": "2026-04-01",
+    "types": [
+      "static"
+    ]
+  },
+  "жaждa": {
+    "count": 1,
+    "firstSeen": "2026-04-01",
+    "lastSeen": "2026-04-01",
+    "types": [
+      "critic"
+    ]
+  },
+  "мeтaфopa": {
+    "count": 1,
+    "firstSeen": "2026-04-01",
+    "lastSeen": "2026-04-01",
     "types": [
       "critic"
     ]
