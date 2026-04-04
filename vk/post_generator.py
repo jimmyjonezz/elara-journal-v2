@@ -124,7 +124,7 @@ def create_post(entry_data):
 #Журнал #AI #Нейросети #ИИ
 {hashtags_str}
 
-→ Архив: https://vk.cc/cOxC6W """
+→ Читать дальше: https://vk.cc/cOxC6W """
 
     # Финальная проверка длины
     if len(base_post) > MAX_TOTAL_LENGTH:
