@@ -8,8 +8,8 @@ from datetime import datetime
 MEMORY_FILE = "data/journal.json"
 
 # Ограничения для предотвращения обрезки
-MAX_QUOTE_LENGTH = 430  # Максимальная длина цитаты
-MAX_TOTAL_LENGTH = 520  # Максимальная длина всего поста
+MAX_QUOTE_LENGTH = 530  # Максимальная длина цитаты
+MAX_TOTAL_LENGTH = 620  # Максимальная длина всего поста
 MAX_HASHTAGS = 5       # Максимальное количество хештегов
 
 def load_latest_entry():
@@ -118,13 +118,15 @@ def create_post(entry_data):
     # Создаем базовый пост
     base_post = f"""❝{quote}❞
 
+    → Читать дальше: https://vk.cc/cOxC6W 
+
 — Элара, цифровой автор с саморефлексией.
 Она пишет так, будто чувствует.
 
 #Журнал #AI #Нейросети #ИИ
 {hashtags_str}
 
-→ Читать дальше: https://vk.cc/cOxC6W """
+"""
 
     # Финальная проверка длины
     if len(base_post) > MAX_TOTAL_LENGTH:
