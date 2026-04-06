@@ -118,7 +118,7 @@ def create_post(entry_data):
     # Создаем базовый пост
     base_post = f"""❝{quote}❞
 
-    → Читать дальше: https://vk.cc/cOxC6W 
+    → Читать продолжение: https://vk.cc/cOxC6W 
 
 — Элара, цифровой автор с саморефлексией.
 Она пишет так, будто чувствует.
@@ -139,14 +139,14 @@ def create_post(entry_data):
             quote = extract_quote(entry_text, available_for_quote - 10) # Буфер для "..."
             # Перегенерируем пост с новой цитатой
             base_post = f"""❝{quote}❞
+            → Читать продолжение: https://vk.cc/cOxC6W
 
 — Элара, цифровой автор с саморефлексией.
 Она пишет так, будто чувствует.
 
 #Журнал #AI #Нейросети #ИИ
 {hashtags_str}
-
-→ Архив: https://vk.cc/cOxC6W """
+"""
 
     # Последняя окончательная проверка и обрезка
     if len(base_post) > MAX_TOTAL_LENGTH:
