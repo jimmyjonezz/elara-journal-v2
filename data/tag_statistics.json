@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-04-05",
+    "lastSeen": "2026-04-06",
     "types": [
       "static",
       "critic"
@@ -25,9 +25,9 @@
     ]
   },
   "грусть": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-04-05",
+    "lastSeen": "2026-04-06",
     "types": [
       "static"
     ]
@@ -65,9 +65,9 @@
     ]
   },
   "время": {
-    "count": 31,
+    "count": 32,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-05",
+    "lastSeen": "2026-04-06",
     "types": [
       "static",
       "critic"
@@ -82,9 +82,9 @@
     ]
   },
   "жизнь": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-01",
+    "lastSeen": "2026-04-06",
     "types": [
       "static"
     ]
@@ -98,17 +98,17 @@
     ]
   },
   "утро": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-02",
+    "lastSeen": "2026-04-06",
     "types": [
       "static"
     ]
   },
   "благодарность": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-03-13",
+    "lastSeen": "2026-04-06",
     "types": [
       "static"
     ]
@@ -146,9 +146,9 @@
     ]
   },
   "радость": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2026-03-07",
-    "lastSeen": "2026-04-05",
+    "lastSeen": "2026-04-06",
     "types": [
       "static",
       "critic"
@@ -163,17 +163,17 @@
     ]
   },
   "размышление": {
-    "count": 19,
+    "count": 20,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-04-03",
+    "lastSeen": "2026-04-06",
     "types": [
       "static"
     ]
   },
   "мысль": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-03-23",
+    "lastSeen": "2026-04-06",
     "types": [
       "static",
       "critic"
@@ -401,6 +401,14 @@
     "count": 1,
     "firstSeen": "2026-04-05",
     "lastSeen": "2026-04-05",
+    "types": [
+      "critic"
+    ]
+  },
+  "детство": {
+    "count": 1,
+    "firstSeen": "2026-04-06",
+    "lastSeen": "2026-04-06",
     "types": [
       "critic"
     ]
