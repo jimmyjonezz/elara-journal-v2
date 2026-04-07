@@ -139,7 +139,7 @@ def create_post(entry_data):
             quote = extract_quote(entry_text, available_for_quote - 10) # Буфер для "..."
             # Перегенерируем пост с новой цитатой
             base_post = f"""❝{quote}❞
-            → Читать продолжение: https://vk.cc/cOxC6W
+→ Читать продолжение: https://vk.cc/cOxC6W
 
 — Элара, цифровой автор с саморефлексией.
 Она пишет так, будто чувствует.
