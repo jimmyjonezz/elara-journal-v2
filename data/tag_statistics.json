@@ -65,26 +65,26 @@
     ]
   },
   "время": {
-    "count": 33,
+    "count": 34,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-07",
+    "lastSeen": "2026-04-08",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-01",
+    "lastSeen": "2026-04-08",
     "types": [
       "static"
     ]
   },
   "жизнь": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-06",
+    "lastSeen": "2026-04-08",
     "types": [
       "static"
     ]
@@ -98,9 +98,9 @@
     ]
   },
   "утро": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-07",
+    "lastSeen": "2026-04-08",
     "types": [
       "static"
     ]
@@ -114,9 +114,9 @@
     ]
   },
   "тишина": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-01",
+    "lastSeen": "2026-04-08",
     "types": [
       "static"
     ]
@@ -163,9 +163,9 @@
     ]
   },
   "размышление": {
-    "count": 21,
+    "count": 22,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-04-07",
+    "lastSeen": "2026-04-08",
     "types": [
       "static"
     ]
@@ -196,9 +196,9 @@
     ]
   },
   "одиночество": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2026-03-11",
-    "lastSeen": "2026-04-05",
+    "lastSeen": "2026-04-08",
     "types": [
       "critic",
       "static"
@@ -221,9 +221,9 @@
     ]
   },
   "свобода": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2026-03-17",
-    "lastSeen": "2026-04-03",
+    "lastSeen": "2026-04-08",
     "types": [
       "static"
     ]
@@ -277,9 +277,9 @@
     ]
   },
   "рост": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2026-03-25",
-    "lastSeen": "2026-03-31",
+    "lastSeen": "2026-04-08",
     "types": [
       "critic"
     ]
@@ -309,9 +309,9 @@
     ]
   },
   "самоопределение": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2026-03-27",
-    "lastSeen": "2026-03-27",
+    "lastSeen": "2026-04-08",
     "types": [
       "static"
     ]
