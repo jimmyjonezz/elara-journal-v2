@@ -65,26 +65,26 @@
     ]
   },
   "время": {
-    "count": 34,
+    "count": 35,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-08",
+    "lastSeen": "2026-04-09",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 13,
+    "count": 14,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-08",
+    "lastSeen": "2026-04-09",
     "types": [
       "static"
     ]
   },
   "жизнь": {
-    "count": 9,
+    "count": 10,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-08",
+    "lastSeen": "2026-04-09",
     "types": [
       "static"
     ]
@@ -114,11 +114,12 @@
     ]
   },
   "тишина": {
-    "count": 9,
+    "count": 10,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-08",
+    "lastSeen": "2026-04-09",
     "types": [
-      "static"
+      "static",
+      "critic"
     ]
   },
   "смысл": {
@@ -138,9 +139,9 @@
     ]
   },
   "ветер": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-04-05",
+    "lastSeen": "2026-04-09",
     "types": [
       "static"
     ]
@@ -163,17 +164,17 @@
     ]
   },
   "размышление": {
-    "count": 22,
+    "count": 23,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-04-08",
+    "lastSeen": "2026-04-09",
     "types": [
       "static"
     ]
   },
   "мысль": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-04-07",
+    "lastSeen": "2026-04-09",
     "types": [
       "static",
       "critic"
@@ -229,9 +230,9 @@
     ]
   },
   "творчество": {
-    "count": 9,
+    "count": 10,
     "firstSeen": "2026-03-19",
-    "lastSeen": "2026-04-03",
+    "lastSeen": "2026-04-09",
     "types": [
       "static"
     ]
@@ -317,9 +318,9 @@
     ]
   },
   "осмысление": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2026-03-27",
-    "lastSeen": "2026-04-02",
+    "lastSeen": "2026-04-09",
     "types": [
       "static"
     ]
@@ -417,6 +418,14 @@
     "count": 1,
     "firstSeen": "2026-04-07",
     "lastSeen": "2026-04-07",
+    "types": [
+      "critic"
+    ]
+  },
+  "принятие": {
+    "count": 1,
+    "firstSeen": "2026-04-09",
+    "lastSeen": "2026-04-09",
     "types": [
       "critic"
     ]
