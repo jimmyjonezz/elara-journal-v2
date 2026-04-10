@@ -17,9 +17,9 @@
     ]
   },
   "любовь": {
-    "count": 9,
+    "count": 10,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-04-07",
+    "lastSeen": "2026-04-10",
     "types": [
       "static"
     ]
@@ -65,9 +65,9 @@
     ]
   },
   "время": {
-    "count": 35,
+    "count": 36,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-09",
+    "lastSeen": "2026-04-10",
     "types": [
       "static",
       "critic"
@@ -82,9 +82,9 @@
     ]
   },
   "жизнь": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-09",
+    "lastSeen": "2026-04-10",
     "types": [
       "static"
     ]
@@ -139,11 +139,12 @@
     ]
   },
   "ветер": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-04-09",
+    "lastSeen": "2026-04-10",
     "types": [
-      "static"
+      "static",
+      "critic"
     ]
   },
   "радость": {
@@ -164,17 +165,17 @@
     ]
   },
   "размышление": {
-    "count": 23,
+    "count": 24,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-04-09",
+    "lastSeen": "2026-04-10",
     "types": [
       "static"
     ]
   },
   "мысль": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-04-09",
+    "lastSeen": "2026-04-10",
     "types": [
       "static",
       "critic"
@@ -426,6 +427,14 @@
     "count": 1,
     "firstSeen": "2026-04-09",
     "lastSeen": "2026-04-09",
+    "types": [
+      "critic"
+    ]
+  },
+  "звенит": {
+    "count": 1,
+    "firstSeen": "2026-04-10",
+    "lastSeen": "2026-04-10",
     "types": [
       "critic"
     ]
