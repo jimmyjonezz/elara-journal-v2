@@ -17,11 +17,12 @@
     ]
   },
   "любовь": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-04-10",
+    "lastSeen": "2026-04-11",
     "types": [
-      "static"
+      "static",
+      "critic"
     ]
   },
   "грусть": {
@@ -65,18 +66,18 @@
     ]
   },
   "время": {
-    "count": 36,
+    "count": 37,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-10",
+    "lastSeen": "2026-04-11",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 14,
+    "count": 15,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-09",
+    "lastSeen": "2026-04-11",
     "types": [
       "static"
     ]
@@ -98,9 +99,9 @@
     ]
   },
   "утро": {
-    "count": 13,
+    "count": 14,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-08",
+    "lastSeen": "2026-04-11",
     "types": [
       "static"
     ]
@@ -114,9 +115,9 @@
     ]
   },
   "тишина": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-09",
+    "lastSeen": "2026-04-11",
     "types": [
       "static",
       "critic"
@@ -157,17 +158,17 @@
     ]
   },
   "судьба": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2026-03-08",
-    "lastSeen": "2026-04-03",
+    "lastSeen": "2026-04-11",
     "types": [
       "static"
     ]
   },
   "размышление": {
-    "count": 24,
+    "count": 25,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-04-10",
+    "lastSeen": "2026-04-11",
     "types": [
       "static"
     ]
@@ -182,9 +183,9 @@
     ]
   },
   "страх": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2026-03-10",
-    "lastSeen": "2026-03-25",
+    "lastSeen": "2026-04-11",
     "types": [
       "critic"
     ]
