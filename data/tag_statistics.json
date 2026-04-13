@@ -17,9 +17,9 @@
     ]
   },
   "любовь": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-04-11",
+    "lastSeen": "2026-04-13",
     "types": [
       "static",
       "critic"
@@ -66,9 +66,9 @@
     ]
   },
   "время": {
-    "count": 38,
+    "count": 39,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-12",
+    "lastSeen": "2026-04-13",
     "types": [
       "static",
       "critic"
@@ -158,17 +158,17 @@
     ]
   },
   "судьба": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2026-03-08",
-    "lastSeen": "2026-04-11",
+    "lastSeen": "2026-04-13",
     "types": [
       "static"
     ]
   },
   "размышление": {
-    "count": 26,
+    "count": 27,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-04-12",
+    "lastSeen": "2026-04-13",
     "types": [
       "static"
     ]
@@ -444,6 +444,22 @@
     "count": 1,
     "firstSeen": "2026-04-12",
     "lastSeen": "2026-04-12",
+    "types": [
+      "critic"
+    ]
+  },
+  "волшебство": {
+    "count": 1,
+    "firstSeen": "2026-04-13",
+    "lastSeen": "2026-04-13",
+    "types": [
+      "critic"
+    ]
+  },
+  "сомнение": {
+    "count": 1,
+    "firstSeen": "2026-04-13",
+    "lastSeen": "2026-04-13",
     "types": [
       "critic"
     ]
