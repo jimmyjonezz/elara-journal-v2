@@ -17,9 +17,9 @@
     ]
   },
   "любовь": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-04-13",
+    "lastSeen": "2026-04-15",
     "types": [
       "static",
       "critic"
@@ -66,9 +66,9 @@
     ]
   },
   "время": {
-    "count": 40,
+    "count": 41,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-14",
+    "lastSeen": "2026-04-15",
     "types": [
       "static",
       "critic"
@@ -166,17 +166,17 @@
     ]
   },
   "размышление": {
-    "count": 28,
+    "count": 29,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-04-14",
+    "lastSeen": "2026-04-15",
     "types": [
       "static"
     ]
   },
   "мысль": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-04-10",
+    "lastSeen": "2026-04-15",
     "types": [
       "static",
       "critic"
@@ -224,9 +224,9 @@
     ]
   },
   "свобода": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2026-03-17",
-    "lastSeen": "2026-04-08",
+    "lastSeen": "2026-04-15",
     "types": [
       "static"
     ]
@@ -368,9 +368,9 @@
     ]
   },
   "надежда": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2026-04-01",
-    "lastSeen": "2026-04-12",
+    "lastSeen": "2026-04-15",
     "types": [
       "static",
       "critic"
@@ -460,6 +460,22 @@
     "count": 1,
     "firstSeen": "2026-04-13",
     "lastSeen": "2026-04-13",
+    "types": [
+      "critic"
+    ]
+  },
+  "капли": {
+    "count": 1,
+    "firstSeen": "2026-04-15",
+    "lastSeen": "2026-04-15",
+    "types": [
+      "critic"
+    ]
+  },
+  "воспоминания": {
+    "count": 1,
+    "firstSeen": "2026-04-15",
+    "lastSeen": "2026-04-15",
     "types": [
       "critic"
     ]
