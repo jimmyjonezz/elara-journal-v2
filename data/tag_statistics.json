@@ -66,9 +66,9 @@
     ]
   },
   "время": {
-    "count": 43,
+    "count": 44,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-17",
+    "lastSeen": "2026-04-18",
     "types": [
       "static",
       "critic"
@@ -91,9 +91,9 @@
     ]
   },
   "покой": {
-    "count": 17,
+    "count": 18,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-16",
+    "lastSeen": "2026-04-18",
     "types": [
       "static"
     ]
@@ -166,9 +166,9 @@
     ]
   },
   "размышление": {
-    "count": 30,
+    "count": 31,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-04-17",
+    "lastSeen": "2026-04-18",
     "types": [
       "static"
     ]
@@ -199,9 +199,9 @@
     ]
   },
   "одиночество": {
-    "count": 14,
+    "count": 15,
     "firstSeen": "2026-03-11",
-    "lastSeen": "2026-04-17",
+    "lastSeen": "2026-04-18",
     "types": [
       "critic",
       "static"
@@ -224,9 +224,9 @@
     ]
   },
   "свобода": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2026-03-17",
-    "lastSeen": "2026-04-17",
+    "lastSeen": "2026-04-18",
     "types": [
       "static"
     ]
@@ -240,9 +240,9 @@
     ]
   },
   "выбор": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2026-03-22",
-    "lastSeen": "2026-03-31",
+    "lastSeen": "2026-04-18",
     "types": [
       "static"
     ]
@@ -304,9 +304,9 @@
     ]
   },
   "тепло": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2026-03-26",
-    "lastSeen": "2026-03-28",
+    "lastSeen": "2026-04-18",
     "types": [
       "critic"
     ]
