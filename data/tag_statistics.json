@@ -66,9 +66,9 @@
     ]
   },
   "время": {
-    "count": 45,
+    "count": 46,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-19",
+    "lastSeen": "2026-04-20",
     "types": [
       "static",
       "critic"
@@ -83,25 +83,25 @@
     ]
   },
   "жизнь": {
-    "count": 14,
+    "count": 15,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-17",
+    "lastSeen": "2026-04-20",
     "types": [
       "static"
     ]
   },
   "покой": {
-    "count": 18,
+    "count": 19,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-18",
+    "lastSeen": "2026-04-20",
     "types": [
       "static"
     ]
   },
   "утро": {
-    "count": 17,
+    "count": 18,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-16",
+    "lastSeen": "2026-04-20",
     "types": [
       "static"
     ]
@@ -158,25 +158,25 @@
     ]
   },
   "судьба": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2026-03-08",
-    "lastSeen": "2026-04-13",
+    "lastSeen": "2026-04-20",
     "types": [
       "static"
     ]
   },
   "размышление": {
-    "count": 32,
+    "count": 33,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-04-19",
+    "lastSeen": "2026-04-20",
     "types": [
       "static"
     ]
   },
   "мысль": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-04-16",
+    "lastSeen": "2026-04-20",
     "types": [
       "static",
       "critic"
@@ -232,9 +232,9 @@
     ]
   },
   "творчество": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2026-03-19",
-    "lastSeen": "2026-04-17",
+    "lastSeen": "2026-04-20",
     "types": [
       "static"
     ]
@@ -492,6 +492,22 @@
     "count": 1,
     "firstSeen": "2026-04-19",
     "lastSeen": "2026-04-19",
+    "types": [
+      "critic"
+    ]
+  },
+  "вода": {
+    "count": 1,
+    "firstSeen": "2026-04-20",
+    "lastSeen": "2026-04-20",
+    "types": [
+      "critic"
+    ]
+  },
+  "слёзы": {
+    "count": 1,
+    "firstSeen": "2026-04-20",
+    "lastSeen": "2026-04-20",
     "types": [
       "critic"
     ]
