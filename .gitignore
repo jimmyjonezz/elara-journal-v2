@@ -20,3 +20,7 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+
+### elara-journal ###
+AGENTS.md
+node_modules/

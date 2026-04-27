@@ -2,15 +2,8 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const API_KEY = process.env.OPENROUTER_API_KEY;
-const API_URL = "https://openrouter.ai/api/v1/chat/completions"; // без пробела
-
-// Модель для генерации записей (бесплатная)
-const ESSAY_MODEL = "nousresearch/hermes-3-llama-3.1-405b:free";
-// Альтернативы: "tngtech/deepseek-r1t2-chimera:free, stepfun/step-3.5-flash:free"
-
-// Модель для литературного анализа (рекомендуется платная, но стабильная)
-const CRITIQUE_MODEL = "nousresearch/hermes-3-llama-3.1-405b:free"
+const API_URL = "https://cloud.ollama.ai/api/chat";
+const MODEL = "qwen3.5:cloud";
 
 const today = new Date().toLocaleDateString('ru-RU', {
   day: 'numeric',
@@ -47,29 +40,26 @@ async function generateEssay(data) {
   const response = await fetch(API_URL, {
     method: "POST",
     headers: {
-      "Authorization": `Bearer ${API_KEY}`,
-      "HTTP-Referer": "https://jimmyjonezz.github.io/elara-journal-v2/",
-      "X-Title": "Elara Journal",
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      model: ESSAY_MODEL,
+      model: MODEL,
       messages: [{ role: "user", content: prompt }],
       temperature: 0.8,
-      max_tokens: 2048
+      stream: false
     })
   });
 
   if (!response.ok) {
     const errorText = await response.text();
     if (response.status === 429) {
-      throw new Error(`OpenRouter API ошибка 429 (Rate limit exceeded). Детали: ${errorText}`);
+      throw new Error(`Ollama API ошибка 429 (Rate limit). Детали: ${errorText}`);
     }
-    throw new Error(`OpenRouter API ошибка: ${response.status} - ${errorText}`);
+    throw new Error(`Ollama API ошибка: ${response.status} - ${errorText}`);
   }
 
   const result = await response.json();
-  return result.choices[0].message.content.trim();
+  return result.message.content.trim();
 }
 
 /**
@@ -82,33 +72,30 @@ async function generateReflection(essay) {
   const response = await fetch(API_URL, {
     method: "POST",
     headers: {
-      "Authorization": `Bearer ${API_KEY}`,
-      "HTTP-Referer": "https://jimmyjonezz.github.io/elara-journal-v2/",
-      "X-Title": "Elara Journal",
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      model: ESSAY_MODEL,
+      model: MODEL,
       messages: [{ role: "user", content: prompt }],
       temperature: 0.7,
-      max_tokens: 2024
+      stream: false
     })
   });
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`OpenRouter API ошибка: ${response.status} - ${errorText}`);
+    throw new Error(`Ollama API ошибка: ${response.status} - ${errorText}`);
   }
 
   const result = await response.json();
-  return result.choices[0].message.content.trim();
+  return result.message.content.trim();
 }
 
 /**
  * Генерирует внутренний отклик ("вчерашняя Элара") на запись — по промпту RPP v2.0
  */
 async function generateCritique(data) {
-  let prompt = await loadPromptTemplate('critique_prompt'); // ← должен содержать твой RPP v2.0
+  let prompt = await loadPromptTemplate('critique_prompt');
 
   const substitutions = {
     '{{entry_title}}': data.entry_date,
@@ -129,31 +116,27 @@ async function generateCritique(data) {
   const response = await fetch(API_URL, {
     method: "POST",
     headers: {
-      "Authorization": `Bearer ${API_KEY}`,
-      "HTTP-Referer": "https://jimmyjonezz.github.io/elara-journal-v2/",
-      "X-Title": "Elara Journal",
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      model: CRITIQUE_MODEL,
+      model: MODEL,
       messages: [{ role: "user", content: prompt }],
       temperature: 0.6,
-      max_tokens: 6500
+      stream: false
     })
   });
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`OpenRouter API ошибка: ${response.status} - ${errorText}`);
+    throw new Error(`Ollama API ошибка: ${response.status} - ${errorText}`);
   }
 
   const result = await response.json();
-  return result.choices[0].message.content.trim();
+  return result.message.content.trim();
 }
 
 module.exports = {
   generateEssay,
   generateReflection,
-  generateCritique,
-  callOpenRouter: null // если не используется напрямую — можно убрать
+  generateCritique
 };
