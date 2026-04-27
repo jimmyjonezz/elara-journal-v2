@@ -2,7 +2,9 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const API_URL = "https://cloud.ollama.ai/api/chat";
+const API_KEY = process.env.OPENROUTER_API_KEY;
+const API_URL = "https://ollama.com/api/chat";
+
 const MODEL = "qwen3.5:cloud";
 
 const today = new Date().toLocaleDateString('ru-RU', {
@@ -40,7 +42,8 @@ async function generateEssay(data) {
   const response = await fetch(API_URL, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${API_KEY}`
     },
     body: JSON.stringify({
       model: MODEL,
@@ -72,7 +75,8 @@ async function generateReflection(essay) {
   const response = await fetch(API_URL, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${API_KEY}`
     },
     body: JSON.stringify({
       model: MODEL,
@@ -116,7 +120,8 @@ async function generateCritique(data) {
   const response = await fetch(API_URL, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${API_KEY}`
     },
     body: JSON.stringify({
       model: MODEL,
