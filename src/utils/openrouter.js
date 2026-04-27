@@ -6,11 +6,11 @@ const API_KEY = process.env.OPENROUTER_API_KEY;
 const API_URL = "https://openrouter.ai/api/v1/chat/completions"; // без пробела
 
 // Модель для генерации записей (бесплатная)
-const ESSAY_MODEL = "nvidia/nemotron-3-super-120b-a12b:free";
+const ESSAY_MODEL = "nousresearch/hermes-3-llama-3.1-405b:free";
 // Альтернативы: "tngtech/deepseek-r1t2-chimera:free, stepfun/step-3.5-flash:free"
 
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
-const CRITIQUE_MODEL = "nvidia/nemotron-3-super-120b-a12b:free"
+const CRITIQUE_MODEL = "nousresearch/hermes-3-llama-3.1-405b:free"
 
 const today = new Date().toLocaleDateString('ru-RU', {
   day: 'numeric',
@@ -55,7 +55,7 @@ async function generateEssay(data) {
     body: JSON.stringify({
       model: ESSAY_MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.6,
+      temperature: 0.8,
       max_tokens: 2048
     })
   });
@@ -90,7 +90,7 @@ async function generateReflection(essay) {
     body: JSON.stringify({
       model: ESSAY_MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.6,
+      temperature: 0.7,
       max_tokens: 2024
     })
   });
@@ -137,7 +137,7 @@ async function generateCritique(data) {
     body: JSON.stringify({
       model: CRITIQUE_MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.7,
+      temperature: 0.6,
       max_tokens: 6500
     })
   });
