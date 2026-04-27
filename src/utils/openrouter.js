@@ -6,7 +6,7 @@ const API_KEY = process.env.OPENROUTER_API_KEY;
 const API_URL = "https://openrouter.ai/api/v1/chat/completions"; // без пробела
 
 // Модель для генерации записей (бесплатная)
-const ESSAY_MODEL = "arcee-ai/trinity-large-preview:free";
+const ESSAY_MODEL = "nvidia/nemotron-3-super-120b-a12b:free";
 // Альтернативы: "tngtech/deepseek-r1t2-chimera:free, stepfun/step-3.5-flash:free"
 
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
