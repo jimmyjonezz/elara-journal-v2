@@ -34,11 +34,12 @@
     ]
   },
   "осознание": {
-    "count": 9,
+    "count": 10,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-04-22",
+    "lastSeen": "2026-04-27",
     "types": [
-      "static"
+      "static",
+      "critic"
     ]
   },
   "изменение": {
@@ -66,20 +67,21 @@
     ]
   },
   "время": {
-    "count": 48,
+    "count": 49,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-22",
+    "lastSeen": "2026-04-27",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 17,
+    "count": 18,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-22",
+    "lastSeen": "2026-04-27",
     "types": [
-      "static"
+      "static",
+      "critic"
     ]
   },
   "жизнь": {
@@ -91,9 +93,9 @@
     ]
   },
   "покой": {
-    "count": 20,
+    "count": 21,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-04-22",
+    "lastSeen": "2026-04-27",
     "types": [
       "static"
     ]
@@ -158,9 +160,9 @@
     ]
   },
   "судьба": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2026-03-08",
-    "lastSeen": "2026-04-22",
+    "lastSeen": "2026-04-27",
     "types": [
       "static",
       "critic"
