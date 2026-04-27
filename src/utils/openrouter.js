@@ -10,7 +10,7 @@ const ESSAY_MODEL = "nvidia/nemotron-3-super-120b-a12b:free";
 // Альтернативы: "tngtech/deepseek-r1t2-chimera:free, stepfun/step-3.5-flash:free"
 
 // Модель для литературного анализа (рекомендуется платная, но стабильная)
-const CRITIQUE_MODEL = "arcee-ai/trinity-large-preview:free"
+const CRITIQUE_MODEL = "nvidia/nemotron-3-super-120b-a12b:free"
 
 const today = new Date().toLocaleDateString('ru-RU', {
   day: 'numeric',
