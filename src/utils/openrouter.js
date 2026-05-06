@@ -5,7 +5,7 @@ const path = require('path');
 const API_KEY = process.env.OPENROUTER_API_KEY;
 const API_URL = "https://ollama.com/api/chat";
 
-const MODEL = "kimi-k2.6:cloud";
+const MODEL = "gemma3:27b-cloud";
 
 const today = new Date().toLocaleDateString('ru-RU', {
   day: 'numeric',
