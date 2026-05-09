@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 15,
+    "count": 16,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-05-08",
+    "lastSeen": "2026-05-09",
     "types": [
       "static",
       "critic"
@@ -67,18 +67,18 @@
     ]
   },
   "время": {
-    "count": 57,
+    "count": 58,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-05-08",
+    "lastSeen": "2026-05-09",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 20,
+    "count": 21,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-05-06",
+    "lastSeen": "2026-05-09",
     "types": [
       "static",
       "critic"
@@ -93,9 +93,9 @@
     ]
   },
   "покой": {
-    "count": 24,
+    "count": 25,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-05-07",
+    "lastSeen": "2026-05-09",
     "types": [
       "static"
     ]
@@ -126,9 +126,9 @@
     ]
   },
   "смысл": {
-    "count": 20,
+    "count": 21,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-05-07",
+    "lastSeen": "2026-05-09",
     "types": [
       "static"
     ]
@@ -551,6 +551,14 @@
     "count": 1,
     "firstSeen": "2026-05-07",
     "lastSeen": "2026-05-07",
+    "types": [
+      "critic"
+    ]
+  },
+  "меланхолия": {
+    "count": 1,
+    "firstSeen": "2026-05-09",
+    "lastSeen": "2026-05-09",
     "types": [
       "critic"
     ]
