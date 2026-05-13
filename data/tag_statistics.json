@@ -26,9 +26,9 @@
     ]
   },
   "грусть": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-04-06",
+    "lastSeen": "2026-05-13",
     "types": [
       "static"
     ]
@@ -67,9 +67,9 @@
     ]
   },
   "время": {
-    "count": 61,
+    "count": 62,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-05-12",
+    "lastSeen": "2026-05-13",
     "types": [
       "static",
       "critic"
@@ -93,9 +93,9 @@
     ]
   },
   "покой": {
-    "count": 25,
+    "count": 26,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-05-09",
+    "lastSeen": "2026-05-13",
     "types": [
       "static"
     ]
@@ -126,9 +126,9 @@
     ]
   },
   "смысл": {
-    "count": 21,
+    "count": 22,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-05-09",
+    "lastSeen": "2026-05-13",
     "types": [
       "static"
     ]
@@ -169,9 +169,9 @@
     ]
   },
   "размышление": {
-    "count": 36,
+    "count": 37,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-05-08",
+    "lastSeen": "2026-05-13",
     "types": [
       "static"
     ]
@@ -202,9 +202,9 @@
     ]
   },
   "одиночество": {
-    "count": 19,
+    "count": 20,
     "firstSeen": "2026-03-11",
-    "lastSeen": "2026-05-11",
+    "lastSeen": "2026-05-13",
     "types": [
       "critic",
       "static"
@@ -564,11 +564,12 @@
     ]
   },
   "ностальгия": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2026-05-10",
-    "lastSeen": "2026-05-12",
+    "lastSeen": "2026-05-13",
     "types": [
-      "static"
+      "static",
+      "critic"
     ]
   },
   "горе": {
