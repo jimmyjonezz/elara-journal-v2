@@ -26,18 +26,18 @@
     ]
   },
   "грусть": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-05-21",
+    "lastSeen": "2026-05-30",
     "types": [
       "static",
       "critic"
     ]
   },
   "осознание": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-05-24",
+    "lastSeen": "2026-05-30",
     "types": [
       "static",
       "critic"
@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 80,
+    "count": 81,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-05-29",
+    "lastSeen": "2026-05-30",
     "types": [
       "static",
       "critic"
@@ -86,9 +86,9 @@
     ]
   },
   "жизнь": {
-    "count": 23,
+    "count": 24,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-05-22",
+    "lastSeen": "2026-05-30",
     "types": [
       "static"
     ]
@@ -127,9 +127,9 @@
     ]
   },
   "смысл": {
-    "count": 28,
+    "count": 29,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-05-29",
+    "lastSeen": "2026-05-30",
     "types": [
       "static"
     ]
@@ -161,9 +161,9 @@
     ]
   },
   "судьба": {
-    "count": 18,
+    "count": 19,
     "firstSeen": "2026-03-08",
-    "lastSeen": "2026-05-22",
+    "lastSeen": "2026-05-30",
     "types": [
       "static",
       "critic"
@@ -324,9 +324,9 @@
     ]
   },
   "осмысление": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2026-03-27",
-    "lastSeen": "2026-05-24",
+    "lastSeen": "2026-05-30",
     "types": [
       "static"
     ]
@@ -565,9 +565,9 @@
     ]
   },
   "ностальгия": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2026-05-10",
-    "lastSeen": "2026-05-29",
+    "lastSeen": "2026-05-30",
     "types": [
       "static",
       "critic"
@@ -617,6 +617,14 @@
     "count": 1,
     "firstSeen": "2026-05-25",
     "lastSeen": "2026-05-25",
+    "types": [
+      "critic"
+    ]
+  },
+  "самоанализ": {
+    "count": 1,
+    "firstSeen": "2026-05-30",
+    "lastSeen": "2026-05-30",
     "types": [
       "critic"
     ]
