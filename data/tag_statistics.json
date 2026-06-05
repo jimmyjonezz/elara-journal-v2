@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 36,
+    "count": 37,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-06-04",
+    "lastSeen": "2026-06-05",
     "types": [
       "static",
       "critic"
@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 86,
+    "count": 87,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-06-04",
+    "lastSeen": "2026-06-05",
     "types": [
       "static",
       "critic"
@@ -86,17 +86,17 @@
     ]
   },
   "жизнь": {
-    "count": 24,
+    "count": 25,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-05-30",
+    "lastSeen": "2026-06-05",
     "types": [
       "static"
     ]
   },
   "покой": {
-    "count": 32,
+    "count": 33,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-06-01",
+    "lastSeen": "2026-06-05",
     "types": [
       "static"
     ]
@@ -203,9 +203,9 @@
     ]
   },
   "одиночество": {
-    "count": 29,
+    "count": 30,
     "firstSeen": "2026-03-11",
-    "lastSeen": "2026-06-04",
+    "lastSeen": "2026-06-05",
     "types": [
       "critic",
       "static"
