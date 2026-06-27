@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 49,
+    "count": 50,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-06-26",
+    "lastSeen": "2026-06-27",
     "types": [
       "static",
       "critic"
@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 108,
+    "count": 109,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-06-26",
+    "lastSeen": "2026-06-27",
     "types": [
       "static",
       "critic"
@@ -86,17 +86,17 @@
     ]
   },
   "жизнь": {
-    "count": 30,
+    "count": 31,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-06-24",
+    "lastSeen": "2026-06-27",
     "types": [
       "static"
     ]
   },
   "покой": {
-    "count": 39,
+    "count": 40,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-06-25",
+    "lastSeen": "2026-06-27",
     "types": [
       "static"
     ]
@@ -127,9 +127,9 @@
     ]
   },
   "смысл": {
-    "count": 39,
+    "count": 40,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-06-26",
+    "lastSeen": "2026-06-27",
     "types": [
       "static"
     ]
@@ -236,9 +236,9 @@
     ]
   },
   "творчество": {
-    "count": 43,
+    "count": 44,
     "firstSeen": "2026-03-19",
-    "lastSeen": "2026-06-26",
+    "lastSeen": "2026-06-27",
     "types": [
       "static"
     ]
@@ -630,9 +630,9 @@
     ]
   },
   "тоска": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2026-06-07",
-    "lastSeen": "2026-06-17",
+    "lastSeen": "2026-06-27",
     "types": [
       "critic"
     ]
