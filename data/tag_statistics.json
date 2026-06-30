@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 51,
+    "count": 52,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-06-28",
+    "lastSeen": "2026-06-30",
     "types": [
       "static",
       "critic"
@@ -68,18 +68,18 @@
     ]
   },
   "время": {
-    "count": 111,
+    "count": 112,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-06-29",
+    "lastSeen": "2026-06-30",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 43,
+    "count": 44,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-06-26",
+    "lastSeen": "2026-06-30",
     "types": [
       "static",
       "critic"
@@ -161,18 +161,18 @@
     ]
   },
   "судьба": {
-    "count": 25,
+    "count": 26,
     "firstSeen": "2026-03-08",
-    "lastSeen": "2026-06-28",
+    "lastSeen": "2026-06-30",
     "types": [
       "static",
       "critic"
     ]
   },
   "размышление": {
-    "count": 49,
+    "count": 50,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-06-23",
+    "lastSeen": "2026-06-30",
     "types": [
       "static"
     ]
@@ -236,9 +236,9 @@
     ]
   },
   "творчество": {
-    "count": 44,
+    "count": 45,
     "firstSeen": "2026-03-19",
-    "lastSeen": "2026-06-27",
+    "lastSeen": "2026-06-30",
     "types": [
       "static"
     ]
@@ -565,9 +565,9 @@
     ]
   },
   "ностальгия": {
-    "count": 20,
+    "count": 21,
     "firstSeen": "2026-05-10",
-    "lastSeen": "2026-06-24",
+    "lastSeen": "2026-06-30",
     "types": [
       "static",
       "critic"
