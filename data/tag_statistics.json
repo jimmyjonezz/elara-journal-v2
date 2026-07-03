@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 53,
+    "count": 54,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-07-02",
+    "lastSeen": "2026-07-03",
     "types": [
       "static",
       "critic"
@@ -35,9 +35,9 @@
     ]
   },
   "осознание": {
-    "count": 15,
+    "count": 16,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-06-23",
+    "lastSeen": "2026-07-03",
     "types": [
       "static",
       "critic"
@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 113,
+    "count": 114,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-07-02",
+    "lastSeen": "2026-07-03",
     "types": [
       "static",
       "critic"
@@ -127,9 +127,9 @@
     ]
   },
   "смысл": {
-    "count": 41,
+    "count": 42,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-06-29",
+    "lastSeen": "2026-07-03",
     "types": [
       "static"
     ]
@@ -236,9 +236,9 @@
     ]
   },
   "творчество": {
-    "count": 46,
+    "count": 47,
     "firstSeen": "2026-03-19",
-    "lastSeen": "2026-07-02",
+    "lastSeen": "2026-07-03",
     "types": [
       "static"
     ]
@@ -324,9 +324,9 @@
     ]
   },
   "осмысление": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2026-03-27",
-    "lastSeen": "2026-06-23",
+    "lastSeen": "2026-07-03",
     "types": [
       "static"
     ]
@@ -372,9 +372,9 @@
     ]
   },
   "надежда": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-04-01",
-    "lastSeen": "2026-06-14",
+    "lastSeen": "2026-07-03",
     "types": [
       "static",
       "critic"
@@ -565,9 +565,9 @@
     ]
   },
   "ностальгия": {
-    "count": 22,
+    "count": 23,
     "firstSeen": "2026-05-10",
-    "lastSeen": "2026-07-02",
+    "lastSeen": "2026-07-03",
     "types": [
       "static",
       "critic"
