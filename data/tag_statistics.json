@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 57,
+    "count": 58,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-07-06",
+    "lastSeen": "2026-07-07",
     "types": [
       "static",
       "critic"
@@ -26,9 +26,9 @@
     ]
   },
   "грусть": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-06-18",
+    "lastSeen": "2026-07-07",
     "types": [
       "static",
       "critic"
@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 117,
+    "count": 118,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-07-06",
+    "lastSeen": "2026-07-07",
     "types": [
       "static",
       "critic"
@@ -152,9 +152,9 @@
     ]
   },
   "радость": {
-    "count": 14,
+    "count": 15,
     "firstSeen": "2026-03-07",
-    "lastSeen": "2026-06-28",
+    "lastSeen": "2026-07-07",
     "types": [
       "static",
       "critic"
@@ -170,9 +170,9 @@
     ]
   },
   "размышление": {
-    "count": 50,
+    "count": 51,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-06-30",
+    "lastSeen": "2026-07-07",
     "types": [
       "static"
     ]
@@ -582,9 +582,9 @@
     ]
   },
   "отчуждение": {
-    "count": 5,
+    "count": 6,
     "firstSeen": "2026-05-12",
-    "lastSeen": "2026-06-12",
+    "lastSeen": "2026-07-07",
     "types": [
       "critic"
     ]
