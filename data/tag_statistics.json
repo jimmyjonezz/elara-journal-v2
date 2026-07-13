@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 122,
+    "count": 123,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-07-12",
+    "lastSeen": "2026-07-13",
     "types": [
       "static",
       "critic"
@@ -86,9 +86,9 @@
     ]
   },
   "жизнь": {
-    "count": 35,
+    "count": 36,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-07-12",
+    "lastSeen": "2026-07-13",
     "types": [
       "static"
     ]
@@ -135,9 +135,9 @@
     ]
   },
   "любопытство": {
-    "count": 14,
+    "count": 15,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-06-24",
+    "lastSeen": "2026-07-13",
     "types": [
       "static"
     ]
@@ -170,9 +170,9 @@
     ]
   },
   "размышление": {
-    "count": 51,
+    "count": 52,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-07-07",
+    "lastSeen": "2026-07-13",
     "types": [
       "static"
     ]
@@ -228,9 +228,9 @@
     ]
   },
   "свобода": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2026-03-17",
-    "lastSeen": "2026-06-20",
+    "lastSeen": "2026-07-13",
     "types": [
       "static"
     ]
@@ -557,9 +557,9 @@
     ]
   },
   "меланхолия": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2026-05-09",
-    "lastSeen": "2026-05-31",
+    "lastSeen": "2026-07-13",
     "types": [
       "critic"
     ]
