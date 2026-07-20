@@ -2,10 +2,25 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const API_KEY = process.env.OPENROUTER_API_KEY;
-const API_URL = "https://ollama.com/api/chat";
+// Ollama Cloud — OpenAI-совместимый endpoint (/v1/chat/completions).
+// Все параметры берутся из окружения, чтобы смена модели/ключа не требовала правки кода.
+const API_BASE = process.env.OLLAMA_BASE_URL || "https://ollama.com/v1";
+// Убираем завершающий слэш, затем строго добавляем путь OpenAI-формата.
+const API_URL = `${API_BASE.replace(/\/+$/, "")}/chat/completions`;
 
-const MODEL = "gemma3:27b-cloud";
+const API_KEY = process.env.OLLAMA_API_KEY || process.env.OPENROUTER_API_KEY;
+
+// Модель gemma3:27b была снята (retired) 2026-07-15. Преемник — gemma4:31b.
+// Переопределяется через env OLLAMA_MODEL.
+const MODEL = process.env.OLLAMA_MODEL || "gemma4:31b";
+
+/**
+ * Извлекает текст ответа из OpenAI-совместимого формата Ollama Cloud.
+ * Возвращает null, если формат ответа неожиданный (чтобы вызвать ошибку выше).
+ */
+function extractContent(result) {
+  return result?.choices?.[0]?.message?.content?.trim() || null;
+}
 
 const today = new Date().toLocaleDateString('ru-RU', {
   day: 'numeric',
@@ -62,7 +77,11 @@ async function generateEssay(data) {
   }
 
   const result = await response.json();
-  return result.message.content.trim();
+  const content = extractContent(result);
+  if (!content) {
+    throw new Error(`Ollama API вернул неожиданный формат ответа: ${JSON.stringify(result).slice(0, 300)}`);
+  }
+  return content;
 }
 
 /**
@@ -92,7 +111,11 @@ async function generateReflection(essay) {
   }
 
   const result = await response.json();
-  return result.message.content.trim();
+  const content = extractContent(result);
+  if (!content) {
+    throw new Error(`Ollama API вернул неожиданный формат ответа: ${JSON.stringify(result).slice(0, 300)}`);
+  }
+  return content;
 }
 
 /**
@@ -137,7 +160,11 @@ async function generateCritique(data) {
   }
 
   const result = await response.json();
-  return result.message.content.trim();
+  const content = extractContent(result);
+  if (!content) {
+    throw new Error(`Ollama API вернул неожиданный формат ответа: ${JSON.stringify(result).slice(0, 300)}`);
+  }
+  return content;
 }
 
 module.exports = {
