@@ -58,24 +58,29 @@ async function getSeasonalMood() {
 }
 
 /**
- * Получает первый контекст из contexts.json и удаляет его из файла.
+ * Берёт первый контекст из contexts.json и переносит его в КОНЕЦ (FIFO-цикл),
+ * чтобы пул никогда не иссякал. Если файл пуст/сломан — дефолтный контекст,
+ * который тоже добавляется в пул для будущих итераций.
  */
-async function getAndRemoveFirstContext() {
+async function getAndRotateContext() {
+  const DEFAULT_CONTEXT = "Ты сидишь за столом. За окном — тишина.";
   try {
-    const contexts = await readJSON(CONTEXTS_PATH); // Используем CONTEXTS_PATH из config
+    const contexts = await readJSON(CONTEXTS_PATH);
     if (!Array.isArray(contexts?.contexts) || contexts.contexts.length === 0) {
-      throw new Error("Формат contexts.json нарушен или файл пуст: ожидается { contexts: Array<{ context: string }> } с элементами.");
+      throw new Error("Формат contexts.json нарушен или файл пуст: ожидается { contexts: Array<{ context: string }> }.");
     }
-    const firstItem = contexts.contexts.shift(); // Удаляем первый элемент
-    const firstContext = firstItem.context;
 
-    // Сохраняем обновлённый массив обратно
+    // Извлекаем первый элемент и возвращаем его в конец (цикл).
+    const firstItem = contexts.contexts.shift();
+    const firstContext = firstItem?.context || DEFAULT_CONTEXT;
+
+    contexts.contexts.push({ context: firstContext, added_at: new Date().toISOString() });
     await writeJSON(CONTEXTS_PATH, contexts);
-    console.log(`🔄 Использован и удалён первый контекст: ${firstContext.substring(0, 60)}...`);
 
+    console.log(`🔄 Контекст взят и возвращён в цикл (в пуле ${contexts.contexts.length}): ${firstContext.substring(0, 60)}...`);
     return firstContext;
   } catch (err) {
-    console.warn('⚠️ Не удалось загрузить или изменить contexts.json:', err.message);
+    console.warn('⚠️ Не удалось загрузить/прокрутить contexts.json:', err.message);
     return "Ты сидишь за столом. За окном — тишина.";
   }
 }
@@ -125,7 +130,7 @@ module.exports = {
   loadJournal,
   loadLastJournalEntry, // Экспортируем новую функцию
   getSeasonalMood,
-  getAndRemoveFirstContext,
+  getAndRotateContext,
   loadExternalContext,
   loadSemanticDictionary
 };

@@ -19,7 +19,7 @@ const { extractTags, determineReflectionLevel, cleanReflectionText } = require('
 const { parseScene } = require('../utils/sceneParser');
 const { withRetry } = require('../utils/retryHandler');
 const { buildImagePrompt } = require('../utils/imagePromptBuilder');
-const { loadJournal, loadExternalContext, getSeasonalMood, getAndRemoveFirstContext, loadSemanticDictionary } = require('../data/dataLoader');
+const { loadJournal, loadExternalContext, getSeasonalMood, getAndRotateContext, loadSemanticDictionary } = require('../data/dataLoader');
 const { processSceneAndTags } = require('../tagging/tagProcessor');
 const { generateContent } = require('../generation/contentGenerator');
 
@@ -33,7 +33,7 @@ async function prepareEntryData() {
 
   const externalContext = await loadExternalContext();
   const mood = await getSeasonalMood();
-  const context = await getAndRemoveFirstContext();
+  const context = await getAndRotateContext();
   console.log(`🎭 Текущее настроение: ${mood.name} (${mood.season})`);
   console.log(`📖 Случайный контекст: ${context.substring(0, 60)}...`);
 
