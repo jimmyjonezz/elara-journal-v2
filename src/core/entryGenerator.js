@@ -13,6 +13,9 @@ const {
   CONTEXTS_PATH
 } = require('../config');
 
+const fs = require('fs').promises;
+const path = require('path');
+
 // --- Импорты из новых модулей ---
 const { getCurrentSeason } = require('../utils/dateUtils');
 const { extractTags, determineReflectionLevel, cleanReflectionText } = require('../utils/textProcessor');
@@ -46,12 +49,11 @@ async function prepareEntryData() {
     ...tagData,
     ...finalData,
     season: mood.season,
-    mood: {                   // ← добавить это
+    mood: {
       name: mood.name,
       description: mood.description
     },
-    context,
-    criticTags: externalContext.criticTags
+    context
   };
 }
 
@@ -124,10 +126,9 @@ async function generateEntry() {
   try {
     const {
       essayWithoutScene,
-      reflectionWithoutLevel, // <-- Извлекаем
+      reflectionWithoutLevel,
       fullEntryText,
       staticTags,
-      criticTags,
       allTags,
       level,
       season,
@@ -136,9 +137,7 @@ async function generateEntry() {
       imagePrompt
     } = await prepareEntryData();
 
-    // 🔹 Сохранение промпта изображения — теперь здесь, без побочного эффекта в prepareEntryData
-    const fs = require('fs').promises;
-    const path = require('path');
+    // 🔹 Сохранение промпта изображения
     await fs.writeFile(path.join(__dirname, '../../data/latest_image_prompt.txt'), imagePrompt, 'utf8');
     console.log('🖼️ Промпт для изображения сохранён в data/latest_image_prompt.txt');
 
@@ -147,7 +146,6 @@ async function generateEntry() {
       season: season,
       mood: { name: mood.name, description: mood.description },
       context: context, // ← сохраняем контекст, использованный при генерации
-      //entry: fullEntryText, // <-- Старое поле: эссе + рефлексия
       raw_essay: essayWithoutScene, // <-- Уже есть
       raw_reflection: reflectionWithoutLevel, // <-- НОВОЕ ПОЛЕ: только рефлексия
       tags: allTags,

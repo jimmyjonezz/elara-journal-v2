@@ -9,6 +9,7 @@ const {
   MOODS_PATH,
   CONTEXTS_PATH // Обновленный путь к contexts.json
 } = require('../config');
+const { getCurrentSeason } = require('../utils/dateUtils');
 
 /**
  * Загружает журнал
@@ -35,8 +36,6 @@ async function loadLastJournalEntry() {
 async function getSeasonalMood() {
   try {
     const moods = await readJSON(MOODS_PATH);
-    // Импортируем getCurrentSeason из нового файла утилит
-    const { getCurrentSeason } = require('../utils/dateUtils');
     const season = getCurrentSeason();
 
     const seasonMoods = moods[season];
@@ -104,8 +103,9 @@ async function loadExternalContext() {
     console.warn("⚠️ Ошибка при загрузке файла литературного анализа:", error.message);
   }
 
-  // --- теги критика
-  let criticTags = [];
+  // criticTags всегда пуст — критик не возвращает теги напрямую (берутся из analysis.tags_for_search).
+  // Поле оставлено для совместимости с contentGenerator/tagProcessor.
+  const criticTags = [];
 
   // --- Загрузка семантического словаря (один раз) ---
   const semanticDict = await loadSemanticDictionary();
