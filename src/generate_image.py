@@ -10,6 +10,7 @@ import os
 import datetime
 import json
 import sys
+import time
 
 # API ключ DashScope
 QWEN_TOKEN = os.environ.get("QWEN_TOKEN")
@@ -62,13 +63,17 @@ try:
 
     payload = {
         "model": "qwen-image-2.0-pro",
-        "prompt": prompt_text,
-        "n": 1,
-        "size": "1024x1024",
+        "input": {
+            "prompt": prompt_text,
+        },
+        "parameters": {
+            "size": "1024x1024",
+            "n": 1,
+        }
     }
 
     api_response = requests.post(
-        "https://ws-qpeioyr12go5ec4d.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1/images/generations",
+        "https://dashscope-intl.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis",
         headers=headers,
         json=payload,
         timeout=120
@@ -76,11 +81,27 @@ try:
 
     if api_response.status_code != 200:
         print(f"❌ Ошибка API: {api_response.status_code}")
-        print(api_response.text)
+        try:
+            err = api_response.json()
+            code = err.get("code", "?")
+            msg = err.get("message", api_response.text[:200])
+            print(f"   Код: {code}")
+            print(f"   Сообщение: {msg}")
+            if code == "Throttling.RateQuota":
+                print("   ⏳ Достигнут лимит запросов. Попробуйте позже.")
+        except Exception:
+            print(api_response.text[:300])
         sys.exit(1)
 
     data = api_response.json()
-    image_url = data["data"][0]["url"]
+
+    # Синхронный режим: результат сразу в output.results
+    if "output" in data and "results" in data["output"]:
+        image_url = data["output"]["results"][0]["url"]
+    else:
+        print(f"❌ Неожиданный формат ответа: {json.dumps(data, indent=2)[:300]}")
+        sys.exit(1)
+
     print(f"✅ Изображение сгенерировано! URL: {image_url}")
 
     # Скачиваем
