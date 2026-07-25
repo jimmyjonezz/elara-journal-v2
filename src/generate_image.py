@@ -68,7 +68,7 @@ try:
     }
 
     api_response = requests.post(
-        "https://dashscope-intl.aliyuncs.com/compatible-mode/v1/images/generations",
+        "https://ws-qpeioyr12go5ec4d.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1/images/generations",
         headers=headers,
         json=payload,
         timeout=120
