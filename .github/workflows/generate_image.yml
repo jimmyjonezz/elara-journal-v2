@@ -1,4 +1,4 @@
-name: Generate Image (DashScope)
+name: Generate Image (Pollinations)
 
 on:
   workflow_dispatch:
@@ -9,9 +9,6 @@ on:
         default: 'A cute dog in a park'
         type: string
   workflow_call:
-    secrets:
-      QWEN_TOKEN:
-        required: true
 
 jobs:
   generate:
@@ -30,9 +27,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Generate image with DashScope
-        env:
-          QWEN_TOKEN: ${{ secrets.QWEN_TOKEN }}
+      - name: Generate image with Pollinations
         run: python src/generate_image.py
 
       - name: List files for debug
@@ -43,7 +38,7 @@ jobs:
       - name: Commit and push generated image
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Add generated image from Qwen ✨ | ${{ inputs.prompt }} | $(date)"
+          commit_message: "Add generated image ✨ | ${{ inputs.prompt }} | $(date)"
           file_pattern: data/*
           branch: main
 

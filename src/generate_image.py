@@ -2,7 +2,7 @@
 Скрипт генерации изображения для Журнала Элары.
 Использует промпт из data/latest_image_prompt.txt и дату из data/journal.json.
 Сохраняет изображение в data/images/{date}.webp
-Через DashScope Image API (Qwen).
+Через Pollinations API (бесплатно, без ключа).
 """
 
 import requests
@@ -10,14 +10,7 @@ import os
 import datetime
 import json
 import sys
-import time
-
-# API ключ DashScope
-QWEN_TOKEN = os.environ.get("QWEN_TOKEN")
-if not QWEN_TOKEN:
-    print("❌ Не найден API ключ QWEN_TOKEN")
-    print("Пожалуйста, установите переменную окружения QWEN_TOKEN")
-    sys.exit(1)
+import urllib.parse
 
 # Определяем пути
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -52,64 +45,21 @@ except Exception as e:
     print(f"❌ Ошибка чтения промпта: {e}")
     sys.exit(1)
 
-# Генерируем изображение через DashScope Image API
+# Генерируем изображение через Pollinations API
 try:
-    print("🎨 Запускаем генерацию через DashScope (qwen-image-2.0-pro)...")
+    print("🎨 Запускаем генерацию через Pollinations...")
 
-    headers = {
-        "Authorization": f"Bearer {QWEN_TOKEN}",
-        "Content-Type": "application/json"
-    }
+    # URL-кодируем промпт
+    encoded = urllib.parse.quote(prompt_text[:200])
+    url = f"https://image.pollinations.ai/prompt/{encoded}?width=1024&height=1024&nologo=true"
 
-    payload = {
-        "model": "qwen-image-2.0-pro",
-        "input": {
-            "prompt": prompt_text,
-        },
-        "parameters": {
-            "size": "1024x1024",
-            "n": 1,
-        }
-    }
-
-    api_response = requests.post(
-        "https://dashscope-intl.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis",
-        headers=headers,
-        json=payload,
-        timeout=120
-    )
-
-    if api_response.status_code != 200:
-        print(f"❌ Ошибка API: {api_response.status_code}")
-        try:
-            err = api_response.json()
-            code = err.get("code", "?")
-            msg = err.get("message", api_response.text[:200])
-            print(f"   Код: {code}")
-            print(f"   Сообщение: {msg}")
-            if code == "Throttling.RateQuota":
-                print("   ⏳ Достигнут лимит запросов. Попробуйте позже.")
-        except Exception:
-            print(api_response.text[:300])
-        sys.exit(1)
-
-    data = api_response.json()
-
-    # Синхронный режим: результат сразу в output.results
-    if "output" in data and "results" in data["output"]:
-        image_url = data["output"]["results"][0]["url"]
-    else:
-        print(f"❌ Неожиданный формат ответа: {json.dumps(data, indent=2)[:300]}")
-        sys.exit(1)
-
-    print(f"✅ Изображение сгенерировано! URL: {image_url}")
-
-    # Скачиваем
-    print("⬇️ Скачиваем изображение...")
-    response = requests.get(image_url, headers={'User-Agent': 'Mozilla/5.0 (compatible; ImageGenerator/1.0)'})
+    print(f"⬇️ Скачиваем изображение...")
+    response = requests.get(url, timeout=60)
 
     if response.status_code != 200:
-        raise requests.HTTPError(f"HTTP {response.status_code}")
+        print(f"❌ Ошибка API: {response.status_code}")
+        print(response.text[:200])
+        sys.exit(1)
 
     # Сохраняем
     filename = f"{entry_date_str}.webp"
@@ -120,6 +70,7 @@ try:
 
     print(f"✅ Изображение сохранено: {filepath}")
     print(f"📍 Полный путь: {os.path.abspath(filepath)}")
+    print(f"   Размер: {len(response.content)} байт")
 
 except requests.RequestException as e:
     print(f"❌ Ошибка сети/API: {e}")
