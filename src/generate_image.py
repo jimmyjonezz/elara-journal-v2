@@ -51,7 +51,7 @@ try:
 
     # URL-кодируем промпт
     encoded = urllib.parse.quote(prompt_text[:200])
-    url = f"https://image.pollinations.ai/prompt/{encoded}?width=1024&height=1024&nologo=true"
+    url = f"https://image.pollinations.ai/prompt/{encoded}?width=1024&height=1024&model=flux&nologo=true&seed={entry_date.strftime('%Y%m%d')}"
 
     print(f"⬇️ Скачиваем изображение...")
     response = requests.get(url, timeout=60)
