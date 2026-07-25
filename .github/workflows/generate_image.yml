@@ -1,4 +1,4 @@
-name: Generate Image (Grok Imagine)
+name: Generate Image (DashScope)
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ on:
         type: string
   workflow_call:
     secrets:
-      XAI_API_KEY:          # ← ИЗМЕНЕНО
+      QWEN_TOKEN:
         required: true
 
 jobs:
@@ -30,11 +30,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Generate image with Grok Imagine
+      - name: Generate image with DashScope
         env:
-          # HF_TOKEN больше не нужен — удаляем
-          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}          # ← ИЗМЕНЕНО
-          # PROMPT больше не используется в скрипте (он берёт из latest_image_prompt.txt)
+          QWEN_TOKEN: ${{ secrets.QWEN_TOKEN }}
         run: python src/generate_image.py
 
       - name: List files for debug
@@ -45,7 +43,7 @@ jobs:
       - name: Commit and push generated image
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Add generated image from Grok Imagine ✨ | ${{ inputs.prompt }} | $(date)"  # ← обновлено
+          commit_message: "Add generated image from Qwen ✨ | ${{ inputs.prompt }} | $(date)"
           file_pattern: data/*
           branch: main
 

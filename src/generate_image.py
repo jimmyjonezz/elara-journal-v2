@@ -2,7 +2,7 @@
 Скрипт генерации изображения для Журнала Элары.
 Использует промпт из data/latest_image_prompt.txt и дату из data/journal.json.
 Сохраняет изображение в data/images/{date}.webp
-Теперь через Grok Imagine API (xAI).
+Через DashScope Image API (Qwen).
 """
 
 import requests
@@ -11,11 +11,11 @@ import datetime
 import json
 import sys
 
-# Убедитесь, что установлен API ключ xAI
-XAI_API_KEY = os.environ.get("XAI_API_KEY")
-if not XAI_API_KEY:
-    print("❌ Не найден API ключ xAI")
-    print("Пожалуйста, установите переменную окружения XAI_API_KEY (получите на https://console.x.ai)")
+# API ключ DashScope
+QWEN_TOKEN = os.environ.get("QWEN_TOKEN")
+if not QWEN_TOKEN:
+    print("❌ Не найден API ключ QWEN_TOKEN")
+    print("Пожалуйста, установите переменную окружения QWEN_TOKEN")
     sys.exit(1)
 
 # Определяем пути
@@ -51,26 +51,24 @@ except Exception as e:
     print(f"❌ Ошибка чтения промпта: {e}")
     sys.exit(1)
 
-# Генерируем изображение через Grok Imagine
+# Генерируем изображение через DashScope Image API
 try:
-    print("🎨 Запускаем генерацию через Grok Imagine API (grok-imagine-image)...")
+    print("🎨 Запускаем генерацию через DashScope (qwen-image-2.0-pro)...")
 
     headers = {
-        "Authorization": f"Bearer {XAI_API_KEY}",
+        "Authorization": f"Bearer {QWEN_TOKEN}",
         "Content-Type": "application/json"
     }
 
     payload = {
-        "model": "grok-imagine-image",          # официальная модель для изображений
+        "model": "qwen-image-2.0-pro",
         "prompt": prompt_text,
         "n": 1,
-        "aspect_ratio": "1:1",                  # как было в оригинале
-        "seed": 2909,                           # для постоянства стиля (если поддерживается)
-        # "quality": "high"                     # можно добавить при необходимости
+        "size": "1024x1024",
     }
 
     api_response = requests.post(
-        "https://api.x.ai/v1/images/generations",
+        "https://dashscope-intl.aliyuncs.com/compatible-mode/v1/images/generations",
         headers=headers,
         json=payload,
         timeout=120
