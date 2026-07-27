@@ -38,12 +38,12 @@ jobs:
 
       - name: Генерация новой записи журнала
         env:
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
         run: node src/core/entryGenerator.js || echo "entryGenerator завершился с ошибкой → продолжаем"
 
       - name: Литературный анализ (критик)
         env:
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
         run: |
           echo "🖋️ Запуск критика..."
           node src/core/literaryAnalyzer.js || echo "Анализ критика упал → сохраняем что есть"
