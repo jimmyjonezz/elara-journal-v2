@@ -13,7 +13,7 @@ const API_KEY = process.env.OLLAMA_API_KEY;
 
 // Модель gemma3:27b была снята (retired) 2026-07-15, gemma4:31b — перегружена/нестабильна.
 // Kimi K2.5 — лёгкая, креативная, бесплатно на Free-тарифе Ollama Cloud.
-const MODEL = process.env.OLLAMA_MODEL || "kimi-k2.5:cloud";
+const MODEL = process.env.OLLAMA_MODEL || "gemini-3-flash-preview:cloud";
 
 /**
  * Извлекает текст ответа из OpenAI-совместимого формата Ollama Cloud.
