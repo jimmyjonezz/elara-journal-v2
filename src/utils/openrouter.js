@@ -11,8 +11,9 @@ const API_URL = `${API_BASE.replace(/\/+$/, "")}/chat/completions`;
 
 const API_KEY = process.env.OPENROUTER_API_KEY;
 
-// Модель gemma3:27b была снята (retired) 2026-07-15. Преемник — gemma4:31b.
-const MODEL = process.env.OLLAMA_MODEL || "gemma4:31b";
+// Модель gemma3:27b была снята (retired) 2026-07-15, gemma4:31b — перегружена/нестабильна.
+// MiniMax M2.7 — сильная креативная модель, хороша для литературного текста.
+const MODEL = process.env.OLLAMA_MODEL || "minimax-m2.7";
 
 /**
  * Извлекает текст ответа из OpenAI-совместимого формата Ollama Cloud.
