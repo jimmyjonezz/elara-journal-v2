@@ -13,7 +13,7 @@ const API_KEY = process.env.OLLAMA_API_KEY;
 
 // Модель gemma3:27b была снята (retired) 2026-07-15, gemma4:31b — перегружена/нестабильна.
 // MiniMax M2.7 — сильная креативная модель, хороша для литературного текста.
-const MODEL = process.env.OLLAMA_MODEL || "minimax-m2.7:cloud";
+const MODEL = process.env.OLLAMA_MODEL || "glm-5.1:cloud";
 
 /**
  * Извлекает текст ответа из OpenAI-совместимого формата Ollama Cloud.
