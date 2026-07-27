@@ -12,7 +12,7 @@ const API_URL = `${API_BASE.replace(/\/+$/, "")}/chat/completions`;
 const API_KEY = process.env.OLLAMA_API_KEY;
 
 // Модель gemma3:27b была снята (retired) 2026-07-15, gemma4:31b — перегружена/нестабильна.
-// MiniMax M2.7 — сильная креативная модель, хороша для литературного текста.
+// GLM-5.1 — хороша для литературного текста на русском, стабильна на Ollama Cloud.
 const MODEL = process.env.OLLAMA_MODEL || "glm-5.1:cloud";
 
 /**
