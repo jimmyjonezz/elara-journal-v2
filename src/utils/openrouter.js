@@ -3,13 +3,13 @@ const fs = require('fs').promises;
 const path = require('path');
 
 // Ollama Cloud — OpenAI-совместимый endpoint (/v1/chat/completions).
-// Ключ лежит в GitHub Secret OPENROUTER_API_KEY (там хранится ключ от Ollama).
+// Ключ лежит в GitHub Secret OLLAMA_API_KEY.
 // Базовый URL и модель захардкожены здесь; при необходимости переопределяются
 // через env OLLAMA_BASE_URL / OLLAMA_MODEL, но по умолчанию берутся из кода.
 const API_BASE = process.env.OLLAMA_BASE_URL || "https://ollama.com/v1";
 const API_URL = `${API_BASE.replace(/\/+$/, "")}/chat/completions`;
 
-const API_KEY = process.env.OPENROUTER_API_KEY;
+const API_KEY = process.env.OLLAMA_API_KEY;
 
 // Модель gemma3:27b была снята (retired) 2026-07-15, gemma4:31b — перегружена/нестабильна.
 // MiniMax M2.7 — сильная креативная модель, хороша для литературного текста.
