@@ -61,6 +61,7 @@ async function generateEssay(data) {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${API_KEY}`
     },
+    signal: AbortSignal.timeout(30_000),
     body: JSON.stringify({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
@@ -98,6 +99,7 @@ async function generateReflection(essay) {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${API_KEY}`
     },
+    signal: AbortSignal.timeout(30_000),
     body: JSON.stringify({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
@@ -147,6 +149,7 @@ async function generateCritique(data) {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${API_KEY}`
     },
+    signal: AbortSignal.timeout(30_000),
     body: JSON.stringify({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
