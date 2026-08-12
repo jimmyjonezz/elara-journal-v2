@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 66,
+    "count": 67,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-08-08",
+    "lastSeen": "2026-08-12",
     "types": [
       "static",
       "critic"
@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 139,
+    "count": 140,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-08-11",
+    "lastSeen": "2026-08-12",
     "types": [
       "static",
       "critic"
@@ -86,9 +86,9 @@
     ]
   },
   "жизнь": {
-    "count": 38,
+    "count": 39,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-08-06",
+    "lastSeen": "2026-08-12",
     "types": [
       "static"
     ]
@@ -244,9 +244,9 @@
     ]
   },
   "выбор": {
-    "count": 8,
+    "count": 9,
     "firstSeen": "2026-03-22",
-    "lastSeen": "2026-08-07",
+    "lastSeen": "2026-08-12",
     "types": [
       "static",
       "critic"
@@ -719,9 +719,9 @@
     ]
   },
   "искренность": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2026-07-21",
-    "lastSeen": "2026-08-06",
+    "lastSeen": "2026-08-12",
     "types": [
       "critic"
     ]
