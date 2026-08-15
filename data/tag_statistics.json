@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 142,
+    "count": 143,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-08-14",
+    "lastSeen": "2026-08-15",
     "types": [
       "static",
       "critic"
@@ -94,9 +94,9 @@
     ]
   },
   "покой": {
-    "count": 49,
+    "count": 50,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-08-14",
+    "lastSeen": "2026-08-15",
     "types": [
       "static"
     ]
@@ -152,9 +152,9 @@
     ]
   },
   "радость": {
-    "count": 15,
+    "count": 16,
     "firstSeen": "2026-03-07",
-    "lastSeen": "2026-07-07",
+    "lastSeen": "2026-08-15",
     "types": [
       "static",
       "critic"
@@ -203,9 +203,9 @@
     ]
   },
   "одиночество": {
-    "count": 46,
+    "count": 47,
     "firstSeen": "2026-03-11",
-    "lastSeen": "2026-08-08",
+    "lastSeen": "2026-08-15",
     "types": [
       "critic",
       "static"
@@ -317,9 +317,9 @@
     ]
   },
   "самоопределение": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-03-27",
-    "lastSeen": "2026-08-13",
+    "lastSeen": "2026-08-15",
     "types": [
       "static"
     ]
@@ -430,9 +430,9 @@
     ]
   },
   "принятие": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2026-04-09",
-    "lastSeen": "2026-04-09",
+    "lastSeen": "2026-08-15",
     "types": [
       "critic"
     ]
@@ -743,9 +743,9 @@
     ]
   },
   "освобождение": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2026-07-28",
-    "lastSeen": "2026-08-10",
+    "lastSeen": "2026-08-15",
     "types": [
       "critic"
     ]
