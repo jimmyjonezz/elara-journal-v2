@@ -68,18 +68,18 @@
     ]
   },
   "время": {
-    "count": 146,
+    "count": 147,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-08-18",
+    "lastSeen": "2026-08-19",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 59,
+    "count": 60,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-08-18",
+    "lastSeen": "2026-08-19",
     "types": [
       "static",
       "critic"
@@ -118,9 +118,9 @@
     ]
   },
   "тишина": {
-    "count": 29,
+    "count": 30,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-08-13",
+    "lastSeen": "2026-08-19",
     "types": [
       "static",
       "critic"
@@ -317,9 +317,9 @@
     ]
   },
   "самоопределение": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2026-03-27",
-    "lastSeen": "2026-08-18",
+    "lastSeen": "2026-08-19",
     "types": [
       "static"
     ]
@@ -719,9 +719,9 @@
     ]
   },
   "искренность": {
-    "count": 11,
+    "count": 12,
     "firstSeen": "2026-07-21",
-    "lastSeen": "2026-08-17",
+    "lastSeen": "2026-08-19",
     "types": [
       "critic"
     ]
@@ -735,9 +735,9 @@
     ]
   },
   "маски": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2026-07-27",
-    "lastSeen": "2026-07-27",
+    "lastSeen": "2026-08-19",
     "types": [
       "critic"
     ]
