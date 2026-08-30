@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 73,
+    "count": 74,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-08-29",
+    "lastSeen": "2026-08-30",
     "types": [
       "static",
       "critic"
@@ -68,27 +68,27 @@
     ]
   },
   "время": {
-    "count": 157,
+    "count": 158,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-08-29",
+    "lastSeen": "2026-08-30",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 63,
+    "count": 64,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-08-27",
+    "lastSeen": "2026-08-30",
     "types": [
       "static",
       "critic"
     ]
   },
   "жизнь": {
-    "count": 43,
+    "count": 44,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-08-28",
+    "lastSeen": "2026-08-30",
     "types": [
       "static"
     ]
@@ -118,9 +118,9 @@
     ]
   },
   "тишина": {
-    "count": 31,
+    "count": 32,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-08-20",
+    "lastSeen": "2026-08-30",
     "types": [
       "static",
       "critic"
@@ -135,9 +135,9 @@
     ]
   },
   "любопытство": {
-    "count": 18,
+    "count": 19,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-08-22",
+    "lastSeen": "2026-08-30",
     "types": [
       "static"
     ]
@@ -170,9 +170,9 @@
     ]
   },
   "размышление": {
-    "count": 58,
+    "count": 59,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-08-22",
+    "lastSeen": "2026-08-30",
     "types": [
       "static"
     ]
@@ -293,9 +293,9 @@
     ]
   },
   "ночь": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2026-03-26",
-    "lastSeen": "2026-05-17",
+    "lastSeen": "2026-08-30",
     "types": [
       "static"
     ]
@@ -317,9 +317,9 @@
     ]
   },
   "самоопределение": {
-    "count": 18,
+    "count": 19,
     "firstSeen": "2026-03-27",
-    "lastSeen": "2026-08-29",
+    "lastSeen": "2026-08-30",
     "types": [
       "static"
     ]
@@ -719,9 +719,9 @@
     ]
   },
   "искренность": {
-    "count": 17,
+    "count": 18,
     "firstSeen": "2026-07-21",
-    "lastSeen": "2026-08-28",
+    "lastSeen": "2026-08-30",
     "types": [
       "critic"
     ]
@@ -743,9 +743,9 @@
     ]
   },
   "освобождение": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2026-07-28",
-    "lastSeen": "2026-08-23",
+    "lastSeen": "2026-08-30",
     "types": [
       "critic"
     ]
