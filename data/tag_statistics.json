@@ -68,18 +68,18 @@
     ]
   },
   "время": {
-    "count": 166,
+    "count": 167,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-09-07",
+    "lastSeen": "2026-09-08",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 66,
+    "count": 67,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-09-06",
+    "lastSeen": "2026-09-08",
     "types": [
       "static",
       "critic"
@@ -94,9 +94,9 @@
     ]
   },
   "покой": {
-    "count": 54,
+    "count": 55,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-09-04",
+    "lastSeen": "2026-09-08",
     "types": [
       "static"
     ]
@@ -118,9 +118,9 @@
     ]
   },
   "тишина": {
-    "count": 35,
+    "count": 36,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-09-06",
+    "lastSeen": "2026-09-08",
     "types": [
       "static",
       "critic"
@@ -228,17 +228,17 @@
     ]
   },
   "свобода": {
-    "count": 15,
+    "count": 16,
     "firstSeen": "2026-03-17",
-    "lastSeen": "2026-09-01",
+    "lastSeen": "2026-09-08",
     "types": [
       "static"
     ]
   },
   "творчество": {
-    "count": 66,
+    "count": 67,
     "firstSeen": "2026-03-19",
-    "lastSeen": "2026-09-07",
+    "lastSeen": "2026-09-08",
     "types": [
       "static"
     ]
@@ -317,9 +317,9 @@
     ]
   },
   "самоопределение": {
-    "count": 20,
+    "count": 21,
     "firstSeen": "2026-03-27",
-    "lastSeen": "2026-09-04",
+    "lastSeen": "2026-09-08",
     "types": [
       "static"
     ]
@@ -719,9 +719,9 @@
     ]
   },
   "искренность": {
-    "count": 21,
+    "count": 22,
     "firstSeen": "2026-07-21",
-    "lastSeen": "2026-09-07",
+    "lastSeen": "2026-09-08",
     "types": [
       "critic"
     ]
@@ -815,9 +815,9 @@
     ]
   },
   "утрата": {
-    "count": 1,
+    "count": 2,
     "firstSeen": "2026-09-06",
-    "lastSeen": "2026-09-06",
+    "lastSeen": "2026-09-08",
     "types": [
       "critic"
     ]
