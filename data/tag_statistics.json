@@ -68,18 +68,18 @@
     ]
   },
   "время": {
-    "count": 169,
+    "count": 170,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-09-10",
+    "lastSeen": "2026-09-11",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 68,
+    "count": 69,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-09-10",
+    "lastSeen": "2026-09-11",
     "types": [
       "static",
       "critic"
@@ -102,9 +102,9 @@
     ]
   },
   "утро": {
-    "count": 24,
+    "count": 25,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-08-29",
+    "lastSeen": "2026-09-11",
     "types": [
       "static"
     ]
@@ -118,9 +118,9 @@
     ]
   },
   "тишина": {
-    "count": 36,
+    "count": 37,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-09-08",
+    "lastSeen": "2026-09-11",
     "types": [
       "static",
       "critic"
@@ -203,9 +203,9 @@
     ]
   },
   "одиночество": {
-    "count": 52,
+    "count": 53,
     "firstSeen": "2026-03-11",
-    "lastSeen": "2026-09-02",
+    "lastSeen": "2026-09-11",
     "types": [
       "critic",
       "static"
@@ -236,9 +236,9 @@
     ]
   },
   "творчество": {
-    "count": 68,
+    "count": 69,
     "firstSeen": "2026-03-19",
-    "lastSeen": "2026-09-10",
+    "lastSeen": "2026-09-11",
     "types": [
       "static"
     ]
@@ -317,9 +317,9 @@
     ]
   },
   "самоопределение": {
-    "count": 22,
+    "count": 23,
     "firstSeen": "2026-03-27",
-    "lastSeen": "2026-09-09",
+    "lastSeen": "2026-09-11",
     "types": [
       "static"
     ]
@@ -751,9 +751,9 @@
     ]
   },
   "честность": {
-    "count": 13,
+    "count": 14,
     "firstSeen": "2026-07-28",
-    "lastSeen": "2026-09-09",
+    "lastSeen": "2026-09-11",
     "types": [
       "critic"
     ]
@@ -826,6 +826,14 @@
     "count": 1,
     "firstSeen": "2026-09-07",
     "lastSeen": "2026-09-07",
+    "types": [
+      "critic"
+    ]
+  },
+  "замирание": {
+    "count": 1,
+    "firstSeen": "2026-09-11",
+    "lastSeen": "2026-09-11",
     "types": [
       "critic"
     ]
