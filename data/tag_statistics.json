@@ -68,18 +68,18 @@
     ]
   },
   "время": {
-    "count": 172,
+    "count": 173,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-09-13",
+    "lastSeen": "2026-09-14",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 71,
+    "count": 72,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-09-13",
+    "lastSeen": "2026-09-14",
     "types": [
       "static",
       "critic"
@@ -161,9 +161,9 @@
     ]
   },
   "судьба": {
-    "count": 32,
+    "count": 33,
     "firstSeen": "2026-03-08",
-    "lastSeen": "2026-09-05",
+    "lastSeen": "2026-09-14",
     "types": [
       "static",
       "critic"
@@ -236,9 +236,9 @@
     ]
   },
   "творчество": {
-    "count": 69,
+    "count": 70,
     "firstSeen": "2026-03-19",
-    "lastSeen": "2026-09-11",
+    "lastSeen": "2026-09-14",
     "types": [
       "static"
     ]
@@ -430,9 +430,9 @@
     ]
   },
   "принятие": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2026-04-09",
-    "lastSeen": "2026-08-15",
+    "lastSeen": "2026-09-14",
     "types": [
       "critic"
     ]
@@ -842,6 +842,14 @@
     "count": 1,
     "firstSeen": "2026-09-12",
     "lastSeen": "2026-09-12",
+    "types": [
+      "critic"
+    ]
+  },
+  "осязаемость": {
+    "count": 1,
+    "firstSeen": "2026-09-14",
+    "lastSeen": "2026-09-14",
     "types": [
       "critic"
     ]
