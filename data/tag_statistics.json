@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 173,
+    "count": 174,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-09-14",
+    "lastSeen": "2026-09-15",
     "types": [
       "static",
       "critic"
@@ -86,17 +86,17 @@
     ]
   },
   "жизнь": {
-    "count": 44,
+    "count": 45,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-08-30",
+    "lastSeen": "2026-09-15",
     "types": [
       "static"
     ]
   },
   "покой": {
-    "count": 56,
+    "count": 57,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-09-13",
+    "lastSeen": "2026-09-15",
     "types": [
       "static"
     ]
@@ -161,9 +161,9 @@
     ]
   },
   "судьба": {
-    "count": 33,
+    "count": 34,
     "firstSeen": "2026-03-08",
-    "lastSeen": "2026-09-14",
+    "lastSeen": "2026-09-15",
     "types": [
       "static",
       "critic"
@@ -203,9 +203,9 @@
     ]
   },
   "одиночество": {
-    "count": 54,
+    "count": 55,
     "firstSeen": "2026-03-11",
-    "lastSeen": "2026-09-13",
+    "lastSeen": "2026-09-15",
     "types": [
       "critic",
       "static"
@@ -583,9 +583,9 @@
     ]
   },
   "отчуждение": {
-    "count": 15,
+    "count": 16,
     "firstSeen": "2026-05-12",
-    "lastSeen": "2026-09-13",
+    "lastSeen": "2026-09-15",
     "types": [
       "critic"
     ]
@@ -751,9 +751,9 @@
     ]
   },
   "честность": {
-    "count": 15,
+    "count": 16,
     "firstSeen": "2026-07-28",
-    "lastSeen": "2026-09-12",
+    "lastSeen": "2026-09-15",
     "types": [
       "critic"
     ]
