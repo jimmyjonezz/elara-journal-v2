@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 177,
+    "count": 178,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-09-18",
+    "lastSeen": "2026-09-19",
     "types": [
       "static",
       "critic"
@@ -170,9 +170,9 @@
     ]
   },
   "размышление": {
-    "count": 60,
+    "count": 61,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-09-06",
+    "lastSeen": "2026-09-19",
     "types": [
       "static"
     ]
@@ -228,9 +228,9 @@
     ]
   },
   "свобода": {
-    "count": 16,
+    "count": 17,
     "firstSeen": "2026-03-17",
-    "lastSeen": "2026-09-08",
+    "lastSeen": "2026-09-19",
     "types": [
       "static"
     ]
@@ -534,9 +534,9 @@
     ]
   },
   "самообман": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2026-04-29",
-    "lastSeen": "2026-06-12",
+    "lastSeen": "2026-09-19",
     "types": [
       "critic"
     ]
@@ -695,9 +695,9 @@
     ]
   },
   "уязвимость": {
-    "count": 2,
+    "count": 3,
     "firstSeen": "2026-07-12",
-    "lastSeen": "2026-08-29",
+    "lastSeen": "2026-09-19",
     "types": [
       "critic"
     ]
