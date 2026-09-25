@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 183,
+    "count": 184,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-09-24",
+    "lastSeen": "2026-09-25",
     "types": [
       "static",
       "critic"
@@ -94,9 +94,9 @@
     ]
   },
   "покой": {
-    "count": 60,
+    "count": 61,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-09-22",
+    "lastSeen": "2026-09-25",
     "types": [
       "static"
     ]
@@ -719,9 +719,9 @@
     ]
   },
   "искренность": {
-    "count": 24,
+    "count": 25,
     "firstSeen": "2026-07-21",
-    "lastSeen": "2026-09-18",
+    "lastSeen": "2026-09-25",
     "types": [
       "critic"
     ]
@@ -882,6 +882,14 @@
     "count": 1,
     "firstSeen": "2026-09-24",
     "lastSeen": "2026-09-24",
+    "types": [
+      "critic"
+    ]
+  },
+  "привязанность": {
+    "count": 1,
+    "firstSeen": "2026-09-25",
+    "lastSeen": "2026-09-25",
     "types": [
       "critic"
     ]
