@@ -1,8 +1,8 @@
 {
   "память": {
-    "count": 84,
+    "count": 85,
     "firstSeen": "2026-03-04",
-    "lastSeen": "2026-09-24",
+    "lastSeen": "2026-09-27",
     "types": [
       "static",
       "critic"
@@ -68,7 +68,7 @@
     ]
   },
   "время": {
-    "count": 186,
+    "count": 187,
     "firstSeen": "2026-03-05",
     "lastSeen": "2026-09-27",
     "types": [
@@ -77,7 +77,7 @@
     ]
   },
   "голос": {
-    "count": 79,
+    "count": 80,
     "firstSeen": "2026-03-05",
     "lastSeen": "2026-09-27",
     "types": [
@@ -236,7 +236,7 @@
     ]
   },
   "творчество": {
-    "count": 75,
+    "count": 76,
     "firstSeen": "2026-03-19",
     "lastSeen": "2026-09-27",
     "types": [
@@ -430,7 +430,7 @@
     ]
   },
   "принятие": {
-    "count": 6,
+    "count": 7,
     "firstSeen": "2026-04-09",
     "lastSeen": "2026-09-27",
     "types": [
