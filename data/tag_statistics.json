@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 193,
+    "count": 194,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-10-02",
+    "lastSeen": "2026-10-03",
     "types": [
       "static",
       "critic"
@@ -236,9 +236,9 @@
     ]
   },
   "творчество": {
-    "count": 79,
+    "count": 80,
     "firstSeen": "2026-03-19",
-    "lastSeen": "2026-10-02",
+    "lastSeen": "2026-10-03",
     "types": [
       "static"
     ]
@@ -317,9 +317,9 @@
     ]
   },
   "самоопределение": {
-    "count": 31,
+    "count": 32,
     "firstSeen": "2026-03-27",
-    "lastSeen": "2026-10-01",
+    "lastSeen": "2026-10-03",
     "types": [
       "static"
     ]
@@ -583,9 +583,9 @@
     ]
   },
   "отчуждение": {
-    "count": 20,
+    "count": 21,
     "firstSeen": "2026-05-12",
-    "lastSeen": "2026-09-28",
+    "lastSeen": "2026-10-03",
     "types": [
       "critic"
     ]
@@ -719,9 +719,9 @@
     ]
   },
   "искренность": {
-    "count": 30,
+    "count": 31,
     "firstSeen": "2026-07-21",
-    "lastSeen": "2026-10-02",
+    "lastSeen": "2026-10-03",
     "types": [
       "critic"
     ]
