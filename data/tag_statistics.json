@@ -68,18 +68,18 @@
     ]
   },
   "время": {
-    "count": 197,
+    "count": 198,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-10-06",
+    "lastSeen": "2026-10-07",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 85,
+    "count": 86,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-10-06",
+    "lastSeen": "2026-10-07",
     "types": [
       "static",
       "critic"
@@ -118,9 +118,9 @@
     ]
   },
   "тишина": {
-    "count": 45,
+    "count": 46,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-10-06",
+    "lastSeen": "2026-10-07",
     "types": [
       "static",
       "critic"
@@ -583,9 +583,9 @@
     ]
   },
   "отчуждение": {
-    "count": 21,
+    "count": 22,
     "firstSeen": "2026-05-12",
-    "lastSeen": "2026-10-03",
+    "lastSeen": "2026-10-07",
     "types": [
       "critic"
     ]
@@ -719,9 +719,9 @@
     ]
   },
   "искренность": {
-    "count": 33,
+    "count": 34,
     "firstSeen": "2026-07-21",
-    "lastSeen": "2026-10-06",
+    "lastSeen": "2026-10-07",
     "types": [
       "critic"
     ]
