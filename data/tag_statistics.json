@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 200,
+    "count": 201,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-10-09",
+    "lastSeen": "2026-10-10",
     "types": [
       "static",
       "critic"
@@ -143,9 +143,9 @@
     ]
   },
   "ветер": {
-    "count": 17,
+    "count": 18,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-08-20",
+    "lastSeen": "2026-10-10",
     "types": [
       "static",
       "critic"
@@ -170,9 +170,9 @@
     ]
   },
   "размышление": {
-    "count": 62,
+    "count": 63,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-09-28",
+    "lastSeen": "2026-10-10",
     "types": [
       "static"
     ]
@@ -751,9 +751,9 @@
     ]
   },
   "честность": {
-    "count": 20,
+    "count": 21,
     "firstSeen": "2026-07-28",
-    "lastSeen": "2026-10-09",
+    "lastSeen": "2026-10-10",
     "types": [
       "critic"
     ]
@@ -791,9 +791,9 @@
     ]
   },
   "отпускание": {
-    "count": 4,
+    "count": 5,
     "firstSeen": "2026-08-22",
-    "lastSeen": "2026-10-08",
+    "lastSeen": "2026-10-10",
     "types": [
       "critic"
     ]
