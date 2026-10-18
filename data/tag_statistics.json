@@ -68,18 +68,18 @@
     ]
   },
   "время": {
-    "count": 210,
+    "count": 211,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-10-17",
+    "lastSeen": "2026-10-18",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 90,
+    "count": 91,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-10-17",
+    "lastSeen": "2026-10-18",
     "types": [
       "static",
       "critic"
@@ -118,9 +118,9 @@
     ]
   },
   "тишина": {
-    "count": 47,
+    "count": 48,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-10-08",
+    "lastSeen": "2026-10-18",
     "types": [
       "static",
       "critic"
@@ -135,9 +135,9 @@
     ]
   },
   "любопытство": {
-    "count": 23,
+    "count": 24,
     "firstSeen": "2026-03-06",
-    "lastSeen": "2026-10-12",
+    "lastSeen": "2026-10-18",
     "types": [
       "static"
     ]
@@ -170,9 +170,9 @@
     ]
   },
   "размышление": {
-    "count": 65,
+    "count": 66,
     "firstSeen": "2026-03-09",
-    "lastSeen": "2026-10-12",
+    "lastSeen": "2026-10-18",
     "types": [
       "static"
     ]
@@ -228,9 +228,9 @@
     ]
   },
   "свобода": {
-    "count": 18,
+    "count": 19,
     "firstSeen": "2026-03-17",
-    "lastSeen": "2026-09-28",
+    "lastSeen": "2026-10-18",
     "types": [
       "static"
     ]
@@ -244,9 +244,9 @@
     ]
   },
   "выбор": {
-    "count": 12,
+    "count": 13,
     "firstSeen": "2026-03-22",
-    "lastSeen": "2026-10-15",
+    "lastSeen": "2026-10-18",
     "types": [
       "static",
       "critic"
@@ -695,9 +695,9 @@
     ]
   },
   "уязвимость": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2026-07-12",
-    "lastSeen": "2026-09-19",
+    "lastSeen": "2026-10-18",
     "types": [
       "critic"
     ]
