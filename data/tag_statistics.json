@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 226,
+    "count": 227,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-11-02",
+    "lastSeen": "2026-11-03",
     "types": [
       "static",
       "critic"
@@ -751,9 +751,9 @@
     ]
   },
   "честность": {
-    "count": 29,
+    "count": 30,
     "firstSeen": "2026-07-28",
-    "lastSeen": "2026-10-31",
+    "lastSeen": "2026-11-03",
     "types": [
       "critic"
     ]
@@ -946,6 +946,14 @@
     "count": 1,
     "firstSeen": "2026-11-01",
     "lastSeen": "2026-11-01",
+    "types": [
+      "critic"
+    ]
+  },
+  "оцепенение": {
+    "count": 1,
+    "firstSeen": "2026-11-03",
+    "lastSeen": "2026-11-03",
     "types": [
       "critic"
     ]
