@@ -68,18 +68,18 @@
     ]
   },
   "время": {
-    "count": 227,
+    "count": 228,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-11-03",
+    "lastSeen": "2026-11-04",
     "types": [
       "static",
       "critic"
     ]
   },
   "голос": {
-    "count": 101,
+    "count": 102,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-11-02",
+    "lastSeen": "2026-11-04",
     "types": [
       "static",
       "critic"
@@ -94,9 +94,9 @@
     ]
   },
   "покой": {
-    "count": 67,
+    "count": 68,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-10-30",
+    "lastSeen": "2026-11-04",
     "types": [
       "static"
     ]
@@ -118,9 +118,9 @@
     ]
   },
   "тишина": {
-    "count": 55,
+    "count": 56,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-11-02",
+    "lastSeen": "2026-11-04",
     "types": [
       "static",
       "critic"
@@ -236,17 +236,17 @@
     ]
   },
   "творчество": {
-    "count": 90,
+    "count": 91,
     "firstSeen": "2026-03-19",
-    "lastSeen": "2026-11-01",
+    "lastSeen": "2026-11-04",
     "types": [
       "static"
     ]
   },
   "выбор": {
-    "count": 15,
+    "count": 16,
     "firstSeen": "2026-03-22",
-    "lastSeen": "2026-11-02",
+    "lastSeen": "2026-11-04",
     "types": [
       "static",
       "critic"
@@ -751,9 +751,9 @@
     ]
   },
   "честность": {
-    "count": 30,
+    "count": 31,
     "firstSeen": "2026-07-28",
-    "lastSeen": "2026-11-03",
+    "lastSeen": "2026-11-04",
     "types": [
       "critic"
     ]
@@ -775,9 +775,9 @@
     ]
   },
   "молчание": {
-    "count": 3,
+    "count": 4,
     "firstSeen": "2026-08-11",
-    "lastSeen": "2026-10-21",
+    "lastSeen": "2026-11-04",
     "types": [
       "critic"
     ]
