@@ -122,6 +122,22 @@ def main():
 
     post_text = create_post(entry)
 
+    # 2.5 Защита от дублей: повторные запуски этого workflow (ручные или из-за
+    # повторного завершения «Новое эссе») не должны плодить одинаковые посты —
+    # каждый запуск публикует последнюю запись журнала без памяти о прошлых.
+    # Если такой же текст уже есть на стене — выходим без ошибки.
+    # Закреплённый пост всегда идёт первым в wall.get, поэтому проверяем все N.
+    try:
+        api = session.get_api()
+        latest_items = api.wall.get(owner_id=-VK_GROUP_ID, count=10).get("items", [])
+        wall_texts = [str(i.get("text", "")) for i in latest_items]
+    except Exception as e:
+        print(f"⚠️ Не удалось прочитать последние записи стены ({e}) — проверка дубля пропущена.")
+        wall_texts = []
+    if any(t.strip() == post_text.strip() for t in wall_texts):
+        print("⏭️ Эта запись уже опубликована на стене — повторная публикация пропущена (защита от дублей).")
+        sys.exit(0)
+
     # 3. Находим САМОЕ СТАРОЕ сгенерированное изображение
     image_path = get_oldest_image_from_folder()
 
