@@ -1,10 +1,15 @@
 """
 Автоматическая публикация поста в группу ВКонтакте
 Использует библиотеку vk_api для взаимодействия с API ВКонтакте.
-Предполагается использование токена сообщества.
+
+Важно: публикации на стене группы (wall.post, photo_wall) требуют
+ПОЛЬЗОВАТЕЛЬСКИЙ токен (scope=wall,photos). Токен сообщества проходит
+базовую проверку, но получает ошибки [27]/[214] «method is unavailable
+with group auth» на этапе публикации.
 """
 
 import os
+import sys
 import json
 import vk_api  # Импортируем библиотеку vk_api
 import glob
@@ -67,13 +72,13 @@ def main():
     # Проверка и преобразование VK_GROUP_ID
     if not VK_GROUP_ID_RAW:
         print("❌ Ошибка: Не задан VK_GROUP_ID в переменных окружения.")
-        return
+        sys.exit(1)
     try:
         # Убираем знак минус, если он есть, так как vk_api ожидает положительное число для group_id в upload методах
         VK_GROUP_ID = int(VK_GROUP_ID_RAW.lstrip('-'))
     except ValueError:
         print(f"❌ Ошибка: VK_GROUP_ID должен быть числом, получено: '{VK_GROUP_ID_RAW}'")
-        return
+        sys.exit(1)
 
     # Проверка и преобразование VK_ALBUM_ID (необязательно)
     VK_ALBUM_ID = None
@@ -90,21 +95,30 @@ def main():
     # 1. Инициализация API ВКонтакте через библиотеку
     try:
         session = vk_api.VkApi(token=VK_ACCESS_TOKEN, api_version=VK_API_VERSION)
-        # Проверка токена (опционально, но полезно для отладки)
-        session.get_api().users.get()
-        print("✅ Токен ВКонтакте действителен.")
+        # Проверка токена: users.get() проходит и для токена сообщества (возвращает
+        # id=100, «Сообщество»), поэтому проверяем именно тип токена — иначе
+        # публикация упадёт с [27]/[214 «method is unavailable with group auth».
+        api = session.get_api()
+        user_info = api.users.get()
+        user_id = int(user_info[0].get("id", 0)) if user_info else 0
+        if user_id == 100:
+            print("❌ VK_ACCESS_TOKEN — это ТОКЕН СООБЩЕСТВА (id=100).")
+            print("   wall.post и загрузка фото на стену с него недоступны (ошибки 27/214).")
+            print("   Нужен пользовательский токен с правами wall,photos.")
+            sys.exit(1)
+        print(f"✅ Токен ВКонтакте действителен (пользователь id{user_id}).")
     except vk_api.exceptions.ApiError as e:
         print(f"❌ Ошибка аутентификации ВКонтакте: {e}")
-        return
+        sys.exit(1)
     except Exception as e:
         print(f"❌ Ошибка инициализации ВКонтакте: {e}")
-        return
+        sys.exit(1)
 
     # 2. Генерируем текст поста
     entry = load_latest_entry()
     if not entry:
         print("❌ Нечего публиковать")
-        return
+        sys.exit(1)
 
     post_text = create_post(entry)
 
@@ -151,10 +165,10 @@ def main():
         post_id = result['post_id']
     except vk_api.exceptions.ApiError as e:
         print(f"❌ Ошибка публикации поста в ВК: {e}")
-        return
+        sys.exit(1)
     except Exception as e:
         print(f"❌ Неожиданная ошибка при публикации поста: {e}")
-        return
+        sys.exit(1)
 
     # 6. Удаление изображения (только если оно существовало и было найдено)
     if image_path and os.path.exists(image_path):
