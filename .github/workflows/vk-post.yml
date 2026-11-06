@@ -15,6 +15,10 @@ jobs:
     # Используем условие через steps
     steps:
       - name: 🔹 Проверка результата предыдущего workflow
+        # Эта проверка имеет смысл только при срабатывании от другого workflow:
+        # при ручном запуске (workflow_dispatch) github.event.workflow_run пуст,
+        # и шаг бессмысленно валил бы запуск.
+        if: github.event_name == 'workflow_run'
         run: |
           echo "Предыдущий workflow завершился с результатом: ${{ github.event.workflow_run.conclusion }}"
           if [ "${{ github.event.workflow_run.conclusion }}" != "success" ]; then
