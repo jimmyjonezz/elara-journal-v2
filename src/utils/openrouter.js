@@ -54,6 +54,7 @@ async function generateEssay(data) {
   prompt = prompt.replace('{{current_mood_name}}', data?.current_mood_name || "нейтральное");
   prompt = prompt.replace('{{current_mood_description}}', data?.current_mood_description || "");
   prompt = prompt.replace('{{current_context}}', data?.current_context || "Ты сидишь за столом. За окном — тишина.");
+  prompt = prompt.replace('{{recent_openings}}', data?.recent_openings || "Это первая запись — предыдущих зачинов нет, ограничений на начало нет.");
 
   const response = await fetch(API_URL, {
     method: "POST",

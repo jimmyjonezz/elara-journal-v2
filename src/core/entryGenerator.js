@@ -22,7 +22,7 @@ const { extractTags, determineReflectionLevel, cleanReflectionText } = require('
 const { parseScene } = require('../utils/sceneParser');
 const { withRetry } = require('../utils/retryHandler');
 const { buildImagePrompt } = require('../utils/imagePromptBuilder');
-const { loadJournal, loadExternalContext, getSeasonalMood, getAndRotateContext, loadSemanticDictionary } = require('../data/dataLoader');
+const { loadJournal, loadExternalContext, getSeasonalMood, getAndRotateContext, loadSemanticDictionary, getRecentOpenings, loadLastJournalEntry } = require('../data/dataLoader');
 const { processSceneAndTags } = require('../tagging/tagProcessor');
 const { generateContent } = require('../generation/contentGenerator');
 
@@ -37,10 +37,11 @@ async function prepareEntryData() {
   const externalContext = await loadExternalContext();
   const mood = await getSeasonalMood();
   const context = await getAndRotateContext();
+  const recentOpenings = await getRecentOpenings(5);
   console.log(`🎭 Текущее настроение: ${mood.name} (${mood.season})`);
   console.log(`📖 Случайный контекст: ${context.substring(0, 60)}...`);
 
-  const content = await generateContent(externalContext, mood, context);
+  const content = await generateContent(externalContext, mood, context, recentOpenings);
   const tagData = await processSceneAndTags(content, externalContext);
   const finalData = await finalizeEntryData(content, externalContext, mood);
 
@@ -124,6 +125,16 @@ async function updateAndSaveTagStatistics(currentStats, staticTags, criticTagsFr
 // --- Основная функция ---
 async function generateEntry() {
   try {
+    // Дубль-защита: если запись за сегодня уже есть — генерация пропускается.
+    // Раньше ручной повторный запуск (или падение, проглоченное через `|| echo`
+    // в CI) приводили к нескольким одинаковым записям за один день.
+    const today = new Date().toISOString().split('T')[0];
+    const lastEntry = await loadLastJournalEntry();
+    if (lastEntry && lastEntry.date === today) {
+      console.log(`ℹ️ Запись за ${today} уже существует — генерация пропущена.`);
+      return;
+    }
+
     const {
       essayWithoutScene,
       reflectionWithoutLevel,

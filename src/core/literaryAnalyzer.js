@@ -69,7 +69,7 @@ function applyCriticTags(journal, tags) {
 }
 
 /**
- * Добавляет новый контекст, если он осмысленный
+ * Добавляет новый контекст, если он осмысленный и не повторяет existing пул
  */
 async function appendContextIfMeaningful(suggestion) {
   const text = (suggestion ?? '').trim();
@@ -94,11 +94,69 @@ async function appendContextIfMeaningful(suggestion) {
     contextsData = { contexts: [] };
   }
 
+  const monotonyReason = detectContextMonotony(text, contextsData.contexts);
+  if (monotonyReason) {
+    console.warn(`Пропущен контекст (${monotonyReason}): "${text.substring(0, 60)}..."`);
+    return false;
+  }
+
   contextsData.contexts.push({ context: text, added_at: new Date().toISOString() });
   await writeJSON(CONTEXTS_PATH, contextsData);
 
   console.log(`➕ Добавлен контекст (${contextsData.contexts.length} всего)`);
   return true;
+}
+
+// Заезженные мотивы → сколько контекстов с ним максимум может лежать в пуле.
+// Без этого лимита критик неделями добавлял «запах старой бумаги» и «холод
+// металла ключа», и ежедневные записи становились одинаковыми.
+const CONTEXT_MOTIF_LIMITS = {
+  бумаг: 4, ключ: 5, металл: 6, чай: 4, шерст: 4, запах: 10, вкус: 8, холод: 8,
+};
+
+const CONTEXT_STOPWORDS = new Set(
+  'и в не на с к по о из за что это как для так но же бы был была было быть мне меня он они мы вы ты у да нет или от до при про без если чтобы когда уже еще ещё только даже лишь очень вдруг теперь потом здесь тут'.split(' ')
+);
+
+function contextWordSet(text) {
+  return new Set(
+    (text || '')
+      .toLowerCase()
+      .replace(/[^\w\s]/g, ' ')
+      .split(/\s+/)
+      .filter((w) => w.length > 2 && !CONTEXT_STOPWORDS.has(w))
+  );
+}
+
+function contextSimilarity(a, b) {
+  const intersection = [...a].filter((w) => b.has(w)).length;
+  const union = new Set([...a, ...b]).size;
+  return union ? intersection / union : 0;
+}
+
+/**
+ * Говорит, почему новый контекст не стоит добавлять в пул (или null, если можно):
+ *  - «точный дубль» / «похож на существующий» — повтор уже лежащих в пуле идей;
+ *  - «мотив "X" переполнен» — заезженный образ превысил лимит (см. CONTEXT_MOTIF_LIMITS).
+ */
+function detectContextMonotony(text, contexts) {
+  const normalized = (text || '').trim().toLowerCase();
+  const tokens = contextWordSet(text);
+
+  for (const item of contexts) {
+    const other = ((item && item.context) || '').trim().toLowerCase();
+    if (!other) continue;
+    if (other === normalized) return 'точный дубль';
+    if (contextSimilarity(tokens, contextWordSet(other)) >= 0.5) return 'похож на существующий';
+  }
+
+  for (const [motif, limit] of Object.entries(CONTEXT_MOTIF_LIMITS)) {
+    if (!normalized.includes(motif)) continue;
+    const inPool = contexts.filter((c) => ((c && c.context) || '').toLowerCase().includes(motif)).length;
+    if (inPool >= limit) return `мотив «${motif}» переполнен`;
+  }
+
+  return null;
 }
 
 /**

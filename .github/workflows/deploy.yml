@@ -39,7 +39,10 @@ jobs:
       - name: Генерация новой записи журнала
         env:
           OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
-        run: node src/core/entryGenerator.js || echo "entryGenerator завершился с ошибкой → продолжаем"
+        # Без `|| echo`: дубль-защита внутри скрипта предотвращает повторные
+        # записи за день, поэтому падение генератора теперь должно падать в CI,
+        # а не прятаться (и не пускать критика по вчерашней записи).
+        run: node src/core/entryGenerator.js
 
       - name: Литературный анализ (критик)
         env:

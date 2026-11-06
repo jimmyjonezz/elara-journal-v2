@@ -11,6 +11,20 @@ const {
 } = require('../config');
 const { getCurrentSeason } = require('../utils/dateUtils');
 
+// Семьи повторяющихся образов. Если последние записи уже использовали контекст
+// из той же семьи, ротация его пропускает — иначе неделями шли одни и те же
+// «запах старой бумаги», «холод металла ключа», «вкус остывшего чая».
+const CONTEXT_FAMILIES = [
+  { name: 'paper', stems: ['бумаг', 'письм', 'книг', 'страниц', 'черновик', 'конверт', 'тетрад'] },
+  { name: 'key', stems: ['ключ', 'замок', 'подъезд'] },
+  { name: 'metal', stems: ['металл', 'желез', 'латун', 'ножниц', 'ложк'] },
+  { name: 'tea', stems: ['чай', 'чашк', 'кружк', 'стакан'] },
+  { name: 'wool', stems: ['шерст', 'ткан', 'пальто', 'свитер'] },
+  { name: 'smell', stems: ['запах', 'аромат'] },
+  { name: 'cold', stems: ['холод', 'ледян', 'мороз'] },
+  { name: 'taste', stems: ['вкус', 'привкус'] }
+];
+
 /**
  * Загружает журнал
  */
@@ -56,10 +70,33 @@ async function getSeasonalMood() {
   }
 }
 
+function contextFamily(text) {
+  const low = (text || '').toLowerCase();
+  for (const f of CONTEXT_FAMILIES) {
+    if (f.stems.some((s) => low.includes(s))) return f.name;
+  }
+  return null;
+}
+
 /**
- * Берёт первый контекст из contexts.json и переносит его в КОНЕЦ (FIFO-цикл),
+ * Выбирает индекс контекста из пула: первый, чья семья образов не совпадает
+ * с семьями последних использованных. Перебираем не больше 4 кандидатов —
+ * иначе в маленьком пуле можно перекрутить FIFO.
+ */
+function pickContextIndex(contexts, recentFamilies, maxLook = 4) {
+  for (let i = 0; i < Math.min(maxLook, contexts.length); i++) {
+    const family = contextFamily(contexts[i]?.context);
+    if (!family || !recentFamilies.has(family)) return i;
+  }
+  return 0;
+}
+
+/**
+ * Берёт контекст из contexts.json и переносит его в КОНЕЦ (FIFO-цикл),
  * чтобы пул никогда не иссякал. Если файл пуст/сломан — дефолтный контекст,
  * который тоже добавляется в пул для будущих итераций.
+ * Контекст из той же семьи образов, что в двух последних записях,
+ * пропускается — иначе неделями шли «запах старой бумаги» и «холод металла».
  */
 async function getAndRotateContext() {
   const DEFAULT_CONTEXT = "Ты сидишь за столом. За окном — тишина.";
@@ -69,14 +106,22 @@ async function getAndRotateContext() {
       throw new Error("Формат contexts.json нарушен или файл пуст: ожидается { contexts: Array<{ context: string }> }.");
     }
 
-    // Извлекаем первый элемент и возвращаем его в конец (цикл).
-    const firstItem = contexts.contexts.shift();
-    const firstContext = firstItem?.context || DEFAULT_CONTEXT;
+    const journal = await loadJournal();
+    const recentFamilies = new Set(
+      journal
+        .slice(-2)
+        .map((e) => contextFamily(e?.context))
+        .filter(Boolean)
+    );
+
+    const idx = pickContextIndex(contexts.contexts, recentFamilies);
+    const [picked] = contexts.contexts.splice(idx, 1);
+    const firstContext = picked?.context || DEFAULT_CONTEXT;
 
     contexts.contexts.push({ context: firstContext, added_at: new Date().toISOString() });
     await writeJSON(CONTEXTS_PATH, contexts);
 
-    console.log(`🔄 Контекст взят и возвращён в цикл (в пуле ${contexts.contexts.length}): ${firstContext.substring(0, 60)}...`);
+    console.log(`🔄 Контекст #${idx + 1} взят и возвращён в цикл (в пуле ${contexts.contexts.length}): ${firstContext.substring(0, 60)}...`);
     return firstContext;
   } catch (err) {
     console.warn('⚠️ Не удалось загрузить/прокрутить contexts.json:', err.message);
@@ -126,11 +171,31 @@ async function loadSemanticDictionary() {
   }
 }
 
+/**
+ * Собирает зачины последних N записей журнала.
+ * Передаётся в промпт эссе — иначе модель не знает, как начинались
+ * предыдущие дни, и открывает все записи одинаковой конструкцией.
+ */
+async function getRecentOpenings(count = 5) {
+  const journal = await loadJournal();
+  return journal.slice(-count)
+    .map((entry, i) => {
+      const essay = (entry && typeof entry.raw_essay === 'string') ? entry.raw_essay : '';
+      const firstSentence = essay.split(/[.!?\n]/)[0]?.trim().slice(0, 70) || '';
+      return firstSentence ? `${i + 1}. «${firstSentence}»` : null;
+    })
+    .filter(Boolean)
+    .join('\n');
+}
+
 module.exports = {
   loadJournal,
   loadLastJournalEntry, // Экспортируем новую функцию
   getSeasonalMood,
   getAndRotateContext,
   loadExternalContext,
-  loadSemanticDictionary
+  getRecentOpenings,
+  loadSemanticDictionary,
+  contextFamily,
+  pickContextIndex
 };

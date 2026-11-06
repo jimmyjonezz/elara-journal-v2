@@ -9,7 +9,7 @@ const { MAX_RETRIES, BASE_DELAY_MS } = require('../config');
 /**
  * Генерирует эссе и рефлексию
  */
-async function generateContent(externalContext, mood, context) {
+async function generateContent(externalContext, mood, context, recentOpenings) {
   const { previousSuggestions, semanticDict, criticTags } = externalContext;
 
   // Извлекаем теги из советов, используя импортированную функцию
@@ -25,7 +25,8 @@ async function generateContent(externalContext, mood, context) {
     semantic_clusters: clusters.join(', ') || 'размышление, осмысление',
     current_mood_name: mood.name,
     current_mood_description: mood.description,
-    current_context: context
+    current_context: context,
+    recent_openings: recentOpenings || ''
   };
 
   const rawEssay = await withRetry(() => generateEssay(essayData), MAX_RETRIES, BASE_DELAY_MS, "генерации эссе");
