@@ -164,6 +164,21 @@ async function generateEntry() {
     };
 
     const journal = await loadJournal();
+    // Защита от полной потери журнала: если массив читается пустым, а файл
+    // на диске есть и не пустой — значит JSON сломан (конфликт git, обрыв
+    // записи). Перезапись одной свежей записью уничтожила бы весь журнал,
+    // поэтому валимся, а не пишем.
+    if (journal.length === 0) {
+      let stat = null;
+      try {
+        stat = await fs.stat(JOURNAL_PATH);
+      } catch { /* файла нет — первая запись, это нормально */ }
+      if (stat && stat.size > 2) {
+        throw new Error(
+          `journal.json повреждён: читается как пустой массив, а файл ${stat.size} байт. Перезапись отменена — разбирайся вручную.`
+        );
+      }
+    }
     journal.push(entry);
     await writeJSON(JOURNAL_PATH, journal);
     console.log(`✅ Новая запись добавлена. Всего записей: ${journal.length}`);

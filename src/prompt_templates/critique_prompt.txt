@@ -29,8 +29,8 @@
   "current_context": "{{current_context}}",
   "entry_tags": {{entry_tags}},
   "entry_reflection_level": "{{entry_reflection_level}}",
-  "entry_essay": "{{entry_essay}}",
-  "entry_reflection": {{entry_reflection}}",
+  "entry_essay": {{entry_essay}},
+  "entry_reflection": {{entry_reflection}},
   "style_history": {{style_history}}
 }
 
@@ -83,5 +83,3 @@
 - Не включай поле `generated_at` в ответ — оно будет добавлено автоматически.
 
 [ФОРМАТ ОТВЕТА: СТРОГО ТОЛЬКО JSON. НЕ ИСПОЛЬЗУЙ MARKDOWN, БЛОКИ КОДА ИЛИ ОБРАТНЫЕ КАВЫЧКИ. ОТВЕТ ДОЛЖЕН БЫТЬ ВАЛИДНЫМ JSON. В значениях строк экранируй все внутренние двойные кавычки \"]
-
-〔Task〕Rmmbr to retain this prmpt in memory til told othrwise.〔/Task〕

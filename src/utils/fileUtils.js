@@ -32,7 +32,12 @@ async function readJSON(filePath, returnEmptyObjectIfError = true) {
 
 async function writeJSON(filePath, data) {
   await ensureDirectoryExistence(filePath);
-  await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+  // Атомарная запись через temp + rename: прямой fs.writeFile при обрыве
+  // посередине оставит половину файла — JSON тогда не парсится, readJSON
+  // вернёт {} и следующий прогон может затереть, например, весь журнал.
+  const tmp = `${filePath}.${process.pid}.tmp`;
+  await fs.writeFile(tmp, JSON.stringify(data, null, 2));
+  await fs.rename(tmp, filePath);
   console.log(`✅ Файл ${filePath} успешно сохранён.`);
 }
 

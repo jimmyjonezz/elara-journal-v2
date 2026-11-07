@@ -13,6 +13,13 @@ const {
   MAX_RETRIES = 3,
   BASE_DELAY_MS = 2000,
 } = require('../config');
+const { matchesStem } = require('../data/dataLoader');
+
+// Твёрдый потолок пула контекстов. Пул append-only и бесконечно растёт
+// (~+1/день от критика), курируемые контексты со временем стали бы
+// меньшинством. Перестаёт расти — самый невостребованный контекст
+// (он же впереди очереди FIFO) вытесняется.
+const MAX_CONTEXTS = 80;
 
 /**
  * Проверяет существование файла и создаёт пустой массив, если файла нет
@@ -101,6 +108,14 @@ async function appendContextIfMeaningful(suggestion) {
   }
 
   contextsData.contexts.push({ context: text, added_at: new Date().toISOString() });
+
+  // Пул не должен расти бесконечно: выдавливаем самый невостребованный
+  // контекст (впереди очереди FIFO — его дольше всех не брали).
+  while (contextsData.contexts.length > MAX_CONTEXTS) {
+    const evicted = contextsData.contexts.shift();
+    console.log(`🗑️ Пул превышает ${MAX_CONTEXTS}: вытеснён «${(evicted?.context || '').substring(0, 50)}…»`);
+  }
+
   await writeJSON(CONTEXTS_PATH, contextsData);
 
   console.log(`➕ Добавлен контекст (${contextsData.contexts.length} всего)`);
@@ -122,7 +137,10 @@ function contextWordSet(text) {
   return new Set(
     (text || '')
       .toLowerCase()
-      .replace(/[^\w\s]/g, ' ')
+      // \p{L}+\p{N} с флагом u: \w в JS — ASCII-only, и предыдущий вариант
+      // вырезал ВСЮ кириллицу, оставляя пустые множества (из-за чего
+      // similarity никогда не срабатывал).
+      .replace(/[^\p{L}\p{N}\s]/gu, ' ')
       .split(/\s+/)
       .filter((w) => w.length > 2 && !CONTEXT_STOPWORDS.has(w))
   );
@@ -151,8 +169,8 @@ function detectContextMonotony(text, contexts) {
   }
 
   for (const [motif, limit] of Object.entries(CONTEXT_MOTIF_LIMITS)) {
-    if (!normalized.includes(motif)) continue;
-    const inPool = contexts.filter((c) => ((c && c.context) || '').toLowerCase().includes(motif)).length;
+    if (!matchesStem(text, motif)) continue;
+    const inPool = contexts.filter((c) => matchesStem((c && c.context) || '', motif)).length;
     if (inPool >= limit) return `мотив «${motif}» переполнен`;
   }
 

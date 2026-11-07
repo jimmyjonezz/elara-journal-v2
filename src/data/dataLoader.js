@@ -25,6 +25,22 @@ const CONTEXT_FAMILIES = [
   { name: 'taste', stems: ['вкус', 'привкус'] }
 ];
 
+// Стем должен стоять в НАЧАЛЕ слова, а не просто быть подстрокой:
+// «чай» не должен матчить «случай», «ключ» — «выключается»/«заключение».
+// \b в JS не работает с кириллицей, поэтому граница — через класс букв.
+const stemRegexCache = new Map();
+function stemRegex(stem) {
+  if (!stemRegexCache.has(stem)) {
+    const escaped = stem.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    stemRegexCache.set(stem, new RegExp(`(?<![\\p{L}])${escaped}`, 'u'));
+  }
+  return stemRegexCache.get(stem);
+}
+
+function matchesStem(text, stem) {
+  return stemRegex(stem).test((text || '').toLowerCase());
+}
+
 /**
  * Загружает журнал
  */
@@ -73,7 +89,7 @@ async function getSeasonalMood() {
 function contextFamily(text) {
   const low = (text || '').toLowerCase();
   for (const f of CONTEXT_FAMILIES) {
-    if (f.stems.some((s) => low.includes(s))) return f.name;
+    if (f.stems.some((s) => stemRegex(s).test(low))) return f.name;
   }
   return null;
 }
@@ -117,8 +133,9 @@ async function getAndRotateContext() {
     const idx = pickContextIndex(contexts.contexts, recentFamilies);
     const [picked] = contexts.contexts.splice(idx, 1);
     const firstContext = picked?.context || DEFAULT_CONTEXT;
-
-    contexts.contexts.push({ context: firstContext, added_at: new Date().toISOString() });
+    // added_at сохраняем оригинальный: ротация не должна обнулять дату
+    // появления контекста — иначе поле значит «когда трогали», а не «когда добавили».
+    contexts.contexts.push({ context: firstContext, added_at: picked?.added_at || new Date().toISOString() });
     await writeJSON(CONTEXTS_PATH, contexts);
 
     console.log(`🔄 Контекст #${idx + 1} взят и возвращён в цикл (в пуле ${contexts.contexts.length}): ${firstContext.substring(0, 60)}...`);
@@ -172,20 +189,24 @@ async function loadSemanticDictionary() {
 }
 
 /**
- * Собирает зачины последних N записей журнала.
+ * Собирает УНИКАЛЬНЫЕ зачины последних записей журнала (свежие сверху).
+ * Дедупликация: дни с дублями-записями дают одинаковые первые предложения,
+ * и без фильтра промпт эссе видел пять одинаковых строк.
  * Передаётся в промпт эссе — иначе модель не знает, как начинались
  * предыдущие дни, и открывает все записи одинаковой конструкцией.
  */
 async function getRecentOpenings(count = 5) {
   const journal = await loadJournal();
-  return journal.slice(-count)
-    .map((entry, i) => {
-      const essay = (entry && typeof entry.raw_essay === 'string') ? entry.raw_essay : '';
-      const firstSentence = essay.split(/[.!?\n]/)[0]?.trim().slice(0, 70) || '';
-      return firstSentence ? `${i + 1}. «${firstSentence}»` : null;
-    })
-    .filter(Boolean)
-    .join('\n');
+  const seen = new Set();
+  const openings = [];
+  for (let i = journal.length - 1; i >= 0 && openings.length < count; i--) {
+    const essay = (journal[i] && typeof journal[i].raw_essay === 'string') ? journal[i].raw_essay : '';
+    const firstSentence = essay.split(/[.!?\n]/)[0]?.trim().slice(0, 70) || '';
+    if (!firstSentence || seen.has(firstSentence)) continue;
+    seen.add(firstSentence);
+    openings.push(`«${firstSentence}»`);
+  }
+  return openings.map((o, i) => `${i + 1}. ${o}`).join('\n');
 }
 
 module.exports = {
@@ -197,5 +218,6 @@ module.exports = {
   getRecentOpenings,
   loadSemanticDictionary,
   contextFamily,
-  pickContextIndex
+  pickContextIndex,
+  matchesStem
 };

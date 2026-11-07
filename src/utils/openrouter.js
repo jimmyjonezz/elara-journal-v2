@@ -135,8 +135,11 @@ async function generateCritique(data) {
     '{{current_context}}': data.current_context || 'Контекст не сохранён.',
     '{{entry_tags}}': JSON.stringify(data.entry_tags || []),
     '{{entry_reflection_level}}': data.entry_reflection_level || 'средний',
-    '{{entry_essay}}': data.entry_essay || '',
-    '{{entry_reflection}}': data.entry_reflection || '',
+    // Эссе подставляется как JSON-строка (с экранированием кавычек и
+    // переносов) — раньше шёл сырым текстом, и шаблон с кавычками
+    // превращался в невалидный JSON при любом «…» в тексте.
+    '{{entry_essay}}': JSON.stringify(data.entry_essay || ''),
+    '{{entry_reflection}}': JSON.stringify(data.entry_reflection || ''),
     '{{style_history}}': JSON.stringify(data.style_history || [])
   };
 
