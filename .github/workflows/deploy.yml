@@ -51,6 +51,23 @@ jobs:
           echo "🖋️ Запуск критика..."
           node src/core/literaryAnalyzer.js || echo "Анализ критика упал → сохраняем что есть"
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Генерация картинки
+        env:
+          FLUX: ${{ secrets.FLUX }}
+        # Таймаут — генерация FLUX может занимать более минуты.
+        # continue-on-error: картинка не должна блокировать выпуск записи
+        # и деплой: запись пережила 8 месяцев без единого изображения.
+        timeout-minutes: 6
+        continue-on-error: true
+        run: |
+          pip install requests --quiet
+          python src/generate_image.py
+
       - name: Commit and push updated files
         run: |
           git config --local user.email "action@github.com"
@@ -60,6 +77,8 @@ jobs:
           git add data/literary_analysis.json
           git add data/tag_statistics.json
           git add src/config/context.json
+          git add data/latest_image_prompt.txt
+          git add data/images/
           git add logs/ --force || true
           
           if git diff --cached --quiet; then
