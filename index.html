@@ -158,7 +158,18 @@
                     return;
                 }
 
-                const latest = entries[entries.length - 1];
+                // Последняя каноническая запись: если в дне несколько записей
+                // (дубли до дубль-защиты), берём первую за этот день, а не
+                // последнюю из лишних.
+                const latest = (() => {
+                    for (let i = entries.length - 1; i >= 0; i--) {
+                        const d = entries[i].date;
+                        let j = i;
+                        while (j > 0 && entries[j - 1].date === d) j--;
+                        return entries[j];
+                    }
+                    return entries[entries.length - 1];
+                })();
                 container.innerHTML = '';
                 const card = document.createElement('div');
                 card.className = 'entry-card';
@@ -184,7 +195,18 @@
                     return;
                 }
 
-                archiveEntries = entries.slice().reverse();
+                // Один день — одна запись: в журнале есть даты с несколькими
+                // записями (ручные перезапуски до дубль-защиты). Архив показывает
+                // первую (каноническую) запись каждого дня, сами данные не трогаем.
+                const seenDates = new Set();
+                const canonical = entries.filter((entry) => {
+                    const d = (entry && entry.date) || '';
+                    if (seenDates.has(d)) return false;
+                    seenDates.add(d);
+                    return true;
+                });
+
+                archiveEntries = canonical.slice().reverse();
                 archiveCurrentPage = 0;
                 archiveList.innerHTML = '';
 
