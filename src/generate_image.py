@@ -26,7 +26,14 @@ IMAGE_PROMPT_FILE = os.path.join(DATA_DIR, "latest_image_prompt.txt")
 JOURNAL_FILE = os.path.join(DATA_DIR, "journal.json")
 
 API_URL = "https://gen.pollinations.ai/v1/images/generations"
-MODEL = os.environ.get("FLUX_IMAGE_MODEL", "black-forest-labs/flux-3-max")
+# Дефолт — flux.2-klein-4b: рабочий компромисс качества и доступности на
+# бесплатном ключе (0 pollen на балансе). Эмпирически проверено 08.11.2026:
+# ✅ работают: flux.1-schnell, flux.1-kontext-pro, flux.2-klein-4b,
+#    tongyi-mai/z-image-turbo
+# ❌ flux-3-max — grant категории video; flux-3-image — ненулевой баланс;
+#    flux.1.1-pro — детерминированный отказ content-moderation на промптах
+#    дневника (апстрим myceli режет интимные описания персонажа)
+MODEL = os.environ.get("FLUX_IMAGE_MODEL", "black-forest-labs/flux.2-klein-4b")
 
 
 def ext_of(raw, media_type):
