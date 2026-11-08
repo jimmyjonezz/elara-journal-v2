@@ -130,8 +130,12 @@ def main():
         print("❌ В ответе нет ни b64_json, ни url")
         sys.exit(1)
 
+    # Slug модели в имени файла: test-прогоны разных моделей не перетирают
+    # друг друга (никто из потребителей не завязан на точное имя: vk-постер
+    # берёт картинку по mtime, сайт images не использует).
     ext = ext_of(raw, media_type)
-    filename = f"{entry_date_str}.{ext}"
+    model_slug = MODEL.rsplit("/", 1)[-1]
+    filename = f"{entry_date_str}.{model_slug}.{ext}"
     filepath = os.path.join(IMAGES_DIR, filename)
 
     with open(filepath, "wb") as f:
