@@ -1,5 +1,5 @@
-Character: A 24-year-old woman with long wavy brown hair casually gathered at the back. {POSE}. She is wearing a simple white nightgown with thin straps, with a thin gold chain and pendant around her neck, the loose fabric parting at the back to reveal her shoulder blades and the line of her spine. Her expression is pensive, calm, with a hint of unresolved tension: her gaze is detached, lips slightly parted, cheeks lightly flushed.
+Character: A 24-year-old woman with long wavy brown hair casually gathered at the back. {POSE}. She is wearing a white blouse with ruffles and a deep neckline, with a thin gold chain and pendant around her neck. Her expression is pensive, calm, with a hint of unresolved tension: her gaze is detached, lips slightly parted.
 Setting: {SETTING}
 Atmosphere: melancholic, intimate, timeless, filled with emotional nuances.
 Key requirements: keep the character's appearance and proportions absolutely unchanged; change only the background and surroundings.
-Style: ultra-realistic painterly illustration with sharp 8K details, soft natural lighting, slight depth of field, muted earthy tones with "golden hour" accents.
+Style: ultra-realistic painterly illustration with sharp 8K details, soft natural lighting, muted earthy tones with "golden hour" accents. Wide-angle composition with deep perspective: the full figure in the foreground, the room receding toward the light source in the background.
