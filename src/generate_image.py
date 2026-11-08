@@ -99,7 +99,7 @@ def main():
                 "seed": seed,
                 "response_format": "b64_json",
             },
-            timeout=300,
+            timeout=420,
         )
     except requests.RequestException as e:
         print(f"❌ Ошибка сети/API: {e}")

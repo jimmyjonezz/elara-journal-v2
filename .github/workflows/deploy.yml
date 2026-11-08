@@ -63,7 +63,7 @@ jobs:
         # Таймаут — генерация FLUX может занимать более минуты.
         # continue-on-error: картинка не должна блокировать выпуск записи
         # и деплой: запись пережила 8 месяцев без единого изображения.
-        timeout-minutes: 6
+        timeout-minutes: 9
         continue-on-error: true
         run: |
           pip install requests --quiet
