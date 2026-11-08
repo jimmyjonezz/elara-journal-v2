@@ -97,6 +97,7 @@ def main():
                 "prompt": prompt_text,
                 "n": 1,
                 "size": "1024x1024",
+                "quality": "high",
                 "seed": seed,
                 "response_format": "b64_json",
             },
