@@ -2,21 +2,23 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-// Ollama Cloud — OpenAI-совместимый endpoint (/v1/chat/completions).
-// Ключ лежит в GitHub Secret OLLAMA_API_KEY.
+// Zhipu / BigModel — OpenAI-совместимый endpoint (/v4/chat/completions).
+// Ключ лежит в GitHub Secret GLM_API_KEY.
 // Базовый URL и модель захардкожены здесь; при необходимости переопределяются
-// через env OLLAMA_BASE_URL / OLLAMA_MODEL, но по умолчанию берутся из кода.
-const API_BASE = process.env.OLLAMA_BASE_URL || "https://ollama.com/v1";
+// через env GLM_BASE_URL / GLM_MODEL, но по умолчанию берутся из кода.
+//
+// ⚠️ В модели glm-4.5-flash по умолчанию включено глубокое мышление (thinking).
+// Его нужно отключать явно — иначе API возвращает HTTP 200 с пустым содержанием.
+const API_BASE = process.env.GLM_BASE_URL || "https://open.bigmodel.cn/api/paas/v4";
 const API_URL = `${API_BASE.replace(/\/+$/, "")}/chat/completions`;
 
-const API_KEY = process.env.OLLAMA_API_KEY;
+const API_KEY = process.env.GLM_API_KEY;
 
-// Модель gemma3:27b была снята (retired) 2026-07-15, gemma4:31b — перегружена/нестабильна.
-// Kimi K2.5 — лёгкая, креативная, бесплатно на Free-тарифе Ollama Cloud.
-const MODEL = process.env.OLLAMA_MODEL || "gemma4:31b-cloud";
+// glm-4.5-flash — бесплатный текст Zhipu; 128K контекст, максимальный вывод 96K токенов.
+const MODEL = process.env.GLM_MODEL || "glm-4.5-flash";
 
 /**
- * Извлекает текст ответа из OpenAI-совместимого формата Ollama Cloud.
+ * Извлекает текст ответа из OpenAI-совместимого формата BigModel.
  * Возвращает null, если формат ответа неожиданный (чтобы вызвать ошибку выше).
  */
 function extractContent(result) {
@@ -66,6 +68,7 @@ async function generateEssay(data) {
     body: JSON.stringify({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
+      thinking: { type: "disabled" },
       temperature: 0.8,
       stream: false
     })
@@ -74,15 +77,15 @@ async function generateEssay(data) {
   if (!response.ok) {
     const errorText = await response.text();
     if (response.status === 429) {
-      throw new Error(`Ollama API ошибка 429 (Rate limit). Детали: ${errorText}`);
+      throw new Error(`BigModel API ошибка 429 (Rate limit). Детали: ${errorText}`);
     }
-    throw new Error(`Ollama API ошибка: ${response.status} - ${errorText}`);
+    throw new Error(`BigModel API ошибка: ${response.status} - ${errorText}`);
   }
 
   const result = await response.json();
   const content = extractContent(result);
   if (!content) {
-    throw new Error(`Ollama API вернул неожиданный формат ответа: ${JSON.stringify(result).slice(0, 300)}`);
+    throw new Error(`BigModel API вернул неожиданный формат ответа: ${JSON.stringify(result).slice(0, 300)}`);
   }
   return content;
 }
@@ -104,6 +107,7 @@ async function generateReflection(essay) {
     body: JSON.stringify({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
+      thinking: { type: "disabled" },
       temperature: 0.7,
       stream: false
     })
@@ -111,13 +115,13 @@ async function generateReflection(essay) {
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`Ollama API ошибка: ${response.status} - ${errorText}`);
+    throw new Error(`BigModel API ошибка: ${response.status} - ${errorText}`);
   }
 
   const result = await response.json();
   const content = extractContent(result);
   if (!content) {
-    throw new Error(`Ollama API вернул неожиданный формат ответа: ${JSON.stringify(result).slice(0, 300)}`);
+    throw new Error(`BigModel API вернул неожиданный формат ответа: ${JSON.stringify(result).slice(0, 300)}`);
   }
   return content;
 }
@@ -157,6 +161,7 @@ async function generateCritique(data) {
     body: JSON.stringify({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
+      thinking: { type: "disabled" },
       temperature: 0.6,
       stream: false
     })
@@ -164,13 +169,13 @@ async function generateCritique(data) {
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`Ollama API ошибка: ${response.status} - ${errorText}`);
+    throw new Error(`BigModel API ошибка: ${response.status} - ${errorText}`);
   }
 
   const result = await response.json();
   const content = extractContent(result);
   if (!content) {
-    throw new Error(`Ollama API вернул неожиданный формат ответа: ${JSON.stringify(result).slice(0, 300)}`);
+    throw new Error(`BigModel API вернул неожиданный формат ответа: ${JSON.stringify(result).slice(0, 300)}`);
   }
   return content;
 }

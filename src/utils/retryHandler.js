@@ -22,6 +22,7 @@ async function withRetry(fn, maxRetries = MAX_RETRIES, baseDelay = BASE_DELAY_MS
         msg.includes('502') ||
         msg.includes('503') ||
         msg.includes('504') ||
+        msg.includes('429') ||
         msg.includes('Bad Gateway') ||
         msg.includes('Service Unavailable') ||
         msg.includes('timeout') ||

@@ -38,7 +38,7 @@ jobs:
 
       - name: Генерация новой записи журнала
         env:
-          OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+          GLM_API_KEY: ${{ secrets.GLM_API_KEY }}
         # Без `|| echo`: дубль-защита внутри скрипта предотвращает повторные
         # записи за день, поэтому падение генератора теперь должно падать в CI,
         # а не прятаться (и не пускать критика по вчерашней записи).
@@ -46,7 +46,7 @@ jobs:
 
       - name: Литературный анализ (критик)
         env:
-          OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+          GLM_API_KEY: ${{ secrets.GLM_API_KEY }}
         run: |
           echo "🖋️ Запуск критика..."
           node src/core/literaryAnalyzer.js || echo "Анализ критика упал → сохраняем что есть"
