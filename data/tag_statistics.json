@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 240,
+    "count": 241,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-11-21",
+    "lastSeen": "2026-11-22",
     "types": [
       "static",
       "critic"
@@ -94,9 +94,9 @@
     ]
   },
   "покой": {
-    "count": 72,
+    "count": 73,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-11-21",
+    "lastSeen": "2026-11-22",
     "types": [
       "static"
     ]
@@ -430,9 +430,9 @@
     ]
   },
   "принятие": {
-    "count": 10,
+    "count": 11,
     "firstSeen": "2026-04-09",
-    "lastSeen": "2026-11-06",
+    "lastSeen": "2026-11-22",
     "types": [
       "critic"
     ]
@@ -599,9 +599,9 @@
     ]
   },
   "пустота": {
-    "count": 7,
+    "count": 8,
     "firstSeen": "2026-05-22",
-    "lastSeen": "2026-11-02",
+    "lastSeen": "2026-11-22",
     "types": [
       "critic"
     ]
