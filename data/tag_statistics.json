@@ -68,9 +68,9 @@
     ]
   },
   "время": {
-    "count": 242,
+    "count": 243,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-11-23",
+    "lastSeen": "2026-11-26",
     "types": [
       "static",
       "critic"
@@ -86,9 +86,9 @@
     ]
   },
   "жизнь": {
-    "count": 51,
+    "count": 52,
     "firstSeen": "2026-03-05",
-    "lastSeen": "2026-11-19",
+    "lastSeen": "2026-11-26",
     "types": [
       "static"
     ]
